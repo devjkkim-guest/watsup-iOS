@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fh6-kE-qiX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fh6-kE-qiX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,7 +30,7 @@
         <scene sceneID="emW-Af-AyW">
             <objects>
                 <viewControllerPlaceholder storyboardName="Main" id="eJE-bb-6Se" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="mhW-h2-oIF"/>
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="mhW-h2-oIF"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPj-PY-Zzy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -40,7 +40,7 @@
         <scene sceneID="bkr-L0-06H">
             <objects>
                 <viewControllerPlaceholder storyboardName="Group" id="uke-Rw-joX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="GDf-oX-LB2"/>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="GDf-oX-LB2"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jVq-Rp-oZ7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmotionRegisterView" customModule="watsup" customModuleProvider="target">
+            <connections>
+                <outlet property="btnToggleReal" destination="3ZO-cp-ooL" id="KMJ-P3-W9O"/>
+                <outlet property="fakeSelectEmotionView" destination="8r9-sH-XoF" id="ufZ-za-iTN"/>
+                <outlet property="realEmotionView" destination="Zzp-RK-c6o" id="fLN-vv-qdG"/>
+                <outlet property="realSelectEmotionView" destination="xsJ-BS-7HM" id="ySM-0j-sZL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eX3-df-kqn">
+                    <rect key="frame" x="20" y="298" width="374" height="310"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vEz-34-2df">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="160"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8r9-sH-XoF" customClass="SelectEmotionView" customModule="watsup" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="110"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="110" id="S2X-LS-6qO"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ZO-cp-ooL">
+                                    <rect key="frame" x="85.5" y="130" width="203" height="19"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
+                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-10" maxY="0.0"/>
+                                    <state key="normal" title="숨기고 싶은 진짜 기분이 있어요" image="checkmark.circle" catalog="system">
+                                        <color key="titleColor" systemColor="labelColor"/>
+                                    </state>
+                                    <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                    <connections>
+                                        <action selector="onClickToggleRealEmotionView:" destination="-1" eventType="touchUpInside" id="6AT-up-goy"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="8r9-sH-XoF" firstAttribute="leading" secondItem="vEz-34-2df" secondAttribute="leading" id="0rK-3R-J8E"/>
+                                <constraint firstAttribute="height" constant="160" id="63O-yd-iem"/>
+                                <constraint firstItem="3ZO-cp-ooL" firstAttribute="centerX" secondItem="vEz-34-2df" secondAttribute="centerX" id="GTo-6M-moJ"/>
+                                <constraint firstAttribute="trailing" secondItem="8r9-sH-XoF" secondAttribute="trailing" id="jrR-7Q-EWu"/>
+                                <constraint firstItem="8r9-sH-XoF" firstAttribute="top" secondItem="vEz-34-2df" secondAttribute="top" id="sEh-ok-H3a"/>
+                                <constraint firstItem="3ZO-cp-ooL" firstAttribute="top" secondItem="8r9-sH-XoF" secondAttribute="bottom" constant="20" id="x6p-Yj-nfH"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zzp-RK-c6o">
+                            <rect key="frame" x="0.0" y="160" width="374" height="150"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsJ-BS-7HM" customClass="SelectEmotionView" customModule="watsup" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="110"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="110" id="kb7-B6-kvw"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나만 볼 수 있어요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFG-as-S0U">
+                                    <rect key="frame" x="145.5" y="122" width="83" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="150" id="3N6-CK-6Fz"/>
+                                <constraint firstItem="gFG-as-S0U" firstAttribute="top" secondItem="xsJ-BS-7HM" secondAttribute="bottom" constant="12" id="Bqt-mw-1f9"/>
+                                <constraint firstAttribute="trailing" secondItem="xsJ-BS-7HM" secondAttribute="trailing" id="F5Z-x5-rXE"/>
+                                <constraint firstItem="xsJ-BS-7HM" firstAttribute="top" secondItem="Zzp-RK-c6o" secondAttribute="top" id="Q3c-MP-Nca"/>
+                                <constraint firstItem="xsJ-BS-7HM" firstAttribute="leading" secondItem="Zzp-RK-c6o" secondAttribute="leading" id="R5d-Gu-saK"/>
+                                <constraint firstItem="gFG-as-S0U" firstAttribute="centerX" secondItem="xsJ-BS-7HM" secondAttribute="centerX" id="hYz-ED-EDL"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKD-BF-08m">
+                    <rect key="frame" x="20" y="632" width="374" height="46"/>
+                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="CmR-I4-gUk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <state key="normal" title="기록하기">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="onClickRegiserEmotion:" destination="-1" eventType="touchUpInside" id="t8G-ly-09w"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="eKD-BF-08m" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="6DR-mQ-5Fv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eKD-BF-08m" secondAttribute="trailing" constant="20" id="9T5-tn-YlI"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eX3-df-kqn" secondAttribute="trailing" constant="20" id="JkE-Pf-ehy"/>
+                <constraint firstItem="eX3-df-kqn" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="N5m-bd-65S"/>
+                <constraint firstItem="eKD-BF-08m" firstAttribute="top" secondItem="eX3-df-kqn" secondAttribute="bottom" constant="24" id="OBn-ci-ImR"/>
+                <constraint firstItem="eX3-df-kqn" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="bd8-FR-Re4"/>
+                <constraint firstItem="eX3-df-kqn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="efJ-5n-6LI"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="141" y="154"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

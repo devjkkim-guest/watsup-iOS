@@ -11,6 +11,7 @@ class SelectEmotionView: XibView {
     
     @IBOutlet weak var emotionStack: UIStackView!
     @IBOutlet weak var tfMessage: UITextField!
+    var emotion: EmotionType?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,5 +29,9 @@ class SelectEmotionView: XibView {
         }
         sender.alpha = 1
         sender.isSelected = true
+        
+        if let emotionText = sender.titleLabel?.text {
+            emotion = EmotionType(rawValue: emotionText)
+        }
     }
 }
