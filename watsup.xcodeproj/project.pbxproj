@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,11 @@
 		8F2C5A1525BB2FBA004FF9EF /* EmotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5A1425BB2FBA004FF9EF /* EmotionView.swift */; };
 		8F2C5A2125BB3917004FF9EF /* CommonEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5A2025BB3917004FF9EF /* CommonEnums.swift */; };
 		8F2C5A2A25BB4C22004FF9EF /* EmotionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5A2925BB4C22004FF9EF /* EmotionLog.swift */; };
+		8F2C5A9425C064B4004FF9EF /* CommonLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2C5A9325C064B4004FF9EF /* CommonLibrary */; };
+		8F2C5AA125C067D3004FF9EF /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5AA025C067D3004FF9EF /* API.swift */; };
+		8F2C5AA625C069D0004FF9EF /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5AA525C069D0004FF9EF /* APIModel.swift */; };
+		8F2C5AAB25C06C0E004FF9EF /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5AAA25C06C0E004FF9EF /* APIConstants.swift */; };
+		8F2C5AB125C06DA0004FF9EF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5AB025C06DA0004FF9EF /* Request.swift */; };
 		8F61769B25B856140059B4B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F61769A25B856140059B4B7 /* AppDelegate.swift */; };
 		8F61769F25B856140059B4B7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F61769E25B856140059B4B7 /* TabBarController.swift */; };
 		8F6176A225B856140059B4B7 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F6176A025B856140059B4B7 /* TabBar.storyboard */; };
@@ -79,6 +84,10 @@
 		8F2C5A1425BB2FBA004FF9EF /* EmotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionView.swift; sourceTree = "<group>"; };
 		8F2C5A2025BB3917004FF9EF /* CommonEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonEnums.swift; sourceTree = "<group>"; };
 		8F2C5A2925BB4C22004FF9EF /* EmotionLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionLog.swift; sourceTree = "<group>"; };
+		8F2C5AA025C067D3004FF9EF /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		8F2C5AA525C069D0004FF9EF /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
+		8F2C5AAA25C06C0E004FF9EF /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		8F2C5AB025C06DA0004FF9EF /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		8F61769725B856140059B4B7 /* watsup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watsup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F61769A25B856140059B4B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F61769E25B856140059B4B7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -105,6 +114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A0E5C4FF17B7C0C0D50808F /* Pods_watsup.framework in Frameworks */,
+				8F2C5A9425C064B4004FF9EF /* CommonLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +208,25 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8F2C5A9F25C067B2004FF9EF /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8F2C5AAF25C06D81004FF9EF /* Request */,
+				8F2C5AA025C067D3004FF9EF /* API.swift */,
+				8F2C5AA525C069D0004FF9EF /* APIModel.swift */,
+				8F2C5AAA25C06C0E004FF9EF /* APIConstants.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8F2C5AAF25C06D81004FF9EF /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				8F2C5AB025C06DA0004FF9EF /* Request.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		8F61768E25B856140059B4B7 = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +252,7 @@
 		8F61769925B856140059B4B7 /* watsup */ = {
 			isa = PBXGroup;
 			children = (
+				8F2C5A9F25C067B2004FF9EF /* API */,
 				8F0E41E925B9C677008AA995 /* Common */,
 				8F0E41CA25B85EB4008AA995 /* Main */,
 				8F0E41CB25B85ECB008AA995 /* Group */,
@@ -296,6 +326,9 @@
 			dependencies = (
 			);
 			name = watsup;
+			packageProductDependencies = (
+				8F2C5A9325C064B4004FF9EF /* CommonLibrary */,
+			);
 			productName = watsup;
 			productReference = 8F61769725B856140059B4B7 /* watsup.app */;
 			productType = "com.apple.product-type.application";
@@ -525,12 +558,16 @@
 			files = (
 				8F0E41E025B9C61E008AA995 /* GroupListViewController.swift in Sources */,
 				8F0E41EC25B9C6A0008AA995 /* UserDetailViewController.swift in Sources */,
+				8F2C5AAB25C06C0E004FF9EF /* APIConstants.swift in Sources */,
 				8F0E421925B9CD75008AA995 /* SelectEmotionView.swift in Sources */,
 				8F2C59FB25BB25BD004FF9EF /* EmotionRegisterView.swift in Sources */,
+				8F2C5AA625C069D0004FF9EF /* APIModel.swift in Sources */,
+				8F2C5AA125C067D3004FF9EF /* API.swift in Sources */,
 				8F0E41E525B9C62D008AA995 /* GroupDetailViewController.swift in Sources */,
 				8F2C5A2125BB3917004FF9EF /* CommonEnums.swift in Sources */,
 				8F0E420A25B9CA03008AA995 /* MainViewController.swift in Sources */,
 				8F2C5A1525BB2FBA004FF9EF /* EmotionView.swift in Sources */,
+				8F2C5AB125C06DA0004FF9EF /* Request.swift in Sources */,
 				8F2C5A0B25BB2CBD004FF9EF /* RandomEmotionView.swift in Sources */,
 				8FD6448E25BAFB010056F74E /* BaseViewController.swift in Sources */,
 				8F2C5A2A25BB4C22004FF9EF /* EmotionLog.swift in Sources */,
@@ -877,6 +914,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8F2C5A9325C064B4004FF9EF /* CommonLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CommonLibrary;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8F61768F25B856140059B4B7 /* Project object */;
 }

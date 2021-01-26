@@ -25,6 +25,25 @@ class MainViewController: BaseViewController {
         randomEmotionView.myEmotionView.isHidden = true
         
         setKeyboardObserver()
+        
+        let request = PostUsers(password: "abcd1234!@#$()",
+                                device_uuid: UUID().uuidString,
+                                device_token: UUID().uuidString,
+                                os_type: "iOS",
+                                email: "ceo@kakao.com",
+                                app_version: "0.0.1")
+        
+        API.shared.postUsers(.postUsers(parameter: request)) { result in
+            print(result)
+            
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {
