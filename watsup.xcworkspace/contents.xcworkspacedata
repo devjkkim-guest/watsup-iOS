@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:CommonLibrary">
+      location = "group:watsup.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:watsup.xcodeproj">
+      location = "group:CommonLibrary">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

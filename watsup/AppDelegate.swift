@@ -13,8 +13,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        application.registerForRemoteNotifications()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { result, error in
+            if !result {
+                print("notification denied")
+            }
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let deviceToken = deviceToken.map { String(format: "%02x", $0) }.joined()
+        print("deviceToken: \(deviceToken)")
     }
 }
 

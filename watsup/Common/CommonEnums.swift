@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 감정 타입
 enum EmotionType: String, CaseIterable {
     /// 0<=score<=20
     case pouting = "😡"
@@ -18,4 +19,15 @@ enum EmotionType: String, CaseIterable {
     case grinning = "😄"
     /// 80<score<=100
     case smilingHeartEyes = "😍"
+}
+
+/// UserDefaults Keys
+enum UserDefaultsKey: String {
+    case deviceToken
+}
+
+/// os type
+enum OSType: String {
+    case iOS = "1"
+    case Android = "2"
 }

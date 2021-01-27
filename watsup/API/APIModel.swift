@@ -10,12 +10,14 @@ import Alamofire
 
 enum APIModel: URLRequestConvertible {
     
-    case postUsers(parameter: PostUsers)
+    case postUsers(_ request: PostUsersRequest?)
+    case postAuth(_ request: PostAuthRequest?)
     
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
-        case .postUsers(_):
+        case .postUsers(_),
+             .postAuth(_):
             return .post
         }
     }
@@ -25,6 +27,8 @@ enum APIModel: URLRequestConvertible {
         switch self {
         case .postUsers(_):
             return "/users"
+        case .postAuth(_):
+            return "/auth"
         }
     }
     
@@ -32,6 +36,8 @@ enum APIModel: URLRequestConvertible {
     private var parameters: Codable {
         switch self {
         case .postUsers(let param):
+            return param
+        case .postAuth(let param):
             return param
         }
     }
