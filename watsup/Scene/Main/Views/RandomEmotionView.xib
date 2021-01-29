@@ -25,7 +25,6 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="LEf-e3-fAf" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="cZP-zk-S9i"/>
                 <constraint firstItem="LEf-e3-fAf" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="ff2-hO-qF9"/>

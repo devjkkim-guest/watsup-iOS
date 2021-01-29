@@ -22,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(error.localizedDescription)
             }
         }
+        
+        if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue) {
+            window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
+        }
         return true
     }
     

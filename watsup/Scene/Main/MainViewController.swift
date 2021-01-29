@@ -17,9 +17,6 @@ class MainViewController: BaseViewController {
         super.viewDidLoad()
 
         emotionRegisterView.delegate = self
-        emotionRegisterView.realEmotionView.isHidden = true
-        emotionRegisterView.realEmotionView.alpha = 0
-        emotionRegisterView.realEmotionView.layer.cornerRadius = 14
         
         randomEmotionView.frame = view.bounds
         randomEmotionView.myEmotionView.isHidden = true

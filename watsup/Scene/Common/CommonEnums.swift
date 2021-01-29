@@ -23,7 +23,14 @@ enum EmotionType: String, CaseIterable {
 
 /// UserDefaults Keys
 enum UserDefaultsKey: String {
+    case uuid
     case deviceToken
+}
+
+/// Keychain Keys
+enum KeychainKey: String {
+    case accessToken
+    case refreshToken
 }
 
 /// os type

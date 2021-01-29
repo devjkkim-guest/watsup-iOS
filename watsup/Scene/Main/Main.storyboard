@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="28O-05-dL3">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--투데이-->
+        <scene sceneID="iw0-Nx-vL0">
+            <objects>
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dy9-1z-fI6" customClass="MainViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I0m-KP-6NT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ei-w9-cGy" customClass="GradientView" customModule="watsup" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                                        <color key="value" name="Sand"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                                        <color key="value" name="Blue"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yb5-IC-ibw" customClass="RandomEmotionView" customModule="watsup" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3En-Ec-qIe" userLabel="EmotionRegisterView" customClass="EmotionRegisterView" customModule="watsup" customModuleProvider="target">
+                                <rect key="frame" x="20" y="140" width="374" height="500"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="500" id="0oS-3h-h9v"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="500" id="CHZ-LZ-oWJ"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="500" id="gWe-n4-Qle"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8HR-ef-hYo"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yb5-IC-ibw" firstAttribute="trailing" secondItem="8HR-ef-hYo" secondAttribute="trailing" id="4by-GQ-rra"/>
+                            <constraint firstItem="3En-Ec-qIe" firstAttribute="leading" secondItem="8HR-ef-hYo" secondAttribute="leading" constant="20" id="IhQ-mE-ldJ"/>
+                            <constraint firstAttribute="bottom" secondItem="yb5-IC-ibw" secondAttribute="bottom" id="Mv8-6p-wEs"/>
+                            <constraint firstItem="8HR-ef-hYo" firstAttribute="trailing" secondItem="4ei-w9-cGy" secondAttribute="trailing" id="Q1B-oP-Vmx"/>
+                            <constraint firstItem="4ei-w9-cGy" firstAttribute="leading" secondItem="8HR-ef-hYo" secondAttribute="leading" id="R0I-Eh-m6b"/>
+                            <constraint firstItem="3En-Ec-qIe" firstAttribute="trailing" secondItem="8HR-ef-hYo" secondAttribute="trailing" constant="-20" id="SFx-CV-KMi"/>
+                            <constraint firstItem="yb5-IC-ibw" firstAttribute="leading" secondItem="8HR-ef-hYo" secondAttribute="leading" id="SMW-n7-jvS"/>
+                            <constraint firstItem="8HR-ef-hYo" firstAttribute="bottom" secondItem="4ei-w9-cGy" secondAttribute="bottom" id="ouA-t4-LGz"/>
+                            <constraint firstItem="4ei-w9-cGy" firstAttribute="top" secondItem="I0m-KP-6NT" secondAttribute="top" id="tta-bi-INQ"/>
+                            <constraint firstItem="3En-Ec-qIe" firstAttribute="top" secondItem="8HR-ef-hYo" secondAttribute="top" id="z0V-aX-abl"/>
+                            <constraint firstItem="yb5-IC-ibw" firstAttribute="top" secondItem="I0m-KP-6NT" secondAttribute="top" id="zHq-yn-mHQ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                                <color key="value" name="Sand"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                                <color key="value" name="Blue"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="투데이" image="star.fill" catalog="system" id="P9y-HN-loW"/>
+                    <navigationItem key="navigationItem" title="투데이" id="8zb-Wi-sOe"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="emotionRegisterView" destination="3En-Ec-qIe" id="bgw-wk-0wg"/>
+                        <outlet property="randomEmotionView" destination="yb5-IC-ibw" id="ggU-Jq-DLa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fb8-R2-hsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3726.0869565217395" y="138.61607142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="52n-wg-4Qz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="28O-05-dL3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="8pJ-tc-7Jo">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Dy9-1z-fI6" kind="relationship" relationship="rootViewController" id="iaw-cJ-NUq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hou-6C-52q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2815.9420289855075" y="138.61607142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <namedColor name="Blue">
+            <color red="0.24313725490196078" green="0.31764705882352939" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Sand">
+            <color red="0.87058823529411766" green="0.79607843137254897" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

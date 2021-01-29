@@ -11,6 +11,7 @@ class AuthLoginViewController: UIViewController {
 
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
+    let viewModel = AuthLoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,9 @@ class AuthLoginViewController: UIViewController {
         API.shared.request(.postAuth(userData), responseModel: PostAuthResponse.self) { result in
             switch result {
             case .success(let data):
-                print(data)
+                if self.viewModel.addUser(data: data) {
+                    self.goMain()
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             case .none:
@@ -39,4 +42,10 @@ class AuthLoginViewController: UIViewController {
         }
     }
     
+    func goMain() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
+            
+        }
+    }
 }

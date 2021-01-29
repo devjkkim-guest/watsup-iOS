@@ -42,6 +42,18 @@
 		8F5AD3F725C1CDB200DBF158 /* APIEventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AD3F625C1CDB200DBF158 /* APIEventMonitor.swift */; };
 		8F5AD3FC25C45F7300DBF158 /* PostAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AD3FB25C45F7300DBF158 /* PostAuthResponse.swift */; };
 		8F5AD40125C45F9100DBF158 /* CommonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AD40025C45F9100DBF158 /* CommonResponse.swift */; };
+		8F5AD40D25C4630C00DBF158 /* AuthLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AD40C25C4630C00DBF158 /* AuthLoginViewModel.swift */; };
+		8F5D590225C466270095C21A /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F5D590125C466270095C21A /* Setting.storyboard */; };
+		8F5D591D25C473860095C21A /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D591C25C473860095C21A /* UIButton+Extension.swift */; };
+		8F5D592225C474D20095C21A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D592125C474D20095C21A /* UIView+Extension.swift */; };
+		8F5D592725C478800095C21A /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D592625C478800095C21A /* GradientView.swift */; };
+		8F5D592C25C486AE0095C21A /* PostGroupsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D592B25C486AE0095C21A /* PostGroupsRequest.swift */; };
+		8F5D593125C4871E0095C21A /* PostGroupsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D593025C4871E0095C21A /* PostGroupsResponse.swift */; };
+		8F5D593E25C4899A0095C21A /* GetUsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D593D25C4899A0095C21A /* GetUsersResponse.swift */; };
+		8F5D594325C489D10095C21A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D594225C489D10095C21A /* SettingViewController.swift */; };
+		8F5D594B25C4924C0095C21A /* GetUserProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D594A25C4924C0095C21A /* GetUserProfileResponse.swift */; };
+		8F5D595025C494230095C21A /* APIInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D594F25C494230095C21A /* APIInterceptor.swift */; };
+		8F5D595525C496EC0095C21A /* APITokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D595425C496EC0095C21A /* APITokenStorage.swift */; };
 		8F61769B25B856140059B4B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F61769A25B856140059B4B7 /* AppDelegate.swift */; };
 		8F61769F25B856140059B4B7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F61769E25B856140059B4B7 /* TabBarController.swift */; };
 		8F6176A225B856140059B4B7 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F6176A025B856140059B4B7 /* TabBar.storyboard */; };
@@ -109,6 +121,18 @@
 		8F5AD3F625C1CDB200DBF158 /* APIEventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEventMonitor.swift; sourceTree = "<group>"; };
 		8F5AD3FB25C45F7300DBF158 /* PostAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAuthResponse.swift; sourceTree = "<group>"; };
 		8F5AD40025C45F9100DBF158 /* CommonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonResponse.swift; sourceTree = "<group>"; };
+		8F5AD40C25C4630C00DBF158 /* AuthLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLoginViewModel.swift; sourceTree = "<group>"; };
+		8F5D590125C466270095C21A /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		8F5D591C25C473860095C21A /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		8F5D592125C474D20095C21A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		8F5D592625C478800095C21A /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		8F5D592B25C486AE0095C21A /* PostGroupsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGroupsRequest.swift; sourceTree = "<group>"; };
+		8F5D593025C4871E0095C21A /* PostGroupsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGroupsResponse.swift; sourceTree = "<group>"; };
+		8F5D593D25C4899A0095C21A /* GetUsersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUsersResponse.swift; sourceTree = "<group>"; };
+		8F5D594225C489D10095C21A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8F5D594A25C4924C0095C21A /* GetUserProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileResponse.swift; sourceTree = "<group>"; };
+		8F5D594F25C494230095C21A /* APIInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIInterceptor.swift; sourceTree = "<group>"; };
+		8F5D595425C496EC0095C21A /* APITokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITokenStorage.swift; sourceTree = "<group>"; };
 		8F61769725B856140059B4B7 /* watsup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watsup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F61769A25B856140059B4B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F61769E25B856140059B4B7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -208,6 +232,7 @@
 				8F2C5A0F25BB2F70004FF9EF /* EmotionView.xib */,
 				8F2C5A1425BB2FBA004FF9EF /* EmotionView.swift */,
 				8F0E421D25B9D0A3008AA995 /* XibView.swift */,
+				8F5D592625C478800095C21A /* GradientView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -239,6 +264,8 @@
 				8F2C5AA525C069D0004FF9EF /* APIModel.swift */,
 				8F2C5AAA25C06C0E004FF9EF /* APIConstants.swift */,
 				8F5AD3F625C1CDB200DBF158 /* APIEventMonitor.swift */,
+				8F5D594F25C494230095C21A /* APIInterceptor.swift */,
+				8F5D595425C496EC0095C21A /* APITokenStorage.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -247,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				8F2C5AB025C06DA0004FF9EF /* Request.swift */,
+				8F5D592B25C486AE0095C21A /* PostGroupsRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -254,10 +282,10 @@
 		8F2C5AD925C1BC0C004FF9EF /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				8F5AD40B25C462FD00DBF158 /* Login */,
 				8F2C5ADD25C1BC37004FF9EF /* Auth.storyboard */,
 				8F5AD3D025C1C50100DBF158 /* AuthMainViewController.swift */,
 				8F5AD3D525C1C51800DBF158 /* AuthJoinViewController.swift */,
-				8F5AD3DA25C1C52600DBF158 /* AuthLoginViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -268,6 +296,9 @@
 				8F5AD40025C45F9100DBF158 /* CommonResponse.swift */,
 				8F5AD3E525C1CA1B00DBF158 /* PostUsersResponse.swift */,
 				8F5AD3FB25C45F7300DBF158 /* PostAuthResponse.swift */,
+				8F5D593025C4871E0095C21A /* PostGroupsResponse.swift */,
+				8F5D593D25C4899A0095C21A /* GetUsersResponse.swift */,
+				8F5D594A25C4924C0095C21A /* GetUserProfileResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -276,8 +307,50 @@
 			isa = PBXGroup;
 			children = (
 				8F5AD3EE25C1CA4800DBF158 /* Encodable+Extension.swift */,
+				8F5D591C25C473860095C21A /* UIButton+Extension.swift */,
+				8F5D592125C474D20095C21A /* UIView+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8F5AD40B25C462FD00DBF158 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8F5AD3DA25C1C52600DBF158 /* AuthLoginViewController.swift */,
+				8F5AD40C25C4630C00DBF158 /* AuthLoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8F5D58FB25C4655F0095C21A /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				8F0E41E925B9C677008AA995 /* Common */,
+				8F5D58FF25C4658C0095C21A /* TabBar */,
+				8F0E41CA25B85EB4008AA995 /* Main */,
+				8F0E41CB25B85ECB008AA995 /* Group */,
+				8F5D590025C466100095C21A /* Setting */,
+				8F2C5AD925C1BC0C004FF9EF /* Auth */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		8F5D58FF25C4658C0095C21A /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				8F61769E25B856140059B4B7 /* TabBarController.swift */,
+				8F6176A025B856140059B4B7 /* TabBar.storyboard */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		8F5D590025C466100095C21A /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				8F5D590125C466270095C21A /* Setting.storyboard */,
+				8F5D594225C489D10095C21A /* SettingViewController.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		8F61768E25B856140059B4B7 = {
@@ -308,13 +381,8 @@
 				8F2C5ACC25C1AFAD004FF9EF /* watsup.entitlements */,
 				8F5AD3ED25C1CA3500DBF158 /* Extensions */,
 				8F2C5A9F25C067B2004FF9EF /* API */,
-				8F0E41E925B9C677008AA995 /* Common */,
-				8F0E41CA25B85EB4008AA995 /* Main */,
-				8F0E41CB25B85ECB008AA995 /* Group */,
-				8F2C5AD925C1BC0C004FF9EF /* Auth */,
+				8F5D58FB25C4655F0095C21A /* Scene */,
 				8F61769A25B856140059B4B7 /* AppDelegate.swift */,
-				8F61769E25B856140059B4B7 /* TabBarController.swift */,
-				8F6176A025B856140059B4B7 /* TabBar.storyboard */,
 				8F6176A325B856150059B4B7 /* Assets.xcassets */,
 				8F6176A525B856150059B4B7 /* LaunchScreen.storyboard */,
 				8F6176A825B856150059B4B7 /* Info.plist */,
@@ -486,6 +554,7 @@
 				8F6176A225B856140059B4B7 /* TabBar.storyboard in Resources */,
 				8F2C5ADE25C1BC37004FF9EF /* Auth.storyboard in Resources */,
 				8F0E421425B9CD64008AA995 /* SelectEmotionView.xib in Resources */,
+				8F5D590225C466270095C21A /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,23 +683,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F0E41E025B9C61E008AA995 /* GroupListViewController.swift in Sources */,
+				8F5D592C25C486AE0095C21A /* PostGroupsRequest.swift in Sources */,
 				8F0E41EC25B9C6A0008AA995 /* UserDetailViewController.swift in Sources */,
+				8F5AD40D25C4630C00DBF158 /* AuthLoginViewModel.swift in Sources */,
 				8F5AD40125C45F9100DBF158 /* CommonResponse.swift in Sources */,
+				8F5D594325C489D10095C21A /* SettingViewController.swift in Sources */,
 				8F2C5AAB25C06C0E004FF9EF /* APIConstants.swift in Sources */,
+				8F5D593125C4871E0095C21A /* PostGroupsResponse.swift in Sources */,
 				8F0E421925B9CD75008AA995 /* SelectEmotionView.swift in Sources */,
 				8F5AD3FC25C45F7300DBF158 /* PostAuthResponse.swift in Sources */,
 				8F5AD3DB25C1C52600DBF158 /* AuthLoginViewController.swift in Sources */,
 				8F2C59FB25BB25BD004FF9EF /* EmotionRegisterView.swift in Sources */,
 				8F2C5AA625C069D0004FF9EF /* APIModel.swift in Sources */,
+				8F5D591D25C473860095C21A /* UIButton+Extension.swift in Sources */,
 				8F2C5AA125C067D3004FF9EF /* API.swift in Sources */,
+				8F5D593E25C4899A0095C21A /* GetUsersResponse.swift in Sources */,
 				8F0E41E525B9C62D008AA995 /* GroupDetailViewController.swift in Sources */,
 				8F2C5A2125BB3917004FF9EF /* CommonEnums.swift in Sources */,
 				8F0E420A25B9CA03008AA995 /* MainViewController.swift in Sources */,
 				8F5AD3D125C1C50100DBF158 /* AuthMainViewController.swift in Sources */,
 				8F2C5A1525BB2FBA004FF9EF /* EmotionView.swift in Sources */,
 				8F2C5AB125C06DA0004FF9EF /* Request.swift in Sources */,
+				8F5D595525C496EC0095C21A /* APITokenStorage.swift in Sources */,
+				8F5D592225C474D20095C21A /* UIView+Extension.swift in Sources */,
 				8F5AD3F725C1CDB200DBF158 /* APIEventMonitor.swift in Sources */,
+				8F5D592725C478800095C21A /* GradientView.swift in Sources */,
 				8F2C5A0B25BB2CBD004FF9EF /* RandomEmotionView.swift in Sources */,
+				8F5D594B25C4924C0095C21A /* GetUserProfileResponse.swift in Sources */,
+				8F5D595025C494230095C21A /* APIInterceptor.swift in Sources */,
 				8FD6448E25BAFB010056F74E /* BaseViewController.swift in Sources */,
 				8F2C5A2A25BB4C22004FF9EF /* EmotionLog.swift in Sources */,
 				8F5AD3EF25C1CA4800DBF158 /* Encodable+Extension.swift in Sources */,

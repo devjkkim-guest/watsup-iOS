@@ -20,6 +20,7 @@
                     <connections>
                         <segue destination="eJE-bb-6Se" kind="relationship" relationship="viewControllers" id="ohW-xt-rFV"/>
                         <segue destination="uke-Rw-joX" kind="relationship" relationship="viewControllers" id="2dk-Bb-Cu2"/>
+                        <segue destination="6N6-y4-duR" kind="relationship" relationship="viewControllers" id="BV7-f9-ogh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qI-m0-4l3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -29,22 +30,32 @@
         <!--Main-->
         <scene sceneID="emW-Af-AyW">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="eJE-bb-6Se" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="mhW-h2-oIF"/>
-                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPj-PY-Zzy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Main" id="eJE-bb-6Se" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" systemItem="history" id="mhW-h2-oIF"/>
+                </viewControllerPlaceholder>
             </objects>
-            <point key="canvasLocation" x="862" y="110"/>
+            <point key="canvasLocation" x="857" y="63"/>
         </scene>
         <!--Group-->
         <scene sceneID="bkr-L0-06H">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jVq-Rp-oZ7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Group" id="uke-Rw-joX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="more" id="GDf-oX-LB2"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jVq-Rp-oZ7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="875" y="199"/>
+            <point key="canvasLocation" x="862" y="139"/>
+        </scene>
+        <!--Setting-->
+        <scene sceneID="q6e-36-AfA">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OGn-C4-5HU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Setting" id="6N6-y4-duR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="downloads" id="JmU-Cf-WCx"/>
+                </viewControllerPlaceholder>
+            </objects>
+            <point key="canvasLocation" x="861" y="217"/>
         </scene>
     </scenes>
 </document>

@@ -14,7 +14,8 @@ class API {
         configuration.timeoutIntervalForRequest = 1
         configuration.waitsForConnectivity = true
         let logger = APIEventMonitor()
-        let session = Session(configuration: configuration, eventMonitors: [logger])
+        let interceptor = APIInterceptor(storage: APITokenStorage())
+        let session = Session(configuration: configuration, interceptor: interceptor, eventMonitors: [logger])
         return API(session: session)
     }()
     private let session: Session

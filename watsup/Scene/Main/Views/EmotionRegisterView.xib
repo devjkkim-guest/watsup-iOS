@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmotionRegisterView" customModule="watsup" customModuleProvider="target">
+            <connections>
+                <outlet property="btnRegister" destination="eKD-BF-08m" id="jX0-1t-fe0"/>
+                <outlet property="btnToggleReal" destination="3ZO-cp-ooL" id="KMJ-P3-W9O"/>
+                <outlet property="fakeContainer" destination="5HJ-QI-q2x" id="q1I-9i-7RD"/>
+                <outlet property="fakeSelectEmotionView" destination="8r9-sH-XoF" id="ufZ-za-iTN"/>
+                <outlet property="realContainer" destination="hSG-YI-M61" id="cNb-Ql-2C5"/>
+                <outlet property="realSelectEmotionView" destination="xsJ-BS-7HM" id="ySM-0j-sZL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="eX3-df-kqn">
+                    <rect key="frame" x="0.0" y="274" width="414" height="338"/>
+                    <subviews>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5HJ-QI-q2x">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="164"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ecq-Yb-s6X">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="164"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8r9-sH-XoF" customClass="SelectEmotionView" customModule="watsup" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="110" id="S2X-LS-6qO"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ZO-cp-ooL">
+                                        <rect key="frame" x="0.0" y="128" width="414" height="19"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-10" maxY="0.0"/>
+                                        <state key="normal" title="숨기고 싶은 진짜 기분이 있어요" image="checkmark.circle" catalog="system">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="onClickToggleRealContainer:" destination="-1" eventType="touchUpInside" id="bhO-r5-NLw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="3ZO-cp-ooL" secondAttribute="trailing" id="3iy-en-jO6"/>
+                                    <constraint firstItem="8r9-sH-XoF" firstAttribute="top" secondItem="ecq-Yb-s6X" secondAttribute="top" id="OEZ-yL-RUN"/>
+                                    <constraint firstItem="3ZO-cp-ooL" firstAttribute="top" secondItem="8r9-sH-XoF" secondAttribute="bottom" constant="18" id="adr-TD-bb8"/>
+                                    <constraint firstItem="8r9-sH-XoF" firstAttribute="leading" secondItem="ecq-Yb-s6X" secondAttribute="leading" id="lAk-u0-s4w"/>
+                                    <constraint firstAttribute="trailing" secondItem="8r9-sH-XoF" secondAttribute="trailing" id="mbF-0j-dJE"/>
+                                    <constraint firstItem="3ZO-cp-ooL" firstAttribute="leading" secondItem="ecq-Yb-s6X" secondAttribute="leading" id="v49-CU-HNp"/>
+                                </constraints>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="164" id="dO6-1l-qox"/>
+                            </constraints>
+                            <blurEffect style="regular"/>
+                        </visualEffectView>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSG-YI-M61">
+                            <rect key="frame" x="0.0" y="178" width="414" height="160"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KBQ-gL-QhG">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsJ-BS-7HM" customClass="SelectEmotionView" customModule="watsup" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="IdF-sd-PGc"/>
+                                            <constraint firstAttribute="height" constant="110" id="kb7-B6-kvw"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나만 볼 수 있어요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFG-as-S0U">
+                                        <rect key="frame" x="0.0" y="124" width="414" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="gFG-as-S0U" secondAttribute="trailing" id="0PM-O4-E4N"/>
+                                    <constraint firstItem="xsJ-BS-7HM" firstAttribute="leading" secondItem="KBQ-gL-QhG" secondAttribute="leading" id="7MR-MJ-GGL"/>
+                                    <constraint firstItem="xsJ-BS-7HM" firstAttribute="top" secondItem="KBQ-gL-QhG" secondAttribute="top" id="Bzc-Pf-TwA"/>
+                                    <constraint firstItem="gFG-as-S0U" firstAttribute="top" secondItem="xsJ-BS-7HM" secondAttribute="bottom" constant="14" id="TVz-Q3-j1J"/>
+                                    <constraint firstAttribute="trailing" secondItem="xsJ-BS-7HM" secondAttribute="trailing" id="U4d-Qt-UXU"/>
+                                    <constraint firstItem="gFG-as-S0U" firstAttribute="leading" secondItem="KBQ-gL-QhG" secondAttribute="leading" id="Vnl-dG-Tc5"/>
+                                </constraints>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="160" id="kpJ-L6-OwX"/>
+                            </constraints>
+                            <blurEffect style="dark"/>
+                        </visualEffectView>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKD-BF-08m">
+                    <rect key="frame" x="0.0" y="632" width="414" height="54"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="CmR-I4-gUk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <state key="normal" title="기록하기">
+                        <color key="titleColor" name="ThemeColor"/>
+                    </state>
+                    <connections>
+                        <action selector="onClickRegisterEmotion:" destination="-1" eventType="touchUpInside" id="ubg-vr-CNZ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <constraints>
+                <constraint firstItem="eKD-BF-08m" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6DR-mQ-5Fv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eKD-BF-08m" secondAttribute="trailing" id="9T5-tn-YlI"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eX3-df-kqn" secondAttribute="trailing" id="JkE-Pf-ehy"/>
+                <constraint firstItem="eX3-df-kqn" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" constant="-10" id="N5m-bd-65S"/>
+                <constraint firstItem="eKD-BF-08m" firstAttribute="top" secondItem="eX3-df-kqn" secondAttribute="bottom" constant="20" id="OBn-ci-ImR"/>
+                <constraint firstItem="eX3-df-kqn" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="bd8-FR-Re4"/>
+                <constraint firstItem="eX3-df-kqn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="efJ-5n-6LI"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="141" y="154"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="ThemeColor">
+            <color red="0.3449999988079071" green="0.33700001239776611" blue="0.83899998664855957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,43 +20,43 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YsV-iN-d6r">
-                    <rect key="frame" x="97" y="68" width="220" height="51"/>
+                    <rect key="frame" x="74.5" y="62" width="265" height="60"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJY-Ch-eUU">
-                            <rect key="frame" x="0.0" y="0.0" width="36" height="51"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                            <rect key="frame" x="0.0" y="0.0" width="45" height="60"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
                             <state key="normal" title="😡"/>
                             <connections>
                                 <action selector="onClickEmotion:" destination="-1" eventType="touchUpInside" id="kxU-T0-zGF"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3eS-qm-FYx">
-                            <rect key="frame" x="46" y="0.0" width="36" height="51"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                            <rect key="frame" x="55" y="0.0" width="45" height="60"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
                             <state key="normal" title="😢"/>
                             <connections>
                                 <action selector="onClickEmotion:" destination="-1" eventType="touchUpInside" id="VRi-k7-dQk"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaK-qV-ksZ">
-                            <rect key="frame" x="92" y="0.0" width="36" height="51"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                            <rect key="frame" x="110" y="0.0" width="45" height="60"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
                             <state key="normal" title="😐"/>
                             <connections>
                                 <action selector="onClickEmotion:" destination="-1" eventType="touchUpInside" id="cnq-c9-M9q"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCf-yJ-Yrw">
-                            <rect key="frame" x="138" y="0.0" width="36" height="51"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                            <rect key="frame" x="165" y="0.0" width="45" height="60"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
                             <state key="normal" title="😄"/>
                             <connections>
                                 <action selector="onClickEmotion:" destination="-1" eventType="touchUpInside" id="an2-jj-If5"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dB1-vN-oZa">
-                            <rect key="frame" x="184" y="0.0" width="36" height="51"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                            <rect key="frame" x="220" y="0.0" width="45" height="60"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
                             <state key="normal" title="😍"/>
                             <connections>
                                 <action selector="onClickEmotion:" destination="-1" eventType="touchUpInside" id="gkd-4j-3R8"/>
@@ -74,7 +74,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="YsV-iN-d6r" firstAttribute="top" secondItem="l8g-8K-n5o" secondAttribute="bottom" constant="14" id="1no-tg-aM6"/>
+                <constraint firstItem="YsV-iN-d6r" firstAttribute="top" secondItem="l8g-8K-n5o" secondAttribute="bottom" constant="8" id="1no-tg-aM6"/>
                 <constraint firstItem="l8g-8K-n5o" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="OPS-AK-hBM"/>
                 <constraint firstItem="l8g-8K-n5o" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="XmE-4g-qwh"/>
                 <constraint firstItem="YsV-iN-d6r" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="b92-y3-h1A"/>
