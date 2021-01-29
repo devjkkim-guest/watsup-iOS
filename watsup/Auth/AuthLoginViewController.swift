@@ -27,7 +27,7 @@ class AuthLoginViewController: UIViewController {
         }
         
         let userData = PostAuthRequest(email: email, password: password)
-        API.shared.postAuth(.postAuth(userData)) { result in
+        API.shared.request(.postAuth(userData), responseModel: PostAuthResponse.self) { result in
             switch result {
             case .success(let data):
                 print(data)

@@ -42,6 +42,15 @@ enum APIModel: URLRequestConvertible {
         }
     }
     
+    var responseModel: Any {
+        switch self {
+        case .postAuth(_):
+            return PostAuthResponse.self
+        case .postUsers(_):
+            return PostUsersResponse.self
+        }
+    }
+    
     func asURLRequest() throws -> URLRequest {
         let url = try "http://localhost:8000".asURL()
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))

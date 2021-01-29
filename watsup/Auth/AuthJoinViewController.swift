@@ -35,7 +35,7 @@ class AuthJoinViewController: UIViewController {
                                         device_token: deviceToken ?? "abc",
                                         os_type: OSType.iOS.rawValue,
                                         app_version: appVersion ?? "0")
-        API.shared.postUsers(.postUsers(userData)) { result in
+        API.shared.request(.postUsers(userData), responseModel: PostUsersResponse.self) { result in
             switch result {
             case .success(let data):
                 print(data)
