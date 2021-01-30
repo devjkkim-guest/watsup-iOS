@@ -8,6 +8,11 @@
 import UIKit
 
 class GroupListViewController: UIViewController {
+    
+    enum Section: String, CaseIterable {
+        case invitedGroup
+        case joinedGroup
+    }
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -15,7 +20,9 @@ class GroupListViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: "GroupInvitedTableViewCell", bundle: nil), forCellReuseIdentifier: Section.invitedGroup.rawValue)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Section.joinedGroup.rawValue)
+        
         tableView.reloadData()
         API.shared.request(.postGroups, responseModel: PostGroupsResponse.self) { result in
             switch result {
@@ -40,19 +47,36 @@ extension GroupListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        switch Section.allCases[indexPath.section] {
+        case .invitedGroup:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: Section.invitedGroup.rawValue, for: indexPath) as? GroupInvitedTableViewCell {
+                cell.backgroundColor = .clear
+                return cell
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: Section.invitedGroup.rawValue, for: indexPath)
+                return cell
+            }
+        case .joinedGroup:
+            let cell = tableView.dequeueReusableCell(withIdentifier: Section.joinedGroup.rawValue, for: indexPath)
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
 
 extension GroupListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return Section.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 2
-        }else{
+        switch Section.allCases[section] {
+        case .invitedGroup:
+            return 1
+        case .joinedGroup:
             return 10
         }
     }

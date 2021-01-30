@@ -21,6 +21,8 @@ class SettingViewController: UIViewController {
     enum SettingSection: CaseIterable {
         case emotion
         case notification
+        case license
+        case version
     }
 
     @IBOutlet weak var tableView: UITableView!
@@ -88,6 +90,10 @@ extension SettingViewController: UITableViewDelegate {
                 cell.textLabel?.text = "알림 설정"
             case .emotion:
                 cell.textLabel?.text = "감정"
+            case .license:
+                cell.textLabel?.text = "오픈소스 라이선스"
+            case .version:
+                cell.textLabel?.text = "최신버전"
             }
             return cell
         }
