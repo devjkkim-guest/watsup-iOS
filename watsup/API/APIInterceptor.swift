@@ -26,5 +26,6 @@ class APIInterceptor: RequestInterceptor {
                 print("refresh!")
             }
         }
+        completion(.doNotRetry)
     }
 }
