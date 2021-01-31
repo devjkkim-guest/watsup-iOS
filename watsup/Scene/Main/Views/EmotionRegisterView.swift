@@ -34,7 +34,7 @@ class EmotionRegisterView: XibView {
         realContainer.isHidden = true
         
         fakeSelectEmotionView.tfMessage.placeholder = "오늘 기분 어때요?"
-        realSelectEmotionView.tfMessage.placeholder = "사실은요..."
+        realSelectEmotionView.tfMessage.placeholder = "사실은요...."
         
         fakeContainer.roundedView()
         realContainer.roundedView()
