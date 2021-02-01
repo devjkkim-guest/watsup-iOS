@@ -145,6 +145,15 @@
                                     <action selector="onClickLogin:" destination="r1V-jC-xpE" eventType="touchUpInside" id="FqV-8m-ETU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Da4-PP-BeI">
+                                <rect key="frame" x="123" y="268" width="168" height="30"/>
+                                <state key="normal" title="비밀번호를 잊어버리셨나요?">
+                                    <color key="titleColor" name="ThemeColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="igu-8M-EtX" kind="show" id="8PV-jt-ATc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MYg-62-NQN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -155,10 +164,13 @@
                             <constraint firstItem="xnA-7J-l3s" firstAttribute="leading" secondItem="MYg-62-NQN" secondAttribute="leading" constant="22" id="f6X-As-WlL"/>
                             <constraint firstItem="MYg-62-NQN" firstAttribute="trailing" secondItem="xnA-7J-l3s" secondAttribute="trailing" constant="22" id="hqF-dc-dab"/>
                             <constraint firstItem="MYg-62-NQN" firstAttribute="trailing" secondItem="JKR-qd-8qh" secondAttribute="trailing" constant="22" id="s1k-CI-9Wy"/>
+                            <constraint firstItem="Da4-PP-BeI" firstAttribute="centerX" secondItem="MYg-62-NQN" secondAttribute="centerX" id="sXn-qF-dVq"/>
+                            <constraint firstItem="Da4-PP-BeI" firstAttribute="top" secondItem="JKR-qd-8qh" secondAttribute="bottom" constant="12" id="wor-aa-jTY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="로그인" id="gBN-si-avD"/>
                     <connections>
+                        <outlet property="btnForgotPassword" destination="Da4-PP-BeI" id="7dU-tO-Zni"/>
                         <outlet property="tfEmail" destination="MqS-bu-sGs" id="wGL-TP-Era"/>
                         <outlet property="tfPassword" destination="E4o-Pu-BV4" id="nuj-6F-Ev0"/>
                     </connections>
@@ -166,6 +178,113 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1K-iZ-ggW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2996" y="71"/>
+        </scene>
+        <!--인증코드 발송-->
+        <scene sceneID="Cll-Ju-2et">
+            <objects>
+                <viewController id="igu-8M-EtX" customClass="AuthRequestCodeViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sn9-SE-DyT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="이메일 주소를 입력하세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ja-qX-d0J">
+                                <rect key="frame" x="22" y="160" width="370" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="SbA-TZ-wvO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eay-iz-sZV">
+                                <rect key="frame" x="22" y="800" width="370" height="50"/>
+                                <color key="backgroundColor" name="ThemeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="jHd-Zu-aAT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <state key="normal" title="인증코드 발송">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onClickLogin:" destination="r1V-jC-xpE" eventType="touchUpInside" id="7c2-4c-mt7"/>
+                                    <action selector="onClickSendCode:" destination="igu-8M-EtX" eventType="touchUpInside" id="vkh-AH-q5J"/>
+                                    <segue destination="iwt-5q-cqA" kind="show" id="qKS-ev-noa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="why-x3-Crk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eay-iz-sZV" firstAttribute="centerX" secondItem="why-x3-Crk" secondAttribute="centerX" id="8Ar-K8-QwD"/>
+                            <constraint firstItem="eay-iz-sZV" firstAttribute="leading" secondItem="why-x3-Crk" secondAttribute="leading" constant="22" id="E6B-UK-6l6"/>
+                            <constraint firstItem="why-x3-Crk" firstAttribute="trailing" secondItem="7Ja-qX-d0J" secondAttribute="trailing" constant="22" id="IIt-nF-bD7"/>
+                            <constraint firstItem="why-x3-Crk" firstAttribute="bottom" secondItem="eay-iz-sZV" secondAttribute="bottom" constant="12" id="INf-1m-jXs"/>
+                            <constraint firstItem="7Ja-qX-d0J" firstAttribute="top" secondItem="why-x3-Crk" secondAttribute="top" constant="20" id="OV7-Uy-GkK"/>
+                            <constraint firstItem="why-x3-Crk" firstAttribute="trailing" secondItem="eay-iz-sZV" secondAttribute="trailing" constant="22" id="bic-99-WUt"/>
+                            <constraint firstItem="7Ja-qX-d0J" firstAttribute="leading" secondItem="why-x3-Crk" secondAttribute="leading" constant="22" id="diH-Uu-o4O"/>
+                            <constraint firstItem="7Ja-qX-d0J" firstAttribute="centerX" secondItem="why-x3-Crk" secondAttribute="centerX" id="eSG-2A-9UN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="인증코드 발송" id="AND-zy-Hq6"/>
+                    <connections>
+                        <outlet property="tfEmail" destination="7Ja-qX-d0J" id="Ghc-uB-Wbc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oWM-hn-boN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3803" y="71"/>
+        </scene>
+        <!--인증코드 입력-->
+        <scene sceneID="9IT-re-UN6">
+            <objects>
+                <viewController id="iwt-5q-cqA" customClass="AuthVerifyCodeViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="T4y-mh-ZVt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zb5-gp-Wbm">
+                                <rect key="frame" x="22" y="152" width="370" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Rqc-y7-P5C"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAn-JU-hKn">
+                                <rect key="frame" x="22" y="800" width="370" height="50"/>
+                                <color key="backgroundColor" name="ThemeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="wLE-nL-s6e"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <state key="normal" title="인증코드로 로그인">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onClickLogin:" destination="iwt-5q-cqA" eventType="touchUpInside" id="1Re-pP-DSc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="n0m-tE-VR8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OAn-JU-hKn" firstAttribute="leading" secondItem="n0m-tE-VR8" secondAttribute="leading" constant="22" id="5SZ-Fx-50c"/>
+                            <constraint firstItem="n0m-tE-VR8" firstAttribute="bottom" secondItem="OAn-JU-hKn" secondAttribute="bottom" constant="12" id="ABp-JX-2d3"/>
+                            <constraint firstItem="Zb5-gp-Wbm" firstAttribute="leading" secondItem="n0m-tE-VR8" secondAttribute="leading" constant="22" id="MPP-ps-2Tj"/>
+                            <constraint firstItem="Zb5-gp-Wbm" firstAttribute="top" secondItem="n0m-tE-VR8" secondAttribute="top" constant="12" id="VuG-rf-MZE"/>
+                            <constraint firstItem="OAn-JU-hKn" firstAttribute="centerX" secondItem="n0m-tE-VR8" secondAttribute="centerX" id="YFS-j6-WeY"/>
+                            <constraint firstItem="n0m-tE-VR8" firstAttribute="trailing" secondItem="OAn-JU-hKn" secondAttribute="trailing" constant="22" id="cyg-rC-Tj9"/>
+                            <constraint firstItem="n0m-tE-VR8" firstAttribute="trailing" secondItem="Zb5-gp-Wbm" secondAttribute="trailing" constant="22" id="sS8-wV-uOE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="인증코드 입력" id="1im-Ti-otd"/>
+                    <connections>
+                        <outlet property="tfVerifyCode" destination="Zb5-gp-Wbm" id="aPX-Yy-yLW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GvF-9t-Dla" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4594" y="71"/>
         </scene>
         <!--회원가입-->
         <scene sceneID="N2d-1G-EqO">

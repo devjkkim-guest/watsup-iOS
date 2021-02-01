@@ -11,6 +11,8 @@ class AuthLoginViewController: UIViewController {
 
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
+    @IBOutlet weak var btnForgotPassword: UIButton!
+    
     let viewModel = AuthLoginViewModel()
     
     override func viewDidLoad() {

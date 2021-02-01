@@ -28,13 +28,14 @@ class AuthJoinViewController: UIViewController {
         
         let deviceToken = UserDefaults.standard.string(forKey: UserDefaultsKey.deviceToken.rawValue)
         let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-        
+        let languageCode = Locale.preferredLanguages.first ?? "en_US"
         let userData = PostUsersRequest(email: email,
-                                        password: password,
+                                        gmt_tz_offset: 0, password: password,
                                         device_uuid: UUID().uuidString,
                                         device_token: deviceToken ?? "abc",
                                         os_type: OSType.iOS.rawValue,
-                                        app_version: appVersion ?? "0")
+                                        app_version: appVersion ?? "0",
+                                        language_code: languageCode)
         API.shared.request(.postUser(userData), responseModel: PostUsersResponse.self) { result in
             switch result {
             case .success(let data):

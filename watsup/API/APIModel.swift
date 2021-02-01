@@ -18,6 +18,10 @@ enum APIModel: URLRequestConvertible {
     case postUser(_ request: PostUsersRequest)
     case getUserProfile(uuid: String)
     
+    /** Customer Service */
+    case postCSForgotPassword(_ request: PostCSForgotPassword)
+    case putCSForgotPassword(_ request: PutCSForgotPassword)
+    
     /** Group */
     case postGroups
     
@@ -27,10 +31,13 @@ enum APIModel: URLRequestConvertible {
         case .getUser,
              .getUserProfile:
             return .get
-        case .postUser(_),
-             .postAuth(_),
-             .postGroups:
+        case .postUser,
+             .postAuth,
+             .postGroups,
+             .postCSForgotPassword:
             return .post
+        case .putCSForgotPassword:
+            return .put
         }
     }
     
@@ -49,6 +56,11 @@ enum APIModel: URLRequestConvertible {
         case .postAuth(_):
             return "/auth"
             
+        /** Customer Service */
+        case .postCSForgotPassword,
+             .putCSForgotPassword:
+            return "/cs/forgot-password"
+            
         /** Group */
         case .postGroups:
             return "/groups"
@@ -61,6 +73,10 @@ enum APIModel: URLRequestConvertible {
         case .postUser(let param):
             return param
         case .postAuth(let param):
+            return param
+        case .putCSForgotPassword(let param):
+            return param
+        case .postCSForgotPassword(let param):
             return param
         case .getUser,
              .getUserProfile,
