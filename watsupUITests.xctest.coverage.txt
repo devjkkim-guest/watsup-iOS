@@ -1,0 +1,43 @@
+    1|       |//
+    2|       |//  watsupUITests.swift
+    3|       |//  watsupUITests
+    4|       |//
+    5|       |//  Created by Jeongkyun Kim on 2021/01/20.
+    6|       |//
+    7|       |
+    8|       |import XCTest
+    9|       |
+   10|       |class watsupUITests: XCTestCase {
+   11|       |
+   12|      2|    override func setUpWithError() throws {
+   13|      2|        // Put setup code here. This method is called before the invocation of each test method in the class.
+   14|      2|
+   15|      2|        // In UI tests it is usually best to stop immediately when a failure occurs.
+   16|      2|        continueAfterFailure = false
+   17|      2|
+   18|      2|        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+   19|      2|    }
+   20|       |
+   21|      2|    override func tearDownWithError() throws {
+   22|      2|        // Put teardown code here. This method is called after the invocation of each test method in the class.
+   23|      2|    }
+   24|       |
+   25|      1|    func testExample() throws {
+   26|      1|        // UI tests must launch the application that they test.
+   27|      1|        let app = XCUIApplication()
+   28|      1|        app.launch()
+   29|      1|
+   30|      1|        // Use recording to get started writing UI tests.
+   31|      1|        // Use XCTAssert and related functions to verify your tests produce the correct results.
+   32|      1|    }
+   33|       |
+   34|      1|    func testLaunchPerformance() throws {
+   35|      1|        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+   36|      1|            // This measures how long it takes to launch your application.
+   37|      6|            measure(metrics: [XCTApplicationLaunchMetric()]) {
+   38|      6|                XCUIApplication().launch()
+   39|      6|            }
+   40|      1|        }
+   41|      1|    }
+   42|       |}
+
