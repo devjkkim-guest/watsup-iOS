@@ -25,11 +25,13 @@ jobs:
       run: pod install
     
     # step 4
-    - name: Server Setup
+    - name: Clone the api repository
+      run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
+  
+    # step 5
+    - name: Run Server
       working-directory: ./
-      run: |
-        git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
-        ./refresh.sh -d
+      run: ./refresh.sh
       
     # step 4
     - name: Build and test
