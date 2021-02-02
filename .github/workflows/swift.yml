@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
-        working-directory: watsup-api
-      - run: ./refresh.sh -d
+      - working-directory: watsup-api
+        run: ./refresh.sh -d
         timeout-minutes: 100
 
   build:
