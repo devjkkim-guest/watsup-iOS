@@ -29,17 +29,26 @@ class AuthLoginViewController: UIViewController {
             return
         }
         
-        let userData = PostAuthRequest(email: email, password: password)
-        API.shared.request(.postAuth(userData), responseModel: PostAuthResponse.self) { result in
+        let body = PostAuthRequest(email: email, password: password)
+        requestLogin(body: body) { _ in
+            
+        }
+    }
+    
+    func requestLogin(body: PostAuthRequest, completion: @escaping (Bool) -> Void) {
+        API.shared.request(.postAuth(body), responseModel: PostAuthResponse.self) { result in
             switch result {
             case .success(let data):
                 if self.viewModel.addUser(data: data) {
                     self.goMain()
                 }
+                completion(true)
             case .failure(let error):
                 print(error.localizedDescription)
+                completion(false)
             case .none:
                 print("no result")
+                completion(false)
             }
         }
     }
