@@ -18,7 +18,8 @@ jobs:
     needs: setup
     runs-on: macos-latest
     steps:
-      - run: actions/checkout@v2
+      - working-directory: watsup-iOS
+        run: actions/checkout@v2
         
       - run: sudo xcode-select -switch /Applications/Xcode.app
       
