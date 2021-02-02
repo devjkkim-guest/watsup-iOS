@@ -30,7 +30,7 @@ jobs:
   
     # step 5
     - name: Run Server
-      working-directory: ./
+      working-directory: watsup-api
       run: ./refresh.sh
       
     # step 4
