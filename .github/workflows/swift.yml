@@ -32,8 +32,7 @@ jobs:
     - name: Run Server
       working-directory: watsup-api
       run: |
-        sudo curl -L --fail https://github.com/docker/compose/releases/download/1.28.2/run.sh -o /usr/local/bin/docker-compose
-        sudo chmod +x /usr/local/bin/docker-compose
+        pip install docker-compose
         ./refresh.sh
       
     # step 4
