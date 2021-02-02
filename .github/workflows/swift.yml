@@ -23,6 +23,12 @@ jobs:
     # step 3
     - name: Library Install
       run: pod install
+    
+    # step 4
+    - name: Server Setup
+      run: |
+        git clone https://github.com/team726/watsup-api.git
+        ./refresh.sh
       
     # step 4
     - name: Build and test
