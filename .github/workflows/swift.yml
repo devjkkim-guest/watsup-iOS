@@ -7,26 +7,31 @@ on:
     branches: [ main ]
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
-      - working-directory: watsup-api
-        run: ./refresh.sh -d
-
   build:
-    needs: setup
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+#        node: [6, 8, 10]
     steps:
-      - uses: actions/checkout@v2.3.4
-        
-      - run: sudo xcode-select -switch /Applications/Xcode.app
-      
-      - run: pod install
-
-      - run: xcodebuild test -workspace watsup.xcworkspace -scheme 'watsup' -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -enableCodeCoverage YES
-
-      - uses: codecov/codecov-action@v1.2.1
+      - name: clone git api
+        run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
+        if: matrix.os == 'ubuntu-latest'
+      - name: run server
+        working-directory: watsup-api
+        run: ./refresh.sh -d
+        if: matrix.os == 'ubuntu-latest'
+      - name: checkout
+        uses: actions/checkout@v2
+        if: matrix.os == 'macos-latest'
+      - name: build and test
+        run: |
+          sudo xcode-select -switch /Applications/Xcode.app
+          pod install
+          xcodebuild test -workspace watsup.xcworkspace -scheme 'watsup' -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -enableCodeCoverage YES
+        if: matrix.os == 'macos-latest'
+      - name: coverage
+        uses: codecov/codecov-action@v1.2.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
           name: codecov-umbrella # optional
