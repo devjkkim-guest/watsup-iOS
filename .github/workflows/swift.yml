@@ -9,12 +9,9 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
+    container: ashon/watsup-api:latest
     steps:
-      - run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
-      - working-directory: watsup-api
-        run: |
-          ./refresh.sh -d
-          read -p "Enter"
+       - run: ./refresh.sh -d
 
   build:
     runs-on: macos-latest
