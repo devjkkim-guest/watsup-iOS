@@ -14,7 +14,7 @@ jobs:
       - working-directory: watsup-api
         run: |
           ./refresh.sh -d
-          sleep 10m
+          read -p "Enter"
 
   build:
     runs-on: macos-latest
