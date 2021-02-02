@@ -36,14 +36,23 @@ class AuthJoinViewController: UIViewController {
                                         os_type: OSType.iOS.rawValue,
                                         app_version: appVersion ?? "0",
                                         language_code: languageCode)
-        API.shared.request(.postUser(userData), responseModel: PostUsersResponse.self) { result in
+        requestJoin(body: userData) { _ in
+            
+        }
+    }
+    
+    func requestJoin(body: PostUsersRequest, completion: @escaping (Bool)->Void) {
+        API.shared.request(.postUser(body), responseModel: PostUsersResponse.self) { result in
             switch result {
             case .success(let data):
                 print(data)
+                completion(true)
             case .failure(let error):
                 print(error.localizedDescription)
+                completion(false)
             case .none:
                 print("no result")
+                completion(false)
             }
         }
     }

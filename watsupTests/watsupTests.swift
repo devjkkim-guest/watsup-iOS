@@ -10,23 +10,33 @@ import XCTest
 
 class watsupTests: XCTestCase {
     
-    var authLoginViewController: AuthLoginViewController?
+    var authJoinViewController: AuthJoinViewController?
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        authLoginViewController = AuthLoginViewController()
+        authJoinViewController = AuthJoinViewController()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        authLoginViewController = nil
+        authJoinViewController = nil
     }
 
-    func testLoginApiResponse() {
-        let e = expectation(description: "login api")
-        let body = PostAuthRequest(email: "abc@abc.com", password: "abcd")
-        authLoginViewController?.requestLogin(body: body) { result in
-            XCTAssertTrue(result != true)
+    func testJoinApiResponse() {
+        let e = expectation(description: "join api")
+        
+        let deviceToken = UserDefaults.standard.string(forKey: UserDefaultsKey.deviceToken.rawValue)
+        let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        let languageCode = Locale.preferredLanguages.first ?? "en_US"
+        let userData = PostUsersRequest(email: "abc@abcdwefa.net",
+                                        gmt_tz_offset: 0, password: "test123!",
+                                        device_uuid: UUID().uuidString,
+                                        device_token: deviceToken ?? "abc",
+                                        os_type: OSType.iOS.rawValue,
+                                        app_version: appVersion ?? "0",
+                                        language_code: languageCode)
+        authJoinViewController?.requestJoin(body: userData) { result in
+            XCTAssertTrue(result == true)
             e.fulfill()
         }
         waitForExpectations(timeout: 5.0, handler: nil)
