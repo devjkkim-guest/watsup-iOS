@@ -10,14 +10,20 @@ jobs:
   build:
 
     runs-on: macos-latest
-
+    
     steps:
-    - uses: actions/checkout@v2
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
-    - uses: codecov/codecov-action@v1.2.1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        fail_ci_if_error: true
+    # step 1
+    - name: Checkout source code
+      uses: actions/checkout@v2
+      
+    # step 2
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode.app
+      
+    # step 3
+    - name: Library install
+      run: pod install
+      
+    # step 4
+    - name: Build and test
+      run: xcodebuild test -workspace watsup.xcworkspace -scheme 'watsup' -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -enableCodeCoverage YES
