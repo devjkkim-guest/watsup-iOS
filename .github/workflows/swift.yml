@@ -28,7 +28,7 @@ jobs:
     - name: Server Setup
       run: |
         git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
-        ./refresh.sh
+        refresh.sh -d
       
     # step 4
     - name: Build and test
