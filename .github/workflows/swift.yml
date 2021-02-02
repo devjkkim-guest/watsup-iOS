@@ -18,10 +18,7 @@ jobs:
       
     - name: Clone the api repository
       run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
-    - name: Build the docker-compose stack
-      run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml up -d
-    - name: Check running containers
-      run: docker ps -a
+
     - name: Run Server
       working-directory: watsup-api
       run: ./refresh.sh -d
