@@ -12,11 +12,11 @@ jobs:
     steps:
       - run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
       - working-directory: watsup-api
-        run: ./refresh.sh -d
-        timeout-minutes: 100
+        run: |
+          ./refresh.sh -d
+          sleep 5m
 
   build:
-    needs: setup
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2.3.4
