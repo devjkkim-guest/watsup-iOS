@@ -7,47 +7,34 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, ubuntu-latest]
-    runs-on: ${{ matrix.os }}
-    
+  setup:
+    runs-on: ubuntu-latest
     steps:
-    # step 1
-    - name: Clone the api repository
-      run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
+      - name: git clone api
+        run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
+        
+      - name: run server
+        working-directory: watsup-api
+        run: ./refresh.sh -d
 
-    - name: Run Server
-      working-directory: watsup-api
-      run: ./refresh.sh -d
-    
-    - name: Checkout source code
-      uses: actions/checkout@v2
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: checkout source code
+      - run: actions/checkout@v2
+        
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode.app
       
-    # step 2
-    - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode.app
-      
-    # step 3
-    - name: Library Install
-      run: pod install
-    
-    # step 4
-    
-  
-    # step 5
-    
-      
-    # step 4
-    - name: Build and test
-      run: xcodebuild test -workspace watsup.xcworkspace -scheme 'watsup' -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -enableCodeCoverage YES
+      - name: Library Install
+        run: pod install
 
-    # step 5
-    - uses: codecov/codecov-action@v1.2.1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-        name: codecov-umbrella # optional
-        fail_ci_if_error: true # optional (default = false)
-        verbose: true # optional (default = false)
+      - name: Build and test
+        run: xcodebuild test -workspace watsup.xcworkspace -scheme 'watsup' -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -enableCodeCoverage YES
+
+      - uses: codecov/codecov-action@v1.2.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          name: codecov-umbrella # optional
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)
