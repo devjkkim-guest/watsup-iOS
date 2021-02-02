@@ -8,21 +8,24 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     
     steps:
     # step 1
-    - name: Checkout source code
-      uses: actions/checkout@v2
-      
     - name: Clone the api repository
       run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
 
     - name: Run Server
       working-directory: watsup-api
       run: ./refresh.sh -d
-        
+    
+    - name: Checkout source code
+      uses: actions/checkout@v2
+      
     # step 2
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode.app
