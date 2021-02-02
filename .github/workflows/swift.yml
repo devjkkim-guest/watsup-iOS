@@ -10,27 +10,21 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - name: git clone api
-        run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
-        
-      - name: run server
-        working-directory: watsup-api
+      - run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
+      - working-directory: watsup-api
         run: ./refresh.sh -d
 
   build:
+    needs: setup
     runs-on: macos-latest
     steps:
-      - name: checkout source code
       - run: actions/checkout@v2
         
-      - name: Select Xcode
-        run: sudo xcode-select -switch /Applications/Xcode.app
+      - run: sudo xcode-select -switch /Applications/Xcode.app
       
-      - name: Library Install
-        run: pod install
+      - run: pod install
 
-      - name: Build and test
-        run: xcodebuild test -workspace watsup.xcworkspace -scheme 'watsup' -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -enableCodeCoverage YES
+      - run: xcodebuild test -workspace watsup.xcworkspace -scheme 'watsup' -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -enableCodeCoverage YES
 
       - uses: codecov/codecov-action@v1.2.1
         with:
