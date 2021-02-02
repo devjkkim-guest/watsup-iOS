@@ -15,12 +15,17 @@ jobs:
     # step 1
     - name: Checkout source code
       uses: actions/checkout@v2
+      
+    - name: Clone the api repository
+      run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
+      
     - name: Run Server
       working-directory: watsup-api
       run: |
         sudo curl -L --fail https://github.com/docker/compose/releases/download/1.28.2/run.sh -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
         ./refresh.sh  
+        
     # step 2
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode.app
@@ -30,8 +35,7 @@ jobs:
       run: pod install
     
     # step 4
-    - name: Clone the api repository
-      run: git clone https://devjkkim:${{ secrets.ACCESS_TOKEN }}@github.com/team726/watsup-api.git
+    
   
     # step 5
     
