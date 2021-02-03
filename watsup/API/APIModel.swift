@@ -103,7 +103,7 @@ enum APIModel: URLRequestConvertible {
     
     
     func asURLRequest() throws -> URLRequest {
-        let url = try "http://localhost:8000".asURL()
+        let url = try "http://dev.team726.com".asURL()
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         
         // HTTP Method
