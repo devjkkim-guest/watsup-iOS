@@ -10,17 +10,17 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+#       - uses: actions/checkout@v2.3.4
         
-      - run: sudo xcode-select -switch /Applications/Xcode.app
+#       - run: sudo xcode-select -switch /Applications/Xcode.app
       
-      - run: pod install
+#       - run: pod install
 
-      - run: xcodebuild test -workspace watsup.xcworkspace -scheme 'watsup' -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -enableCodeCoverage YES
+#       - run: xcodebuild test -workspace watsup.xcworkspace -scheme 'watsup' -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -enableCodeCoverage YES
 
-      - uses: codecov/codecov-action@v1.2.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          name: codecov-umbrella # optional
-          fail_ci_if_error: true # optional (default = false)
-          verbose: true # optional (default = false)
+#       - uses: codecov/codecov-action@v1.2.1
+#         with:
+#           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+#           name: codecov-umbrella # optional
+#           fail_ci_if_error: true # optional (default = false)
+#           verbose: true # optional (default = false)
