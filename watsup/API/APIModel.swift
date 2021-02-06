@@ -23,7 +23,7 @@ enum APIModel: URLRequestConvertible {
     case putCSForgotPassword(_ request: PutCSForgotPassword)
     
     /** Group */
-    case postGroups
+    case postGroups(_ request: PostGroupsRequest)
     
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
@@ -78,9 +78,10 @@ enum APIModel: URLRequestConvertible {
             return param
         case .postCSForgotPassword(let param):
             return param
+        case .postGroups(let param):
+            return param
         case .getUser,
-             .getUserProfile,
-             .postGroups:
+             .getUserProfile:
             return nil
         }
     }
@@ -90,7 +91,8 @@ enum APIModel: URLRequestConvertible {
                                           HTTPHeaderField.acceptType.rawValue: ContentType.json.rawValue]
         switch self {
         case .getUser,
-             .getUserProfile:
+             .getUserProfile,
+             .postGroups:
             if let accessToken = UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue) {
                 let value = "Bearer \(accessToken)"
                 commonHeaders.add(name: HTTPHeaderField.authentication.rawValue, value: value)

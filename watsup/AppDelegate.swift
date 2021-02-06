@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue) {
+        if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue), !uuid.isEmpty {
             window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
         }
         return true

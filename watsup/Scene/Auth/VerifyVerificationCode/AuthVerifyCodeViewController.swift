@@ -26,8 +26,6 @@ class AuthVerifyCodeViewController: UIViewController {
                     self.viewModel.addUser(data)
                 case .failure(let error):
                     print(error.localizedDescription)
-                case .none:
-                    print("result nil")
                 }
             }
         }

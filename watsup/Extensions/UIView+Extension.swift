@@ -8,8 +8,8 @@
 import UIKit
 
 extension UIView {
-    func roundedView(_ value: CGFloat? = 12) {
-        self.layer.cornerRadius = value ?? 12
+    func roundedView(radius: CGFloat? = 12) {
+        self.layer.cornerRadius = radius ?? 12
         self.clipsToBounds = true
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class GroupListViewController: UIViewController {
     
@@ -15,6 +16,7 @@ class GroupListViewController: UIViewController {
     }
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var btnAdd: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +26,34 @@ class GroupListViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Section.joinedGroup.rawValue)
         
         tableView.reloadData()
-        API.shared.request(.postGroups, responseModel: PostGroupsResponse.self) { result in
-            switch result {
-            case .success(let data):
-                print(data)
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .none:
-                print("none")
+    }
+    
+    @IBAction func onClickAdd(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Add Group", message: "type name for group", preferredStyle: .alert)
+        alertController.addTextField { textField in
+            // todo: custom tf
+        }
+        let action = UIAlertAction(title: "Create a group", style: .default) { action in
+            if let groupName = alertController.textFields?.first?.text {
+                let request = PostGroupsRequest(group_name: groupName)
+                self.requestPostGroups(request) { result in
+                    switch result {
+                    case .success(let data):
+                        print(data)
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
             }
+        }
+        alertController.addAction(action)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    // MAKR: - API
+    func requestPostGroups(_ request: PostGroupsRequest, completion: @escaping (Result<PostGroupsResponse, AFError>) -> Void) {
+        API.shared.request(.postGroups(request), responseModel: PostGroupsResponse.self) { result in
+            completion(result)
         }
     }
 }

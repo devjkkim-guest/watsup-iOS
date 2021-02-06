@@ -12,12 +12,18 @@ class AuthLoginViewModel {
     func addUser(data: PostAuthResponse) -> Bool {
         if let uuid = data.identity?.uuid {
             UserDefaults.standard.setValue(uuid, forKey: UserDefaultsKey.uuid.rawValue)
+        }else{
+            return false
         }
         if let accessToken = data.accessToken {
             UserDefaults.standard.setValue(accessToken, forKey: KeychainKey.accessToken.rawValue)
+        }else{
+            return false
         }
         if let refreshToken = data.refreshToken {
             UserDefaults.standard.setValue(refreshToken, forKey: KeychainKey.refreshToken.rawValue)
+        }else{
+            return false
         }
         return true
     }

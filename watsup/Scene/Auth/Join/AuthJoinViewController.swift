@@ -36,8 +36,12 @@ class AuthJoinViewController: UIViewController {
                                         os_type: OSType.iOS.rawValue,
                                         app_version: appVersion ?? "0",
                                         language_code: languageCode)
-        requestJoin(body: userData) { _ in
-            
+        requestJoin(body: userData) { result in
+            if result {
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
+                }
+            }
         }
     }
     
@@ -49,9 +53,6 @@ class AuthJoinViewController: UIViewController {
                 completion(true)
             case .failure(let error):
                 print(error.localizedDescription)
-                completion(false)
-            case .none:
-                print("no result")
                 completion(false)
             }
         }

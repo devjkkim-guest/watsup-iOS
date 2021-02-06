@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class AuthLoginViewController: UIViewController {
 
@@ -30,26 +31,21 @@ class AuthLoginViewController: UIViewController {
         }
         
         let body = PostAuthRequest(email: email, password: password)
-        requestLogin(body: body) { _ in
-            
-        }
-    }
-    
-    func requestLogin(body: PostAuthRequest, completion: @escaping (Bool) -> Void) {
-        API.shared.request(.postAuth(body), responseModel: PostAuthResponse.self) { result in
+        requestLogin(body: body) { result in
             switch result {
             case .success(let data):
                 if self.viewModel.addUser(data: data) {
                     self.goMain()
                 }
-                completion(true)
             case .failure(let error):
                 print(error.localizedDescription)
-                completion(false)
-            case .none:
-                print("no result")
-                completion(false)
             }
+        }
+    }
+    
+    func requestLogin(body: PostAuthRequest, completion: @escaping (Result<PostAuthResponse, AFError>) -> Void) {
+        API.shared.request(.postAuth(body), responseModel: PostAuthResponse.self) { result in
+            completion(result)
         }
     }
     

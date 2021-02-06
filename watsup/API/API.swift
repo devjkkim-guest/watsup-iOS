@@ -24,21 +24,22 @@ class API {
         self.session = session
     }
     
-    func request<T:Decodable>(_ model: APIModel, responseModel: T.Type, completion: @escaping (Result<T, AFError>?) -> Void) {
+    func request<T:Decodable>(_ model: APIModel, responseModel: T.Type, completion: @escaping (Result<T, AFError>) -> Void) {
         session.request(model)
             .validate()
             .responseJSON { response in
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                if let data = response.data,
-                   let json = try? decoder.decode(T.self, from: data) {
-                    completion(.success(json))
-                }else{
-                    if let error = response.error {
-                        completion(.failure(error))
+                switch response.result {
+                case .success(let data):
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    if let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .fragmentsAllowed),
+                       let json = try? decoder.decode(T.self, from: jsonData) {
+                        completion(.success(json))
                     }else{
-                        completion(nil)
+                        completion(.failure(.explicitlyCancelled))
                     }
+                case .failure(let error):
+                    completion(.failure(error))
                 }
             }
     }

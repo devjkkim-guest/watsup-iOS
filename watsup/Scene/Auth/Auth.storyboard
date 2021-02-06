@@ -109,7 +109,7 @@
                                             <constraint firstAttribute="height" constant="40" id="ZpX-BT-Lvt"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MqS-bu-sGs">
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="40"/>
@@ -303,7 +303,7 @@
                                             <constraint firstAttribute="height" constant="40" id="Wpr-Yj-dTF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ee7-Pf-5ov">
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="40"/>

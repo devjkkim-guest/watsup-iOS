@@ -15,6 +15,6 @@ class GroupInvitedCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        profileImageView.roundedView(profileImageView.bounds.height/2)
+        profileImageView.roundedView(radius: profileImageView.bounds.height/2)
     }
 }

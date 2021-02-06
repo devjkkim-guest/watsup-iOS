@@ -44,8 +44,6 @@ class SettingViewController: UIViewController {
                     print(data)
                 case .failure(let error):
                     print(error.localizedDescription)
-                case .none:
-                    print("result none")
                 }
             }
             
@@ -55,8 +53,6 @@ class SettingViewController: UIViewController {
                     print(data)
                 case .failure(let error):
                     print(error.localizedDescription)
-                case .none:
-                    print("result none")
                 }
             }
         }

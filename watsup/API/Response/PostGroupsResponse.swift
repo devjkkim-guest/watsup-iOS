@@ -8,5 +8,6 @@
 import Foundation
 
 struct PostGroupsResponse: Codable {
-    
+    var name: String?
+    var uuid: String?
 }

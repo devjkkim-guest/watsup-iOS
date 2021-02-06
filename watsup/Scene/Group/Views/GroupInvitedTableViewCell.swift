@@ -29,7 +29,7 @@ class GroupInvitedTableViewCell: UITableViewCell {
 extension GroupInvitedTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? GroupInvitedCollectionViewCell {
-            cell.roundedView(8)
+            cell.roundedView(radius: 8)
             return cell
         }else{
             return collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
