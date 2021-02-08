@@ -23,23 +23,18 @@ enum APIModel: URLRequestConvertible {
     case putCSForgotPassword(_ request: PutCSForgotPasswordRequest)
     
     /** Group */
+    case getGroup(_ request: GetGroupRequest)
     case postGroups(_ request: PostGroupsRequest)
     case getUserGroup(_ request: GetUserGroupRequest)
     
+    static let baseUrl = "http://dev.team726.com:8000"
+    
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
-        switch self {
-        case .getUser,
-             .getUserProfile,
-             .getUserGroup:
+        if parameters == nil {
             return .get
-        case .postUser,
-             .postAuth,
-             .postGroups,
-             .postCSForgotPassword:
+        }else{
             return .post
-        case .putCSForgotPassword:
-            return .put
         }
     }
     
@@ -68,6 +63,8 @@ enum APIModel: URLRequestConvertible {
             return "/groups"
         case .getUserGroup(let group):
             return "/users/\(group.user_uuid)/groups"
+        case .getGroup(let group):
+            return "/groups/\(group.uuid)"
         }
     }
     
@@ -86,9 +83,9 @@ enum APIModel: URLRequestConvertible {
         /** Groups */
         case .postGroups(let param):
             return param
-        case .getUserGroup:
-            return nil
-        case .getUser,
+        case .getUserGroup,
+             .getGroup,
+             .getUser,
              .getUserProfile:
             return nil
         }
@@ -110,7 +107,8 @@ enum APIModel: URLRequestConvertible {
         case .getUser,
              .getUserProfile,
              .getUserGroup,
-             .postGroups:
+             .postGroups,
+             .getGroup:
             if let accessToken = UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue) {
                 let value = "Bearer \(accessToken)"
                 commonHeaders.add(name: HTTPHeaderField.authentication.rawValue, value: value)
@@ -121,41 +119,27 @@ enum APIModel: URLRequestConvertible {
         }
     }
     
-    
     func asURLRequest() throws -> URLRequest {
-        let baseURrl = "http://dev.team726.com:8000"
-        var url: URL?
+        var urlString = APIModel.baseUrl.appending(path)
+        
         if let urlQuery = urlQuery,
            let query = urlQuery.asDictionary()?.map({ "\($0.key)=\($0.value)"}) {
             let queries = query.reduce("?") { $0 + $1 }
-            url = try? URLComponents(string: baseURrl.appending("?\(queries)"))?.asURL()
-        }else{
-            url = URL(string: baseURrl)
+            urlString = urlString.appending(queries)
         }
         
-        if let url = url {
-            var urlRequest = URLRequest(url: url.appendingPathComponent(path))
-            
-            // HTTP Method
-            urlRequest.httpMethod = method.rawValue
-            
-            // Common Headers
-            urlRequest.headers = headers
-            
-            // Parameters
-            if let parameters = parameters, let json = parameters.asDictionary() {
-                do {
-                    urlRequest.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-                } catch {
-                    throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
-                }
+        var urlRequest = URLRequest(url: try urlString.asURL())
+        urlRequest.headers = headers
+        urlRequest.httpMethod = method.rawValue
+        
+        if let parameters = parameters, let json = parameters.asDictionary() {
+            do {
+                urlRequest.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
+            } catch {
+                throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
             }
-            
-            return urlRequest
-        }else{
-            var urlRequest = URLRequest(url: url!)
-            return urlRequest
-            
         }
+        
+        return urlRequest
     }
 }

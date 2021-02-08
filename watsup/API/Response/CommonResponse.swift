@@ -22,4 +22,10 @@ struct ProfileResponse: Codable {
 struct Identity: Codable {
     var email: String?
     var uuid: String?
+    var profile: ProfileResponse?
+}
+
+struct GroupResponse: Codable {
+    let name: String
+    let uuid: String
 }

@@ -21,7 +21,7 @@ class GroupListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loadGroups()
+        getUserGroups()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "GroupInvitedTableViewCell", bundle: nil), forCellReuseIdentifier: Section.invitedGroup.rawValue)
@@ -52,12 +52,27 @@ class GroupListViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func loadGroups() {
+    /// 사용자가 가입된 그룹들 조회
+    func getUserGroups() {
         if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue) {
             let request = GetUserGroupRequest(user_uuid: uuid)
             API.shared.getUserGroup(request) { result in
-                print(result)
+                switch result {
+                case .success(let data):
+                    data.groups.forEach { group in
+                        let request = GetGroupRequest(uuid: group.uuid)
+                        self.getGroup(request: request)
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
+        }
+    }
+    
+    func getGroup(request: GetGroupRequest) {
+        API.shared.getGroup(request) { request in
+            
         }
     }
 }

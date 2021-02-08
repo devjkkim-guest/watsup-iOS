@@ -73,6 +73,8 @@
 		8F5D5A5525D176300095C21A /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A5425D176300095C21A /* APIError.swift */; };
 		8F5D5A5D25D181AD0095C21A /* GetUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A5C25D181AD0095C21A /* GetUserRequest.swift */; };
 		8F5D5A6225D182420095C21A /* GetUserProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A6125D182420095C21A /* GetUserProfileRequest.swift */; };
+		8F5D5A6725D186CF0095C21A /* GetGroupsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A6625D186CF0095C21A /* GetGroupsResponse.swift */; };
+		8F5D5A6C25D187D80095C21A /* GetGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A6B25D187D80095C21A /* GetGroupRequest.swift */; };
 		8F61769B25B856140059B4B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F61769A25B856140059B4B7 /* AppDelegate.swift */; };
 		8F61769F25B856140059B4B7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F61769E25B856140059B4B7 /* TabBarController.swift */; };
 		8F6176A225B856140059B4B7 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F6176A025B856140059B4B7 /* TabBar.storyboard */; };
@@ -169,6 +171,8 @@
 		8F5D5A5425D176300095C21A /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		8F5D5A5C25D181AD0095C21A /* GetUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserRequest.swift; sourceTree = "<group>"; };
 		8F5D5A6125D182420095C21A /* GetUserProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileRequest.swift; sourceTree = "<group>"; };
+		8F5D5A6625D186CF0095C21A /* GetGroupsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupsResponse.swift; sourceTree = "<group>"; };
+		8F5D5A6B25D187D80095C21A /* GetGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupRequest.swift; sourceTree = "<group>"; };
 		8F61769725B856140059B4B7 /* watsup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watsup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F61769A25B856140059B4B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F61769E25B856140059B4B7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -319,6 +323,7 @@
 				8F5D5A3325CECF400095C21A /* GetUserGroupRequest.swift */,
 				8F5D5A5C25D181AD0095C21A /* GetUserRequest.swift */,
 				8F5D5A6125D182420095C21A /* GetUserProfileRequest.swift */,
+				8F5D5A6B25D187D80095C21A /* GetGroupRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -346,8 +351,9 @@
 				8F5D593D25C4899A0095C21A /* GetUsersResponse.swift */,
 				8F5D594A25C4924C0095C21A /* GetUserProfileResponse.swift */,
 				8F5D59AF25C863EE0095C21A /* PutCSForgotPasswordResponse.swift */,
-				8F5D5A3B25CECF9C0095C21A /* GetUserGroupResponse.swift */,
 				8F5D5A4425D1741F0095C21A /* PostCSForgotPasswordResponse.swift */,
+				8F5D5A3B25CECF9C0095C21A /* GetUserGroupResponse.swift */,
+				8F5D5A6625D186CF0095C21A /* GetGroupsResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -809,6 +815,7 @@
 				8F2C5AA125C067D3004FF9EF /* API.swift in Sources */,
 				8F5D593E25C4899A0095C21A /* GetUsersResponse.swift in Sources */,
 				8F5D596E25C5A8C80095C21A /* GroupInvitedTableViewCell.swift in Sources */,
+				8F5D5A6C25D187D80095C21A /* GetGroupRequest.swift in Sources */,
 				8F0E41E525B9C62D008AA995 /* GroupDetailViewController.swift in Sources */,
 				8F2C5A2125BB3917004FF9EF /* CommonEnums.swift in Sources */,
 				8F0E420A25B9CA03008AA995 /* MainViewController.swift in Sources */,
@@ -830,6 +837,7 @@
 				8F5D59B825C864810095C21A /* AuthVerifyCodeViewModel.swift in Sources */,
 				8F5AD3D625C1C51800DBF158 /* AuthJoinViewController.swift in Sources */,
 				8F5D59B025C863EF0095C21A /* PutCSForgotPasswordResponse.swift in Sources */,
+				8F5D5A6725D186CF0095C21A /* GetGroupsResponse.swift in Sources */,
 				8F5D5A4525D1741F0095C21A /* PostCSForgotPasswordResponse.swift in Sources */,
 				8F61769F25B856140059B4B7 /* TabBarController.swift in Sources */,
 				8F0E421E25B9D0A3008AA995 /* XibView.swift in Sources */,

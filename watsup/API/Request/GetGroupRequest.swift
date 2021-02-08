@@ -1,5 +1,5 @@
 //
-//  PostCSForgotPasswordResponse.swift
+//  GetGroupRequest.swift
 //  watsup
 //
 //  Created by Jeongkyun Kim on 2021/02/08.
@@ -7,5 +7,6 @@
 
 import Foundation
 
-struct PostCSForgotPasswordResponse: Codable {
+struct GetGroupRequest: Codable {
+    let uuid: String
 }

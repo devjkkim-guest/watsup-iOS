@@ -44,23 +44,7 @@ class API {
             }
     }
     
-    func getUser(_ request: GetUserRequest, completion: @escaping (Result<GetUsersResponse, APIError>) -> Void) {
-        API.shared.request(.getUser(request)) { result in
-            completion(result)
-        }
-    }
-    
-    func postUser(_ request: PostUsersRequest, completion: @escaping (Result<PostUsersResponse, APIError>) -> Void) {
-        API.shared.request(.postUser(request)) { result in
-            completion(result)
-        }
-    }
-    
-    func getUserProfile(_ request: GetUserProfileRequest, completion: @escaping (Result<GetUserProfileResponse, APIError>) -> Void) {
-        API.shared.request(.getUserProfile(request)) { result in
-            completion(result)
-        }
-    }
+    // MARK: - Auth
     
     func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<PostAuthResponse, APIError>) -> Void) {
         API.shared.request(.postAuth(request)) { result in
@@ -80,13 +64,41 @@ class API {
         }
     }
     
+    // MARK: - User
+    
+    func getUser(_ request: GetUserRequest, completion: @escaping (Result<GetUsersResponse, APIError>) -> Void) {
+        API.shared.request(.getUser(request)) { result in
+            completion(result)
+        }
+    }
+    
+    func postUser(_ request: PostUsersRequest, completion: @escaping (Result<PostUsersResponse, APIError>) -> Void) {
+        API.shared.request(.postUser(request)) { result in
+            completion(result)
+        }
+    }
+    
+    func getUserProfile(_ request: GetUserProfileRequest, completion: @escaping (Result<GetUserProfileResponse, APIError>) -> Void) {
+        API.shared.request(.getUserProfile(request)) { result in
+            completion(result)
+        }
+    }
+    
+    // MARK: - Group
+
+    func getGroup(_ request: GetGroupRequest, completion: @escaping (Result<GetGroupsResponse, APIError>) -> Void) {
+        API.shared.request(.getGroup(request)) { result in
+            completion(result)
+        }
+    }
+    
     func postGroups(_ request: PostGroupsRequest, completion: @escaping (Result<PostGroupsResponse, APIError>) -> Void) {
         API.shared.request(.postGroups(request)) { result in
             completion(result)
         }
     }
     
-    func getUserGroup(_ request: GetUserGroupRequest, completion: @escaping (Result<GetUserGroupRequest, APIError>) -> Void) {
+    func getUserGroup(_ request: GetUserGroupRequest, completion: @escaping (Result<GetUserGroupResponse, APIError>) -> Void) {
         API.shared.request(.getUserGroup(request)) { result in
             completion(result)
         }
