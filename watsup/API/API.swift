@@ -24,7 +24,7 @@ class API {
         self.session = session
     }
     
-    func request<T:Decodable>(_ model: APIModel, responseModel: T.Type, completion: @escaping (Result<T, AFError>) -> Void) {
+    private func request<T:Decodable>(_ model: APIModel, completion: @escaping (Result<T, APIError>) -> Void) {
         session.request(model)
             .validate()
             .responseJSON { response in
@@ -36,11 +36,59 @@ class API {
                        let json = try? decoder.decode(T.self, from: jsonData) {
                         completion(.success(json))
                     }else{
-                        completion(.failure(.explicitlyCancelled))
+                        completion(.failure(APIError()))
                     }
-                case .failure(let error):
-                    completion(.failure(error))
+                case .failure(_):
+                    completion(.failure(APIError()))
                 }
             }
+    }
+    
+    func getUser(_ request: GetUserRequest, completion: @escaping (Result<GetUsersResponse, APIError>) -> Void) {
+        API.shared.request(.getUser(request)) { result in
+            completion(result)
+        }
+    }
+    
+    func postUser(_ request: PostUsersRequest, completion: @escaping (Result<PostUsersResponse, APIError>) -> Void) {
+        API.shared.request(.postUser(request)) { result in
+            completion(result)
+        }
+    }
+    
+    func getUserProfile(_ request: GetUserProfileRequest, completion: @escaping (Result<GetUserProfileResponse, APIError>) -> Void) {
+        API.shared.request(.getUserProfile(request)) { result in
+            completion(result)
+        }
+    }
+    
+    func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<PostAuthResponse, APIError>) -> Void) {
+        API.shared.request(.postAuth(request)) { result in
+            completion(result)
+        }
+    }
+    
+    func postCSForgotPassword(_ request: PostCSForgotPasswordRequest, completion: @escaping (Result<PostCSForgotPasswordResponse, APIError>) -> Void) {
+        API.shared.request(.postCSForgotPassword(request)) { result in
+            completion(result)
+        }
+    }
+    
+    func putCSForgotPassword(_ request: PutCSForgotPasswordRequest, complection: @escaping (Result<PutCSForgotPasswordResponse, APIError>) -> Void) {
+        API.shared.request(.putCSForgotPassword(request)) { result in
+            complection(result)
+        }
+    }
+    
+    func postGroups(_ request: PostGroupsRequest, completion: @escaping (Result<PostGroupsResponse, APIError>) -> Void) {
+        API.shared.request(.postGroups(request)) { result in
+            completion(result)
+        }
+    }
+    
+    func getUserGroup(_ request: GetUserGroupRequest, completion: @escaping (Result<GetUserGroupRequest, APIError>) -> Void) {
+        API.shared.request(.getUserGroup(request)) { result in
+            completion(result)
+        }
     }
 }

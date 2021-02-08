@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class AuthRequestCodeViewController: UIViewController {
 
@@ -29,8 +30,8 @@ class AuthRequestCodeViewController: UIViewController {
 
     @IBAction func onClickSendCode(_ sender: UIButton) {
         if let email = tfEmail.text {
-            let request = PostCSForgotPassword(email: email)
-            API.shared.request(.postCSForgotPassword(request), responseModel: PostAuthResponse.self) { (result) in
+            let request = PostCSForgotPasswordRequest(email: email)
+            API.shared.postCSForgotPassword(request) { result in
                 print(result)
             }
         }

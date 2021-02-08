@@ -20,6 +20,8 @@ class GroupListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        loadGroups()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "GroupInvitedTableViewCell", bundle: nil), forCellReuseIdentifier: Section.invitedGroup.rawValue)
@@ -36,7 +38,7 @@ class GroupListViewController: UIViewController {
         let action = UIAlertAction(title: "Create a group", style: .default) { action in
             if let groupName = alertController.textFields?.first?.text {
                 let request = PostGroupsRequest(group_name: groupName)
-                self.requestPostGroups(request) { result in
+                API.shared.postGroups(request) { result in
                     switch result {
                     case .success(let data):
                         print(data)
@@ -50,10 +52,12 @@ class GroupListViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    // MAKR: - API
-    func requestPostGroups(_ request: PostGroupsRequest, completion: @escaping (Result<PostGroupsResponse, AFError>) -> Void) {
-        API.shared.request(.postGroups(request), responseModel: PostGroupsResponse.self) { result in
-            completion(result)
+    func loadGroups() {
+        if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue) {
+            let request = GetUserGroupRequest(user_uuid: uuid)
+            API.shared.getUserGroup(request) { result in
+                print(result)
+            }
         }
     }
 }

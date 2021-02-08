@@ -67,6 +67,12 @@
 		8F5D59B825C864810095C21A /* AuthVerifyCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D59B725C864810095C21A /* AuthVerifyCodeViewModel.swift */; };
 		8F5D5A0325CE67A40095C21A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8F5D5A0225CE67A40095C21A /* Realm */; };
 		8F5D5A0525CE67A40095C21A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F5D5A0425CE67A40095C21A /* RealmSwift */; };
+		8F5D5A3425CECF400095C21A /* GetUserGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A3325CECF400095C21A /* GetUserGroupRequest.swift */; };
+		8F5D5A3C25CECF9C0095C21A /* GetUserGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A3B25CECF9C0095C21A /* GetUserGroupResponse.swift */; };
+		8F5D5A4525D1741F0095C21A /* PostCSForgotPasswordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A4425D1741F0095C21A /* PostCSForgotPasswordResponse.swift */; };
+		8F5D5A5525D176300095C21A /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A5425D176300095C21A /* APIError.swift */; };
+		8F5D5A5D25D181AD0095C21A /* GetUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A5C25D181AD0095C21A /* GetUserRequest.swift */; };
+		8F5D5A6225D182420095C21A /* GetUserProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A6125D182420095C21A /* GetUserProfileRequest.swift */; };
 		8F61769B25B856140059B4B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F61769A25B856140059B4B7 /* AppDelegate.swift */; };
 		8F61769F25B856140059B4B7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F61769E25B856140059B4B7 /* TabBarController.swift */; };
 		8F6176A225B856140059B4B7 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F6176A025B856140059B4B7 /* TabBar.storyboard */; };
@@ -157,6 +163,12 @@
 		8F5D598E25C855260095C21A /* PutCSForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutCSForgotPassword.swift; sourceTree = "<group>"; };
 		8F5D59AF25C863EE0095C21A /* PutCSForgotPasswordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutCSForgotPasswordResponse.swift; sourceTree = "<group>"; };
 		8F5D59B725C864810095C21A /* AuthVerifyCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerifyCodeViewModel.swift; sourceTree = "<group>"; };
+		8F5D5A3325CECF400095C21A /* GetUserGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserGroupRequest.swift; sourceTree = "<group>"; };
+		8F5D5A3B25CECF9C0095C21A /* GetUserGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserGroupResponse.swift; sourceTree = "<group>"; };
+		8F5D5A4425D1741F0095C21A /* PostCSForgotPasswordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCSForgotPasswordResponse.swift; sourceTree = "<group>"; };
+		8F5D5A5425D176300095C21A /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		8F5D5A5C25D181AD0095C21A /* GetUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserRequest.swift; sourceTree = "<group>"; };
+		8F5D5A6125D182420095C21A /* GetUserProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileRequest.swift; sourceTree = "<group>"; };
 		8F61769725B856140059B4B7 /* watsup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watsup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F61769A25B856140059B4B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F61769E25B856140059B4B7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -287,6 +299,7 @@
 				8F2C5AAF25C06D81004FF9EF /* Request */,
 				8F5AD3E425C1CA0B00DBF158 /* Response */,
 				8F2C5AA025C067D3004FF9EF /* API.swift */,
+				8F5D5A5425D176300095C21A /* APIError.swift */,
 				8F2C5AA525C069D0004FF9EF /* APIModel.swift */,
 				8F2C5AAA25C06C0E004FF9EF /* APIConstants.swift */,
 				8F5AD3F625C1CDB200DBF158 /* APIEventMonitor.swift */,
@@ -303,6 +316,9 @@
 				8F5D592B25C486AE0095C21A /* PostGroupsRequest.swift */,
 				8F5D598925C854E30095C21A /* PostCSForgotPassword.swift */,
 				8F5D598E25C855260095C21A /* PutCSForgotPassword.swift */,
+				8F5D5A3325CECF400095C21A /* GetUserGroupRequest.swift */,
+				8F5D5A5C25D181AD0095C21A /* GetUserRequest.swift */,
+				8F5D5A6125D182420095C21A /* GetUserProfileRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -330,6 +346,8 @@
 				8F5D593D25C4899A0095C21A /* GetUsersResponse.swift */,
 				8F5D594A25C4924C0095C21A /* GetUserProfileResponse.swift */,
 				8F5D59AF25C863EE0095C21A /* PutCSForgotPasswordResponse.swift */,
+				8F5D5A3B25CECF9C0095C21A /* GetUserGroupResponse.swift */,
+				8F5D5A4425D1741F0095C21A /* PostCSForgotPasswordResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -767,10 +785,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F5D5A3C25CECF9C0095C21A /* GetUserGroupResponse.swift in Sources */,
 				8F0E41E025B9C61E008AA995 /* GroupListViewController.swift in Sources */,
 				8F5D592C25C486AE0095C21A /* PostGroupsRequest.swift in Sources */,
 				8F0E41EC25B9C6A0008AA995 /* UserDetailViewController.swift in Sources */,
 				8F5AD40D25C4630C00DBF158 /* AuthLoginViewModel.swift in Sources */,
+				8F5D5A5525D176300095C21A /* APIError.swift in Sources */,
 				8F5AD40125C45F9100DBF158 /* CommonResponse.swift in Sources */,
 				8F5D594325C489D10095C21A /* SettingViewController.swift in Sources */,
 				8F5D596425C5A75F0095C21A /* GroupInvitedCollectionViewCell.swift in Sources */,
@@ -784,6 +804,7 @@
 				8F2C59FB25BB25BD004FF9EF /* EmotionRegisterView.swift in Sources */,
 				8F2C5AA625C069D0004FF9EF /* APIModel.swift in Sources */,
 				8F5D595C25C5648C0095C21A /* SettingProfileTableViewCell.swift in Sources */,
+				8F5D5A6225D182420095C21A /* GetUserProfileRequest.swift in Sources */,
 				8F5D591D25C473860095C21A /* UIButton+Extension.swift in Sources */,
 				8F2C5AA125C067D3004FF9EF /* API.swift in Sources */,
 				8F5D593E25C4899A0095C21A /* GetUsersResponse.swift in Sources */,
@@ -797,6 +818,7 @@
 				8F2C5A1525BB2FBA004FF9EF /* EmotionView.swift in Sources */,
 				8F2C5AB125C06DA0004FF9EF /* Request.swift in Sources */,
 				8F5D595525C496EC0095C21A /* APITokenStorage.swift in Sources */,
+				8F5D5A5D25D181AD0095C21A /* GetUserRequest.swift in Sources */,
 				8F5D592225C474D20095C21A /* UIView+Extension.swift in Sources */,
 				8F5AD3F725C1CDB200DBF158 /* APIEventMonitor.swift in Sources */,
 				8F2C5A0B25BB2CBD004FF9EF /* RandomEmotionView.swift in Sources */,
@@ -808,11 +830,13 @@
 				8F5D59B825C864810095C21A /* AuthVerifyCodeViewModel.swift in Sources */,
 				8F5AD3D625C1C51800DBF158 /* AuthJoinViewController.swift in Sources */,
 				8F5D59B025C863EF0095C21A /* PutCSForgotPasswordResponse.swift in Sources */,
+				8F5D5A4525D1741F0095C21A /* PostCSForgotPasswordResponse.swift in Sources */,
 				8F61769F25B856140059B4B7 /* TabBarController.swift in Sources */,
 				8F0E421E25B9D0A3008AA995 /* XibView.swift in Sources */,
 				8F5AD3E625C1CA1B00DBF158 /* PostUsersResponse.swift in Sources */,
 				8F5AD3E025C1C85700DBF158 /* CommonConstants.swift in Sources */,
 				8F61769B25B856140059B4B7 /* AppDelegate.swift in Sources */,
+				8F5D5A3425CECF400095C21A /* GetUserGroupRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

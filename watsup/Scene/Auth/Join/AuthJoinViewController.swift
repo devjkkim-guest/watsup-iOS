@@ -36,24 +36,15 @@ class AuthJoinViewController: UIViewController {
                                         os_type: OSType.iOS.rawValue,
                                         app_version: appVersion ?? "0",
                                         language_code: languageCode)
-        requestJoin(body: userData) { result in
-            if result {
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
-                }
-            }
-        }
-    }
-    
-    func requestJoin(body: PostUsersRequest, completion: @escaping (Bool)->Void) {
-        API.shared.request(.postUser(body), responseModel: PostUsersResponse.self) { result in
+        API.shared.postUser(userData) { result in
             switch result {
             case .success(let data):
                 print(data)
-                completion(true)
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
+                }
             case .failure(let error):
                 print(error.localizedDescription)
-                completion(false)
             }
         }
     }

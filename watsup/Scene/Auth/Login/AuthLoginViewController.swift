@@ -30,29 +30,22 @@ class AuthLoginViewController: UIViewController {
             return
         }
         
-        let body = PostAuthRequest(email: email, password: password)
-        requestLogin(body: body) { result in
+        let request = PostAuthRequest(email: email, password: password)
+        API.shared.postAuth(request) { result in
             switch result {
             case .success(let data):
                 if self.viewModel.addUser(data: data) {
                     self.goMain()
                 }
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error)
             }
-        }
-    }
-    
-    func requestLogin(body: PostAuthRequest, completion: @escaping (Result<PostAuthResponse, AFError>) -> Void) {
-        API.shared.request(.postAuth(body), responseModel: PostAuthResponse.self) { result in
-            completion(result)
         }
     }
     
     func goMain() {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
-            
+            appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()   
         }
     }
 }
