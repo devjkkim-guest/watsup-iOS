@@ -46,14 +46,14 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="JDy-eP-buf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="22" id="8Qu-Sx-hvD"/>
                     <constraint firstAttribute="trailing" secondItem="bUk-cN-1IT" secondAttribute="trailing" constant="20" id="Cja-zg-ONe"/>
-                    <constraint firstAttribute="bottom" secondItem="JDy-eP-buf" secondAttribute="bottom" constant="22" id="QtR-0U-XOa"/>
                     <constraint firstItem="JDy-eP-buf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="XQe-p9-Fo7"/>
+                    <constraint firstItem="JDy-eP-buf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" priority="999" constant="10" id="YIC-61-4RF"/>
                     <constraint firstItem="bku-5P-wUL" firstAttribute="leading" secondItem="JDy-eP-buf" secondAttribute="trailing" constant="20" id="Z8m-K9-8N9"/>
                     <constraint firstItem="JDy-eP-buf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="h4l-01-CT2"/>
                     <constraint firstItem="bku-5P-wUL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="iUp-80-kCN"/>
                     <constraint firstItem="bUk-cN-1IT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="j3y-YF-TU6"/>
+                    <constraint firstAttribute="bottom" secondItem="JDy-eP-buf" secondAttribute="bottom" priority="999" constant="10" id="kBW-Be-kwC"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

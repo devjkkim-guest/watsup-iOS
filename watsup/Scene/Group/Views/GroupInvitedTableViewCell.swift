@@ -17,12 +17,23 @@ class GroupInvitedTableViewCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "GroupInvitedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+        collectionView.collectionViewLayout = getCollectionViewLayout()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    private func getCollectionViewLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.headerReferenceSize = .zero
+        layout.sectionInset = .zero
+        layout.minimumInteritemSpacing = 10
+        layout.itemSize = CGSize(width: 122, height: 156)
+        layout.scrollDirection = .horizontal
+        return layout
     }
 }
 
@@ -40,14 +51,5 @@ extension GroupInvitedTableViewCell: UICollectionViewDelegate {
 extension GroupInvitedTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
-    }
-}
-
-extension GroupInvitedTableViewCell: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 122, height: 156)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
     }
 }

@@ -103,7 +103,12 @@ extension GroupListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        switch Section.allCases[indexPath.section] {
+        case .invitedGroup:
+            return 156
+        case .joinedGroup:
+            return UITableView.automaticDimension
+        }
     }
 }
 
