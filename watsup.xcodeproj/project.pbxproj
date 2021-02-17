@@ -82,6 +82,9 @@
 		8F6176A725B856150059B4B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F6176A525B856150059B4B7 /* LaunchScreen.storyboard */; };
 		8F6176B225B856160059B4B7 /* watsupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6176B125B856160059B4B7 /* watsupTests.swift */; };
 		8F6176BD25B856160059B4B7 /* watsupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6176BC25B856160059B4B7 /* watsupUITests.swift */; };
+		8F8E3E6225DD697E00EBB8A8 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F8E3E6425DD697E00EBB8A8 /* Localization.strings */; };
+		8F8E3E6D25DD69E400EBB8A8 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8E3E6C25DD69E400EBB8A8 /* String+Extension.swift */; };
+		8F8E3E7225DD6AFF00EBB8A8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8E3E7125DD6AFF00EBB8A8 /* UIViewController+Extension.swift */; };
 		8FD6448E25BAFB010056F74E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6448D25BAFB010056F74E /* BaseViewController.swift */; };
 		F2945437CC694AE7593EEE3C /* Pods_watsup_watsupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D00D3B659A21D03D72F26B /* Pods_watsup_watsupUITests.framework */; };
 /* End PBXBuildFile section */
@@ -186,6 +189,10 @@
 		8F6176B825B856160059B4B7 /* watsupUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = watsupUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F6176BC25B856160059B4B7 /* watsupUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watsupUITests.swift; sourceTree = "<group>"; };
 		8F6176BE25B856160059B4B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F8E3E6325DD697E00EBB8A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localization.strings; sourceTree = "<group>"; };
+		8F8E3E6825DD69B500EBB8A8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localization.strings; sourceTree = "<group>"; };
+		8F8E3E6C25DD69E400EBB8A8 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		8F8E3E7125DD6AFF00EBB8A8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		8FD6448D25BAFB010056F74E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B55274C625C0B5E15B2008A9 /* Pods_watsupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CB51354ACB513130627B1E /* Pods-watsup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup.debug.xcconfig"; path = "Target Support Files/Pods-watsup/Pods-watsup.debug.xcconfig"; sourceTree = "<group>"; };
@@ -364,6 +371,8 @@
 				8F5AD3EE25C1CA4800DBF158 /* Encodable+Extension.swift */,
 				8F5D591C25C473860095C21A /* UIButton+Extension.swift */,
 				8F5D592125C474D20095C21A /* UIView+Extension.swift */,
+				8F8E3E6C25DD69E400EBB8A8 /* String+Extension.swift */,
+				8F8E3E7125DD6AFF00EBB8A8 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -487,6 +496,7 @@
 				8F6176A325B856150059B4B7 /* Assets.xcassets */,
 				8F6176A525B856150059B4B7 /* LaunchScreen.storyboard */,
 				8F6176A825B856150059B4B7 /* Info.plist */,
+				8F8E3E6425DD697E00EBB8A8 /* Localization.strings */,
 			);
 			path = watsup;
 			sourceTree = "<group>";
@@ -628,6 +638,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 8F61768E25B856140059B4B7;
 			packageReferences = (
@@ -654,6 +665,7 @@
 				8F2C5A1025BB2F70004FF9EF /* EmotionView.xib in Resources */,
 				8F0E41ED25B9C6A0008AA995 /* UserDetailViewController.xib in Resources */,
 				8F5D596F25C5A8C80095C21A /* GroupInvitedTableViewCell.xib in Resources */,
+				8F8E3E6225DD697E00EBB8A8 /* Localization.strings in Resources */,
 				8F5D596525C5A75F0095C21A /* GroupInvitedCollectionViewCell.xib in Resources */,
 				8F2C59F625BB2585004FF9EF /* EmotionRegisterView.xib in Resources */,
 				8F0E41D225B88724008AA995 /* Group.storyboard in Resources */,
@@ -814,6 +826,7 @@
 				8F5D591D25C473860095C21A /* UIButton+Extension.swift in Sources */,
 				8F2C5AA125C067D3004FF9EF /* API.swift in Sources */,
 				8F5D593E25C4899A0095C21A /* GetUsersResponse.swift in Sources */,
+				8F8E3E6D25DD69E400EBB8A8 /* String+Extension.swift in Sources */,
 				8F5D596E25C5A8C80095C21A /* GroupInvitedTableViewCell.swift in Sources */,
 				8F5D5A6C25D187D80095C21A /* GetGroupRequest.swift in Sources */,
 				8F0E41E525B9C62D008AA995 /* GroupDetailViewController.swift in Sources */,
@@ -822,6 +835,7 @@
 				8F5AD3D125C1C50100DBF158 /* AuthMainViewController.swift in Sources */,
 				8F5D598F25C855260095C21A /* PutCSForgotPassword.swift in Sources */,
 				8F5D598A25C854E30095C21A /* PostCSForgotPassword.swift in Sources */,
+				8F8E3E7225DD6AFF00EBB8A8 /* UIViewController+Extension.swift in Sources */,
 				8F2C5A1525BB2FBA004FF9EF /* EmotionView.swift in Sources */,
 				8F2C5AB125C06DA0004FF9EF /* Request.swift in Sources */,
 				8F5D595525C496EC0095C21A /* APITokenStorage.swift in Sources */,
@@ -896,6 +910,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		8F8E3E6425DD697E00EBB8A8 /* Localization.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F8E3E6325DD697E00EBB8A8 /* en */,
+				8F8E3E6825DD69B500EBB8A8 /* ko */,
+			);
+			name = Localization.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -903,6 +926,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -964,6 +988,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

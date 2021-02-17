@@ -39,7 +39,15 @@ class API {
                         completion(.failure(APIError()))
                     }
                 case .failure(_):
-                    completion(.failure(APIError()))
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    if let data = response.data,
+                       let json = try? decoder.decode(ErrorResponse.self, from: data) {
+                        let apiError = APIError(errorCode: json.code)
+                        completion(.failure(apiError))
+                    }else{
+                        completion(.failure(APIError()))
+                    }
                 }
             }
     }

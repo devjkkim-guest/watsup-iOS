@@ -38,7 +38,7 @@ class AuthLoginViewController: UIViewController {
                     self.goMain()
                 }
             case .failure(let error):
-                print(error)
+                self.showAlert(apiError: error)
             }
         }
     }

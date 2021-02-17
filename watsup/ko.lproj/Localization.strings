@@ -1,0 +1,16 @@
+/* 
+  Localization.strings
+  watsup
+
+  Created by Jeongkyun Kim on 2021/02/18.
+  
+*/
+/// Button
+"Button.OK" = "확인";
+
+/// Common Error
+"API.Common.Error.DefaultMessage" = "문제가 발생했습니다.";
+
+/// Auth Error
+"API.Auth.Error.400" = "로그인 실패.";
+"API.Auth.Error.422" = "유효한 이메일 주소가 아닙니다.";

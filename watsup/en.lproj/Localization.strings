@@ -1,0 +1,16 @@
+/* 
+  Localization.strings
+  watsup
+
+  Created by Jeongkyun Kim on 2021/02/18.
+  
+*/
+/// Button
+"Button.OK" = "OK";
+
+/// Common Error
+"API.Common.Error.DefaultMessage" = "Default Message.";
+
+/// Auth Error
+"API.Auth.Error.400" = "Login Failed.";
+"API.Auth.Error.422" = "Not a valid email address.";

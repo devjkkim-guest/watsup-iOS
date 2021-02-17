@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct ErrorResponse: Codable {
+    var code: Int?
+    var message: String?
+    var status: String?
+}
+
 struct DeviceResponse: Codable {
     var appVersion: String?
     var deviceToken: String?
