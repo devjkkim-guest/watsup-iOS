@@ -4,8 +4,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,12 +17,53 @@
                     <view key="view" contentMode="scaleToFill" id="I0m-KP-6NT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GFi-dk-Grb">
+                                <rect key="frame" x="0.0" y="360" width="414" height="453"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qn0-tX-HNY">
+                                <rect key="frame" x="0.0" y="140" width="414" height="220"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="qbT-sm-jTP"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v88-Rp-BaO">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="pEr-aL-UQj">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zFh-Vz-LJm">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="8HR-ef-hYo"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GFi-dk-Grb" firstAttribute="leading" secondItem="8HR-ef-hYo" secondAttribute="leading" id="CHV-C6-4CW"/>
+                            <constraint firstItem="8HR-ef-hYo" firstAttribute="trailing" secondItem="GFi-dk-Grb" secondAttribute="trailing" id="Nsn-Cs-6CX"/>
+                            <constraint firstItem="8HR-ef-hYo" firstAttribute="bottom" secondItem="GFi-dk-Grb" secondAttribute="bottom" id="SMi-pD-dxN"/>
+                            <constraint firstItem="Qn0-tX-HNY" firstAttribute="top" secondItem="8HR-ef-hYo" secondAttribute="top" id="bp7-Ua-txm"/>
+                            <constraint firstItem="8HR-ef-hYo" firstAttribute="trailing" secondItem="Qn0-tX-HNY" secondAttribute="trailing" id="d4Z-ev-nT9"/>
+                            <constraint firstItem="GFi-dk-Grb" firstAttribute="top" secondItem="Qn0-tX-HNY" secondAttribute="bottom" id="gZS-vb-vx8"/>
+                            <constraint firstItem="Qn0-tX-HNY" firstAttribute="leading" secondItem="8HR-ef-hYo" secondAttribute="leading" id="nSD-JN-2Og"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="투데이" image="star.fill" catalog="system" id="P9y-HN-loW"/>
                     <navigationItem key="navigationItem" title="투데이" id="8zb-Wi-sOe"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Qn0-tX-HNY" id="B3m-5T-itR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fb8-R2-hsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -48,11 +90,8 @@
     </scenes>
     <resources>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <namedColor name="Blue">
-            <color red="0.24313725490196078" green="0.31764705882352939" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Sand">
-            <color red="0.87058823529411766" green="0.79607843137254897" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

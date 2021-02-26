@@ -39,15 +39,8 @@ class API {
                         completion(.failure(APIError()))
                     }
                 case .failure(_):
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    if let data = response.data,
-                       let json = try? decoder.decode(ErrorResponse.self, from: data) {
-                        let apiError = APIError(errorCode: json.code)
-                        completion(.failure(apiError))
-                    }else{
-                        completion(.failure(APIError()))
-                    }
+                    let apiError = self.getError(response.data)
+                    completion(.failure(apiError))
                 }
             }
     }
@@ -109,6 +102,20 @@ class API {
     func getUserGroup(_ request: GetUserGroupRequest, completion: @escaping (Result<GetUserGroupResponse, APIError>) -> Void) {
         API.shared.request(.getUserGroup(request)) { result in
             completion(result)
+        }
+    }
+    
+    // MARK: - Error
+    func getError(_ data: Data?) -> APIError {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        if let data = data,
+           let json = try? decoder.decode(ErrorResponse.self, from: data) {
+            let apiError = APIError(errorCode: json.code)
+            return apiError
+        }else{
+            // return default error.
+            return APIError()
         }
     }
 }
