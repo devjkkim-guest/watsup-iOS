@@ -32,7 +32,7 @@ class GroupInvitedTableViewCell: UITableViewCell {
         layout.sectionInset = .zero
         layout.minimumInteritemSpacing = 10
         layout.itemSize = CGSize(width: 122, height: 156)
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         return layout
     }
 }

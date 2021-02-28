@@ -9,17 +9,13 @@ import XCTest
 @testable import watsup
 
 class watsupTests: XCTestCase {
-    
-    var authJoinViewController: AuthJoinViewController?
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        authJoinViewController = AuthJoinViewController()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        authJoinViewController = nil
     }
 
     func testJoinApiResponse() {
@@ -35,8 +31,13 @@ class watsupTests: XCTestCase {
                                         os_type: OSType.iOS.rawValue,
                                         app_version: appVersion ?? "0",
                                         language_code: languageCode)
-        authJoinViewController?.requestJoin(body: userData) { result in
-            XCTAssertTrue(result == true)
+        API.shared.postUser(userData) { result in
+            switch result {
+            case .success(let data):
+                XCTAssertNotNil(data)
+            case .failure(let data):
+                XCTAssertTrue(data.errorCode == 409)
+            }
             e.fulfill()
         }
         waitForExpectations(timeout: 5.0, handler: nil)

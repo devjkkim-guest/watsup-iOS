@@ -87,6 +87,8 @@
 		8F8E3E6D25DD69E400EBB8A8 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8E3E6C25DD69E400EBB8A8 /* String+Extension.swift */; };
 		8F8E3E7225DD6AFF00EBB8A8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8E3E7125DD6AFF00EBB8A8 /* UIViewController+Extension.swift */; };
 		8FD6448E25BAFB010056F74E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6448D25BAFB010056F74E /* BaseViewController.swift */; };
+		A429318925EA7562005F5DD0 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A429318725EA7562005F5DD0 /* CalendarCollectionViewCell.swift */; };
+		A429318A25EA7562005F5DD0 /* CalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A429318825EA7562005F5DD0 /* CalendarCollectionViewCell.xib */; };
 		F2945437CC694AE7593EEE3C /* Pods_watsup_watsupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D00D3B659A21D03D72F26B /* Pods_watsup_watsupUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -196,6 +198,8 @@
 		8F8E3E6C25DD69E400EBB8A8 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		8F8E3E7125DD6AFF00EBB8A8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		8FD6448D25BAFB010056F74E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		A429318725EA7562005F5DD0 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		A429318825EA7562005F5DD0 /* CalendarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCollectionViewCell.xib; sourceTree = "<group>"; };
 		B55274C625C0B5E15B2008A9 /* Pods_watsupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CB51354ACB513130627B1E /* Pods-watsup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup.debug.xcconfig"; path = "Target Support Files/Pods-watsup/Pods-watsup.debug.xcconfig"; sourceTree = "<group>"; };
 		EC52E897B17F5438C4265895 /* Pods-watsup-watsupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup-watsupUITests.release.xcconfig"; path = "Target Support Files/Pods-watsup-watsupUITests/Pods-watsup-watsupUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -267,7 +271,6 @@
 		8F0E41E925B9C677008AA995 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				8F4086B725E94CD000E7F61B /* Helper */,
 				8F2C5A2825BB4C02004FF9EF /* Model */,
 				8F0E421225B9CD3D008AA995 /* ViewControllers */,
 				8F0E421125B9CD37008AA995 /* Views */,
@@ -349,13 +352,6 @@
 				8F5AD3D025C1C50100DBF158 /* AuthMainViewController.swift */,
 			);
 			path = Auth;
-			sourceTree = "<group>";
-		};
-		8F4086B725E94CD000E7F61B /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helper;
 			sourceTree = "<group>";
 		};
 		8F5AD3E425C1CA0B00DBF158 /* Response */ = {
@@ -533,6 +529,7 @@
 		8FD644A025BB03080056F74E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A429317E25EA7514005F5DD0 /* Calendar */,
 				8F2C59F525BB2585004FF9EF /* EmotionRegisterView.xib */,
 				8F2C59FA25BB25BD004FF9EF /* EmotionRegisterView.swift */,
 				8F2C5A0525BB2CAB004FF9EF /* RandomEmotionView.xib */,
@@ -552,6 +549,15 @@
 				011C5311030AF4467DC63AF6 /* Pods-watsupTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A429317E25EA7514005F5DD0 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				A429318725EA7562005F5DD0 /* CalendarCollectionViewCell.swift */,
+				A429318825EA7562005F5DD0 /* CalendarCollectionViewCell.xib */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -675,6 +681,7 @@
 				8F0E41CD25B85EE2008AA995 /* Main.storyboard in Resources */,
 				8F2C5A1025BB2F70004FF9EF /* EmotionView.xib in Resources */,
 				8F0E41ED25B9C6A0008AA995 /* UserDetailViewController.xib in Resources */,
+				A429318A25EA7562005F5DD0 /* CalendarCollectionViewCell.xib in Resources */,
 				8F5D596F25C5A8C80095C21A /* GroupInvitedTableViewCell.xib in Resources */,
 				8F8E3E6225DD697E00EBB8A8 /* Localization.strings in Resources */,
 				8F5D596525C5A75F0095C21A /* GroupInvitedCollectionViewCell.xib in Resources */,
@@ -814,6 +821,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A429318925EA7562005F5DD0 /* CalendarCollectionViewCell.swift in Sources */,
 				8F5D5A3C25CECF9C0095C21A /* GetUserGroupResponse.swift in Sources */,
 				8F0E41E025B9C61E008AA995 /* GroupListViewController.swift in Sources */,
 				8F5D592C25C486AE0095C21A /* PostGroupsRequest.swift in Sources */,
