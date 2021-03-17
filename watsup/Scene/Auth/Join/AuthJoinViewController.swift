@@ -14,7 +14,7 @@ class AuthJoinViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        endEditingWhenTapBackground()
         // Do any additional setup after loading the view.
     }
     
