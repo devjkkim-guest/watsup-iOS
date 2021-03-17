@@ -21,11 +21,9 @@ class MainViewController: BaseViewController {
             self.months.append(Date.getNewMonth(offset: offset, from: Date()))
         }
         setUI()
+        collectionView.reloadData()
         collectionView.layoutIfNeeded()
-        let center = CGRect(origin: CGPoint(x: collectionView.contentSize.width/2,
-                                            y: collectionView.contentSize.height/2),
-                            size: CGSize(width: 10, height: 10))
-        collectionView.scrollRectToVisible(center, animated: false)
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: (months.count/2)), at: .centeredVertically, animated: false)
     }
     
     private func setUI() {
@@ -51,69 +49,6 @@ class MainViewController: BaseViewController {
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width/7, height: 50)
         layout.scrollDirection = .vertical
         return layout
-    }
-}
-
-extension MainViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        NSObject.cancelPreviousPerformRequests(withTarget: self)
-        self.perform(#selector(scrollViewDidEndScrollingAnimation(_:)), with: scrollView, afterDelay: 0.1)
-    }
-    
-    @objc func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        if let collectionView = scrollView as? UICollectionView,
-           let indexPaths = collectionView.indexPathsForVisibleItems.first {
-            let _ = indexPaths.section
-            let weeks = Calendar.current.range(of: .weekOfMonth, in: .month, for: Date())
-            collectionViewHeight.constant = CGFloat(weeks?.count ?? 0)*50
-        }
-    }
-}
-
-extension MainViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CalendarCollectionViewCell {
-            let date = months[indexPath.section] ?? Date()
-            let components = Calendar.current.dateComponents([.year, .month], from: date)
-            if let firstDate = Calendar.current.date(from: components) {
-                let weekDay = Calendar.current.component(.weekday, from: firstDate)
-                let dayOffset = indexPath.item-(weekDay-1)
-                let newDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: firstDate, wrappingComponents: false)
-                let day = Calendar.current.component(.day, from: newDate!)
-                cell.dayLabel.text = "\(day)"
-                
-                var components = DateComponents()
-                components.month = 1
-                components.day = -1
-                if let lastOfMonth = Calendar.current.date(byAdding: components, to: firstOfMonth) {
-                    let lastDay = Calendar.current.component(.day, from: lastOfMonth)
-                    print("lastDay: \(lastDay)")
-                    if dayOffset < 0 || dayOffset > lastDay-1 {
-                        cell.dayLabel.textColor = .lightGray
-                    }
-                }
-            }
-            
-            return cell
-        }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        return cell
-    }
-}
-
-extension MainViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let month = months[section],
-           let weeks = Calendar.current.range(of: .weekOfMonth, in: .month, for: month) {
-            return weeks.count*7
-        }else{
-            return 0
-        }
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        print("sections: \(months.count)")
-        return months.count
     }
 }
 
@@ -146,5 +81,53 @@ extension MainViewController: UIScrollViewDelegate {
                 }
             }
         }
+        
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        self.perform(#selector(scrollViewDidEndScrollingAnimation(_:)), with: scrollView, afterDelay: 0.1)
+    }
+    
+    @objc func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+//        if let collectionView = scrollView as? UICollectionView,
+//           let indexPaths = collectionView.indexPathsForVisibleItems.first {
+//            let _ = indexPaths.section
+//            let weeks = Calendar.current.range(of: .weekOfMonth, in: .month, for: Date())
+//            collectionViewHeight.constant = CGFloat(weeks?.count ?? 0)*50
+//        }
+    }
+}
+
+extension MainViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CalendarCollectionViewCell {
+            let date = months[indexPath.section] ?? Date()
+            let components = Calendar.current.dateComponents([.year, .month], from: date)
+            if let firstDate = Calendar.current.date(from: components) {
+                let weekDay = Calendar.current.component(.weekday, from: firstDate)
+                let dayOffset = indexPath.item-(weekDay-1)
+                let newDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: firstDate, wrappingComponents: false)
+                let day = Calendar.current.component(.day, from: newDate!)
+                cell.dayLabel.text = "\(day)"
+                print("section: \(indexPath.section), item: \(indexPath.item), day: \(day)")
+            }
+            return cell
+        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        return cell
+    }
+}
+
+extension MainViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let month = months[section],
+           let weeks = Calendar.current.range(of: .weekOfMonth, in: .month, for: month) {
+            return weeks.count*7
+        }else{
+            return 0
+        }
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        print("sections: \(months.count)")
+        return months.count
     }
 }
