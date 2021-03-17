@@ -54,6 +54,22 @@ class MainViewController: BaseViewController {
     }
 }
 
+extension MainViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        self.perform(#selector(scrollViewDidEndScrollingAnimation(_:)), with: scrollView, afterDelay: 0.1)
+    }
+    
+    @objc func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        if let collectionView = scrollView as? UICollectionView,
+           let indexPaths = collectionView.indexPathsForVisibleItems.first {
+            let _ = indexPaths.section
+            let weeks = Calendar.current.range(of: .weekOfMonth, in: .month, for: Date())
+            collectionViewHeight.constant = CGFloat(weeks?.count ?? 0)*50
+        }
+    }
+}
+
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CalendarCollectionViewCell {
@@ -65,8 +81,20 @@ extension MainViewController: UICollectionViewDelegate {
                 let newDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: firstDate, wrappingComponents: false)
                 let day = Calendar.current.component(.day, from: newDate!)
                 cell.dayLabel.text = "\(day)"
-                return cell
+                
+                var components = DateComponents()
+                components.month = 1
+                components.day = -1
+                if let lastOfMonth = Calendar.current.date(byAdding: components, to: firstOfMonth) {
+                    let lastDay = Calendar.current.component(.day, from: lastOfMonth)
+                    print("lastDay: \(lastDay)")
+                    if dayOffset < 0 || dayOffset > lastDay-1 {
+                        cell.dayLabel.textColor = .lightGray
+                    }
+                }
             }
+            
+            return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         return cell
