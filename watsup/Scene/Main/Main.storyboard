@@ -18,12 +18,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pyh-1c-BrG">
+                                <rect key="frame" x="0.0" y="140" width="414" height="40"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="sgl-Cd-r4b">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="sgl-Cd-r4b" secondAttribute="trailing" id="JCP-3i-ZxR"/>
+                                    <constraint firstAttribute="bottom" secondItem="sgl-Cd-r4b" secondAttribute="bottom" id="hK7-8x-Vwe"/>
+                                    <constraint firstItem="sgl-Cd-r4b" firstAttribute="top" secondItem="Pyh-1c-BrG" secondAttribute="top" id="iu5-3g-QJZ"/>
+                                    <constraint firstItem="sgl-Cd-r4b" firstAttribute="leading" secondItem="Pyh-1c-BrG" secondAttribute="leading" id="s1w-QD-26I"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GFi-dk-Grb">
-                                <rect key="frame" x="0.0" y="360" width="414" height="453"/>
+                                <rect key="frame" x="0.0" y="400" width="414" height="413"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qn0-tX-HNY">
-                                <rect key="frame" x="0.0" y="140" width="414" height="220"/>
+                                <rect key="frame" x="0.0" y="180" width="414" height="220"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="qbT-sm-jTP"/>
@@ -49,12 +64,16 @@
                         <viewLayoutGuide key="safeArea" id="8HR-ef-hYo"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Pyh-1c-BrG" firstAttribute="bottom" secondItem="Qn0-tX-HNY" secondAttribute="top" id="3WL-p2-9Ux"/>
                             <constraint firstItem="GFi-dk-Grb" firstAttribute="leading" secondItem="8HR-ef-hYo" secondAttribute="leading" id="CHV-C6-4CW"/>
+                            <constraint firstItem="8HR-ef-hYo" firstAttribute="trailing" secondItem="Pyh-1c-BrG" secondAttribute="trailing" id="La6-fK-nUf"/>
                             <constraint firstItem="8HR-ef-hYo" firstAttribute="trailing" secondItem="GFi-dk-Grb" secondAttribute="trailing" id="Nsn-Cs-6CX"/>
                             <constraint firstItem="8HR-ef-hYo" firstAttribute="bottom" secondItem="GFi-dk-Grb" secondAttribute="bottom" id="SMi-pD-dxN"/>
-                            <constraint firstItem="Qn0-tX-HNY" firstAttribute="top" secondItem="8HR-ef-hYo" secondAttribute="top" id="bp7-Ua-txm"/>
+                            <constraint firstItem="Pyh-1c-BrG" firstAttribute="top" secondItem="8HR-ef-hYo" secondAttribute="top" id="XCz-J0-6mQ"/>
+                            <constraint firstItem="Qn0-tX-HNY" firstAttribute="top" secondItem="8HR-ef-hYo" secondAttribute="top" constant="40" id="bp7-Ua-txm"/>
                             <constraint firstItem="8HR-ef-hYo" firstAttribute="trailing" secondItem="Qn0-tX-HNY" secondAttribute="trailing" id="d4Z-ev-nT9"/>
                             <constraint firstItem="GFi-dk-Grb" firstAttribute="top" secondItem="Qn0-tX-HNY" secondAttribute="bottom" id="gZS-vb-vx8"/>
+                            <constraint firstItem="Pyh-1c-BrG" firstAttribute="leading" secondItem="8HR-ef-hYo" secondAttribute="leading" id="hcB-le-GyJ"/>
                             <constraint firstItem="Qn0-tX-HNY" firstAttribute="leading" secondItem="8HR-ef-hYo" secondAttribute="leading" id="nSD-JN-2Og"/>
                         </constraints>
                     </view>
@@ -63,6 +82,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="Qn0-tX-HNY" id="B3m-5T-itR"/>
+                        <outlet property="dayStackView" destination="sgl-Cd-r4b" id="oaE-Lu-zDD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fb8-R2-hsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

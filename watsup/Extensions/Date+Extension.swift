@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-    func getNewDate(offset: Int, from date: Date) -> Date? {
+    static func getNewMonth(offset: Int, from date: Date) -> Date? {
         let currentYear = Calendar.current.component(.year, from: date)
         let currentMonth = Calendar.current.component(.month, from: date)
         
