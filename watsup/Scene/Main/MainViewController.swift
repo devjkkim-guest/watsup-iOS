@@ -18,6 +18,7 @@ class MainViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = Date().monthSymoble
         (-3...3).forEach { offset in
             self.months.append(Date.getNewMonth(offset: offset, from: Date()))
         }
@@ -78,9 +79,20 @@ extension MainViewController: UICollectionViewDelegate {
             if let firstDate = Calendar.current.date(from: components) {
                 let weekDay = Calendar.current.component(.weekday, from: firstDate)
                 let dayOffset = indexPath.item-(weekDay-1)
-                let newDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: firstDate, wrappingComponents: false)
-                let day = Calendar.current.component(.day, from: newDate!)
-                cell.dayLabel.text = "\(day)"
+                if let newDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: firstDate, wrappingComponents: false) {
+                    let day = Calendar.current.component(.day, from: newDate)
+                    cell.dayLabel.text = "\(day)"
+                    
+                    let components: Set = [Calendar.Component.month, Calendar.Component.day]
+                    let today = Calendar.current.dateComponents(components, from: Date())
+                    let newDay = Calendar.current.dateComponents(components, from: newDate)
+                    
+                    if newDay.month == today.month && newDay.day == today.day {
+                        cell.todayMark.isHidden = false
+                    }else{
+                        cell.todayMark.isHidden = true
+                    }
+                }
                 
                 if dayOffset < 0 || dayOffset >= Calendar.current.component(.day, from: date.endOfMonth) {
                     cell.dayLabel.textColor = .lightGray
@@ -143,11 +155,16 @@ extension MainViewController: UIScrollViewDelegate {
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if let collectionView = scrollView as? UICollectionView {
+            // 중앙 지점의 섹션으로 이동
             let indexPaths = self.collectionView.indexPathsForVisibleItems
                 .sorted { $0.section < $1.section }
             let center = indexPaths[indexPaths.count/2]
             targetContentOffset.pointee.y = scrollView.contentOffset.y
             collectionView.scrollToItem(at: IndexPath(item: 0, section: center.section), at: .top, animated: true)
+            
+            if let date = months[center.section] {
+                self.title = date.monthSymoble
+            }
         }
         
         if let weeks = getCurrentWeeks(in: scrollView) {

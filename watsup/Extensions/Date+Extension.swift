@@ -34,6 +34,12 @@ extension Date {
         return Calendar(identifier: .gregorian).date(byAdding: components, to: startOfMonth)!
     }
     
+    var monthSymoble: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "LLLL"
+        return formatter.string(from: self)
+    }
+    
     static func getNewMonth(offset: Int, from date: Date) -> Date? {
         let currentYear = Calendar.current.component(.year, from: date)
         let currentMonth = Calendar.current.component(.month, from: date)

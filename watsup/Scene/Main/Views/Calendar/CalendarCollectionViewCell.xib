@@ -17,6 +17,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="155" height="145"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWJ-Y5-c3f">
+                        <rect key="frame" x="57.5" y="52.5" width="40" height="40"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="DYe-HE-qba"/>
+                            <constraint firstAttribute="height" constant="40" id="igM-CV-VsG"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ml3-a3-hzm">
                         <rect key="frame" x="56.5" y="62" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -33,15 +41,18 @@
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="iWJ-Y5-c3f" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="2EO-ac-Dhr"/>
                 <constraint firstItem="Q1o-Y5-VFU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9oO-Oi-Jyv"/>
                 <constraint firstItem="Q1o-Y5-VFU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9tM-Ae-i0b"/>
                 <constraint firstAttribute="trailing" secondItem="Q1o-Y5-VFU" secondAttribute="trailing" id="GTn-YV-1gm"/>
                 <constraint firstItem="ml3-a3-hzm" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="JnV-m9-4yT"/>
                 <constraint firstItem="ml3-a3-hzm" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Sbc-pB-2kK"/>
+                <constraint firstItem="iWJ-Y5-c3f" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="gdC-CN-xfw"/>
             </constraints>
             <size key="customSize" width="155" height="145"/>
             <connections>
                 <outlet property="dayLabel" destination="ml3-a3-hzm" id="FSp-Gr-Bcx"/>
+                <outlet property="todayMark" destination="iWJ-Y5-c3f" id="Qcu-7T-Z4N"/>
             </connections>
             <point key="canvasLocation" x="-28.260869565217394" y="90.736607142857139"/>
         </collectionViewCell>
@@ -49,6 +60,9 @@
     <resources>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
