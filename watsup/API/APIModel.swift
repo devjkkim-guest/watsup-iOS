@@ -15,8 +15,9 @@ enum APIModel: URLRequestConvertible {
     
     /** User */
     case getUser(_ request: GetUserRequest)
-    case postUser(_ request: PostUsersRequest)
+    case postUser(_ request: PostUserRequest)
     case getUserProfile(_ request: GetUserProfileRequest)
+    case getUserEmotions(_ request: GetUserEmotionsRequest)
     
     /** Customer Service */
     case postCSForgotPassword(_ request: PostCSForgotPasswordRequest)
@@ -43,11 +44,13 @@ enum APIModel: URLRequestConvertible {
         switch self {
         /** User */
         case .getUser(let uuid):
-            return "/users/\(uuid)"
+            return "/users/\(uuid.uuid)"
         case .getUserProfile(let uuid):
             return "/users/\(uuid)/profile"
         case .postUser(_):
             return "/users"
+        case .getUserEmotions(let req):
+            return "/users/\(req.user_uuid)/emotions"
             
         /** Auth */
         case .postAuth(_):
@@ -80,6 +83,9 @@ enum APIModel: URLRequestConvertible {
             return param
         case .postCSForgotPassword(let param):
             return param
+        case .getUserEmotions:
+            return nil
+            
         /** Groups */
         case .postGroups(let param):
             return param
@@ -108,7 +114,8 @@ enum APIModel: URLRequestConvertible {
              .getUserProfile,
              .getUserGroup,
              .postGroups,
-             .getGroup:
+             .getGroup,
+             .getUserEmotions:
             if let accessToken = UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue) {
                 let value = "Bearer \(accessToken)"
                 commonHeaders.add(name: HTTPHeaderField.authentication.rawValue, value: value)

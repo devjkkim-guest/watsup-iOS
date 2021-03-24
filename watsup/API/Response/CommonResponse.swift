@@ -7,7 +7,13 @@
 
 import Foundation
 
-struct ErrorResponse: Codable {
+protocol ErrorProtocol: Codable {
+    var code: Int? { get set }
+    var message: String? { get set }
+    var status: String? { get set }
+}
+
+struct ErrorResponse: ErrorProtocol {
     var code: Int?
     var message: String?
     var status: String?
@@ -34,4 +40,10 @@ struct Identity: Codable {
 struct GroupResponse: Codable {
     let name: String
     let uuid: String
+}
+
+struct EmotionLogResponse: Codable {
+    let emotionType: Int
+    let message: String
+    let score: Int
 }

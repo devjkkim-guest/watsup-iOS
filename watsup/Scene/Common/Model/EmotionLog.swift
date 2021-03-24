@@ -7,16 +7,8 @@
 
 import UIKit
 
-protocol EmotionLog {
-    var message: String? { get set }
-    var emotion: EmotionType { get set }
-    
-    init(message: String?, emotion: EmotionType)
-}
-
-class EmotionModel: EmotionLog {
+class EmotionLog {
     var message: String?
-    
     var emotion: EmotionType
     
     required init(message: String?, emotion: EmotionType) {

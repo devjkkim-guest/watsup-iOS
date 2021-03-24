@@ -31,7 +31,6 @@
 		8F2C5AA125C067D3004FF9EF /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5AA025C067D3004FF9EF /* API.swift */; };
 		8F2C5AA625C069D0004FF9EF /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5AA525C069D0004FF9EF /* APIModel.swift */; };
 		8F2C5AAB25C06C0E004FF9EF /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5AAA25C06C0E004FF9EF /* APIConstants.swift */; };
-		8F2C5AB125C06DA0004FF9EF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5AB025C06DA0004FF9EF /* Request.swift */; };
 		8F2C5ADE25C1BC37004FF9EF /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F2C5ADD25C1BC37004FF9EF /* Auth.storyboard */; };
 		8F4086C425E94D0900E7F61B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4086C325E94D0900E7F61B /* Date+Extension.swift */; };
 		8F5AD3D125C1C50100DBF158 /* AuthMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AD3D025C1C50100DBF158 /* AuthMainViewController.swift */; };
@@ -89,6 +88,11 @@
 		8FD6448E25BAFB010056F74E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6448D25BAFB010056F74E /* BaseViewController.swift */; };
 		A429318925EA7562005F5DD0 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A429318725EA7562005F5DD0 /* CalendarCollectionViewCell.swift */; };
 		A429318A25EA7562005F5DD0 /* CalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A429318825EA7562005F5DD0 /* CalendarCollectionViewCell.xib */; };
+		A4775C41260A3ED500A007EF /* EmotionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4775C3F260A3ED500A007EF /* EmotionListTableViewCell.swift */; };
+		A4775C42260A3ED500A007EF /* EmotionListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4775C40260A3ED500A007EF /* EmotionListTableViewCell.xib */; };
+		A4775C47260B762400A007EF /* GetUserEmotionsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4775C46260B762400A007EF /* GetUserEmotionsRequest.swift */; };
+		A4775C4F260B777300A007EF /* GetUserEmotionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4775C4E260B777300A007EF /* GetUserEmotionsResponse.swift */; };
+		A4775C5C260B7B5000A007EF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4775C5B260B7B5000A007EF /* Request.swift */; };
 		F2945437CC694AE7593EEE3C /* Pods_watsup_watsupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D00D3B659A21D03D72F26B /* Pods_watsup_watsupUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -136,7 +140,6 @@
 		8F2C5AA025C067D3004FF9EF /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		8F2C5AA525C069D0004FF9EF /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		8F2C5AAA25C06C0E004FF9EF /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
-		8F2C5AB025C06DA0004FF9EF /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		8F2C5ACC25C1AFAD004FF9EF /* watsup.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watsup.entitlements; sourceTree = "<group>"; };
 		8F2C5ADD25C1BC37004FF9EF /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		8F4086C325E94D0900E7F61B /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -200,6 +203,11 @@
 		8FD6448D25BAFB010056F74E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A429318725EA7562005F5DD0 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		A429318825EA7562005F5DD0 /* CalendarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCollectionViewCell.xib; sourceTree = "<group>"; };
+		A4775C3F260A3ED500A007EF /* EmotionListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionListTableViewCell.swift; sourceTree = "<group>"; };
+		A4775C40260A3ED500A007EF /* EmotionListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmotionListTableViewCell.xib; sourceTree = "<group>"; };
+		A4775C46260B762400A007EF /* GetUserEmotionsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserEmotionsRequest.swift; sourceTree = "<group>"; };
+		A4775C4E260B777300A007EF /* GetUserEmotionsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserEmotionsResponse.swift; sourceTree = "<group>"; };
+		A4775C5B260B7B5000A007EF /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		B55274C625C0B5E15B2008A9 /* Pods_watsupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CB51354ACB513130627B1E /* Pods-watsup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup.debug.xcconfig"; path = "Target Support Files/Pods-watsup/Pods-watsup.debug.xcconfig"; sourceTree = "<group>"; };
 		EC52E897B17F5438C4265895 /* Pods-watsup-watsupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup-watsupUITests.release.xcconfig"; path = "Target Support Files/Pods-watsup-watsupUITests/Pods-watsup-watsupUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -329,7 +337,7 @@
 		8F2C5AAF25C06D81004FF9EF /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				8F2C5AB025C06DA0004FF9EF /* Request.swift */,
+				A4775C5B260B7B5000A007EF /* Request.swift */,
 				8F5D592B25C486AE0095C21A /* PostGroupsRequest.swift */,
 				8F5D598925C854E30095C21A /* PostCSForgotPassword.swift */,
 				8F5D598E25C855260095C21A /* PutCSForgotPassword.swift */,
@@ -337,6 +345,7 @@
 				8F5D5A5C25D181AD0095C21A /* GetUserRequest.swift */,
 				8F5D5A6125D182420095C21A /* GetUserProfileRequest.swift */,
 				8F5D5A6B25D187D80095C21A /* GetGroupRequest.swift */,
+				A4775C46260B762400A007EF /* GetUserEmotionsRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -367,6 +376,7 @@
 				8F5D5A4425D1741F0095C21A /* PostCSForgotPasswordResponse.swift */,
 				8F5D5A3B25CECF9C0095C21A /* GetUserGroupResponse.swift */,
 				8F5D5A6625D186CF0095C21A /* GetGroupsResponse.swift */,
+				A4775C4E260B777300A007EF /* GetUserEmotionsResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -529,6 +539,7 @@
 		8FD644A025BB03080056F74E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A4775C3E260A3EB900A007EF /* Cell */,
 				A429317E25EA7514005F5DD0 /* Calendar */,
 				8F2C59F525BB2585004FF9EF /* EmotionRegisterView.xib */,
 				8F2C59FA25BB25BD004FF9EF /* EmotionRegisterView.swift */,
@@ -558,6 +569,15 @@
 				A429318825EA7562005F5DD0 /* CalendarCollectionViewCell.xib */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		A4775C3E260A3EB900A007EF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A4775C3F260A3ED500A007EF /* EmotionListTableViewCell.swift */,
+				A4775C40260A3ED500A007EF /* EmotionListTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -686,6 +706,7 @@
 				8F8E3E6225DD697E00EBB8A8 /* Localization.strings in Resources */,
 				8F5D596525C5A75F0095C21A /* GroupInvitedCollectionViewCell.xib in Resources */,
 				8F2C59F625BB2585004FF9EF /* EmotionRegisterView.xib in Resources */,
+				A4775C42260A3ED500A007EF /* EmotionListTableViewCell.xib in Resources */,
 				8F0E41D225B88724008AA995 /* Group.storyboard in Resources */,
 				8F2C5A0625BB2CAB004FF9EF /* RandomEmotionView.xib in Resources */,
 				8F6176A425B856150059B4B7 /* Assets.xcassets in Resources */,
@@ -830,6 +851,7 @@
 				8F5D5A5525D176300095C21A /* APIError.swift in Sources */,
 				8F5AD40125C45F9100DBF158 /* CommonResponse.swift in Sources */,
 				8F5D594325C489D10095C21A /* SettingViewController.swift in Sources */,
+				A4775C4F260B777300A007EF /* GetUserEmotionsResponse.swift in Sources */,
 				8F5D596425C5A75F0095C21A /* GroupInvitedCollectionViewCell.swift in Sources */,
 				8F2C5AAB25C06C0E004FF9EF /* APIConstants.swift in Sources */,
 				8F5D593125C4871E0095C21A /* PostGroupsResponse.swift in Sources */,
@@ -857,7 +879,7 @@
 				8F5D598A25C854E30095C21A /* PostCSForgotPassword.swift in Sources */,
 				8F8E3E7225DD6AFF00EBB8A8 /* UIViewController+Extension.swift in Sources */,
 				8F2C5A1525BB2FBA004FF9EF /* EmotionView.swift in Sources */,
-				8F2C5AB125C06DA0004FF9EF /* Request.swift in Sources */,
+				A4775C5C260B7B5000A007EF /* Request.swift in Sources */,
 				8F5D595525C496EC0095C21A /* APITokenStorage.swift in Sources */,
 				8F5D5A5D25D181AD0095C21A /* GetUserRequest.swift in Sources */,
 				8F5D592225C474D20095C21A /* UIView+Extension.swift in Sources */,
@@ -874,8 +896,10 @@
 				8F5D5A6725D186CF0095C21A /* GetGroupsResponse.swift in Sources */,
 				8F5D5A4525D1741F0095C21A /* PostCSForgotPasswordResponse.swift in Sources */,
 				8F61769F25B856140059B4B7 /* TabBarController.swift in Sources */,
+				A4775C47260B762400A007EF /* GetUserEmotionsRequest.swift in Sources */,
 				8F0E421E25B9D0A3008AA995 /* XibView.swift in Sources */,
 				8F5AD3E625C1CA1B00DBF158 /* PostUsersResponse.swift in Sources */,
+				A4775C41260A3ED500A007EF /* EmotionListTableViewCell.swift in Sources */,
 				8F5AD3E025C1C85700DBF158 /* CommonConstants.swift in Sources */,
 				8F61769B25B856140059B4B7 /* AppDelegate.swift in Sources */,
 				8F5D5A3425CECF400095C21A /* GetUserGroupRequest.swift in Sources */,

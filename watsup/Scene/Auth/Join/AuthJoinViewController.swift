@@ -29,7 +29,7 @@ class AuthJoinViewController: UIViewController {
         let deviceToken = UserDefaults.standard.string(forKey: UserDefaultsKey.deviceToken.rawValue)
         let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
         let languageCode = Locale.preferredLanguages.first ?? "en_US"
-        let userData = PostUsersRequest(email: email,
+        let userData = PostUserRequest(email: email,
                                         gmt_tz_offset: 0, password: password,
                                         device_uuid: UUID().uuidString,
                                         device_token: deviceToken ?? "abc",

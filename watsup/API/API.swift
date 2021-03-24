@@ -73,7 +73,7 @@ class API {
         }
     }
     
-    func postUser(_ request: PostUsersRequest, completion: @escaping (Result<PostUsersResponse, APIError>) -> Void) {
+    func postUser(_ request: PostUserRequest, completion: @escaping (Result<PostUsersResponse, APIError>) -> Void) {
         API.shared.request(.postUser(request)) { result in
             completion(result)
         }
@@ -81,6 +81,12 @@ class API {
     
     func getUserProfile(_ request: GetUserProfileRequest, completion: @escaping (Result<GetUserProfileResponse, APIError>) -> Void) {
         API.shared.request(.getUserProfile(request)) { result in
+            completion(result)
+        }
+    }
+    
+    func getUserEmotions(_ request: GetUserEmotionsRequest, completion: @escaping (Result<GetUserEmotionsResponse, APIError>) -> Void) {
+        API.shared.request(.getUserEmotions(request)) { result in
             completion(result)
         }
     }

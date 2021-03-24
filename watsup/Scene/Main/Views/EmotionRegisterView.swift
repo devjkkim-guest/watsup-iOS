@@ -68,7 +68,7 @@ class EmotionRegisterView: XibView {
     @IBAction func onClickRegisterEmotion(_ sender: UIButton) {
         let message = fakeSelectEmotionView.tfMessage.text
         if let emotion = fakeSelectEmotionView.emotion {
-            let emotionLog = EmotionModel(message: message, emotion: emotion)
+            let emotionLog = EmotionLog(message: message, emotion: emotion)
             delegate?.onClickRegisterEmotion(emotionLog: emotionLog)
         }else{
             print("no emotion selected")

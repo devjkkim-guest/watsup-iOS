@@ -12,6 +12,8 @@ class MainViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var dayStackView: UIStackView!
+    @IBOutlet weak var registerEmotionView: UIView!
+    @IBOutlet weak var tableView: UITableView!
     var currentYear = Calendar.current.component(.year, from: Date())
     var currentMonth = Calendar.current.component(.month, from: Date())
     var months = [Date?]()
@@ -32,20 +34,36 @@ class MainViewController: BaseViewController {
         collectionView.reloadData()
         collectionView.layoutIfNeeded()
         collectionView.scrollToItem(at: IndexPath(item: 0, section: initialSection), at: .top, animated: false)
+        self.view.addSubview(UIView())
+        
+        if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue) {
+            API.shared.getUserEmotions(GetUserEmotionsRequest(user_uuid: uuid)) { result in
+                switch result {
+                case .success(let response):
+                    print(response)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
     
     private func setUI() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(UINib(nibName: "CalendarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-        collectionView.collectionViewLayout = getCollectionViewLayout()
-        
         Calendar(identifier: .gregorian).shortWeekdaySymbols.forEach { str in
             let label = UILabel()
             label.text = str
             label.textAlignment = .center
             self.dayStackView.addArrangedSubview(label)
         }
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(UINib(nibName: "CalendarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+        collectionView.collectionViewLayout = getCollectionViewLayout()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "EmotionListTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
     
     private func getCollectionViewLayout() -> UICollectionViewFlowLayout {
@@ -71,6 +89,7 @@ class MainViewController: BaseViewController {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CalendarCollectionViewCell {
@@ -107,6 +126,7 @@ extension MainViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let month = months[section],
@@ -122,6 +142,39 @@ extension MainViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? EmotionListTableViewCell {
+            let comments = ["😅 공무원은 국민전체에 대한 봉사자이며, 국민에 대하여 책임을 진다. 국회는 정부의 동의없이 정부가 제출한 지출예산 각항의 금액을 증가하거나 새 비목을 설치할 수 없다.",
+                            "😅 모든 국민은 법률이 정하는 바에 의하여 공무담임권을 가진다. 대한민국의 주권은 국민에게 있고, 모든 권력은 국민으로부터 나온다.",
+                            "😅 하하하",
+                            "😅 국회의 회의는 공개한다.",
+                            "😅 모든 국민은 통신의 비밀을 침해받지 아니한다. 누구든지 체포 또는 구속을 당한 때에는 즉시 변호인의 조력을 받을 권리를 가진다. "]
+            cell.configure(day: indexPath.row+1, comment: comments[indexPath.row%5])
+            return cell
+        }else{
+            return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+}
+
+// MARK: - UITableDataSource
+extension MainViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+}
+
+// MARK: - UIScrollViewDelegate
 extension MainViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let maxOffset = scrollView.contentSize.height-scrollView.frame.height
