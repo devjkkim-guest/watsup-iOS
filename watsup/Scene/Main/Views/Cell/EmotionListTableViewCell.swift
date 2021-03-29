@@ -9,12 +9,11 @@ import UIKit
 
 class EmotionListTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var emotionLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -23,8 +22,8 @@ class EmotionListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(day: Int, comment: String) {
-        dayLabel.text = String(day)
+    func configure(emotion: String, comment: String) {
+        emotionLabel.text = emotion
         commentLabel.text = comment
     }
 }

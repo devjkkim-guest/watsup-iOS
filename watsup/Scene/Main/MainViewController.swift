@@ -64,6 +64,7 @@ class MainViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "EmotionListTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: "RegisterEmotionTableViewCell", bundle: nil), forCellReuseIdentifier: "registerCell")
     }
     
     private func getCollectionViewLayout() -> UICollectionViewFlowLayout {
@@ -145,16 +146,21 @@ extension MainViewController: UICollectionViewDataSource {
 // MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? EmotionListTableViewCell {
-            let comments = ["😅 공무원은 국민전체에 대한 봉사자이며, 국민에 대하여 책임을 진다. 국회는 정부의 동의없이 정부가 제출한 지출예산 각항의 금액을 증가하거나 새 비목을 설치할 수 없다.",
-                            "😅 모든 국민은 법률이 정하는 바에 의하여 공무담임권을 가진다. 대한민국의 주권은 국민에게 있고, 모든 권력은 국민으로부터 나온다.",
-                            "😅 하하하",
-                            "😅 국회의 회의는 공개한다.",
-                            "😅 모든 국민은 통신의 비밀을 침해받지 아니한다. 누구든지 체포 또는 구속을 당한 때에는 즉시 변호인의 조력을 받을 권리를 가진다. "]
-            cell.configure(day: indexPath.row+1, comment: comments[indexPath.row%5])
+        if indexPath.row == 5 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "registerCell", for: indexPath) as! RegisterEmotionTableViewCell
+            cell.delegate = self
+            cell.date = Date()
             return cell
         }else{
-            return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EmotionListTableViewCell
+            let emotions = ["😅", "😡", "😄", "😅", "😭"]
+            let comments = ["공무원은 국민전체에 대한 봉사자이며, 국민에 대하여 책임을 진다. 국회는 정부의 동의없이 정부가 제출한 지출예산 각항의 금액을 증가하거나 새 비목을 설치할 수 없다.",
+                            "모든 국민은 법률이 정하는 바에 의하여 공무담임권을 가진다. 대한민국의 주권은 국민에게 있고, 모든 권력은 국민으로부터 나온다.",
+                            "하하하",
+                            "국회의 회의는 공개한다.",
+                            "모든 국민은 통신의 비밀을 침해받지 아니한다. 누구든지 체포 또는 구속을 당한 때에는 즉시 변호인의 조력을 받을 권리를 가진다. "]
+            cell.configure(emotion: emotions[indexPath.row%5], comment: comments[indexPath.row%5])
+            return cell
         }
     }
     
@@ -170,7 +176,7 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
 }
 
@@ -227,5 +233,11 @@ extension MainViewController: UIScrollViewDelegate {
                 self.view.layoutIfNeeded()
             }
         }
+    }
+}
+
+extension MainViewController: RegisterEmotionTableViewCellDelegate {
+    func didClickRegister(_ date: Date) {
+        performSegue(withIdentifier: "pushToRegisterEmotion", sender: nil)
     }
 }

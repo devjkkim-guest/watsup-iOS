@@ -143,11 +143,28 @@
                         <outlet property="dayStackView" destination="sgl-Cd-r4b" id="oaE-Lu-zDD"/>
                         <outlet property="registerEmotionView" destination="SfQ-Yf-htZ" id="DBF-I5-Shh"/>
                         <outlet property="tableView" destination="q8b-2P-22R" id="les-3H-fKh"/>
+                        <segue destination="NIK-qo-32V" kind="show" identifier="pushToRegisterEmotion" id="XpV-Dq-c0w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fb8-R2-hsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3726.0869565217395" y="138.61607142857142"/>
+        </scene>
+        <!--Register Emotion View Controller-->
+        <scene sceneID="bFR-eO-Zhu">
+            <objects>
+                <viewController id="NIK-qo-32V" customClass="RegisterEmotionViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CnH-O1-7f3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="RUB-bA-8Ki"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Vcv-M2-g5V"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GkT-SK-H5S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4514" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="52n-wg-4Qz">
