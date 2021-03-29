@@ -103,21 +103,23 @@ extension MainViewController: UICollectionViewDelegate {
                     let day = Calendar.current.component(.day, from: newDate)
                     cell.dayLabel.text = "\(day)"
                     
-                    let components: Set = [Calendar.Component.month, Calendar.Component.day]
-                    let today = Calendar.current.dateComponents(components, from: Date())
+                    let components: Set = [Calendar.Component.year, Calendar.Component.month, Calendar.Component.day]
+                    let firstDay = Calendar.current.dateComponents(components, from: firstDate)
                     let newDay = Calendar.current.dateComponents(components, from: newDate)
+                    let today = Calendar.current.dateComponents(components, from: Date())
                     
-                    if newDay.month == today.month && newDay.day == today.day {
+                    if firstDay.month == today.month && newDay.year == today.year && newDay.month == today.month && newDay.day == today.day {
+                        // 현재 섹션의 month에 해당하고, 오늘 날짜인 경우
                         cell.todayMark.isHidden = false
                     }else{
                         cell.todayMark.isHidden = true
                     }
-                }
-                
-                if dayOffset < 0 || dayOffset >= Calendar.current.component(.day, from: date.endOfMonth) {
-                    cell.dayLabel.textColor = .lightGray
-                }else{
-                    cell.dayLabel.textColor = .black
+                    
+                    if firstDay.month == newDay.month {
+                        cell.dayLabel.textColor = .black
+                    }else{
+                        cell.dayLabel.textColor = .systemGray4
+                    }
                 }
             }
             return cell
