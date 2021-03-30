@@ -42,11 +42,28 @@
                     <connections>
                         <outlet property="btnAdd" destination="2VJ-hN-LTp" id="BEr-va-A7c"/>
                         <outlet property="tableView" destination="uWy-Qr-Wat" id="r1b-Wx-nn9"/>
+                        <segue destination="u4h-6J-ctQ" kind="show" identifier="pushToDetail" id="YlS-0z-nym"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TGc-Kj-fTF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2065.217391304348" y="-113.16964285714285"/>
+        </scene>
+        <!--woeijfowef-->
+        <scene sceneID="i5s-Kw-vNg">
+            <objects>
+                <viewController storyboardIdentifier="GroupDetailVC" title="woeijfowef" id="u4h-6J-ctQ" customClass="GroupDetailViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="emI-jZ-0IK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="tPK-MS-flg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Abcd" id="KkN-jN-u8A"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BCe-3X-kJF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2745" y="-113"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CY2-QG-R9q">
@@ -70,6 +87,9 @@
     <resources>
         <image name="doc.plaintext.fill" catalog="system" width="115" height="128"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

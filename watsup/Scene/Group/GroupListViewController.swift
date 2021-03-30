@@ -17,6 +17,7 @@ class GroupListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnAdd: UIBarButtonItem!
+    var groups: [GroupResponse]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,8 @@ class GroupListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "GroupInvitedTableViewCell", bundle: nil), forCellReuseIdentifier: Section.invitedGroup.rawValue)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Section.joinedGroup.rawValue)
-        
+        tableView.register(UINib(nibName: "GroupJoinedTableViewCell", bundle: nil), forCellReuseIdentifier: Section.joinedGroup.rawValue)
+
         tableView.reloadData()
     }
     
@@ -35,6 +36,7 @@ class GroupListViewController: UIViewController {
         alertController.addTextField { textField in
             // todo: custom tf
         }
+
         let actionCreateGroup = UIAlertAction(title: "Create a group", style: .default) { action in
             if let groupName = alertController.textFields?.first?.text {
                 let request = PostGroupsRequest(group_name: groupName)
@@ -64,10 +66,12 @@ class GroupListViewController: UIViewController {
             API.shared.getUserGroup(request) { result in
                 switch result {
                 case .success(let data):
-                    data.groups.forEach { group in
-                        let request = GetGroupRequest(uuid: group.uuid)
-                        self.getGroup(request: request)
-                    }
+                    self.groups = data.groups
+                    self.tableView.reloadData()
+//                    data.groups.forEach { group in
+//                        let request = GetGroupRequest(uuid: group.uuid)
+//                        self.getGroup(request: request)
+//                    }
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -75,11 +79,18 @@ class GroupListViewController: UIViewController {
         }
     }
     
-    func getGroup(request: GetGroupRequest) {
-        API.shared.getGroup(request) { request in
-            
-        }
-    }
+    /// 사용자가 가입한 그룹의 디테일 조회
+//    func getGroup(request: GetGroupRequest) {
+//        API.shared.getGroup(request) { response in
+//            switch response {
+//            case .success(let group):
+//                self.groups = group
+//                self.tableView.reloadData()
+//                break
+//            case .failure(_): break
+//            }
+//        }
+//    }
 }
 
 extension GroupListViewController: UITableViewDelegate {
@@ -102,7 +113,9 @@ extension GroupListViewController: UITableViewDelegate {
                 return cell
             }
         case .joinedGroup:
-            let cell = tableView.dequeueReusableCell(withIdentifier: Section.joinedGroup.rawValue, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: Section.joinedGroup.rawValue, for: indexPath) as! GroupJoinedTableViewCell
+            cell.configure(name: groups?[indexPath.row].name)
+            cell.textLabel?.sizeToFit()
             return cell
         }
     }
@@ -114,6 +127,12 @@ extension GroupListViewController: UITableViewDelegate {
         case .joinedGroup:
             return UITableView.automaticDimension
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = UIStoryboard(name: "Group", bundle: nil).instantiateViewController(withIdentifier: "GroupDetailVC")
+        vc.title = self.groups?[indexPath.row].name
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -127,7 +146,7 @@ extension GroupListViewController: UITableViewDataSource {
         case .invitedGroup:
             return 1
         case .joinedGroup:
-            return 10
+            return self.groups?.count ?? 0
         }
     }
 }
