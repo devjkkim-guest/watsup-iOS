@@ -23,9 +23,22 @@ class APIInterceptor: RequestInterceptor {
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         if let statusCode = request.response?.statusCode {
             if statusCode == 401 {
-                print("refresh!")
+                API.shared.putAuth { response in
+                    switch response {
+                    case .success(let data):
+                        UserDefaults.standard.setValue(data.accessToken, forKey: KeychainKey.accessToken.rawValue)
+                        UserDefaults.standard.setValue(data.refreshToken, forKey: KeychainKey.refreshToken.rawValue)
+                        completion(.retry)
+                    case .failure(_):
+                        // TODO: redirect to login view
+                        break
+                    }
+                }
+            }else{
+                completion(.doNotRetry)
             }
+        }else{
+            completion(.doNotRetry)
         }
-        completion(.doNotRetry)
     }
 }

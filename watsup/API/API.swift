@@ -53,6 +53,12 @@ class API {
         }
     }
     
+    func putAuth(completion: @escaping (Result<PutAuthResponse, APIError>) -> Void) {
+        API.shared.request(.putAuth) { result in
+            completion(result)
+        }
+    }
+    
     func postCSForgotPassword(_ request: PostCSForgotPasswordRequest, completion: @escaping (Result<PostCSForgotPasswordResponse, APIError>) -> Void) {
         API.shared.request(.postCSForgotPassword(request)) { result in
             completion(result)
