@@ -35,7 +35,7 @@ class GroupListViewController: UIViewController {
         alertController.addTextField { textField in
             // todo: custom tf
         }
-        let action = UIAlertAction(title: "Create a group", style: .default) { action in
+        let actionCreateGroup = UIAlertAction(title: "Create a group", style: .default) { action in
             if let groupName = alertController.textFields?.first?.text {
                 let request = PostGroupsRequest(group_name: groupName)
                 API.shared.postGroups(request) { result in
@@ -48,7 +48,12 @@ class GroupListViewController: UIViewController {
                 }
             }
         }
-        alertController.addAction(action)
+
+        let actionCreateGroupCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alertController.addAction(actionCreateGroup)
+        alertController.addAction(actionCreateGroupCancel)
+
         present(alertController, animated: true, completion: nil)
     }
     
