@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		45547508ED9007211D11C19F /* Pods_watsupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55274C625C0B5E15B2008A9 /* Pods_watsupTests.framework */; };
 		5A0E5C4FF17B7C0C0D50808F /* Pods_watsup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE4F664F618D362578A81C1 /* Pods_watsup.framework */; };
+		8940DED72613445700B7D1E4 /* GroupJoinedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8940DED52613445700B7D1E4 /* GroupJoinedTableViewCell.swift */; };
+		8940DED82613445700B7D1E4 /* GroupJoinedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8940DED62613445700B7D1E4 /* GroupJoinedTableViewCell.xib */; };
 		8F0E41CD25B85EE2008AA995 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0E41CC25B85EE2008AA995 /* Main.storyboard */; };
 		8F0E41D225B88724008AA995 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0E41D125B88724008AA995 /* Group.storyboard */; };
 		8F0E41E025B9C61E008AA995 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E41DF25B9C61E008AA995 /* GroupListViewController.swift */; };
@@ -122,6 +124,8 @@
 		3BE4F664F618D362578A81C1 /* Pods_watsup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC462EAB5F2AA314ECC1401 /* Pods-watsup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup.release.xcconfig"; path = "Target Support Files/Pods-watsup/Pods-watsup.release.xcconfig"; sourceTree = "<group>"; };
 		54D00D3B659A21D03D72F26B /* Pods_watsup_watsupUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsup_watsupUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8940DED52613445700B7D1E4 /* GroupJoinedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupJoinedTableViewCell.swift; sourceTree = "<group>"; };
+		8940DED62613445700B7D1E4 /* GroupJoinedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupJoinedTableViewCell.xib; sourceTree = "<group>"; };
 		8F0E41CC25B85EE2008AA995 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8F0E41D125B88724008AA995 /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		8F0E41DF25B9C61E008AA995 /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
@@ -458,6 +462,8 @@
 				8F5D596325C5A75F0095C21A /* GroupInvitedCollectionViewCell.xib */,
 				8F5D596C25C5A8C80095C21A /* GroupInvitedTableViewCell.swift */,
 				8F5D596D25C5A8C80095C21A /* GroupInvitedTableViewCell.xib */,
+				8940DED52613445700B7D1E4 /* GroupJoinedTableViewCell.swift */,
+				8940DED62613445700B7D1E4 /* GroupJoinedTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -724,6 +730,7 @@
 				8F5D595D25C5648C0095C21A /* SettingProfileTableViewCell.xib in Resources */,
 				8F2C5ADE25C1BC37004FF9EF /* Auth.storyboard in Resources */,
 				8F0E421425B9CD64008AA995 /* SelectEmotionView.xib in Resources */,
+				8940DED82613445700B7D1E4 /* GroupJoinedTableViewCell.xib in Resources */,
 				8F5D590225C466270095C21A /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -886,6 +893,7 @@
 				A4BE39A826128ED50051B213 /* RegisterEmotionViewController.swift in Sources */,
 				8F0E420A25B9CA03008AA995 /* MainViewController.swift in Sources */,
 				8F5AD3D125C1C50100DBF158 /* AuthMainViewController.swift in Sources */,
+				8940DED72613445700B7D1E4 /* GroupJoinedTableViewCell.swift in Sources */,
 				8F5D598F25C855260095C21A /* PutCSForgotPassword.swift in Sources */,
 				8F5D598A25C854E30095C21A /* PostCSForgotPassword.swift in Sources */,
 				8F8E3E7225DD6AFF00EBB8A8 /* UIViewController+Extension.swift in Sources */,
