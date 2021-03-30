@@ -11,6 +11,7 @@
 		5A0E5C4FF17B7C0C0D50808F /* Pods_watsup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE4F664F618D362578A81C1 /* Pods_watsup.framework */; };
 		8940DED72613445700B7D1E4 /* GroupJoinedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8940DED52613445700B7D1E4 /* GroupJoinedTableViewCell.swift */; };
 		8940DED82613445700B7D1E4 /* GroupJoinedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8940DED62613445700B7D1E4 /* GroupJoinedTableViewCell.xib */; };
+		8940DEDD2613544700B7D1E4 /* PutAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8940DEDC2613544700B7D1E4 /* PutAuthResponse.swift */; };
 		8F0E41CD25B85EE2008AA995 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0E41CC25B85EE2008AA995 /* Main.storyboard */; };
 		8F0E41D225B88724008AA995 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0E41D125B88724008AA995 /* Group.storyboard */; };
 		8F0E41E025B9C61E008AA995 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E41DF25B9C61E008AA995 /* GroupListViewController.swift */; };
@@ -126,6 +127,7 @@
 		54D00D3B659A21D03D72F26B /* Pods_watsup_watsupUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsup_watsupUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8940DED52613445700B7D1E4 /* GroupJoinedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupJoinedTableViewCell.swift; sourceTree = "<group>"; };
 		8940DED62613445700B7D1E4 /* GroupJoinedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupJoinedTableViewCell.xib; sourceTree = "<group>"; };
+		8940DEDC2613544700B7D1E4 /* PutAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutAuthResponse.swift; sourceTree = "<group>"; };
 		8F0E41CC25B85EE2008AA995 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8F0E41D125B88724008AA995 /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		8F0E41DF25B9C61E008AA995 /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 				8F5D5A3B25CECF9C0095C21A /* GetUserGroupResponse.swift */,
 				8F5D5A6625D186CF0095C21A /* GetGroupsResponse.swift */,
 				A4775C4E260B777300A007EF /* GetUserEmotionsResponse.swift */,
+				8940DEDC2613544700B7D1E4 /* PutAuthResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -867,6 +870,7 @@
 				8F5AD40D25C4630C00DBF158 /* AuthLoginViewModel.swift in Sources */,
 				8F5D5A5525D176300095C21A /* APIError.swift in Sources */,
 				8F5AD40125C45F9100DBF158 /* CommonResponse.swift in Sources */,
+				8940DEDD2613544700B7D1E4 /* PutAuthResponse.swift in Sources */,
 				8F5D594325C489D10095C21A /* SettingViewController.swift in Sources */,
 				A4775C4F260B777300A007EF /* GetUserEmotionsResponse.swift in Sources */,
 				8F5D596425C5A75F0095C21A /* GroupInvitedCollectionViewCell.swift in Sources */,
