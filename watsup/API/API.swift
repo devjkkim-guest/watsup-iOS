@@ -91,12 +91,30 @@ class API {
         }
     }
     
-    func getUserEmotions(_ request: GetUserEmotionsRequest, completion: @escaping (Result<GetUserEmotionsResponse, APIError>) -> Void) {
-        API.shared.request(.getUserEmotions(request)) { (result: Result<GetUserEmotionsResponse, APIError>) in
+    func getUserEmotions(completion: @escaping (Result<GetUserEmotionsResponse, APIError>) -> Void) {
+        API.shared.request(.getUserEmotions) { (result: Result<GetUserEmotionsResponse, APIError>) in
             switch result {
             case .success(let response):
                 if let logs = response.logs {
                     DatabaseWorker.shared.setEmotionLogs(logs)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            completion(result)
+        }
+    }
+    
+    func postEmotion(_ request: PostEmotionRequest, completion: @escaping (Result<PostEmotionResponse, APIError>) -> Void) {
+        API.shared.request(.postEmotion(request)) { (result: Result<PostEmotionResponse, APIError>) in
+            switch result {
+            case .success(let response):
+                if response.result {
+                    let emotion = Emotion()
+                    emotion.message = request.message
+                    emotion.emotionType = request.emotion_type
+                    emotion.score = request.score
+                    DatabaseWorker.shared.setEmotionLogs([emotion])
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -119,8 +137,8 @@ class API {
         }
     }
     
-    func getUserGroup(_ request: GetUserGroupRequest, completion: @escaping (Result<GetUserGroupResponse, APIError>) -> Void) {
-        API.shared.request(.getUserGroup(request)) { result in
+    func getUserGroup(completion: @escaping (Result<GetUserGroupResponse, APIError>) -> Void) {
+        API.shared.request(.getUserGroup) { result in
             completion(result)
         }
     }

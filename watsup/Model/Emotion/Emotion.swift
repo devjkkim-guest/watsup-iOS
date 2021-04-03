@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class Emotion: Object, Codable {
-    @objc dynamic var emotion_type: Int = 0
+    @objc dynamic var emotionType: Int = 0
     @objc dynamic var message: String?
     @objc dynamic var score: Int = 0
 }

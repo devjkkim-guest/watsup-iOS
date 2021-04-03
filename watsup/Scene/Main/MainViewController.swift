@@ -19,6 +19,7 @@ class MainViewController: BaseViewController {
     var currentMonth = Calendar.current.component(.month, from: Date())
     var months = [Date?]()
     var emotions: Results<Emotion>?
+    var emotionToken: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,10 +64,11 @@ class MainViewController: BaseViewController {
     
     func bindModel() {
         emotions = DatabaseWorker.shared.getEmotionList()
-        
-        _ = emotions?.observe { changes in
+        emotionToken = emotions?.observe { changes in
             switch changes {
-            case .update(_, _, _, _):
+            case .update:
+                self.tableView.reloadData()
+            case .initial:
                 self.tableView.reloadData()
             default:
                 break
@@ -98,14 +100,12 @@ class MainViewController: BaseViewController {
     
     // MARK: - API
     func loadData() {
-        if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue) {
-            API.shared.getUserEmotions(GetUserEmotionsRequest(user_uuid: uuid)) { result in
-                switch result {
-                case .success(_):
-                    return
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        API.shared.getUserEmotions { result in
+            switch result {
+            case .success(_):
+                return
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
@@ -166,28 +166,6 @@ extension MainViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UITableViewDelegate
-extension MainViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 5 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "registerCell", for: indexPath) as! RegisterEmotionTableViewCell
-            cell.delegate = self
-            cell.date = Date()
-            return cell
-        }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EmotionListTableViewCell
-            if let emotion = emotions?[indexPath.row] {
-                cell.configure(emotion: emotion.emotion_type, comment: emotion.message)
-            }
-            return cell
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-}
-
 // MARK: - UITableDataSource
 extension MainViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -195,7 +173,29 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return emotions?.count ?? 0
+        return (emotions?.count ?? 0)+1
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == emotions?.count {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "registerCell", for: indexPath) as! RegisterEmotionTableViewCell
+            cell.delegate = self
+            cell.date = Date()
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EmotionListTableViewCell
+            if let emotion = emotions?[indexPath.row] {
+                cell.configure(emotion: emotion.emotionType, comment: emotion.message)
+            }
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
 
@@ -256,7 +256,13 @@ extension MainViewController: UIScrollViewDelegate {
 }
 
 extension MainViewController: RegisterEmotionTableViewCellDelegate {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? RegisterEmotionViewController {
+            vc.date = sender as? Date
+        }
+    }
+    
     func didClickRegister(_ date: Date) {
-        performSegue(withIdentifier: "pushToRegisterEmotion", sender: nil)
+        self.performSegue(withIdentifier: "pushToRegisterEmotion", sender: date)
     }
 }

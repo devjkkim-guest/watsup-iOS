@@ -8,22 +8,34 @@
 import UIKit
 
 class RegisterEmotionViewController: UIViewController {
-
+    var date: Date?
+    @IBOutlet weak var selectEmotionView: SelectEmotionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setUI() {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        title = formatter.string(from: date ?? Date())
     }
-    */
-
+    
+    @IBAction func onClickRegister(_ sender: UIButton) {
+        if let message = selectEmotionView.tfMessage.text,
+           let emotionType = selectEmotionView.emotion?.getTypeIntValue() {
+            let req = PostEmotionRequest(message: message, emotion_type: emotionType, score: 0)
+            API.shared.postEmotion(req) { response in
+                switch response {
+                case .success:
+                    self.navigationController?.popViewController(animated: true)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
 }

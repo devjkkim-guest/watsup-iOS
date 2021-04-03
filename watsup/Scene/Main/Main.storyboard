@@ -143,7 +143,7 @@
                         <outlet property="dayStackView" destination="sgl-Cd-r4b" id="oaE-Lu-zDD"/>
                         <outlet property="registerEmotionView" destination="SfQ-Yf-htZ" id="DBF-I5-Shh"/>
                         <outlet property="tableView" destination="q8b-2P-22R" id="les-3H-fKh"/>
-                        <segue destination="NIK-qo-32V" kind="show" identifier="pushToRegisterEmotion" id="XpV-Dq-c0w"/>
+                        <segue destination="NIK-qo-32V" kind="show" identifier="pushToRegisterEmotion" id="gac-li-570"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fb8-R2-hsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -157,10 +157,36 @@
                     <view key="view" contentMode="scaleToFill" id="CnH-O1-7f3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVM-e6-SDc" customClass="SelectEmotionView" customModule="watsup" customModuleProvider="target">
+                                <rect key="frame" x="82" y="150" width="250" height="150"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="Lio-ep-uwX"/>
+                                    <constraint firstAttribute="width" constant="250" id="e7O-9n-xUa"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96r-aH-LHt">
+                                <rect key="frame" x="178.5" y="320" width="57" height="30"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="onClickRegister:" destination="NIK-qo-32V" eventType="touchUpInside" id="x2S-fk-aGh"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="RUB-bA-8Ki"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="96r-aH-LHt" firstAttribute="top" secondItem="CVM-e6-SDc" secondAttribute="bottom" constant="20" id="6zu-7F-yOc"/>
+                            <constraint firstItem="CVM-e6-SDc" firstAttribute="centerX" secondItem="RUB-bA-8Ki" secondAttribute="centerX" id="bI3-cE-Pbi"/>
+                            <constraint firstItem="CVM-e6-SDc" firstAttribute="top" secondItem="RUB-bA-8Ki" secondAttribute="top" constant="10" id="fre-Xs-3LU"/>
+                            <constraint firstItem="96r-aH-LHt" firstAttribute="centerX" secondItem="RUB-bA-8Ki" secondAttribute="centerX" id="mkl-s5-n8B"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Vcv-M2-g5V"/>
+                    <connections>
+                        <outlet property="selectEmotionView" destination="CVM-e6-SDc" id="dJn-oU-y1b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GkT-SK-H5S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
