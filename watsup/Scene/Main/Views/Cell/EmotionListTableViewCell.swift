@@ -22,8 +22,8 @@ class EmotionListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(emotion: String, comment: String) {
-        emotionLabel.text = emotion
+    func configure(emotion: Int, comment: String?) {
+        emotionLabel.text = EmotionType.getEmotion(rawValue: emotion).rawValue
         commentLabel.text = comment
     }
 }

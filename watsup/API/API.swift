@@ -24,7 +24,7 @@ class API {
         self.session = session
     }
     
-    private func request<T:Decodable>(_ model: APIModel, completion: @escaping (Result<T, APIError>) -> Void) {
+    private func request<T>(_ model: APIModel, completion: @escaping (Result<T, APIError>) -> Void) where T:Codable {
         session.request(model)
             .validate()
             .responseJSON { response in
@@ -92,7 +92,15 @@ class API {
     }
     
     func getUserEmotions(_ request: GetUserEmotionsRequest, completion: @escaping (Result<GetUserEmotionsResponse, APIError>) -> Void) {
-        API.shared.request(.getUserEmotions(request)) { result in
+        API.shared.request(.getUserEmotions(request)) { (result: Result<GetUserEmotionsResponse, APIError>) in
+            switch result {
+            case .success(let response):
+                if let logs = response.logs {
+                    DatabaseWorker.shared.setEmotionLogs(logs)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
             completion(result)
         }
     }

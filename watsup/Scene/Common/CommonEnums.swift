@@ -19,6 +19,23 @@ enum EmotionType: String, CaseIterable {
     case grinning = "😄"
     /// 80<score<=100
     case smilingHeartEyes = "😍"
+    
+    static func getEmotion(rawValue: Int) -> Self {
+        switch rawValue {
+        case 0...20:
+            return .pouting
+        case 21...40:
+            return .crying
+        case 41...60:
+            return .neutral
+        case 61...80:
+            return .grinning
+        case 81...100:
+            return .smilingHeartEyes
+        default:
+            return .grinning
+        }
+    }
 }
 
 /// UserDefaults Keys

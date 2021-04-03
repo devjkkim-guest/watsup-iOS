@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainViewController: BaseViewController {
     
@@ -17,10 +18,26 @@ class MainViewController: BaseViewController {
     var currentYear = Calendar.current.component(.year, from: Date())
     var currentMonth = Calendar.current.component(.month, from: Date())
     var months = [Date?]()
+    var emotions: Results<Emotion>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUI()
+        loadData()
+        bindModel()
+    }
+    
+    private func setUI() {
         self.title = Date().monthSymoble
+        
+        Calendar(identifier: .gregorian).shortWeekdaySymbols.forEach { str in
+            let label = UILabel()
+            label.text = str
+            label.textAlignment = .center
+            self.dayStackView.addArrangedSubview(label)
+        }
+        
+        // 현재 Month 전후로 3개씩 추가
         (-3...3).forEach { offset in
             self.months.append(Date.getNewMonth(offset: offset, from: Date()))
         }
@@ -30,41 +47,31 @@ class MainViewController: BaseViewController {
            let weeks = Calendar.current.range(of: .weekOfMonth, in: .month, for: month) {
             collectionViewHeight.constant = CGFloat(weeks.count*50)
         }
-        setUI()
-        collectionView.reloadData()
-        collectionView.layoutIfNeeded()
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: initialSection), at: .top, animated: false)
-        self.view.addSubview(UIView())
-        
-        if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue) {
-            API.shared.getUserEmotions(GetUserEmotionsRequest(user_uuid: uuid)) { result in
-                switch result {
-                case .success(let response):
-                    print(response)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-        }
-    }
-    
-    private func setUI() {
-        Calendar(identifier: .gregorian).shortWeekdaySymbols.forEach { str in
-            let label = UILabel()
-            label.text = str
-            label.textAlignment = .center
-            self.dayStackView.addArrangedSubview(label)
-        }
         
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "CalendarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         collectionView.collectionViewLayout = getCollectionViewLayout()
+        collectionView.layoutIfNeeded()
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: initialSection), at: .top, animated: false)
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "EmotionListTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         tableView.register(UINib(nibName: "RegisterEmotionTableViewCell", bundle: nil), forCellReuseIdentifier: "registerCell")
+    }
+    
+    func bindModel() {
+        emotions = DatabaseWorker.shared.getEmotionList()
+        
+        _ = emotions?.observe { changes in
+            switch changes {
+            case .update(_, _, _, _):
+                self.tableView.reloadData()
+            default:
+                break
+            }
+        }
     }
     
     private func getCollectionViewLayout() -> UICollectionViewFlowLayout {
@@ -86,6 +93,20 @@ class MainViewController: BaseViewController {
             return weeks.count
         }else{
             return nil
+        }
+    }
+    
+    // MARK: - API
+    func loadData() {
+        if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue) {
+            API.shared.getUserEmotions(GetUserEmotionsRequest(user_uuid: uuid)) { result in
+                switch result {
+                case .success(_):
+                    return
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 }
@@ -155,13 +176,9 @@ extension MainViewController: UITableViewDelegate {
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EmotionListTableViewCell
-            let emotions = ["😅", "😡", "😄", "😅", "😭"]
-            let comments = ["공무원은 국민전체에 대한 봉사자이며, 국민에 대하여 책임을 진다. 국회는 정부의 동의없이 정부가 제출한 지출예산 각항의 금액을 증가하거나 새 비목을 설치할 수 없다.",
-                            "모든 국민은 법률이 정하는 바에 의하여 공무담임권을 가진다. 대한민국의 주권은 국민에게 있고, 모든 권력은 국민으로부터 나온다.",
-                            "하하하",
-                            "국회의 회의는 공개한다.",
-                            "모든 국민은 통신의 비밀을 침해받지 아니한다. 누구든지 체포 또는 구속을 당한 때에는 즉시 변호인의 조력을 받을 권리를 가진다. "]
-            cell.configure(emotion: emotions[indexPath.row%5], comment: comments[indexPath.row%5])
+            if let emotion = emotions?[indexPath.row] {
+                cell.configure(emotion: emotion.emotion_type, comment: emotion.message)
+            }
             return cell
         }
     }
@@ -178,7 +195,7 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return emotions?.count ?? 0
     }
 }
 

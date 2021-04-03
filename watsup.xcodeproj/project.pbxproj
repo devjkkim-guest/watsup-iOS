@@ -99,6 +99,8 @@
 		A4BE39A226128C800051B213 /* RegisterEmotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */; };
 		A4BE39A326128C800051B213 /* RegisterEmotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */; };
 		A4BE39A826128ED50051B213 /* RegisterEmotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE39A726128ED50051B213 /* RegisterEmotionViewController.swift */; };
+		A4BE3A3026188FB10051B213 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3A2F26188FB10051B213 /* Emotion.swift */; };
+		A4BE3A442618936E0051B213 /* DatabaseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3A432618936D0051B213 /* DatabaseWorker.swift */; };
 		F2945437CC694AE7593EEE3C /* Pods_watsup_watsupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D00D3B659A21D03D72F26B /* Pods_watsup_watsupUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -220,6 +222,8 @@
 		A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmotionTableViewCell.swift; sourceTree = "<group>"; };
 		A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterEmotionTableViewCell.xib; sourceTree = "<group>"; };
 		A4BE39A726128ED50051B213 /* RegisterEmotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmotionViewController.swift; sourceTree = "<group>"; };
+		A4BE3A2F26188FB10051B213 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
+		A4BE3A432618936D0051B213 /* DatabaseWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseWorker.swift; sourceTree = "<group>"; };
 		B55274C625C0B5E15B2008A9 /* Pods_watsupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CB51354ACB513130627B1E /* Pods-watsup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup.debug.xcconfig"; path = "Target Support Files/Pods-watsup/Pods-watsup.debug.xcconfig"; sourceTree = "<group>"; };
 		EC52E897B17F5438C4265895 /* Pods-watsup-watsupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup-watsupUITests.release.xcconfig"; path = "Target Support Files/Pods-watsup-watsupUITests/Pods-watsup-watsupUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -524,6 +528,7 @@
 				8F2C5ACC25C1AFAD004FF9EF /* watsup.entitlements */,
 				8F5AD3ED25C1CA3500DBF158 /* Extensions */,
 				8F2C5A9F25C067B2004FF9EF /* API */,
+				A4BE3A2C26188F780051B213 /* Model */,
 				8F5D58FB25C4655F0095C21A /* Scene */,
 				8F61769A25B856140059B4B7 /* AppDelegate.swift */,
 				8F6176A325B856150059B4B7 /* Assets.xcassets */,
@@ -596,6 +601,31 @@
 				A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		A4BE3A2C26188F780051B213 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A4BE3A2E26188FA20051B213 /* Emotion */,
+				A4BE3A2D26188F820051B213 /* Group */,
+				A4BE3A432618936D0051B213 /* DatabaseWorker.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A4BE3A2D26188F820051B213 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
+		A4BE3A2E26188FA20051B213 /* Emotion */ = {
+			isa = PBXGroup;
+			children = (
+				A4BE3A2F26188FB10051B213 /* Emotion.swift */,
+			);
+			path = Emotion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -927,6 +957,8 @@
 				8F5AD3E025C1C85700DBF158 /* CommonConstants.swift in Sources */,
 				8F61769B25B856140059B4B7 /* AppDelegate.swift in Sources */,
 				8F5D5A3425CECF400095C21A /* GetUserGroupRequest.swift in Sources */,
+				A4BE3A3026188FB10051B213 /* Emotion.swift in Sources */,
+				A4BE3A442618936E0051B213 /* DatabaseWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

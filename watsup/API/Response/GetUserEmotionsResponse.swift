@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct GetUserEmotionsResponse: ErrorProtocol {
     var code: Int?
     var message: String?
     var status: String?
-    let logs: Array<EmotionLogResponse>
+    var logs: List<Emotion>?
 }

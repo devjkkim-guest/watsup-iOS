@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue), !uuid.isEmpty {
             window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
         }
+        
+        let folderPath = try! Realm().configuration.fileURL!.deletingLastPathComponent().path
+        print(folderPath)
+        
         return true
     }
     
