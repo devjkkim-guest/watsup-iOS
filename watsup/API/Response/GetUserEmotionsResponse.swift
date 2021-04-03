@@ -8,9 +8,9 @@
 import Foundation
 import RealmSwift
 
-struct GetUserEmotionsResponse: ErrorProtocol {
-    var code: Int?
-    var message: String?
-    var status: String?
-    var logs: List<Emotion>?
+struct GetUserEmotionsResponse: Codable {
+//    var code: Int?
+//    var message: String?
+//    var status: String?
+    var logs: [Emotion]?
 }

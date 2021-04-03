@@ -18,7 +18,8 @@ enum APIModel: URLRequestConvertible {
     case getUser(_ request: GetUserRequest)
     case postUser(_ request: PostUserRequest)
     case getUserProfile(_ request: GetUserProfileRequest)
-    case getUserEmotions(_ request: GetUserEmotionsRequest)
+    case getUserEmotions
+    case postEmotion(_ request: PostEmotionRequest)
     
     /** Customer Service */
     case postCSForgotPassword(_ request: PostCSForgotPasswordRequest)
@@ -27,7 +28,7 @@ enum APIModel: URLRequestConvertible {
     /** Group */
     case getGroup(_ request: GetGroupRequest)
     case postGroups(_ request: PostGroupsRequest)
-    case getUserGroup(_ request: GetUserGroupRequest)
+    case getUserGroup
     
     static let baseUrl = "http://dev.team726.com:8000"
     
@@ -36,6 +37,8 @@ enum APIModel: URLRequestConvertible {
         switch self {
         case .putAuth:
             return .put
+        case .postEmotion(_):
+            return .post
         default:
             break
         }
@@ -47,8 +50,12 @@ enum APIModel: URLRequestConvertible {
         }
     }
     
+    var userUuid: String? {
+        return UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
+    }
+    
     // MARK: - Path
-    private var path: String {
+    private var path: String? {
         switch self {
         /** User */
         case .getUser(let uuid):
@@ -57,8 +64,18 @@ enum APIModel: URLRequestConvertible {
             return "/users/\(uuid)/profile"
         case .postUser(_):
             return "/users"
-        case .getUserEmotions(let req):
-            return "/users/\(req.user_uuid)/emotions"
+        case .getUserEmotions:
+            if let userUuid = userUuid {
+                return "/users/\(userUuid)/emotions"
+            }else{
+                return nil
+            }
+        case .postEmotion:
+            if let userUuid = userUuid {
+                return "/users/\(userUuid)/emotions"
+            }else{
+                return nil
+            }
             
         /** Auth */
         case .postAuth(_):
@@ -73,33 +90,39 @@ enum APIModel: URLRequestConvertible {
         /** Group */
         case .postGroups:
             return "/groups"
-        case .getUserGroup(let group):
-            return "/users/\(group.user_uuid)/groups"
+        case .getUserGroup:
+            if let userUuid = userUuid {
+                return "/users/\(userUuid)/groups"
+            }else{
+                return nil
+            }
         case .getGroup(let group):
             return "/groups/\(group.uuid)"
         }
     }
     
     // MARK: - Parameters
-    private var parameters: Codable? {
+    private var parameters: Data? {
         switch self {
         /** Users */
         case .postUser(let param):
-            return param
+            return encode(parameter: param)
         case .postAuth(let param):
-            return param
+            return encode(parameter: param)
         case .putAuth:
             return nil
         case .putCSForgotPassword(let param):
-            return param
+            return encode(parameter: param)
         case .postCSForgotPassword(let param):
-            return param
+            return encode(parameter: param)
         case .getUserEmotions:
             return nil
+        case .postEmotion(let param):
+            return encode(parameter: param)
             
         /** Groups */
         case .postGroups(let param):
-            return param
+            return encode(parameter: param)
         case .getUserGroup,
              .getGroup,
              .getUser,
@@ -110,8 +133,6 @@ enum APIModel: URLRequestConvertible {
     
     private var urlQuery: Codable? {
         switch self {
-        case .getUserGroup(let param):
-            return param
         default:
             return nil
         }
@@ -132,7 +153,8 @@ enum APIModel: URLRequestConvertible {
              .getUserGroup,
              .postGroups,
              .getGroup,
-             .getUserEmotions:
+             .getUserEmotions,
+             .postEmotion:
             if let accessToken = UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue) {
                 let value = "Bearer \(accessToken)"
                 commonHeaders.add(name: HTTPHeaderField.authentication.rawValue, value: value)
@@ -144,26 +166,33 @@ enum APIModel: URLRequestConvertible {
     }
     
     func asURLRequest() throws -> URLRequest {
-        var urlString = APIModel.baseUrl.appending(path)
-        
-        if let urlQuery = urlQuery,
-           let query = urlQuery.asDictionary()?.map({ "\($0.key)=\($0.value)"}) {
-            let queries = query.reduce("?") { $0 + $1 }
-            urlString = urlString.appending(queries)
-        }
-        
-        var urlRequest = URLRequest(url: try urlString.asURL())
-        urlRequest.headers = headers
-        urlRequest.httpMethod = method.rawValue
-        
-        if let parameters = parameters, let json = parameters.asDictionary() {
-            do {
-                urlRequest.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-            } catch {
-                throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
+        if let path = path {
+            var urlString = APIModel.baseUrl.appending(path)
+            
+            if let urlQuery = urlQuery,
+               let query = urlQuery.asDictionary()?.map({ "\($0.key)=\($0.value)"}) {
+                let queries = query.reduce("?") { $0 + $1 }
+                urlString = urlString.appending(queries)
             }
+            
+            var urlRequest = URLRequest(url: try urlString.asURL())
+            urlRequest.headers = headers
+            urlRequest.httpMethod = method.rawValue
+            urlRequest.httpBody = parameters
+            
+            return urlRequest
+        }else{
+            throw APIModelError.noPath
         }
-        
-        return urlRequest
     }
+    
+    func encode<T:Codable>(parameter: T) -> Data? {
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        return try? encoder.encode(parameter)
+    }
+}
+
+enum APIModelError: Error {
+    case noPath
 }

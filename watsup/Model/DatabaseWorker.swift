@@ -20,7 +20,9 @@ class DatabaseWorker {
         return realm.objects(Emotion.self)
     }
     
-    func setEmotionLogs(_ logs: List<Emotion>) {
-        realm.add(logs, update: .modified)
+    func setEmotionLogs(_ logs: [Emotion]) {
+        try? realm.write {
+            realm.add(logs)
+        }
     }
 }

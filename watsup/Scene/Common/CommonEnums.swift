@@ -36,6 +36,21 @@ enum EmotionType: String, CaseIterable {
             return .grinning
         }
     }
+    
+    func getTypeIntValue() -> Int {
+        switch self {
+        case .pouting:
+            return 10
+        case .crying:
+            return 30
+        case .neutral:
+            return 50
+        case .grinning:
+            return 70
+        case .smilingHeartEyes:
+            return 90
+        }
+    }
 }
 
 /// UserDefaults Keys

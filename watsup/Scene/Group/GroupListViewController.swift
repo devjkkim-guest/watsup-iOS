@@ -61,20 +61,17 @@ class GroupListViewController: UIViewController {
     
     /// 사용자가 가입된 그룹들 조회
     func getUserGroups() {
-        if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue) {
-            let request = GetUserGroupRequest(user_uuid: uuid)
-            API.shared.getUserGroup(request) { result in
-                switch result {
-                case .success(let data):
-                    self.groups = data.groups
-                    self.tableView.reloadData()
+        API.shared.getUserGroup { result in
+            switch result {
+            case .success(let data):
+                self.groups = data.groups
+                self.tableView.reloadData()
 //                    data.groups.forEach { group in
 //                        let request = GetGroupRequest(uuid: group.uuid)
 //                        self.getGroup(request: request)
 //                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
