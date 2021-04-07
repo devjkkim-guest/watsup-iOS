@@ -7,6 +7,8 @@
 
 import UIKit
 import RealmSwift
+import RxSwift
+import RxCocoa
 
 class MainViewController: BaseViewController {
     
@@ -20,6 +22,9 @@ class MainViewController: BaseViewController {
     var months = [Date?]()
     var emotions: Results<Emotion>?
     var emotionToken: NotificationToken?
+    
+    // Model
+    let viewModel = MainViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +79,12 @@ class MainViewController: BaseViewController {
                 break
             }
         }
+        
+        let disposeBag = DisposeBag()
+        viewModel.selectedDay
+            .subscribe(onNext: { indexPath in
+            })
+            .disposed(by: disposeBag)
     }
     
     private func getCollectionViewLayout() -> UICollectionViewFlowLayout {
@@ -98,6 +109,14 @@ class MainViewController: BaseViewController {
         }
     }
     
+    // MARK: - Useful Funcs
+    /// 달력 section의 첫번째 날 반환
+    func getFirstDate(of section: Int) -> Date? {
+        let date = months[section] ?? Date()
+        let components = Calendar.current.dateComponents([.year, .month], from: date)
+        return Calendar.current.date(from: components)
+    }
+    
     // MARK: - API
     func loadData() {
         API.shared.getUserEmotions { result in
@@ -115,36 +134,33 @@ class MainViewController: BaseViewController {
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CalendarCollectionViewCell {
-            let date = months[indexPath.section] ?? Date()
-            let components = Calendar.current.dateComponents([.year, .month], from: date)
-            if let firstDate = Calendar.current.date(from: components) {
-                let weekDay = Calendar.current.component(.weekday, from: firstDate)
-                let dayOffset = indexPath.item-(weekDay-1)
-                if let newDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: firstDate, wrappingComponents: false) {
-                    let day = Calendar.current.component(.day, from: newDate)
-                    cell.dayLabel.text = "\(day)"
-                    
-                    let components: Set = [Calendar.Component.year, Calendar.Component.month, Calendar.Component.day]
-                    let firstDay = Calendar.current.dateComponents(components, from: firstDate)
-                    let newDay = Calendar.current.dateComponents(components, from: newDate)
-                    let today = Calendar.current.dateComponents(components, from: Date())
-                    
-                    if firstDay.month == today.month && newDay.year == today.year && newDay.month == today.month && newDay.day == today.day {
-                        // 현재 섹션의 month에 해당하고, 오늘 날짜인 경우
-                        cell.todayMark.isHidden = false
-                    }else{
-                        cell.todayMark.isHidden = true
-                    }
-                    
-                    if firstDay.month == newDay.month {
-                        cell.dayLabel.textColor = .black
-                    }else{
-                        cell.dayLabel.textColor = .systemGray4
-                    }
+            
+            if let firstDate = getFirstDate(of: indexPath.section),
+               let currentDate = firstDate.getDate(offset: indexPath.item){
+                let day = Calendar.current.component(.day, from: currentDate)
+                cell.dayLabel.text = "\(day)"
+                
+                let components: Set = [Calendar.Component.year, Calendar.Component.month, Calendar.Component.day]
+                let firstDay = Calendar.current.dateComponents(components, from: firstDate)
+                let currentDay = Calendar.current.dateComponents(components, from: currentDate)
+                let today = Calendar.current.dateComponents(components, from: Date())
+                
+                if firstDay.month == today.month && currentDay.year == today.year && currentDay.month == today.month && currentDay.day == today.day {
+                    // 현재 섹션의 month에 해당하고, 오늘 날짜인 경우
+                    cell.todayMark.isHidden = false
+                }else{
+                    cell.todayMark.isHidden = true
+                }
+                
+                if firstDay.month == currentDay.month {
+                    cell.dayLabel.textColor = .black
+                }else{
+                    cell.dayLabel.textColor = .systemGray4
                 }
             }
             return cell
         }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         return cell
     }
