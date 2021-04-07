@@ -61,4 +61,15 @@ extension Date {
         let newDate = Calendar.current.date(from: dateComponents)
         return newDate
     }
+    
+    /**
+     첫번째 날로부터 offset만큼 떨어진 날짜 반환
+     - Parameters:
+        - offset: CollectionViewCell의 IndexPath.item
+     */
+    func getDate(offset day: Int) -> Date? {
+        let weekDay = Calendar.current.component(.weekday, from: self)
+        let dayOffset = day-(weekDay-1)
+        return Calendar.current.date(byAdding: .day, value: dayOffset, to: self, wrappingComponents: false)
+    }
 }

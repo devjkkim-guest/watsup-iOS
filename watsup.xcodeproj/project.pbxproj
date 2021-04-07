@@ -101,6 +101,9 @@
 		A4BE3A442618936E0051B213 /* DatabaseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3A432618936D0051B213 /* DatabaseWorker.swift */; };
 		A4BE3A542618A45F0051B213 /* EmotionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3A532618A45F0051B213 /* EmotionRequest.swift */; };
 		A4BE3A5A2618A4CE0051B213 /* EmotionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3A592618A4CE0051B213 /* EmotionResponse.swift */; };
+		A4BE3A95261DD27A0051B213 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3A94261DD27A0051B213 /* MainViewModel.swift */; };
+		A4BE3A9E261DD2AD0051B213 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A4BE3A9D261DD2AD0051B213 /* RxCocoa */; };
+		A4BE3AA0261DD2AD0051B213 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A4BE3A9F261DD2AD0051B213 /* RxSwift */; };
 		F2945437CC694AE7593EEE3C /* Pods_watsup_watsupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D00D3B659A21D03D72F26B /* Pods_watsup_watsupUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -224,6 +227,7 @@
 		A4BE3A432618936D0051B213 /* DatabaseWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseWorker.swift; sourceTree = "<group>"; };
 		A4BE3A532618A45F0051B213 /* EmotionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionRequest.swift; sourceTree = "<group>"; };
 		A4BE3A592618A4CE0051B213 /* EmotionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionResponse.swift; sourceTree = "<group>"; };
+		A4BE3A94261DD27A0051B213 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		B55274C625C0B5E15B2008A9 /* Pods_watsupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CB51354ACB513130627B1E /* Pods-watsup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup.debug.xcconfig"; path = "Target Support Files/Pods-watsup/Pods-watsup.debug.xcconfig"; sourceTree = "<group>"; };
 		EC52E897B17F5438C4265895 /* Pods-watsup-watsupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup-watsupUITests.release.xcconfig"; path = "Target Support Files/Pods-watsup-watsupUITests/Pods-watsup-watsupUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -235,8 +239,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4BE3AA0261DD2AD0051B213 /* RxSwift in Frameworks */,
 				8F5D5A0525CE67A40095C21A /* RealmSwift in Frameworks */,
 				8F5D5A0325CE67A40095C21A /* Realm in Frameworks */,
+				A4BE3A9E261DD2AD0051B213 /* RxCocoa in Frameworks */,
 				5A0E5C4FF17B7C0C0D50808F /* Pods_watsup.framework in Frameworks */,
 				8F2C5A9425C064B4004FF9EF /* CommonLibrary in Frameworks */,
 			);
@@ -276,6 +282,7 @@
 			children = (
 				8FD644A025BB03080056F74E /* Views */,
 				8F0E420925B9CA03008AA995 /* MainViewController.swift */,
+				A4BE3A94261DD27A0051B213 /* MainViewModel.swift */,
 				A4BE39A726128ED50051B213 /* RegisterEmotionViewController.swift */,
 				8F0E41CC25B85EE2008AA995 /* Main.storyboard */,
 			);
@@ -666,6 +673,8 @@
 				8F2C5A9325C064B4004FF9EF /* CommonLibrary */,
 				8F5D5A0225CE67A40095C21A /* Realm */,
 				8F5D5A0425CE67A40095C21A /* RealmSwift */,
+				A4BE3A9D261DD2AD0051B213 /* RxCocoa */,
+				A4BE3A9F261DD2AD0051B213 /* RxSwift */,
 			);
 			productName = watsup;
 			productReference = 8F61769725B856140059B4B7 /* watsup.app */;
@@ -744,6 +753,7 @@
 			mainGroup = 8F61768E25B856140059B4B7;
 			packageReferences = (
 				8F5D5A0125CE67A40095C21A /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				A4BE3A9C261DD2AD0051B213 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 8F61769825B856140059B4B7 /* Products */;
 			projectDirPath = "";
@@ -967,6 +977,7 @@
 				8F5D5A6725D186CF0095C21A /* GetGroupsResponse.swift in Sources */,
 				8F5D5A4525D1741F0095C21A /* PostCSForgotPasswordResponse.swift in Sources */,
 				8F61769F25B856140059B4B7 /* TabBarController.swift in Sources */,
+				A4BE3A95261DD27A0051B213 /* MainViewModel.swift in Sources */,
 				A4BE3A5A2618A4CE0051B213 /* EmotionResponse.swift in Sources */,
 				8F0E421E25B9D0A3008AA995 /* XibView.swift in Sources */,
 				8F5AD3E625C1CA1B00DBF158 /* PostUsersResponse.swift in Sources */,
@@ -1342,6 +1353,14 @@
 				minimumVersion = 10.5.1;
 			};
 		};
+		A4BE3A9C261DD2AD0051B213 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1358,6 +1377,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8F5D5A0125CE67A40095C21A /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		A4BE3A9D261DD2AD0051B213 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A4BE3A9C261DD2AD0051B213 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		A4BE3A9F261DD2AD0051B213 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A4BE3A9C261DD2AD0051B213 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
