@@ -149,17 +149,17 @@ extension MainViewController: UICollectionViewDelegate {
                 cell.dayLabel.text = "\(day)"
                 
                 let components: Set = [Calendar.Component.year, Calendar.Component.month, Calendar.Component.day]
-                let firstDay = Calendar.current.dateComponents(components, from: firstDate)
                 let currentDay = Calendar.current.dateComponents(components, from: currentDate)
                 let today = Calendar.current.dateComponents(components, from: Date())
                 
-                if firstDay.month == today.month && currentDay.year == today.year && currentDay.month == today.month && currentDay.day == today.day {
-                    // 현재 섹션의 month에 해당하고, 오늘 날짜인 경우
+                if today == currentDay {
+                    // 오늘 날짜인 경우
                     cell.todayMark.isHidden = false
                 }else{
                     cell.todayMark.isHidden = true
                 }
                 
+                let firstDay = Calendar.current.dateComponents(components, from: firstDate)
                 if firstDay.month == currentDay.month {
                     cell.dayLabel.textColor = .black
                 }else{
