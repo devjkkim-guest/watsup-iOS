@@ -27,7 +27,7 @@ class RegisterEmotionViewController: UIViewController {
     @IBAction func onClickRegister(_ sender: UIButton) {
         if let message = selectEmotionView.tfMessage.text,
            let emotionType = selectEmotionView.emotion?.getTypeIntValue() {
-            let req = PostEmotionRequest(message: message, emotion_type: emotionType, score: 0, created_at: Date().timeIntervalSince1970)
+            let req = PostEmotionRequest(message: message, emotion_type: emotionType, score: 0, createdAt: Date().timeIntervalSince1970)
             API.shared.postEmotion(req) { response in
                 switch response {
                 case .success:
