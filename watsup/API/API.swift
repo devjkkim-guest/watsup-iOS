@@ -114,7 +114,7 @@ class API {
     func postEmotion(_ request: PostEmotionRequest, completion: @escaping (Result<PostEmotionResponse, APIError>) -> Void) {
         API.shared.request(.postEmotion(request)) { (result: Result<PostEmotionResponse, APIError>) in
             switch result {
-            case .success(let response):
+            case .success:
 //                if response.result {
 //                    let emotion = Emotion()
 ////                    emotion.id = re
@@ -140,13 +140,38 @@ class API {
     }
     
     func postGroups(_ request: PostGroupsRequest, completion: @escaping (Result<PostGroupsResponse, APIError>) -> Void) {
-        API.shared.request(.postGroups(request)) { result in
+        API.shared.request(.postGroups(request)) { (result: Result<PostGroupsResponse, APIError>) in
+            switch result {
+            case .success(let response):
+                if let name = response.name, let uuid = response.uuid {
+                    let group = Group()
+                    group.name = name
+                    group.uuid = uuid
+                    DatabaseWorker.shared.setGroups([group])
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+                break
+            }
             completion(result)
         }
     }
     
     func getUserGroup(completion: @escaping (Result<GetUserGroupResponse, APIError>) -> Void) {
-        API.shared.request(.getUserGroup) { result in
+        API.shared.request(.getUserGroup) { (result: Result<GetUserGroupResponse, APIError>) in
+            switch result {
+            case .success(let response):
+                DatabaseWorker.shared.setGroups(response.groups)
+            case .failure(let error):
+                print(error.localizedDescription)
+                break
+            }
+            completion(result)
+        }
+    }
+    
+    func getUserInbox(completion: @escaping (Result<GetUserInboxResponse, APIError>) -> Void) {
+        API.shared.request(.getUserInbox) { (result: Result<GetUserInboxResponse, APIError>) in
             completion(result)
         }
     }

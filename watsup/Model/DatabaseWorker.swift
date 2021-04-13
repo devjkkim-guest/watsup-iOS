@@ -16,6 +16,7 @@ class DatabaseWorker {
         self.realm = try! Realm()
     }
     
+    // MARK: - Emotion
     func getEmotionList() -> Results<Emotion> {
         return realm.objects(Emotion.self)
     }
@@ -23,6 +24,17 @@ class DatabaseWorker {
     func setEmotionLogs(_ logs: [Emotion]) {
         try? realm.write {
             realm.add(logs, update: .modified)
+        }
+    }
+    
+    // MARK: - Group
+    func getGroups() -> Results<Group> {
+        return realm.objects(Group.self)
+    }
+    
+    func setGroups(_ groups: [Group]) {
+        try? realm.write {
+            realm.add(groups, update: .modified)
         }
     }
 }

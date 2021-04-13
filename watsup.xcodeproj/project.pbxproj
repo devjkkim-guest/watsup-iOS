@@ -24,14 +24,7 @@
 		8F0E421425B9CD64008AA995 /* SelectEmotionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0E421325B9CD64008AA995 /* SelectEmotionView.xib */; };
 		8F0E421925B9CD75008AA995 /* SelectEmotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E421825B9CD75008AA995 /* SelectEmotionView.swift */; };
 		8F0E421E25B9D0A3008AA995 /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E421D25B9D0A3008AA995 /* XibView.swift */; };
-		8F2C59F625BB2585004FF9EF /* EmotionRegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F2C59F525BB2585004FF9EF /* EmotionRegisterView.xib */; };
-		8F2C59FB25BB25BD004FF9EF /* EmotionRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C59FA25BB25BD004FF9EF /* EmotionRegisterView.swift */; };
-		8F2C5A0625BB2CAB004FF9EF /* RandomEmotionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F2C5A0525BB2CAB004FF9EF /* RandomEmotionView.xib */; };
-		8F2C5A0B25BB2CBD004FF9EF /* RandomEmotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5A0A25BB2CBD004FF9EF /* RandomEmotionView.swift */; };
-		8F2C5A1025BB2F70004FF9EF /* EmotionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F2C5A0F25BB2F70004FF9EF /* EmotionView.xib */; };
-		8F2C5A1525BB2FBA004FF9EF /* EmotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5A1425BB2FBA004FF9EF /* EmotionView.swift */; };
 		8F2C5A2125BB3917004FF9EF /* CommonEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5A2025BB3917004FF9EF /* CommonEnums.swift */; };
-		8F2C5A2A25BB4C22004FF9EF /* EmotionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5A2925BB4C22004FF9EF /* EmotionLog.swift */; };
 		8F2C5A9425C064B4004FF9EF /* CommonLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2C5A9325C064B4004FF9EF /* CommonLibrary */; };
 		8F2C5AA125C067D3004FF9EF /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5AA025C067D3004FF9EF /* API.swift */; };
 		8F2C5AA625C069D0004FF9EF /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5AA525C069D0004FF9EF /* APIModel.swift */; };
@@ -108,6 +101,8 @@
 		A4BE3AA0261DD2AD0051B213 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A4BE3A9F261DD2AD0051B213 /* RxSwift */; };
 		A4BE3AAC2625D5970051B213 /* CreateGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3AAA2625D5970051B213 /* CreateGroupTableViewCell.swift */; };
 		A4BE3AAD2625D5970051B213 /* CreateGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE3AAB2625D5970051B213 /* CreateGroupTableViewCell.xib */; };
+		A4BE3AC12625DF720051B213 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3AC02625DF720051B213 /* Group.swift */; };
+		A4BE3AC72625E8740051B213 /* GroupResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3AC62625E8730051B213 /* GroupResponses.swift */; };
 		F2945437CC694AE7593EEE3C /* Pods_watsup_watsupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D00D3B659A21D03D72F26B /* Pods_watsup_watsupUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -149,14 +144,7 @@
 		8F0E421325B9CD64008AA995 /* SelectEmotionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectEmotionView.xib; sourceTree = "<group>"; };
 		8F0E421825B9CD75008AA995 /* SelectEmotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEmotionView.swift; sourceTree = "<group>"; };
 		8F0E421D25B9D0A3008AA995 /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
-		8F2C59F525BB2585004FF9EF /* EmotionRegisterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmotionRegisterView.xib; sourceTree = "<group>"; };
-		8F2C59FA25BB25BD004FF9EF /* EmotionRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionRegisterView.swift; sourceTree = "<group>"; };
-		8F2C5A0525BB2CAB004FF9EF /* RandomEmotionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RandomEmotionView.xib; sourceTree = "<group>"; };
-		8F2C5A0A25BB2CBD004FF9EF /* RandomEmotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomEmotionView.swift; sourceTree = "<group>"; };
-		8F2C5A0F25BB2F70004FF9EF /* EmotionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmotionView.xib; sourceTree = "<group>"; };
-		8F2C5A1425BB2FBA004FF9EF /* EmotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionView.swift; sourceTree = "<group>"; };
 		8F2C5A2025BB3917004FF9EF /* CommonEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonEnums.swift; sourceTree = "<group>"; };
-		8F2C5A2925BB4C22004FF9EF /* EmotionLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionLog.swift; sourceTree = "<group>"; };
 		8F2C5AA025C067D3004FF9EF /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		8F2C5AA525C069D0004FF9EF /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		8F2C5AAA25C06C0E004FF9EF /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
@@ -236,6 +224,8 @@
 		A4BE3A94261DD27A0051B213 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		A4BE3AAA2625D5970051B213 /* CreateGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupTableViewCell.swift; sourceTree = "<group>"; };
 		A4BE3AAB2625D5970051B213 /* CreateGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateGroupTableViewCell.xib; sourceTree = "<group>"; };
+		A4BE3AC02625DF720051B213 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		A4BE3AC62625E8730051B213 /* GroupResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupResponses.swift; sourceTree = "<group>"; };
 		B55274C625C0B5E15B2008A9 /* Pods_watsupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CB51354ACB513130627B1E /* Pods-watsup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup.debug.xcconfig"; path = "Target Support Files/Pods-watsup/Pods-watsup.debug.xcconfig"; sourceTree = "<group>"; };
 		EC52E897B17F5438C4265895 /* Pods-watsup-watsupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup-watsupUITests.release.xcconfig"; path = "Target Support Files/Pods-watsup-watsupUITests/Pods-watsup-watsupUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -311,7 +301,6 @@
 		8F0E41E925B9C677008AA995 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				8F2C5A2825BB4C02004FF9EF /* Model */,
 				8F0E421225B9CD3D008AA995 /* ViewControllers */,
 				8F0E421125B9CD37008AA995 /* Views */,
 				8F2C5A2025BB3917004FF9EF /* CommonEnums.swift */,
@@ -325,8 +314,6 @@
 			children = (
 				8F0E421325B9CD64008AA995 /* SelectEmotionView.xib */,
 				8F0E421825B9CD75008AA995 /* SelectEmotionView.swift */,
-				8F2C5A0F25BB2F70004FF9EF /* EmotionView.xib */,
-				8F2C5A1425BB2FBA004FF9EF /* EmotionView.swift */,
 				8F0E421D25B9D0A3008AA995 /* XibView.swift */,
 			);
 			path = Views;
@@ -340,14 +327,6 @@
 				8FD6448D25BAFB010056F74E /* BaseViewController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		8F2C5A2825BB4C02004FF9EF /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				8F2C5A2925BB4C22004FF9EF /* EmotionLog.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		8F2C5A9F25C067B2004FF9EF /* API */ = {
@@ -397,6 +376,7 @@
 		8F5AD3E425C1CA0B00DBF158 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				A4BE3AC52625E8680051B213 /* Group */,
 				A4BE3A582618A4C40051B213 /* Emotion */,
 				8F5AD40025C45F9100DBF158 /* CommonResponse.swift */,
 				8F5AD3E525C1CA1B00DBF158 /* PostUsersResponse.swift */,
@@ -581,10 +561,6 @@
 			children = (
 				A4775C3E260A3EB900A007EF /* Cell */,
 				A429317E25EA7514005F5DD0 /* Calendar */,
-				8F2C59F525BB2585004FF9EF /* EmotionRegisterView.xib */,
-				8F2C59FA25BB25BD004FF9EF /* EmotionRegisterView.swift */,
-				8F2C5A0525BB2CAB004FF9EF /* RandomEmotionView.xib */,
-				8F2C5A0A25BB2CBD004FF9EF /* RandomEmotionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -625,6 +601,7 @@
 		A4BE3A2C26188F780051B213 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4BE3ABF2625DF570051B213 /* Group */,
 				A4BE3A2E26188FA20051B213 /* Emotion */,
 				A4BE3A2D26188F820051B213 /* Group */,
 				A4BE3A432618936D0051B213 /* DatabaseWorker.swift */,
@@ -661,6 +638,22 @@
 				A4BE3A592618A4CE0051B213 /* EmotionResponse.swift */,
 			);
 			path = Emotion;
+			sourceTree = "<group>";
+		};
+		A4BE3ABF2625DF570051B213 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				A4BE3AC02625DF720051B213 /* Group.swift */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
+		A4BE3AC52625E8680051B213 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				A4BE3AC62625E8730051B213 /* GroupResponses.swift */,
+			);
+			path = Group;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -785,7 +778,6 @@
 			files = (
 				8F6176A725B856150059B4B7 /* LaunchScreen.storyboard in Resources */,
 				8F0E41CD25B85EE2008AA995 /* Main.storyboard in Resources */,
-				8F2C5A1025BB2F70004FF9EF /* EmotionView.xib in Resources */,
 				A4BE3AAD2625D5970051B213 /* CreateGroupTableViewCell.xib in Resources */,
 				8F0E41ED25B9C6A0008AA995 /* UserDetailViewController.xib in Resources */,
 				A429318A25EA7562005F5DD0 /* CalendarCollectionViewCell.xib in Resources */,
@@ -794,10 +786,8 @@
 				8988DBB3261DDB2A00830295 /* GroupMemberTableViewCell.xib in Resources */,
 				8F8E3E6225DD697E00EBB8A8 /* Localization.strings in Resources */,
 				8F5D596525C5A75F0095C21A /* GroupInvitedCollectionViewCell.xib in Resources */,
-				8F2C59F625BB2585004FF9EF /* EmotionRegisterView.xib in Resources */,
 				A4775C42260A3ED500A007EF /* EmotionListTableViewCell.xib in Resources */,
 				8F0E41D225B88724008AA995 /* Group.storyboard in Resources */,
-				8F2C5A0625BB2CAB004FF9EF /* RandomEmotionView.xib in Resources */,
 				8F6176A425B856150059B4B7 /* Assets.xcassets in Resources */,
 				8F6176A225B856140059B4B7 /* TabBar.storyboard in Resources */,
 				8F5D595D25C5648C0095C21A /* SettingProfileTableViewCell.xib in Resources */,
@@ -950,8 +940,8 @@
 				8F5D597C25C84CC00095C21A /* AuthRequestVerificationCode.swift in Sources */,
 				8F5AD3FC25C45F7300DBF158 /* PostAuthResponse.swift in Sources */,
 				8F5D598525C84F6E0095C21A /* AuthVerifyCodeViewController.swift in Sources */,
+				A4BE3AC72625E8740051B213 /* GroupResponses.swift in Sources */,
 				8F5AD3DB25C1C52600DBF158 /* AuthLoginViewController.swift in Sources */,
-				8F2C59FB25BB25BD004FF9EF /* EmotionRegisterView.swift in Sources */,
 				8F4086C425E94D0900E7F61B /* Date+Extension.swift in Sources */,
 				8F2C5AA625C069D0004FF9EF /* APIModel.swift in Sources */,
 				8F5D595C25C5648C0095C21A /* SettingProfileTableViewCell.swift in Sources */,
@@ -966,6 +956,7 @@
 				8F0E41E525B9C62D008AA995 /* GroupDetailViewController.swift in Sources */,
 				A4BE3A542618A45F0051B213 /* EmotionRequest.swift in Sources */,
 				8F2C5A2125BB3917004FF9EF /* CommonEnums.swift in Sources */,
+				A4BE3AC12625DF720051B213 /* Group.swift in Sources */,
 				A4BE39A826128ED50051B213 /* RegisterEmotionViewController.swift in Sources */,
 				8F0E420A25B9CA03008AA995 /* MainViewController.swift in Sources */,
 				8F5AD3D125C1C50100DBF158 /* AuthMainViewController.swift in Sources */,
@@ -973,18 +964,15 @@
 				8F5D598F25C855260095C21A /* PutCSForgotPassword.swift in Sources */,
 				8F5D598A25C854E30095C21A /* PostCSForgotPassword.swift in Sources */,
 				8F8E3E7225DD6AFF00EBB8A8 /* UIViewController+Extension.swift in Sources */,
-				8F2C5A1525BB2FBA004FF9EF /* EmotionView.swift in Sources */,
 				A4775C5C260B7B5000A007EF /* Request.swift in Sources */,
 				8F5D595525C496EC0095C21A /* APITokenStorage.swift in Sources */,
 				8F5D5A5D25D181AD0095C21A /* GetUserRequest.swift in Sources */,
 				8F5D592225C474D20095C21A /* UIView+Extension.swift in Sources */,
 				8F5AD3F725C1CDB200DBF158 /* APIEventMonitor.swift in Sources */,
 				A4BE39A226128C800051B213 /* RegisterEmotionTableViewCell.swift in Sources */,
-				8F2C5A0B25BB2CBD004FF9EF /* RandomEmotionView.swift in Sources */,
 				8F5D594B25C4924C0095C21A /* GetUserProfileResponse.swift in Sources */,
 				8F5D595025C494230095C21A /* APIInterceptor.swift in Sources */,
 				8FD6448E25BAFB010056F74E /* BaseViewController.swift in Sources */,
-				8F2C5A2A25BB4C22004FF9EF /* EmotionLog.swift in Sources */,
 				8988DBB2261DDB2A00830295 /* GroupMemberTableViewCell.swift in Sources */,
 				8F5AD3EF25C1CA4800DBF158 /* Encodable+Extension.swift in Sources */,
 				8F5D59B825C864810095C21A /* AuthVerifyCodeViewModel.swift in Sources */,

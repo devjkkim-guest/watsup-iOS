@@ -35,15 +35,5 @@ struct Identity: Codable {
     var email: String?
     var uuid: String?
     var profile: ProfileResponse?
-}
-
-struct GroupResponse: Codable {
-    let name: String
-    let uuid: String
-}
-
-struct EmotionLogResponse: Codable {
-    let emotionType: Int
-    let message: String
-    let score: Int
+    var status: String?
 }

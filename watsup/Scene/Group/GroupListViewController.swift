@@ -20,11 +20,13 @@ class GroupListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnAdd: UIBarButtonItem!
     let createGroupCellId = "CreateGroupCell"
-    var groups: [GroupResponse]?
+    var invitedGroups: [InboxGroupResponse]?
+    var joinedGroups: [Group]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        joinedGroups = Array(DatabaseWorker.shared.getGroups())
+        getInvitedGroups()
         getUserGroups()
         tableView.delegate = self
         tableView.dataSource = self
@@ -65,60 +67,95 @@ class GroupListViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    // 사용자가 초대받은 그룹들 조회
+    func getInvitedGroups() {
+        API.shared.getUserInbox { result in
+            switch result {
+            case .success(let response):
+                self.invitedGroups = response.inbox
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error.errorMsg, error.localizedDescription)
+            }
+        }
+    }
+    
     /// 사용자가 가입된 그룹들 조회
     func getUserGroups() {
         API.shared.getUserGroup { result in
             switch result {
             case .success(let data):
-                self.groups = data.groups
+                self.joinedGroups = data.groups
                 self.tableView.reloadData()
-//                    data.groups.forEach { group in
-//                        let request = GetGroupRequest(uuid: group.uuid)
-//                        self.getGroup(request: request)
-//                    }
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
     
-    /// 사용자가 가입한 그룹의 디테일 조회
-//    func getGroup(request: GetGroupRequest) {
-//        API.shared.getGroup(request) { response in
-//            switch response {
-//            case .success(let group):
-//                self.groups = group
-//                self.tableView.reloadData()
-//                break
-//            case .failure(_): break
-//            }
-//        }
-//    }
+    func willShowInvitedGroup() -> Bool {
+        if let invited = invitedGroups, invited.count > 0 {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    func willShowJoinedGroups() -> Bool {
+        if let joined = joinedGroups, joined.count > 0 {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    func getNumberOfJoinedGroupRows() -> Int {
+        if let groups = joinedGroups, groups.count != 0 {
+            return groups.count
+        }else{
+            // 가입된 그룹이 없을 때 보여줄 셀
+            return 1
+        }
+    }
 }
 
 extension GroupListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "초대받은 그룹"
+        if willShowInvitedGroup() {
+            switch Section.allCases[section] {
+            case .invitedGroup:
+                return "초대받은 그룹"
+            case .joinedGroup:
+                return "참여중인 그룹"
+            }
         }else{
-            return "참여 중인 그룹"
+            return "참여중인 그룹"
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch Section.allCases[indexPath.section] {
-        case .invitedGroup:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: Section.invitedGroup.rawValue, for: indexPath) as? GroupInvitedTableViewCell {
+        if willShowInvitedGroup() {
+            switch Section.allCases[indexPath.section] {
+            case .invitedGroup:
+                let cell = tableView.dequeueReusableCell(withIdentifier: Section.invitedGroup.rawValue, for: indexPath) as! GroupInvitedTableViewCell
                 cell.backgroundColor = .clear
                 return cell
-            }else{
-                let cell = tableView.dequeueReusableCell(withIdentifier: Section.invitedGroup.rawValue, for: indexPath)
-                return cell
+            case .joinedGroup:
+                if willShowJoinedGroups() {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: Section.joinedGroup.rawValue, for: indexPath) as! GroupJoinedTableViewCell
+                    cell.configure(name: joinedGroups?[indexPath.row].name)
+                    cell.textLabel?.sizeToFit()
+                    return cell
+                }else{
+                    let cell = tableView.dequeueReusableCell(withIdentifier: createGroupCellId, for: indexPath) as! CreateGroupTableViewCell
+                    cell.delegate = self
+                    return cell
+                }
             }
-        case .joinedGroup:
-            if let groups = groups, groups.count != 0 {
+        }else{
+            if willShowJoinedGroups() {
                 let cell = tableView.dequeueReusableCell(withIdentifier: Section.joinedGroup.rawValue, for: indexPath) as! GroupJoinedTableViewCell
-                cell.configure(name: groups[indexPath.row].name)
+                cell.configure(name: joinedGroups?[indexPath.row].name)
                 cell.textLabel?.sizeToFit()
                 return cell
             }else{
@@ -130,37 +167,44 @@ extension GroupListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch Section.allCases[indexPath.section] {
-        case .invitedGroup:
-            return 156
-        case .joinedGroup:
+        if willShowInvitedGroup() {
+            switch Section.allCases[indexPath.section] {
+            case .invitedGroup:
+                return 156
+            case .joinedGroup:
+                return UITableView.automaticDimension
+            }
+        }else{
             return UITableView.automaticDimension
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: "Group", bundle: nil).instantiateViewController(withIdentifier: "GroupDetailVC")
-        vc.title = self.groups?[indexPath.row].name
+        vc.title = self.joinedGroups?[indexPath.row].name
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension GroupListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Section.allCases.count
+        if let invited = invitedGroups, invited.count != 0 {
+            return Section.allCases.count
+        }else{
+            return Section.allCases.count-1
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch Section.allCases[section] {
-        case .invitedGroup:
-            return 1
-        case .joinedGroup:
-            if let groups = groups, groups.count != 0 {
-                return groups.count
-            }else{
-                // 가입된 그룹이 없을 때 보여줄 셀
+        if let invited = invitedGroups, invited.count != 0 {
+            switch Section.allCases[section] {
+            case .invitedGroup:
                 return 1
+            case .joinedGroup:
+                return getNumberOfJoinedGroupRows()
             }
+        }else{
+            return getNumberOfJoinedGroupRows()
         }
     }
 }
@@ -168,6 +212,5 @@ extension GroupListViewController: UITableViewDataSource {
 extension GroupListViewController: CreateGroupTableViewCellDelegate {
     func didClickCreateGroup() {
         showCreateNewGroupAlert()
-        
     }
 }
