@@ -20,11 +20,13 @@ class MainViewController: BaseViewController {
     var currentYear = Calendar.current.component(.year, from: Date())
     var currentMonth = Calendar.current.component(.month, from: Date())
     var months = [Date?]()
-    var emotions: Results<Emotion>?
+    let emotions = DatabaseWorker.shared.getEmotionList()
+    var selectedEmotions: Results<Emotion>?
     var emotionToken: NotificationToken?
     
     // Model
-    let viewModel = MainViewModel()
+    let disposeBag = DisposeBag()
+    let viewModel = MainViewModel(selectedDate: Date().startOfDay)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,10 +70,10 @@ class MainViewController: BaseViewController {
     }
     
     func bindModel() {
-        emotions = DatabaseWorker.shared.getEmotionList()
-        emotionToken = emotions?.observe { changes in
+        emotionToken = emotions.observe { changes in
             switch changes {
             case .update:
+                // TO DO: reload tableView only if inserted data belongs to currently selected day.
                 self.tableView.reloadData()
             case .initial:
                 self.tableView.reloadData()
@@ -80,9 +82,16 @@ class MainViewController: BaseViewController {
             }
         }
         
-        let disposeBag = DisposeBag()
-        viewModel.selectedDay
-            .subscribe(onNext: { indexPath in
+        viewModel.selectedDate
+            .subscribe(onNext: { [weak self] selectedDate in
+                self?.collectionView.reloadData()
+                // reload tableView after filtering emotions for currently selected day.
+                if let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate) {
+                    let startTime = selectedDate.timeIntervalSince1970*1000
+                    let endTime = nextDay.timeIntervalSince1970*1000
+                    self?.selectedEmotions = self?.emotions.filter("createdAt >= \(startTime) AND createdAt < \(endTime)")
+                    self?.tableView.reloadData()
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -134,30 +143,39 @@ class MainViewController: BaseViewController {
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CalendarCollectionViewCell {
-            
             if let firstDate = getFirstDate(of: indexPath.section),
                let currentDate = firstDate.getDate(offset: indexPath.item){
                 let day = Calendar.current.component(.day, from: currentDate)
                 cell.dayLabel.text = "\(day)"
                 
                 let components: Set = [Calendar.Component.year, Calendar.Component.month, Calendar.Component.day]
-                let firstDay = Calendar.current.dateComponents(components, from: firstDate)
                 let currentDay = Calendar.current.dateComponents(components, from: currentDate)
                 let today = Calendar.current.dateComponents(components, from: Date())
                 
-                if firstDay.month == today.month && currentDay.year == today.year && currentDay.month == today.month && currentDay.day == today.day {
-                    // 현재 섹션의 month에 해당하고, 오늘 날짜인 경우
+                if today == currentDay {
+                    // 오늘 날짜인 경우
                     cell.todayMark.isHidden = false
                 }else{
                     cell.todayMark.isHidden = true
                 }
                 
+                let firstDay = Calendar.current.dateComponents(components, from: firstDate)
                 if firstDay.month == currentDay.month {
                     cell.dayLabel.textColor = .black
                 }else{
                     cell.dayLabel.textColor = .systemGray4
                 }
+                
+                // set backgroundColor light gray if current cell is selected day and not today
+                if let selectedDay = try? viewModel.selectedDate.value(),
+                   currentDay == Calendar.current.dateComponents(components, from: selectedDay),
+                   cell.todayMark.isHidden {
+                    cell.selectedMark.backgroundColor = .lightGray
+                }else{
+                    cell.selectedMark.backgroundColor = nil
+                }
             }
+            
             return cell
         }
         
@@ -180,6 +198,12 @@ extension MainViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return months.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let date = getFirstDate(of: indexPath.section)?.getDate(offset: indexPath.item) {
+            viewModel.selectedDate.onNext(date)
+        }
+    }
 }
 
 // MARK: - UITableDataSource
@@ -189,21 +213,21 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (emotions?.count ?? 0)+1
+        return (selectedEmotions?.count ?? 0)+1
     }
 }
 
 // MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == emotions?.count {
+        if indexPath.row == selectedEmotions?.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "registerCell", for: indexPath) as! RegisterEmotionTableViewCell
             cell.delegate = self
-            cell.date = Date()
+            cell.date = try? viewModel.selectedDate.value()
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EmotionListTableViewCell
-            if let emotion = emotions?[indexPath.row] {
+            if let emotion = selectedEmotions?[indexPath.row] {
                 cell.configure(emotion: emotion.emotionType, comment: emotion.message)
             }
             return cell

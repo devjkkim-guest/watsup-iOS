@@ -9,5 +9,9 @@ import Foundation
 import RxSwift
 
 class MainViewModel {
-    let selectedDay = PublishSubject<IndexPath>()
+    let selectedDate: BehaviorSubject<Date>
+    
+    init(selectedDate: Date) {
+        self.selectedDate = BehaviorSubject(value: selectedDate)
+    }
 }

@@ -32,13 +32,19 @@ class API {
                 case .success(let data):
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    if let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .fragmentsAllowed),
-                       let json = try? decoder.decode(T.self, from: jsonData) {
-                        completion(.success(json))
+                    if let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .fragmentsAllowed) {
+                        do {
+                            let json = try decoder.decode(T.self, from: jsonData)
+                            completion(.success(json))
+                        } catch {
+                            print(error.localizedDescription)
+                            print(jsonData)
+                            completion(.failure(APIError()))
+                        }
                     }else{
                         completion(.failure(APIError()))
                     }
-                case .failure(_):
+                case .failure:
                     let apiError = self.getError(response.data)
                     completion(.failure(apiError))
                 }
@@ -109,13 +115,15 @@ class API {
         API.shared.request(.postEmotion(request)) { (result: Result<PostEmotionResponse, APIError>) in
             switch result {
             case .success(let response):
-                if response.result {
-                    let emotion = Emotion()
-                    emotion.message = request.message
-                    emotion.emotionType = request.emotion_type
-                    emotion.score = request.score
-                    DatabaseWorker.shared.setEmotionLogs([emotion])
-                }
+//                if response.result {
+//                    let emotion = Emotion()
+////                    emotion.id = re
+//                    emotion.message = request.message
+//                    emotion.emotionType = request.emotion_type
+//                    emotion.score = request.score
+//                    DatabaseWorker.shared.setEmotionLogs([emotion])
+//                }
+            break
             case .failure(let error):
                 print(error.localizedDescription)
             }

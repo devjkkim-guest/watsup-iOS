@@ -22,7 +22,7 @@ class DatabaseWorker {
     
     func setEmotionLogs(_ logs: [Emotion]) {
         try? realm.write {
-            realm.add(logs)
+            realm.add(logs, update: .modified)
         }
     }
 }

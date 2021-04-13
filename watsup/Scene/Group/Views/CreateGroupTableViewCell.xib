@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CreateGroupTableViewCell" customModule="watsup" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="597" height="175"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="597" height="175"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssV-fv-5YV">
+                        <rect key="frame" x="154.5" y="14" width="288" height="40"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bnq-T9-OQP">
+                                <rect key="frame" x="0.0" y="8.5" width="24" height="23"/>
+                                <color key="tintColor" systemColor="systemGray2Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="SxN-hW-iTe"/>
+                                    <constraint firstAttribute="height" constant="24" id="eFM-Fz-lI4"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create group and share emotions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5P-sE-50S">
+                                <rect key="frame" x="34" y="9.5" width="254" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemGray2Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="A5P-sE-50S" firstAttribute="centerY" secondItem="ssV-fv-5YV" secondAttribute="centerY" id="1HU-4j-VqI"/>
+                            <constraint firstItem="bnq-T9-OQP" firstAttribute="centerY" secondItem="ssV-fv-5YV" secondAttribute="centerY" id="5m7-qA-fE4"/>
+                            <constraint firstAttribute="trailing" secondItem="A5P-sE-50S" secondAttribute="trailing" id="RgY-Yc-Ve4"/>
+                            <constraint firstAttribute="height" constant="40" id="W3W-tf-g5h"/>
+                            <constraint firstItem="bnq-T9-OQP" firstAttribute="leading" secondItem="ssV-fv-5YV" secondAttribute="leading" id="eRc-oL-oUA"/>
+                            <constraint firstItem="A5P-sE-50S" firstAttribute="leading" secondItem="bnq-T9-OQP" secondAttribute="trailing" constant="10" id="mo0-1E-KBT"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSX-lS-GSj">
+                        <rect key="frame" x="235" y="74" width="127" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="WPr-tn-R5W"/>
+                        </constraints>
+                        <state key="normal" title="Create New Group"/>
+                        <connections>
+                            <action selector="onClickCreateGroup:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Tou-6t-pO3"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="kSX-lS-GSj" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="1Su-Wv-xR0"/>
+                    <constraint firstItem="kSX-lS-GSj" firstAttribute="top" secondItem="ssV-fv-5YV" secondAttribute="bottom" constant="20" id="B8A-P6-pgN"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="kSX-lS-GSj" secondAttribute="bottom" constant="20" id="EdH-Aj-Xl4"/>
+                    <constraint firstItem="ssV-fv-5YV" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="aY0-Sp-MK8"/>
+                    <constraint firstItem="ssV-fv-5YV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="wQc-go-bBd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="277.536231884058" y="165.73660714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

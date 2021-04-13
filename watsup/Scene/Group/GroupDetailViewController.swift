@@ -7,14 +7,18 @@
 
 import UIKit
 
-class GroupDetailViewController: UIViewController {
+class GroupDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var membersTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        membersTableView.delegate = self
+        membersTableView.dataSource = self
+        membersTableView.register(UINib(nibName: "GroupMemberTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -24,5 +28,18 @@ class GroupDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GroupMemberTableViewCell
+
+        cell.nameLabel.text = "txt"
+        cell.emotionLabel.text = "💩"
+
+        return cell
+    }
 
 }
