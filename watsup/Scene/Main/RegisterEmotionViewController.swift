@@ -26,8 +26,9 @@ class RegisterEmotionViewController: UIViewController {
     
     @IBAction func onClickRegister(_ sender: UIButton) {
         if let message = selectEmotionView.tfMessage.text,
-           let emotionType = selectEmotionView.emotion?.getTypeIntValue() {
-            let req = PostEmotionRequest(message: message, emotion_type: emotionType, score: 0, createdAt: Date().timeIntervalSince1970)
+           let emotionType = selectEmotionView.emotion?.getTypeIntValue(),
+           let createdAt = date?.timeIntervalSince1970 {
+            let req = PostEmotionRequest(message: message, emotion_type: emotionType, score: 0, createdAt: createdAt)
             API.shared.postEmotion(req) { response in
                 switch response {
                 case .success:
@@ -36,6 +37,8 @@ class RegisterEmotionViewController: UIViewController {
                     print(error.localizedDescription)
                 }
             }
+        }else{
+            showAlert(message: "no message or no emotion selected or data lost")
         }
     }
 }

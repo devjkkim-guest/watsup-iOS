@@ -106,6 +106,8 @@
 		A4BE3A95261DD27A0051B213 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3A94261DD27A0051B213 /* MainViewModel.swift */; };
 		A4BE3A9E261DD2AD0051B213 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A4BE3A9D261DD2AD0051B213 /* RxCocoa */; };
 		A4BE3AA0261DD2AD0051B213 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A4BE3A9F261DD2AD0051B213 /* RxSwift */; };
+		A4BE3AAC2625D5970051B213 /* CreateGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3AAA2625D5970051B213 /* CreateGroupTableViewCell.swift */; };
+		A4BE3AAD2625D5970051B213 /* CreateGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE3AAB2625D5970051B213 /* CreateGroupTableViewCell.xib */; };
 		F2945437CC694AE7593EEE3C /* Pods_watsup_watsupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D00D3B659A21D03D72F26B /* Pods_watsup_watsupUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -232,6 +234,8 @@
 		A4BE3A532618A45F0051B213 /* EmotionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionRequest.swift; sourceTree = "<group>"; };
 		A4BE3A592618A4CE0051B213 /* EmotionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionResponse.swift; sourceTree = "<group>"; };
 		A4BE3A94261DD27A0051B213 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		A4BE3AAA2625D5970051B213 /* CreateGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupTableViewCell.swift; sourceTree = "<group>"; };
+		A4BE3AAB2625D5970051B213 /* CreateGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateGroupTableViewCell.xib; sourceTree = "<group>"; };
 		B55274C625C0B5E15B2008A9 /* Pods_watsupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CB51354ACB513130627B1E /* Pods-watsup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup.debug.xcconfig"; path = "Target Support Files/Pods-watsup/Pods-watsup.debug.xcconfig"; sourceTree = "<group>"; };
 		EC52E897B17F5438C4265895 /* Pods-watsup-watsupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup-watsupUITests.release.xcconfig"; path = "Target Support Files/Pods-watsup-watsupUITests/Pods-watsup-watsupUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -484,6 +488,8 @@
 				8940DED62613445700B7D1E4 /* GroupJoinedTableViewCell.xib */,
 				8988DBB0261DDB2A00830295 /* GroupMemberTableViewCell.swift */,
 				8988DBB1261DDB2A00830295 /* GroupMemberTableViewCell.xib */,
+				A4BE3AAA2625D5970051B213 /* CreateGroupTableViewCell.swift */,
+				A4BE3AAB2625D5970051B213 /* CreateGroupTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -780,6 +786,7 @@
 				8F6176A725B856150059B4B7 /* LaunchScreen.storyboard in Resources */,
 				8F0E41CD25B85EE2008AA995 /* Main.storyboard in Resources */,
 				8F2C5A1025BB2F70004FF9EF /* EmotionView.xib in Resources */,
+				A4BE3AAD2625D5970051B213 /* CreateGroupTableViewCell.xib in Resources */,
 				8F0E41ED25B9C6A0008AA995 /* UserDetailViewController.xib in Resources */,
 				A429318A25EA7562005F5DD0 /* CalendarCollectionViewCell.xib in Resources */,
 				8F5D596F25C5A8C80095C21A /* GroupInvitedTableViewCell.xib in Resources */,
@@ -954,6 +961,7 @@
 				8F5D593E25C4899A0095C21A /* GetUsersResponse.swift in Sources */,
 				8F8E3E6D25DD69E400EBB8A8 /* String+Extension.swift in Sources */,
 				8F5D596E25C5A8C80095C21A /* GroupInvitedTableViewCell.swift in Sources */,
+				A4BE3AAC2625D5970051B213 /* CreateGroupTableViewCell.swift in Sources */,
 				8F5D5A6C25D187D80095C21A /* GetGroupRequest.swift in Sources */,
 				8F0E41E525B9C62D008AA995 /* GroupDetailViewController.swift in Sources */,
 				A4BE3A542618A45F0051B213 /* EmotionRequest.swift in Sources */,

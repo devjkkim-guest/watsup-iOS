@@ -223,7 +223,7 @@ extension MainViewController: UITableViewDelegate {
         if indexPath.row == selectedEmotions?.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "registerCell", for: indexPath) as! RegisterEmotionTableViewCell
             cell.delegate = self
-            cell.date = Date()
+            cell.date = try? viewModel.selectedDate.value()
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EmotionListTableViewCell

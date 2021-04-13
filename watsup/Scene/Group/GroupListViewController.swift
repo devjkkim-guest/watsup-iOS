@@ -11,12 +11,15 @@ import Alamofire
 class GroupListViewController: UIViewController {
     
     enum Section: String, CaseIterable {
+        /// 초대받은 그룹
         case invitedGroup
+        /// 가입된 그룹
         case joinedGroup
     }
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnAdd: UIBarButtonItem!
+    let createGroupCellId = "CreateGroupCell"
     var groups: [GroupResponse]?
     
     override func viewDidLoad() {
@@ -27,12 +30,15 @@ class GroupListViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "GroupInvitedTableViewCell", bundle: nil), forCellReuseIdentifier: Section.invitedGroup.rawValue)
         tableView.register(UINib(nibName: "GroupJoinedTableViewCell", bundle: nil), forCellReuseIdentifier: Section.joinedGroup.rawValue)
-
-        tableView.reloadData()
+        tableView.register(UINib(nibName: "CreateGroupTableViewCell", bundle: nil), forCellReuseIdentifier: createGroupCellId)
     }
     
     @IBAction func onClickAdd(_ sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "Add Group", message: "type name for group", preferredStyle: .alert)
+        showCreateNewGroupAlert()
+    }
+    
+    func showCreateNewGroupAlert() {
+        let alertController = UIAlertController(title: "Create New Group", message: "type name for group", preferredStyle: .alert)
         alertController.addTextField { textField in
             // todo: custom tf
         }
@@ -110,10 +116,16 @@ extension GroupListViewController: UITableViewDelegate {
                 return cell
             }
         case .joinedGroup:
-            let cell = tableView.dequeueReusableCell(withIdentifier: Section.joinedGroup.rawValue, for: indexPath) as! GroupJoinedTableViewCell
-            cell.configure(name: groups?[indexPath.row].name)
-            cell.textLabel?.sizeToFit()
-            return cell
+            if let groups = groups, groups.count != 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: Section.joinedGroup.rawValue, for: indexPath) as! GroupJoinedTableViewCell
+                cell.configure(name: groups[indexPath.row].name)
+                cell.textLabel?.sizeToFit()
+                return cell
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: createGroupCellId, for: indexPath) as! CreateGroupTableViewCell
+                cell.delegate = self
+                return cell
+            }
         }
     }
     
@@ -143,7 +155,19 @@ extension GroupListViewController: UITableViewDataSource {
         case .invitedGroup:
             return 1
         case .joinedGroup:
-            return self.groups?.count ?? 0
+            if let groups = groups, groups.count != 0 {
+                return groups.count
+            }else{
+                // 가입된 그룹이 없을 때 보여줄 셀
+                return 1
+            }
         }
+    }
+}
+
+extension GroupListViewController: CreateGroupTableViewCellDelegate {
+    func didClickCreateGroup() {
+        showCreateNewGroupAlert()
+        
     }
 }
