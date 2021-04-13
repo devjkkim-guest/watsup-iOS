@@ -11,7 +11,9 @@ import Alamofire
 enum APIModel: URLRequestConvertible {
     
     /** Auth */
+    /// 로그인
     case postAuth(_ request: PostAuthRequest)
+    /// JWT 토큰 갱신
     case putAuth
     
     /** User */
@@ -29,23 +31,28 @@ enum APIModel: URLRequestConvertible {
     case getGroup(_ request: GetGroupRequest)
     case postGroups(_ request: PostGroupsRequest)
     case getUserGroup
+    case getUserInbox
     
     static let baseUrl = "http://dev.team726.com:8000"
     
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
-        case .putAuth:
-            return .put
-        case .postEmotion(_):
-            return .post
-        default:
-            break
-        }
-
-        if parameters == nil {
+        case .getUser,
+             .getUserProfile,
+             .getUserEmotions,
+             .getGroup,
+             .getUserGroup,
+             .getUserInbox:
             return .get
-        }else{
+        case .putAuth,
+             .putCSForgotPassword:
+            return .put
+        case .postEmotion,
+             .postAuth,
+             .postUser,
+             .postGroups,
+             .postCSForgotPassword:
             return .post
         }
     }
@@ -98,6 +105,12 @@ enum APIModel: URLRequestConvertible {
             }
         case .getGroup(let group):
             return "/groups/\(group.uuid)"
+        case .getUserInbox:
+            if let userUuid = userUuid {
+                return "/users/\(userUuid)/inbox"
+            }else{
+                return nil
+            }
         }
     }
     
@@ -126,7 +139,8 @@ enum APIModel: URLRequestConvertible {
         case .getUserGroup,
              .getGroup,
              .getUser,
-             .getUserProfile:
+             .getUserProfile,
+             .getUserInbox:
             return nil
         }
     }
@@ -154,13 +168,17 @@ enum APIModel: URLRequestConvertible {
              .postGroups,
              .getGroup,
              .getUserEmotions,
-             .postEmotion:
+             .postEmotion,
+             .getUserInbox:
             if let accessToken = UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue) {
                 let value = "Bearer \(accessToken)"
                 commonHeaders.add(name: HTTPHeaderField.authentication.rawValue, value: value)
             }
             return commonHeaders
-        default:
+        case .postAuth(_),
+             .postUser(_),
+             .postCSForgotPassword(_),
+             .putCSForgotPassword(_):
             return commonHeaders
         }
     }

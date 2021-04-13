@@ -8,5 +8,5 @@
 import Foundation
 
 struct GetUserGroupResponse: Codable {
-    var groups: [GroupResponse]
+    var groups: [Group]
 }

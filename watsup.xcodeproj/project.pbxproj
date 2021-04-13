@@ -101,6 +101,8 @@
 		A4BE3AA0261DD2AD0051B213 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A4BE3A9F261DD2AD0051B213 /* RxSwift */; };
 		A4BE3AAC2625D5970051B213 /* CreateGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3AAA2625D5970051B213 /* CreateGroupTableViewCell.swift */; };
 		A4BE3AAD2625D5970051B213 /* CreateGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE3AAB2625D5970051B213 /* CreateGroupTableViewCell.xib */; };
+		A4BE3AC12625DF720051B213 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3AC02625DF720051B213 /* Group.swift */; };
+		A4BE3AC72625E8740051B213 /* GroupResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3AC62625E8730051B213 /* GroupResponses.swift */; };
 		F2945437CC694AE7593EEE3C /* Pods_watsup_watsupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D00D3B659A21D03D72F26B /* Pods_watsup_watsupUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -222,6 +224,8 @@
 		A4BE3A94261DD27A0051B213 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		A4BE3AAA2625D5970051B213 /* CreateGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupTableViewCell.swift; sourceTree = "<group>"; };
 		A4BE3AAB2625D5970051B213 /* CreateGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateGroupTableViewCell.xib; sourceTree = "<group>"; };
+		A4BE3AC02625DF720051B213 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		A4BE3AC62625E8730051B213 /* GroupResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupResponses.swift; sourceTree = "<group>"; };
 		B55274C625C0B5E15B2008A9 /* Pods_watsupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CB51354ACB513130627B1E /* Pods-watsup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup.debug.xcconfig"; path = "Target Support Files/Pods-watsup/Pods-watsup.debug.xcconfig"; sourceTree = "<group>"; };
 		EC52E897B17F5438C4265895 /* Pods-watsup-watsupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup-watsupUITests.release.xcconfig"; path = "Target Support Files/Pods-watsup-watsupUITests/Pods-watsup-watsupUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -372,6 +376,7 @@
 		8F5AD3E425C1CA0B00DBF158 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				A4BE3AC52625E8680051B213 /* Group */,
 				A4BE3A582618A4C40051B213 /* Emotion */,
 				8F5AD40025C45F9100DBF158 /* CommonResponse.swift */,
 				8F5AD3E525C1CA1B00DBF158 /* PostUsersResponse.swift */,
@@ -596,6 +601,7 @@
 		A4BE3A2C26188F780051B213 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4BE3ABF2625DF570051B213 /* Group */,
 				A4BE3A2E26188FA20051B213 /* Emotion */,
 				A4BE3A2D26188F820051B213 /* Group */,
 				A4BE3A432618936D0051B213 /* DatabaseWorker.swift */,
@@ -632,6 +638,22 @@
 				A4BE3A592618A4CE0051B213 /* EmotionResponse.swift */,
 			);
 			path = Emotion;
+			sourceTree = "<group>";
+		};
+		A4BE3ABF2625DF570051B213 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				A4BE3AC02625DF720051B213 /* Group.swift */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
+		A4BE3AC52625E8680051B213 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				A4BE3AC62625E8730051B213 /* GroupResponses.swift */,
+			);
+			path = Group;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -918,6 +940,7 @@
 				8F5D597C25C84CC00095C21A /* AuthRequestVerificationCode.swift in Sources */,
 				8F5AD3FC25C45F7300DBF158 /* PostAuthResponse.swift in Sources */,
 				8F5D598525C84F6E0095C21A /* AuthVerifyCodeViewController.swift in Sources */,
+				A4BE3AC72625E8740051B213 /* GroupResponses.swift in Sources */,
 				8F5AD3DB25C1C52600DBF158 /* AuthLoginViewController.swift in Sources */,
 				8F4086C425E94D0900E7F61B /* Date+Extension.swift in Sources */,
 				8F2C5AA625C069D0004FF9EF /* APIModel.swift in Sources */,
@@ -933,6 +956,7 @@
 				8F0E41E525B9C62D008AA995 /* GroupDetailViewController.swift in Sources */,
 				A4BE3A542618A45F0051B213 /* EmotionRequest.swift in Sources */,
 				8F2C5A2125BB3917004FF9EF /* CommonEnums.swift in Sources */,
+				A4BE3AC12625DF720051B213 /* Group.swift in Sources */,
 				A4BE39A826128ED50051B213 /* RegisterEmotionViewController.swift in Sources */,
 				8F0E420A25B9CA03008AA995 /* MainViewController.swift in Sources */,
 				8F5AD3D125C1C50100DBF158 /* AuthMainViewController.swift in Sources */,
