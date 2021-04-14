@@ -38,8 +38,7 @@ class SettingViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue) {
-            let request = GetUserRequest(uuid: uuid)
-            API.shared.getUser(request) { result in
+            API.shared.getUser(uuid) { result in
                 switch result {
                 case .success(let data):
                     print(data)
@@ -48,8 +47,7 @@ class SettingViewController: UIViewController {
                 }
             }
             
-            let request2 = GetUserProfileRequest(uuid: uuid)
-            API.shared.getUserProfile(request2) { result in
+            API.shared.getUserProfile(uuid) { result in
                 switch result {
                 case .success(let data):
                     print(data)

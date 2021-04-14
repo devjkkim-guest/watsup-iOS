@@ -28,13 +28,24 @@ class DatabaseWorker {
     }
     
     // MARK: - Group
-    func getGroups() -> Results<Group> {
-        return realm.objects(Group.self)
+    func getGroups(_ groupUUID: String? = nil) -> Results<Group> {
+        if let groupUUID = groupUUID {
+            return realm.objects(Group.self).filter("uuid = \(groupUUID)")
+        }else{
+            return realm.objects(Group.self)
+        }
     }
     
     func setGroups(_ groups: [Group]) {
         try? realm.write {
             realm.add(groups, update: .modified)
+        }
+    }
+    
+    func deleteGroups(_ groupUUID: String) {
+        try? realm.write {
+            let group = realm.objects(Group.self).filter("uuid = '\(groupUUID)'")
+            realm.delete(group)
         }
     }
 }

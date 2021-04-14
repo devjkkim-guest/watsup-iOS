@@ -8,12 +8,14 @@
 import Foundation
 
 protocol ErrorProtocol: Codable {
+    var result: Bool? { get set }
     var code: Int? { get set }
     var message: String? { get set }
     var status: String? { get set }
 }
 
-struct ErrorResponse: ErrorProtocol {
+struct CommonResponse: ErrorProtocol {
+    var result: Bool?
     var code: Int?
     var message: String?
     var status: String?

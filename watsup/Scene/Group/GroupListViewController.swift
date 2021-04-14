@@ -184,6 +184,29 @@ extension GroupListViewController: UITableViewDelegate {
         vc.title = self.joinedGroups?[indexPath.row].name
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if let group = joinedGroups?[indexPath.row], let uuid = group.uuid {
+            let action = UIContextualAction(style: .destructive, title: "Leave") { (action, view, handler) in
+                let alertController = UIAlertController(title: nil, message: "Are you sure to Leave?", preferredStyle: .alert)
+                let actionOK = UIAlertAction(title: "Leave", style: .destructive) { _ in
+                    API.shared.deleteGroups(uuid) { result in
+                        self.joinedGroups = Array(DatabaseWorker.shared.getGroups())
+                        self.tableView.reloadData()
+                    }
+                }
+                let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                
+                alertController.addAction(actionOK)
+                alertController.addAction(actionCancel)
+                self.present(alertController, animated: true, completion: nil)
+            }
+            
+            return UISwipeActionsConfiguration(actions: [action])
+        }else{
+            return nil
+        }
+    }
 }
 
 extension GroupListViewController: UITableViewDataSource {

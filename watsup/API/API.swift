@@ -79,8 +79,8 @@ class API {
     
     // MARK: - User
     
-    func getUser(_ request: GetUserRequest, completion: @escaping (Result<GetUsersResponse, APIError>) -> Void) {
-        API.shared.request(.getUser(request)) { result in
+    func getUser(_ uuid: String, completion: @escaping (Result<GetUsersResponse, APIError>) -> Void) {
+        API.shared.request(.getUser(uuid)) { result in
             completion(result)
         }
     }
@@ -91,8 +91,8 @@ class API {
         }
     }
     
-    func getUserProfile(_ request: GetUserProfileRequest, completion: @escaping (Result<GetUserProfileResponse, APIError>) -> Void) {
-        API.shared.request(.getUserProfile(request)) { result in
+    func getUserProfile(_ uuid: String, completion: @escaping (Result<GetUserProfileResponse, APIError>) -> Void) {
+        API.shared.request(.getUserProfile(uuid)) { result in
             completion(result)
         }
     }
@@ -133,8 +133,8 @@ class API {
     
     // MARK: - Group
 
-    func getGroup(_ request: GetGroupRequest, completion: @escaping (Result<GetGroupsResponse, APIError>) -> Void) {
-        API.shared.request(.getGroup(request)) { result in
+    func getGroup(_ groupUUID: String, completion: @escaping (Result<GetGroupsResponse, APIError>) -> Void) {
+        API.shared.request(.getGroup(groupUUID)) { result in
             completion(result)
         }
     }
@@ -176,12 +176,26 @@ class API {
         }
     }
     
+    func deleteGroups(_ groupUUID: String, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
+        API.shared.request(.deleteGroups(groupUUID)) { (result: Result<CommonResponse, APIError>) in
+            switch result {
+            case .success(let response):
+                if response.result == true {
+                    DatabaseWorker.shared.deleteGroups(groupUUID)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            completion(result)
+        }
+    }
+    
     // MARK: - Error
     func getError(_ data: Data?) -> APIError {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         if let data = data,
-           let json = try? decoder.decode(ErrorResponse.self, from: data) {
+           let json = try? decoder.decode(CommonResponse.self, from: data) {
             let apiError = APIError(errorCode: json.code)
             return apiError
         }else{
