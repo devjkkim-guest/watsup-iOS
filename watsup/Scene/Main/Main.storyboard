@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--투데이-->
+        <!--Month-->
         <scene sceneID="iw0-Nx-vL0">
             <objects>
                 <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dy9-1z-fI6" customClass="MainViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
@@ -135,7 +135,21 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="투데이" image="star.fill" catalog="system" id="P9y-HN-loW"/>
-                    <navigationItem key="navigationItem" title="투데이" largeTitleDisplayMode="always" id="8zb-Wi-sOe"/>
+                    <navigationItem key="navigationItem" title="Month" largeTitleDisplayMode="always" id="8zb-Wi-sOe">
+                        <barButtonItem key="rightBarButtonItem" id="wrF-S4-Svq">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ufm-dB-Urx">
+                                <rect key="frame" x="320" y="10" width="74" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
+                                <state key="normal" title="Graph" image="waveform" catalog="system">
+                                    <color key="titleColor" systemColor="linkColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Dwo-Y4-bgL" kind="show" identifier="pushToEmotionGraphViewController" id="XyZ-nc-zk8"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="Qn0-tX-HNY" id="B3m-5T-itR"/>
@@ -143,7 +157,7 @@
                         <outlet property="dayStackView" destination="sgl-Cd-r4b" id="oaE-Lu-zDD"/>
                         <outlet property="registerEmotionView" destination="SfQ-Yf-htZ" id="DBF-I5-Shh"/>
                         <outlet property="tableView" destination="q8b-2P-22R" id="les-3H-fKh"/>
-                        <segue destination="NIK-qo-32V" kind="show" identifier="pushToRegisterEmotion" id="gac-li-570"/>
+                        <segue destination="NIK-qo-32V" kind="show" identifier="pushToRegisterEmotionViewController" id="gac-li-570"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fb8-R2-hsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -190,7 +204,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GkT-SK-H5S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4514" y="139"/>
+            <point key="canvasLocation" x="4435" y="139"/>
+        </scene>
+        <!--Graph-->
+        <scene sceneID="Fxo-Yw-2nL">
+            <objects>
+                <viewController id="Dwo-Y4-bgL" customClass="EmotionGraphViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z4f-3t-S6s">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="viP-Y8-LtY" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="150" width="374" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="UKe-CL-aLO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DGf-X4-qJa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="viP-Y8-LtY" firstAttribute="top" secondItem="DGf-X4-qJa" secondAttribute="top" constant="10" id="3CX-Ve-C0l"/>
+                            <constraint firstItem="DGf-X4-qJa" firstAttribute="trailing" secondItem="viP-Y8-LtY" secondAttribute="trailing" constant="20" id="7Ba-FQ-Eg0"/>
+                            <constraint firstItem="viP-Y8-LtY" firstAttribute="leading" secondItem="DGf-X4-qJa" secondAttribute="leading" constant="20" id="BV4-Ga-V9m"/>
+                            <constraint firstItem="viP-Y8-LtY" firstAttribute="centerX" secondItem="DGf-X4-qJa" secondAttribute="centerX" id="ivp-CK-tOU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Graph" id="cZt-Ch-qPf"/>
+                    <connections>
+                        <outlet property="lineChartView" destination="viP-Y8-LtY" id="dIJ-ED-Phh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kfv-FH-Fb2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5143" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="52n-wg-4Qz">
@@ -208,11 +256,15 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hou-6C-52q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2815.9420289855075" y="138.61607142857142"/>
+            <point key="canvasLocation" x="3035" y="139"/>
         </scene>
     </scenes>
     <resources>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="waveform" catalog="system" width="128" height="128"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

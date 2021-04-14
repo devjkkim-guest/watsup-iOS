@@ -303,6 +303,6 @@ extension MainViewController: RegisterEmotionTableViewCellDelegate {
     }
     
     func didClickRegister(_ date: Date) {
-        self.performSegue(withIdentifier: "pushToRegisterEmotion", sender: date)
+        self.performSegue(withIdentifier: "pushToRegisterEmotionViewController", sender: date)
     }
 }
