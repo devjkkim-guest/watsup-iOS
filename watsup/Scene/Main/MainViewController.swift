@@ -74,7 +74,9 @@ class MainViewController: BaseViewController {
             switch changes {
             case .update:
                 // TO DO: reload tableView only if inserted data belongs to currently selected day.
-                self.tableView.reloadData()
+                if let selectedDate = try? self.viewModel.selectedDate.value() {
+                    self.reloadSelectedEmotions(selectedDate: selectedDate)
+                }
             case .initial:
                 self.tableView.reloadData()
             default:
@@ -86,12 +88,7 @@ class MainViewController: BaseViewController {
             .subscribe(onNext: { [weak self] selectedDate in
                 self?.collectionView.reloadData()
                 // reload tableView after filtering emotions for currently selected day.
-                if let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate) {
-                    let startTime = selectedDate.timeIntervalSince1970*1000
-                    let endTime = nextDay.timeIntervalSince1970*1000
-                    self?.selectedEmotions = self?.emotions.filter("createdAt >= \(startTime) AND createdAt < \(endTime)")
-                    self?.tableView.reloadData()
-                }
+                self?.reloadSelectedEmotions(selectedDate: selectedDate)
             })
             .disposed(by: disposeBag)
     }
@@ -115,6 +112,15 @@ class MainViewController: BaseViewController {
             return weeks.count
         }else{
             return nil
+        }
+    }
+    
+    private func reloadSelectedEmotions(selectedDate: Date) {
+        if let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate) {
+            let startTime = selectedDate.timeIntervalSince1970
+            let endTime = nextDay.timeIntervalSince1970
+            selectedEmotions = emotions.filter("createdAt >= \(startTime) AND createdAt < \(endTime)")
+            tableView.reloadData()
         }
     }
     
@@ -149,25 +155,41 @@ extension MainViewController: UICollectionViewDelegate {
                 cell.dayLabel.text = "\(day)"
                 
                 let components: Set = [Calendar.Component.year, Calendar.Component.month, Calendar.Component.day]
-                let currentDay = Calendar.current.dateComponents(components, from: currentDate)
+                let firstDay = Calendar.current.dateComponents(components, from: firstDate)
                 let today = Calendar.current.dateComponents(components, from: Date())
+                let currentDay = Calendar.current.dateComponents(components, from: currentDate)
                 
+                // 오늘 날짜 마크
                 if today == currentDay {
-                    // 오늘 날짜인 경우
                     cell.todayMark.isHidden = false
                 }else{
                     cell.todayMark.isHidden = true
                 }
                 
-                let firstDay = Calendar.current.dateComponents(components, from: firstDate)
+                // 날짜 컬러
                 if firstDay.month == currentDay.month {
-                    cell.dayLabel.textColor = .black
+                    if Date() < currentDate {
+                        // 오늘 이후의 날짜는 gray
+                        cell.dayLabel.textColor = .systemGray3
+                    }else{
+                        // 이번달 오늘 포함 이전의 날짜는 black
+                        cell.dayLabel.textColor = .black
+                    }
                 }else{
+                    // 다른 월의 날짜는 gray
                     cell.dayLabel.textColor = .systemGray4
+                }
+                
+                // selection 가능 여부
+                if Date() < currentDate {
+                    cell.isUserInteractionEnabled = false
+                }else{
+                    cell.isUserInteractionEnabled = true
                 }
                 
                 // set backgroundColor light gray if current cell is selected day and not today
                 if let selectedDay = try? viewModel.selectedDate.value(),
+                   firstDay.month == currentDay.month,
                    currentDay == Calendar.current.dateComponents(components, from: selectedDay),
                    cell.todayMark.isHidden {
                     cell.selectedMark.backgroundColor = .lightGray

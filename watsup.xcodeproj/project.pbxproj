@@ -92,7 +92,6 @@
 		A4BE3A3026188FB10051B213 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3A2F26188FB10051B213 /* Emotion.swift */; };
 		A4BE3A442618936E0051B213 /* DatabaseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3A432618936D0051B213 /* DatabaseWorker.swift */; };
 		A4BE3A542618A45F0051B213 /* EmotionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3A532618A45F0051B213 /* EmotionRequest.swift */; };
-		A4BE3A5A2618A4CE0051B213 /* EmotionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3A592618A4CE0051B213 /* EmotionResponse.swift */; };
 		A4BE3A95261DD27A0051B213 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3A94261DD27A0051B213 /* MainViewModel.swift */; };
 		A4BE3A9E261DD2AD0051B213 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A4BE3A9D261DD2AD0051B213 /* RxCocoa */; };
 		A4BE3AA0261DD2AD0051B213 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A4BE3A9F261DD2AD0051B213 /* RxSwift */; };
@@ -229,7 +228,6 @@
 		A4BE3A2F26188FB10051B213 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		A4BE3A432618936D0051B213 /* DatabaseWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseWorker.swift; sourceTree = "<group>"; };
 		A4BE3A532618A45F0051B213 /* EmotionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionRequest.swift; sourceTree = "<group>"; };
-		A4BE3A592618A4CE0051B213 /* EmotionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionResponse.swift; sourceTree = "<group>"; };
 		A4BE3A94261DD27A0051B213 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		A4BE3AAA2625D5970051B213 /* CreateGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupTableViewCell.swift; sourceTree = "<group>"; };
 		A4BE3AAB2625D5970051B213 /* CreateGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateGroupTableViewCell.xib; sourceTree = "<group>"; };
@@ -386,7 +384,6 @@
 			isa = PBXGroup;
 			children = (
 				A4BE3AC52625E8680051B213 /* Group */,
-				A4BE3A582618A4C40051B213 /* Emotion */,
 				8F5AD40025C45F9100DBF158 /* CommonResponse.swift */,
 				8F5AD3E525C1CA1B00DBF158 /* PostUsersResponse.swift */,
 				8F5AD3FB25C45F7300DBF158 /* PostAuthResponse.swift */,
@@ -637,14 +634,6 @@
 			isa = PBXGroup;
 			children = (
 				A4BE3A532618A45F0051B213 /* EmotionRequest.swift */,
-			);
-			path = Emotion;
-			sourceTree = "<group>";
-		};
-		A4BE3A582618A4C40051B213 /* Emotion */ = {
-			isa = PBXGroup;
-			children = (
-				A4BE3A592618A4CE0051B213 /* EmotionResponse.swift */,
 			);
 			path = Emotion;
 			sourceTree = "<group>";
@@ -992,7 +981,6 @@
 				8F5D5A4525D1741F0095C21A /* PostCSForgotPasswordResponse.swift in Sources */,
 				8F61769F25B856140059B4B7 /* TabBarController.swift in Sources */,
 				A4BE3A95261DD27A0051B213 /* MainViewModel.swift in Sources */,
-				A4BE3A5A2618A4CE0051B213 /* EmotionResponse.swift in Sources */,
 				8F0E421E25B9D0A3008AA995 /* XibView.swift in Sources */,
 				8F5AD3E625C1CA1B00DBF158 /* PostUsersResponse.swift in Sources */,
 				A4775C41260A3ED500A007EF /* EmotionListTableViewCell.swift in Sources */,

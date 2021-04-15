@@ -111,19 +111,11 @@ class API {
         }
     }
     
-    func postEmotion(_ request: PostEmotionRequest, completion: @escaping (Result<PostEmotionResponse, APIError>) -> Void) {
-        API.shared.request(.postEmotion(request)) { (result: Result<PostEmotionResponse, APIError>) in
+    func postEmotion(_ request: PostEmotionRequest, completion: @escaping (Result<Emotion, APIError>) -> Void) {
+        API.shared.request(.postEmotion(request)) { (result: Result<Emotion, APIError>) in
             switch result {
-            case .success:
-//                if response.result {
-//                    let emotion = Emotion()
-////                    emotion.id = re
-//                    emotion.message = request.message
-//                    emotion.emotionType = request.emotion_type
-//                    emotion.score = request.score
-//                    DatabaseWorker.shared.setEmotionLogs([emotion])
-//                }
-            break
+            case .success(let response):
+                DatabaseWorker.shared.setEmotionLogs([response])
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -132,7 +124,7 @@ class API {
     }
     
     // MARK: - Group
-
+    
     func getGroup(_ groupUUID: String, completion: @escaping (Result<GetGroupsResponse, APIError>) -> Void) {
         API.shared.request(.getGroup(groupUUID)) { result in
             completion(result)

@@ -7,6 +7,8 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
+import RxSwift
 
 class GroupListViewController: UIViewController {
     
@@ -22,12 +24,19 @@ class GroupListViewController: UIViewController {
     let createGroupCellId = "CreateGroupCell"
     var invitedGroups: [InboxGroupResponse]?
     var joinedGroups: [Group]?
+    var groupNotificationToken: NotificationToken?
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         joinedGroups = Array(DatabaseWorker.shared.getGroups())
         getInvitedGroups()
         getUserGroups()
+        setTableView()
+    }
+    
+    // MARK: - Initial Set
+    func setTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "GroupInvitedTableViewCell", bundle: nil), forCellReuseIdentifier: Section.invitedGroup.rawValue)
@@ -35,6 +44,20 @@ class GroupListViewController: UIViewController {
         tableView.register(UINib(nibName: "CreateGroupTableViewCell", bundle: nil), forCellReuseIdentifier: createGroupCellId)
     }
     
+    func bindModel() {
+        let groups = DatabaseWorker.shared.getGroups()
+        groupNotificationToken = groups.observe { change in
+            switch change {
+            case .update(let results, deletions: _, insertions: _, modifications: _):
+                self.joinedGroups = Array(results)
+                self.tableView.reloadData()
+            case .initial, .error:
+                break
+            }
+        }
+    }
+    
+    // MARK: - IBActions
     @IBAction func onClickAdd(_ sender: UIBarButtonItem) {
         showCreateNewGroupAlert()
     }
