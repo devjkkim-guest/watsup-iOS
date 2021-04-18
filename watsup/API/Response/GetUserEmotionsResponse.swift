@@ -9,8 +9,5 @@ import Foundation
 import RealmSwift
 
 struct GetUserEmotionsResponse: Codable {
-//    var code: Int?
-//    var message: String?
-//    var status: String?
     var logs: [Emotion]?
 }

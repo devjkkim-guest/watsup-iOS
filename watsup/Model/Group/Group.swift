@@ -10,6 +10,7 @@ import RealmSwift
 
 class Group: Object, Codable {
     @objc dynamic var uuid: String?
+    var joinedUsers: [User]?
     @objc dynamic var name: String?
     
     override class func primaryKey() -> String? {

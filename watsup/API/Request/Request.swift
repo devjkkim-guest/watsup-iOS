@@ -18,6 +18,10 @@ struct PostUserRequest: Codable {
     let language_code: String
 }
 
+struct PutUserProfileRequest: Codable {
+    let nickname: String
+}
+
 struct PostAuthRequest: Codable {
     let email: String
     let password: String

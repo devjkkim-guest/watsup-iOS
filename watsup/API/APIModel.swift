@@ -20,7 +20,8 @@ enum APIModel: URLRequestConvertible {
     case getUser(_ uuid: String)
     case postUser(_ request: PostUserRequest)
     case getUserProfile(_ uuid: String)
-    case getUserEmotions
+    case putUserProfile(_ uuid: String, request: PutUserProfileRequest)
+    case getUserEmotions(_ uuid: String? = nil)
     case postEmotion(_ request: PostEmotionRequest)
     
     /** Customer Service */
@@ -46,7 +47,8 @@ enum APIModel: URLRequestConvertible {
              .getUserGroup,
              .getUserInbox:
             return .get
-        case .putAuth,
+        case .putUserProfile,
+             .putAuth,
              .putCSForgotPassword:
             return .put
         case .postEmotion,
@@ -74,11 +76,17 @@ enum APIModel: URLRequestConvertible {
             return "/users/\(uuid)/profile"
         case .postUser:
             return "/users"
-        case .getUserEmotions:
-            if let userUUID = userUUID {
-                return "/users/\(userUUID)/emotions"
+        case .putUserProfile(let uuid, _):
+            return "/users/\(uuid)/profile"
+        case .getUserEmotions(let uuid):
+            if let uuid = uuid {
+                return "/users/\(uuid)/emotions"
             }else{
-                return nil
+                if let userUUID = userUUID {
+                    return "/users/\(userUUID)/emotions"
+                }else{
+                    return nil
+                }
             }
         case .postEmotion:
             if let userUUID = userUUID {
@@ -129,6 +137,8 @@ enum APIModel: URLRequestConvertible {
             return encode(parameter: param)
         case .putAuth:
             return nil
+        case .putUserProfile(_, let param):
+            return encode(parameter: param)
         case .putCSForgotPassword(let param):
             return encode(parameter: param)
         case .postCSForgotPassword(let param):
@@ -170,6 +180,7 @@ enum APIModel: URLRequestConvertible {
             return commonHeaders
         case .getUser,
              .getUserProfile,
+             .putUserProfile,
              .getUserGroup,
              .postGroups,
              .getGroup,

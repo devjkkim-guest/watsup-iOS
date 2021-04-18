@@ -33,6 +33,7 @@ class GroupListViewController: UIViewController {
         getInvitedGroups()
         getUserGroups()
         setTableView()
+        bindModel()
     }
     
     // MARK: - Initial Set
@@ -203,9 +204,19 @@ extension GroupListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard(name: "Group", bundle: nil).instantiateViewController(withIdentifier: "GroupDetailVC")
-        vc.title = self.joinedGroups?[indexPath.row].name
-        self.navigationController?.pushViewController(vc, animated: true)
+        if let group = self.joinedGroups?[indexPath.row], let uuid = group.uuid {
+            API.shared.getGroup(uuid) { result in
+                switch result {
+                case .success(let group):
+                    let vc = UIStoryboard(name: "Group", bundle: nil).instantiateViewController(withIdentifier: "GroupDetailVC") as! GroupDetailViewController
+                    vc.title = self.joinedGroups?[indexPath.row].name
+                    vc.group = group
+                    self.navigationController?.pushViewController(vc, animated: true)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

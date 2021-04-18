@@ -9,11 +9,14 @@ import UIKit
 
 class EmotionListTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var emotionLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        timeLabel.layer.cornerRadius = 6
+        timeLabel.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -22,8 +25,12 @@ class EmotionListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(emotion: Int, comment: String?) {
-        emotionLabel.text = EmotionType.getEmotion(rawValue: emotion).rawValue
-        commentLabel.text = comment
+    func configure(emotion: Emotion) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm"
+        let time = dateFormatter.string(from: Date(timeIntervalSince1970: emotion.createdAt))
+        timeLabel.text = time
+        emotionLabel.text = EmotionType.getEmotion(rawValue: emotion.emotionType).rawValue
+        commentLabel.text = emotion.message
     }
 }

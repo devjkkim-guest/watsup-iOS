@@ -30,9 +30,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFG-yx-RPj">
-                        <rect key="frame" x="264" y="7" width="46" height="30"/>
-                        <state key="normal" title="Button"/>
+                        <rect key="frame" x="272" y="7" width="38" height="30"/>
+                        <state key="normal" title="Expel"/>
+                        <connections>
+                            <action selector="onClickExpel:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tcB-w5-QTI"/>
+                        </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t45-yu-Kvc">
+                        <rect key="frame" x="108" y="12" width="41.5" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="SQz-g5-QxJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0TX-fK-iHl"/>
@@ -40,6 +49,10 @@
                     <constraint firstItem="2nD-Kq-En5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3TS-Y6-ByX"/>
                     <constraint firstItem="2nD-Kq-En5" firstAttribute="leading" secondItem="SQz-g5-QxJ" secondAttribute="trailing" constant="10" id="40r-Ob-VjJ"/>
                     <constraint firstItem="sFG-yx-RPj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7Pg-M6-RSj"/>
+                    <constraint firstItem="t45-yu-Kvc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="K0P-FN-Sim"/>
+                    <constraint firstItem="t45-yu-Kvc" firstAttribute="leading" secondItem="2nD-Kq-En5" secondAttribute="trailing" constant="4" id="Kog-iB-0aP"/>
+                    <constraint firstItem="t45-yu-Kvc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="NEV-KK-Q8Z"/>
+                    <constraint firstAttribute="bottom" secondItem="t45-yu-Kvc" secondAttribute="bottom" constant="12" id="cix-9j-Mff"/>
                     <constraint firstItem="SQz-g5-QxJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="fYI-Ao-sR4"/>
                 </constraints>
             </tableViewCellContentView>
@@ -47,6 +60,7 @@
             <connections>
                 <outlet property="emotionLabel" destination="2nD-Kq-En5" id="dci-fv-Oab"/>
                 <outlet property="expelButton" destination="sFG-yx-RPj" id="lNR-k2-UJ9"/>
+                <outlet property="messageLabel" destination="t45-yu-Kvc" id="ivM-D7-11y"/>
                 <outlet property="nameLabel" destination="SQz-g5-QxJ" id="zt7-gy-LUO"/>
             </connections>
             <point key="canvasLocation" x="-25" y="87"/>

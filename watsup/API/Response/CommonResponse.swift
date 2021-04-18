@@ -36,6 +36,4 @@ struct ProfileResponse: Codable {
 struct Identity: Codable {
     var email: String?
     var uuid: String?
-    var profile: ProfileResponse?
-    var status: String?
 }

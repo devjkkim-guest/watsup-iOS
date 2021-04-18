@@ -75,7 +75,7 @@ extension SettingViewController: UITableViewDelegate {
             switch MyInfoSection.allCases[indexPath.row] {
             case .profile:
                 if let cell = cell as? SettingProfileTableViewCell {
-                    cell.setData()
+                    cell.configure()
                 }
             }
             return cell
@@ -105,6 +105,15 @@ extension SettingViewController: UITableViewDelegate {
             return nil
         case .setting:
             return "Setting"
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch Section.allCases[indexPath.section] {
+        case .myInfo:
+            break
+        default:
+            break
         }
     }
 }

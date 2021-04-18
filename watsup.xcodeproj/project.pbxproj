@@ -46,7 +46,6 @@
 		8F5D592225C474D20095C21A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D592125C474D20095C21A /* UIView+Extension.swift */; };
 		8F5D592C25C486AE0095C21A /* PostGroupsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D592B25C486AE0095C21A /* PostGroupsRequest.swift */; };
 		8F5D593125C4871E0095C21A /* PostGroupsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D593025C4871E0095C21A /* PostGroupsResponse.swift */; };
-		8F5D593E25C4899A0095C21A /* GetUsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D593D25C4899A0095C21A /* GetUsersResponse.swift */; };
 		8F5D594325C489D10095C21A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D594225C489D10095C21A /* SettingViewController.swift */; };
 		8F5D594B25C4924C0095C21A /* GetUserProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D594A25C4924C0095C21A /* GetUserProfileResponse.swift */; };
 		8F5D595025C494230095C21A /* APIInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D594F25C494230095C21A /* APIInterceptor.swift */; };
@@ -68,7 +67,6 @@
 		8F5D5A3C25CECF9C0095C21A /* GetUserGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A3B25CECF9C0095C21A /* GetUserGroupResponse.swift */; };
 		8F5D5A4525D1741F0095C21A /* PostCSForgotPasswordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A4425D1741F0095C21A /* PostCSForgotPasswordResponse.swift */; };
 		8F5D5A5525D176300095C21A /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A5425D176300095C21A /* APIError.swift */; };
-		8F5D5A6725D186CF0095C21A /* GetGroupsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D5A6625D186CF0095C21A /* GetGroupsResponse.swift */; };
 		8F61769B25B856140059B4B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F61769A25B856140059B4B7 /* AppDelegate.swift */; };
 		8F61769F25B856140059B4B7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F61769E25B856140059B4B7 /* TabBarController.swift */; };
 		8F6176A225B856140059B4B7 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F6176A025B856140059B4B7 /* TabBar.storyboard */; };
@@ -86,6 +84,10 @@
 		A4775C42260A3ED500A007EF /* EmotionListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4775C40260A3ED500A007EF /* EmotionListTableViewCell.xib */; };
 		A4775C4F260B777300A007EF /* GetUserEmotionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4775C4E260B777300A007EF /* GetUserEmotionsResponse.swift */; };
 		A4775C5C260B7B5000A007EF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4775C5B260B7B5000A007EF /* Request.swift */; };
+		A485A5D8262AC021007072D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A485A5D7262AC021007072D0 /* User.swift */; };
+		A485A5E4262AD4D8007072D0 /* UserDetailTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A485A5E3262AD4D8007072D0 /* UserDetailTableHeaderView.swift */; };
+		A485A5E8262AD50E007072D0 /* UserDetailTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A485A5E7262AD50E007072D0 /* UserDetailTableHeaderView.xib */; };
+		A485A5F0262B030F007072D0 /* AuthJoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A485A5EF262B030F007072D0 /* AuthJoinViewModel.swift */; };
 		A4BE39A226128C800051B213 /* RegisterEmotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */; };
 		A4BE39A326128C800051B213 /* RegisterEmotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */; };
 		A4BE39A826128ED50051B213 /* RegisterEmotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE39A726128ED50051B213 /* RegisterEmotionViewController.swift */; };
@@ -177,7 +179,6 @@
 		8F5D592125C474D20095C21A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8F5D592B25C486AE0095C21A /* PostGroupsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGroupsRequest.swift; sourceTree = "<group>"; };
 		8F5D593025C4871E0095C21A /* PostGroupsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGroupsResponse.swift; sourceTree = "<group>"; };
-		8F5D593D25C4899A0095C21A /* GetUsersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUsersResponse.swift; sourceTree = "<group>"; };
 		8F5D594225C489D10095C21A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		8F5D594A25C4924C0095C21A /* GetUserProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileResponse.swift; sourceTree = "<group>"; };
 		8F5D594F25C494230095C21A /* APIInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIInterceptor.swift; sourceTree = "<group>"; };
@@ -197,7 +198,6 @@
 		8F5D5A3B25CECF9C0095C21A /* GetUserGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserGroupResponse.swift; sourceTree = "<group>"; };
 		8F5D5A4425D1741F0095C21A /* PostCSForgotPasswordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCSForgotPasswordResponse.swift; sourceTree = "<group>"; };
 		8F5D5A5425D176300095C21A /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
-		8F5D5A6625D186CF0095C21A /* GetGroupsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupsResponse.swift; sourceTree = "<group>"; };
 		8F61769725B856140059B4B7 /* watsup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watsup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F61769A25B856140059B4B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F61769E25B856140059B4B7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -222,6 +222,10 @@
 		A4775C40260A3ED500A007EF /* EmotionListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmotionListTableViewCell.xib; sourceTree = "<group>"; };
 		A4775C4E260B777300A007EF /* GetUserEmotionsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserEmotionsResponse.swift; sourceTree = "<group>"; };
 		A4775C5B260B7B5000A007EF /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		A485A5D7262AC021007072D0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A485A5E3262AD4D8007072D0 /* UserDetailTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailTableHeaderView.swift; sourceTree = "<group>"; };
+		A485A5E7262AD50E007072D0 /* UserDetailTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailTableHeaderView.xib; sourceTree = "<group>"; };
+		A485A5EF262B030F007072D0 /* AuthJoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthJoinViewModel.swift; sourceTree = "<group>"; };
 		A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmotionTableViewCell.swift; sourceTree = "<group>"; };
 		A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterEmotionTableViewCell.xib; sourceTree = "<group>"; };
 		A4BE39A726128ED50051B213 /* RegisterEmotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmotionViewController.swift; sourceTree = "<group>"; };
@@ -324,6 +328,8 @@
 			children = (
 				8F0E421325B9CD64008AA995 /* SelectEmotionView.xib */,
 				8F0E421825B9CD75008AA995 /* SelectEmotionView.swift */,
+				A485A5E7262AD50E007072D0 /* UserDetailTableHeaderView.xib */,
+				A485A5E3262AD4D8007072D0 /* UserDetailTableHeaderView.swift */,
 				8F0E421D25B9D0A3008AA995 /* XibView.swift */,
 			);
 			path = Views;
@@ -388,12 +394,10 @@
 				8F5AD3E525C1CA1B00DBF158 /* PostUsersResponse.swift */,
 				8F5AD3FB25C45F7300DBF158 /* PostAuthResponse.swift */,
 				8F5D593025C4871E0095C21A /* PostGroupsResponse.swift */,
-				8F5D593D25C4899A0095C21A /* GetUsersResponse.swift */,
 				8F5D594A25C4924C0095C21A /* GetUserProfileResponse.swift */,
 				8F5D59AF25C863EE0095C21A /* PutCSForgotPasswordResponse.swift */,
 				8F5D5A4425D1741F0095C21A /* PostCSForgotPasswordResponse.swift */,
 				8F5D5A3B25CECF9C0095C21A /* GetUserGroupResponse.swift */,
-				8F5D5A6625D186CF0095C21A /* GetGroupsResponse.swift */,
 				A4775C4E260B777300A007EF /* GetUserEmotionsResponse.swift */,
 				8940DEDC2613544700B7D1E4 /* PutAuthResponse.swift */,
 			);
@@ -501,6 +505,7 @@
 			isa = PBXGroup;
 			children = (
 				8F5AD3D525C1C51800DBF158 /* AuthJoinViewController.swift */,
+				A485A5EF262B030F007072D0 /* AuthJoinViewModel.swift */,
 			);
 			path = Join;
 			sourceTree = "<group>";
@@ -604,22 +609,23 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		A485A5D6262AC010007072D0 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				A485A5D7262AC021007072D0 /* User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		A4BE3A2C26188F780051B213 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A485A5D6262AC010007072D0 /* User */,
 				A4BE3ABF2625DF570051B213 /* Group */,
 				A4BE3A2E26188FA20051B213 /* Emotion */,
-				A4BE3A2D26188F820051B213 /* Group */,
 				A4BE3A432618936D0051B213 /* DatabaseWorker.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		A4BE3A2D26188F820051B213 /* Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Group;
 			sourceTree = "<group>";
 		};
 		A4BE3A2E26188FA20051B213 /* Emotion */ = {
@@ -777,6 +783,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A485A5E8262AD50E007072D0 /* UserDetailTableHeaderView.xib in Resources */,
 				8F6176A725B856150059B4B7 /* LaunchScreen.storyboard in Resources */,
 				8F0E41CD25B85EE2008AA995 /* Main.storyboard in Resources */,
 				A4BE3AAD2625D5970051B213 /* CreateGroupTableViewCell.xib in Resources */,
@@ -949,13 +956,15 @@
 				8F5D595C25C5648C0095C21A /* SettingProfileTableViewCell.swift in Sources */,
 				8F5D591D25C473860095C21A /* UIButton+Extension.swift in Sources */,
 				8F2C5AA125C067D3004FF9EF /* API.swift in Sources */,
-				8F5D593E25C4899A0095C21A /* GetUsersResponse.swift in Sources */,
 				8F8E3E6D25DD69E400EBB8A8 /* String+Extension.swift in Sources */,
 				8F5D596E25C5A8C80095C21A /* GroupInvitedTableViewCell.swift in Sources */,
 				A4BE3AAC2625D5970051B213 /* CreateGroupTableViewCell.swift in Sources */,
+				A485A5E4262AD4D8007072D0 /* UserDetailTableHeaderView.swift in Sources */,
 				8F0E41E525B9C62D008AA995 /* GroupDetailViewController.swift in Sources */,
 				A4BE3A542618A45F0051B213 /* EmotionRequest.swift in Sources */,
+				A485A5D8262AC021007072D0 /* User.swift in Sources */,
 				8F2C5A2125BB3917004FF9EF /* CommonEnums.swift in Sources */,
+				A485A5F0262B030F007072D0 /* AuthJoinViewModel.swift in Sources */,
 				A4BE3AC12625DF720051B213 /* Group.swift in Sources */,
 				A4BE39A826128ED50051B213 /* RegisterEmotionViewController.swift in Sources */,
 				8F0E420A25B9CA03008AA995 /* MainViewController.swift in Sources */,
@@ -977,7 +986,6 @@
 				8F5D59B825C864810095C21A /* AuthVerifyCodeViewModel.swift in Sources */,
 				8F5AD3D625C1C51800DBF158 /* AuthJoinViewController.swift in Sources */,
 				8F5D59B025C863EF0095C21A /* PutCSForgotPasswordResponse.swift in Sources */,
-				8F5D5A6725D186CF0095C21A /* GetGroupsResponse.swift in Sources */,
 				8F5D5A4525D1741F0095C21A /* PostCSForgotPasswordResponse.swift in Sources */,
 				8F61769F25B856140059B4B7 /* TabBarController.swift in Sources */,
 				A4BE3A95261DD27A0051B213 /* MainViewModel.swift in Sources */,

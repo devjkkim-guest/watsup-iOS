@@ -152,49 +152,73 @@ extension MainViewController: UICollectionViewDelegate {
             if let firstDate = getFirstDate(of: indexPath.section),
                let currentDate = firstDate.getDate(offset: indexPath.item){
                 let day = Calendar.current.component(.day, from: currentDate)
-                cell.dayLabel.text = "\(day)"
                 
                 let components: Set = [Calendar.Component.year, Calendar.Component.month, Calendar.Component.day]
                 let firstDay = Calendar.current.dateComponents(components, from: firstDate)
                 let today = Calendar.current.dateComponents(components, from: Date())
                 let currentDay = Calendar.current.dateComponents(components, from: currentDate)
                 
-                // 오늘 날짜 마크
-                if today == currentDay {
-                    cell.todayMark.isHidden = false
-                }else{
-                    cell.todayMark.isHidden = true
-                }
-                
-                // 날짜 컬러
                 if firstDay.month == currentDay.month {
+                    cell.dayLabel.text = "\(day)"
+                    
+                    // set label textColor & font-weight
                     if Date() < currentDate {
                         // 오늘 이후의 날짜는 gray
                         cell.dayLabel.textColor = .systemGray3
                     }else{
-                        // 이번달 오늘 포함 이전의 날짜는 black
-                        cell.dayLabel.textColor = .black
+                        if let selectedDate = try? viewModel.selectedDate.value() {
+                            if selectedDate == currentDate {
+                                // 선택된 경우 항상 흰색
+                                cell.dayLabel.textColor = .white
+                                cell.dayLabel.font = .boldSystemFont(ofSize: 17)
+                            }else if currentDate == Date().startOfDay {
+                                // 오늘인데 선택되지 않은 경우 빨간색
+                                cell.dayLabel.textColor = .red
+                                cell.dayLabel.font = .boldSystemFont(ofSize: 17)
+                            }else{
+                                // 그 외 검정색
+                                cell.dayLabel.textColor = .black
+                                cell.dayLabel.font = .systemFont(ofSize: 17)
+                            }
+                        }else{
+                            if currentDate == Date().startOfDay {
+                                cell.dayLabel.textColor = .white
+                                cell.dayLabel.font = .boldSystemFont(ofSize: 17)
+                            }else{
+                                cell.dayLabel.textColor = .black
+                                cell.dayLabel.font = .systemFont(ofSize: 17)
+                            }
+                        }
+                    }
+                    // set dayMark
+                    if let selectedDate = try? viewModel.selectedDate.value() {
+                        if selectedDate == currentDate
+                            && selectedDate == Date().startOfDay {
+                            cell.dayMark.backgroundColor = .red
+                        }else if selectedDate == currentDate {
+                            cell.dayMark.backgroundColor = .black
+                        }else{
+                            cell.dayMark.backgroundColor = nil
+                        }
+                    }else{
+                        if today == currentDay {
+                            cell.dayMark.backgroundColor = .red
+                        }else{
+                            cell.dayMark.backgroundColor = nil
+                        }
+                    }
+                    
+                    // selection 가능 여부
+                    if Date() < currentDate {
+                        cell.isUserInteractionEnabled = false
+                    }else{
+                        cell.isUserInteractionEnabled = true
                     }
                 }else{
-                    // 다른 월의 날짜는 gray
-                    cell.dayLabel.textColor = .systemGray4
-                }
-                
-                // selection 가능 여부
-                if Date() < currentDate {
+                    // 다른 월의 날짜는 지움
+                    cell.dayLabel.text = nil
+                    cell.dayMark.backgroundColor = nil
                     cell.isUserInteractionEnabled = false
-                }else{
-                    cell.isUserInteractionEnabled = true
-                }
-                
-                // set backgroundColor light gray if current cell is selected day and not today
-                if let selectedDay = try? viewModel.selectedDate.value(),
-                   firstDay.month == currentDay.month,
-                   currentDay == Calendar.current.dateComponents(components, from: selectedDay),
-                   cell.todayMark.isHidden {
-                    cell.selectedMark.backgroundColor = .lightGray
-                }else{
-                    cell.selectedMark.backgroundColor = nil
                 }
             }
             
@@ -250,7 +274,7 @@ extension MainViewController: UITableViewDelegate {
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EmotionListTableViewCell
             if let emotion = selectedEmotions?[indexPath.row] {
-                cell.configure(emotion: emotion.emotionType, comment: emotion.message)
+                cell.configure(emotion: emotion)
             }
             return cell
         }

@@ -15,14 +15,17 @@ class SettingProfileTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        btnProfile.layer.cornerRadius = btnProfile.frame.size.width/2
+        btnProfile.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(_ data: GetUserProfileResponse? = nil) {
-        nameLabel.text = "닉네임"
+    func configure() {
+        if let user = DatabaseWorker.shared.getMyProfile()?.first {
+            nameLabel.text = user.profile?.nickname
+        }
     }
 }
