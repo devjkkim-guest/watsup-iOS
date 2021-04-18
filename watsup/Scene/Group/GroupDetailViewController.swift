@@ -7,9 +7,10 @@
 
 import UIKit
 
-class GroupDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class GroupDetailViewController: UIViewController {
     
     @IBOutlet weak var membersTableView: UITableView!
+    var group: Group?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,28 +19,46 @@ class GroupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         membersTableView.dataSource = self
         membersTableView.register(UINib(nibName: "GroupMemberTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
-    
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension GroupDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedUser = group?.joinedUsers?[indexPath.row]
+        if let uuid = selectedUser?.uuid {
+            API.shared.getUserEmotions(uuid: uuid) { result in
+                switch result {
+                case .success(let response):
+                    if let logs = response.logs {
+                        let vc = UserDetailViewController(nibName: "UserDetailViewController", bundle: nil)
+                        vc.user = selectedUser
+                        vc.emotions = logs
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
-    */
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
+}
+
+extension GroupDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GroupMemberTableViewCell
-
-        cell.nameLabel.text = "txt"
-        cell.emotionLabel.text = "💩"
-
+        cell.delegate = self
+        let user = group?.joinedUsers?[indexPath.row]
+        let emotion = DatabaseWorker.shared.getEmotionList()
+        cell.configure(user: user, emotion: emotion.first)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return group?.joinedUsers?.count ?? 0
+    }
+}
 
+extension GroupDetailViewController: GroupMemberTableViewCellDelegate {
+    func didClickExpel(_ sender: UIButton) {
+        
+    }
 }

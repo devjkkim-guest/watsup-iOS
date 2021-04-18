@@ -204,7 +204,8 @@ extension GroupListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let group = self.joinedGroups?[indexPath.row], let uuid = group.uuid {
+        guard let joinedGroups = joinedGroups, joinedGroups.count != 0 else { return }
+        if let uuid = joinedGroups[indexPath.row].uuid {
             API.shared.getGroup(uuid) { result in
                 switch result {
                 case .success(let group):
