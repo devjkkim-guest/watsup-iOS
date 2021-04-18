@@ -267,15 +267,23 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == selectedEmotions?.count {
+            // 마지막 셀일 때
             let cell = tableView.dequeueReusableCell(withIdentifier: "registerCell", for: indexPath) as! RegisterEmotionTableViewCell
             cell.delegate = self
-            cell.date = try? viewModel.selectedDate.value()
+            let selectedDate = try? viewModel.selectedDate.value()
+            if selectedDate == Date().startOfDay {
+                cell.date = Date()
+            }else{
+                cell.date = try? viewModel.selectedDate.value()
+            }
+            cell.selectionStyle = .none
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! EmotionListTableViewCell
             if let emotion = selectedEmotions?[indexPath.row] {
                 cell.configure(emotion: emotion)
             }
+            cell.selectionStyle = .none
             return cell
         }
     }

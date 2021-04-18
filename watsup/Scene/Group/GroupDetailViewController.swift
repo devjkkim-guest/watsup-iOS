@@ -48,7 +48,8 @@ extension GroupDetailViewController: UITableViewDataSource {
         cell.delegate = self
         let user = group?.joinedUsers?[indexPath.row]
         let emotion = DatabaseWorker.shared.getEmotionList()
-        cell.configure(user: user, emotion: emotion.first)
+        cell.configure(user: user, emotion: emotion.last)
+        cell.selectionStyle = .none
         return cell
     }
     

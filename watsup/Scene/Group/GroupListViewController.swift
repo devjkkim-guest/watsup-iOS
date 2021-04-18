@@ -162,6 +162,7 @@ extension GroupListViewController: UITableViewDelegate {
             switch Section.allCases[indexPath.section] {
             case .invitedGroup:
                 let cell = tableView.dequeueReusableCell(withIdentifier: Section.invitedGroup.rawValue, for: indexPath) as! GroupInvitedTableViewCell
+                cell.selectionStyle = .none
                 cell.backgroundColor = .clear
                 return cell
             case .joinedGroup:
@@ -169,10 +170,12 @@ extension GroupListViewController: UITableViewDelegate {
                     let cell = tableView.dequeueReusableCell(withIdentifier: Section.joinedGroup.rawValue, for: indexPath) as! GroupJoinedTableViewCell
                     cell.configure(name: joinedGroups?[indexPath.row].name)
                     cell.textLabel?.sizeToFit()
+                    cell.selectionStyle = .none
                     return cell
                 }else{
                     let cell = tableView.dequeueReusableCell(withIdentifier: createGroupCellId, for: indexPath) as! CreateGroupTableViewCell
                     cell.delegate = self
+                    cell.selectionStyle = .none
                     return cell
                 }
             }
@@ -181,10 +184,12 @@ extension GroupListViewController: UITableViewDelegate {
                 let cell = tableView.dequeueReusableCell(withIdentifier: Section.joinedGroup.rawValue, for: indexPath) as! GroupJoinedTableViewCell
                 cell.configure(name: joinedGroups?[indexPath.row].name)
                 cell.textLabel?.sizeToFit()
+                cell.selectionStyle = .none
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: createGroupCellId, for: indexPath) as! CreateGroupTableViewCell
                 cell.delegate = self
+                cell.selectionStyle = .none
                 return cell
             }
         }

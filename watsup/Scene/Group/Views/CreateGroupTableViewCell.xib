@@ -35,7 +35,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="A5P-sE-50S" firstAttribute="centerY" secondItem="ssV-fv-5YV" secondAttribute="centerY" id="1HU-4j-VqI"/>
                             <constraint firstItem="bnq-T9-OQP" firstAttribute="centerY" secondItem="ssV-fv-5YV" secondAttribute="centerY" id="5m7-qA-fE4"/>
@@ -69,9 +68,6 @@
     </objects>
     <resources>
         <image name="info.circle" catalog="system" width="128" height="121"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
