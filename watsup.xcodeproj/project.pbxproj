@@ -88,6 +88,8 @@
 		A485A5E4262AD4D8007072D0 /* UserDetailTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A485A5E3262AD4D8007072D0 /* UserDetailTableHeaderView.swift */; };
 		A485A5E8262AD50E007072D0 /* UserDetailTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A485A5E7262AD50E007072D0 /* UserDetailTableHeaderView.xib */; };
 		A485A5F0262B030F007072D0 /* AuthJoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A485A5EF262B030F007072D0 /* AuthJoinViewModel.swift */; };
+		A485A5F5262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A485A5F3262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift */; };
+		A485A5F6262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A485A5F4262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib */; };
 		A4BE39A226128C800051B213 /* RegisterEmotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */; };
 		A4BE39A326128C800051B213 /* RegisterEmotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */; };
 		A4BE39A826128ED50051B213 /* RegisterEmotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE39A726128ED50051B213 /* RegisterEmotionViewController.swift */; };
@@ -226,6 +228,8 @@
 		A485A5E3262AD4D8007072D0 /* UserDetailTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailTableHeaderView.swift; sourceTree = "<group>"; };
 		A485A5E7262AD50E007072D0 /* UserDetailTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailTableHeaderView.xib; sourceTree = "<group>"; };
 		A485A5EF262B030F007072D0 /* AuthJoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthJoinViewModel.swift; sourceTree = "<group>"; };
+		A485A5F3262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailEmotionTableViewCell.swift; sourceTree = "<group>"; };
+		A485A5F4262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailEmotionTableViewCell.xib; sourceTree = "<group>"; };
 		A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmotionTableViewCell.swift; sourceTree = "<group>"; };
 		A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterEmotionTableViewCell.xib; sourceTree = "<group>"; };
 		A4BE39A726128ED50051B213 /* RegisterEmotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmotionViewController.swift; sourceTree = "<group>"; };
@@ -326,10 +330,9 @@
 		8F0E421125B9CD37008AA995 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A485A5F9262D58BE007072D0 /* UserDetail */,
 				8F0E421325B9CD64008AA995 /* SelectEmotionView.xib */,
 				8F0E421825B9CD75008AA995 /* SelectEmotionView.swift */,
-				A485A5E7262AD50E007072D0 /* UserDetailTableHeaderView.xib */,
-				A485A5E3262AD4D8007072D0 /* UserDetailTableHeaderView.swift */,
 				8F0E421D25B9D0A3008AA995 /* XibView.swift */,
 			);
 			path = Views;
@@ -617,6 +620,17 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		A485A5F9262D58BE007072D0 /* UserDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A485A5E7262AD50E007072D0 /* UserDetailTableHeaderView.xib */,
+				A485A5E3262AD4D8007072D0 /* UserDetailTableHeaderView.swift */,
+				A485A5F3262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift */,
+				A485A5F4262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib */,
+			);
+			path = UserDetail;
+			sourceTree = "<group>";
+		};
 		A4BE3A2C26188F780051B213 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -793,6 +807,7 @@
 				A4BE39A326128C800051B213 /* RegisterEmotionTableViewCell.xib in Resources */,
 				8988DBB3261DDB2A00830295 /* GroupMemberTableViewCell.xib in Resources */,
 				8F8E3E6225DD697E00EBB8A8 /* Localization.strings in Resources */,
+				A485A5F6262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib in Resources */,
 				8F5D596525C5A75F0095C21A /* GroupInvitedCollectionViewCell.xib in Resources */,
 				A4775C42260A3ED500A007EF /* EmotionListTableViewCell.xib in Resources */,
 				8F0E41D225B88724008AA995 /* Group.storyboard in Resources */,
@@ -967,6 +982,7 @@
 				A485A5F0262B030F007072D0 /* AuthJoinViewModel.swift in Sources */,
 				A4BE3AC12625DF720051B213 /* Group.swift in Sources */,
 				A4BE39A826128ED50051B213 /* RegisterEmotionViewController.swift in Sources */,
+				A485A5F5262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift in Sources */,
 				8F0E420A25B9CA03008AA995 /* MainViewController.swift in Sources */,
 				8F5AD3D125C1C50100DBF158 /* AuthMainViewController.swift in Sources */,
 				8940DED72613445700B7D1E4 /* GroupJoinedTableViewCell.swift in Sources */,

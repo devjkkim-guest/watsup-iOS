@@ -9,6 +9,7 @@ import UIKit
 
 class UserDetailViewController: UIViewController {
 
+    let emotionCell = "emotionCell"
     @IBOutlet weak var tableView: UITableView!
     
     var emotions: [Emotion]?
@@ -19,7 +20,7 @@ class UserDetailViewController: UIViewController {
         title = user?.profile?.nickname
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: "UserDetailEmotionTableViewCell", bundle: nil), forCellReuseIdentifier: emotionCell)
     }
 }
 
@@ -31,7 +32,7 @@ extension UserDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 104
+        return 84
     }
 }
 
@@ -41,8 +42,12 @@ extension UserDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = emotions?[indexPath.row].message
+        let cell = tableView.dequeueReusableCell(withIdentifier: emotionCell, for: indexPath) as! UserDetailEmotionTableViewCell
+        cell.configure(emotion: emotions?[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
