@@ -31,6 +31,7 @@ enum APIModel: URLRequestConvertible {
     /** Group */
     case getGroup(_ groupUUID: String)
     case postGroups(_ request: PostGroupsRequest)
+    case postGroupInvite(_ groupUUID: String, _ request: PostGroupInviteRequest)
     case getUserGroup
     case getUserInbox
     case deleteGroups(_ groupUUID: String)
@@ -55,6 +56,7 @@ enum APIModel: URLRequestConvertible {
              .postAuth,
              .postUser,
              .postGroups,
+             .postGroupInvite,
              .postCSForgotPassword:
             return .post
         case .deleteGroups:
@@ -100,6 +102,7 @@ enum APIModel: URLRequestConvertible {
             return "/auth"
         case .putAuth:
             return "/auth"
+            
         /** Customer Service */
         case .postCSForgotPassword,
              .putCSForgotPassword:
@@ -124,6 +127,8 @@ enum APIModel: URLRequestConvertible {
             }else{
                 return nil
             }
+        case .postGroupInvite(let groupUuid, _):
+            return "/groups/\(groupUuid)/invite"
         }
     }
     
@@ -150,6 +155,8 @@ enum APIModel: URLRequestConvertible {
             
         /** Groups */
         case .postGroups(let param):
+            return encode(parameter: param)
+        case .postGroupInvite(_, let param):
             return encode(parameter: param)
         case .getUserGroup,
              .getGroup,
@@ -183,6 +190,7 @@ enum APIModel: URLRequestConvertible {
              .putUserProfile,
              .getUserGroup,
              .postGroups,
+             .postGroupInvite,
              .getGroup,
              .getUserEmotions,
              .postEmotion,

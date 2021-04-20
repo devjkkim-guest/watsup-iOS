@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--test-->
+        <!--GroupListViewController-->
         <scene sceneID="ebZ-yh-wAf">
             <objects>
-                <viewController title="test" id="Vah-Tw-TXU" customClass="GroupListViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="test" id="Vah-Tw-TXU" userLabel="GroupListViewController" customClass="GroupListViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Act-ob-tnB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,10 +49,10 @@
             </objects>
             <point key="canvasLocation" x="2065.217391304348" y="-113.16964285714285"/>
         </scene>
-        <!--woeijfowef-->
+        <!--GroupDetailViewController-->
         <scene sceneID="i5s-Kw-vNg">
             <objects>
-                <viewController storyboardIdentifier="GroupDetailVC" title="woeijfowef" id="u4h-6J-ctQ" customClass="GroupDetailViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GroupDetailVC" title="woeijfowef" id="u4h-6J-ctQ" userLabel="GroupDetailViewController" customClass="GroupDetailViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="emI-jZ-0IK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -71,7 +71,18 @@
                             <constraint firstItem="c62-u2-WlO" firstAttribute="top" secondItem="tPK-MS-flg" secondAttribute="top" id="uwM-3F-bnN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Abcd" id="KkN-jN-u8A"/>
+                    <navigationItem key="navigationItem" title="그룹상세" id="KkN-jN-u8A">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="hwY-s0-Dj5">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="uig-hF-5Ee">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Invite"/>
+                                <connections>
+                                    <action selector="onClickInvite:" destination="u4h-6J-ctQ" eventType="touchUpInside" id="jwC-Tl-AfN"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="membersTableView" destination="c62-u2-WlO" id="V2z-uk-fjf"/>
                     </connections>

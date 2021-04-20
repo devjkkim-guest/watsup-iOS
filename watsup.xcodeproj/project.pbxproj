@@ -80,6 +80,7 @@
 		8FD6448E25BAFB010056F74E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6448D25BAFB010056F74E /* BaseViewController.swift */; };
 		A429318925EA7562005F5DD0 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A429318725EA7562005F5DD0 /* CalendarCollectionViewCell.swift */; };
 		A429318A25EA7562005F5DD0 /* CalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A429318825EA7562005F5DD0 /* CalendarCollectionViewCell.xib */; };
+		A4350746262F25920057B0F8 /* PostGroupInviteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4350745262F25920057B0F8 /* PostGroupInviteRequest.swift */; };
 		A4775C41260A3ED500A007EF /* EmotionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4775C3F260A3ED500A007EF /* EmotionListTableViewCell.swift */; };
 		A4775C42260A3ED500A007EF /* EmotionListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4775C40260A3ED500A007EF /* EmotionListTableViewCell.xib */; };
 		A4775C4F260B777300A007EF /* GetUserEmotionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4775C4E260B777300A007EF /* GetUserEmotionsResponse.swift */; };
@@ -220,6 +221,7 @@
 		8FD6448D25BAFB010056F74E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A429318725EA7562005F5DD0 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		A429318825EA7562005F5DD0 /* CalendarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCollectionViewCell.xib; sourceTree = "<group>"; };
+		A4350745262F25920057B0F8 /* PostGroupInviteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGroupInviteRequest.swift; sourceTree = "<group>"; };
 		A4775C3F260A3ED500A007EF /* EmotionListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionListTableViewCell.swift; sourceTree = "<group>"; };
 		A4775C40260A3ED500A007EF /* EmotionListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmotionListTableViewCell.xib; sourceTree = "<group>"; };
 		A4775C4E260B777300A007EF /* GetUserEmotionsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserEmotionsResponse.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 		8F2C5AAF25C06D81004FF9EF /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				A4350744262F25880057B0F8 /* Group */,
 				A4BE3A522618A4510051B213 /* Emotion */,
 				A4775C5B260B7B5000A007EF /* Request.swift */,
 				8F5D592B25C486AE0095C21A /* PostGroupsRequest.swift */,
@@ -599,6 +602,14 @@
 				A429318825EA7562005F5DD0 /* CalendarCollectionViewCell.xib */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		A4350744262F25880057B0F8 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				A4350745262F25920057B0F8 /* PostGroupInviteRequest.swift */,
+			);
+			path = Group;
 			sourceTree = "<group>";
 		};
 		A4775C3E260A3EB900A007EF /* Cell */ = {
@@ -983,6 +994,7 @@
 				A4BE3AC12625DF720051B213 /* Group.swift in Sources */,
 				A4BE39A826128ED50051B213 /* RegisterEmotionViewController.swift in Sources */,
 				A485A5F5262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift in Sources */,
+				A4350746262F25920057B0F8 /* PostGroupInviteRequest.swift in Sources */,
 				8F0E420A25B9CA03008AA995 /* MainViewController.swift in Sources */,
 				8F5AD3D125C1C50100DBF158 /* AuthMainViewController.swift in Sources */,
 				8940DED72613445700B7D1E4 /* GroupJoinedTableViewCell.swift in Sources */,

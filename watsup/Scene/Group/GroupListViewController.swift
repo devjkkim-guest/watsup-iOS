@@ -71,7 +71,7 @@ class GroupListViewController: UIViewController {
 
         let actionCreateGroup = UIAlertAction(title: "Create a group", style: .default) { action in
             if let groupName = alertController.textFields?.first?.text {
-                let request = PostGroupsRequest(group_name: groupName)
+                let request = PostGroupsRequest(groupName: groupName)
                 API.shared.postGroups(request) { result in
                     switch result {
                     case .success(let data):

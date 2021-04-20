@@ -19,6 +19,33 @@ class GroupDetailViewController: UIViewController {
         membersTableView.dataSource = self
         membersTableView.register(UINib(nibName: "GroupMemberTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
+    
+    @IBAction func onClickInvite(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Invite a Friend", message: "enter friend's email", preferredStyle: .alert)
+        alertController.addTextField { textField in
+            // todo: custom tf
+        }
+
+        let actionCreateGroup = UIAlertAction(title: "Invite", style: .default) { action in
+            guard let groupUuid = self.group?.uuid else { return }
+            let request = PostGroupInviteRequest(userUuid: UUID().uuidString)
+            API.shared.postGroupInvite(groupUuid, request) { result in
+                switch result {
+                case .success(let data):
+                    print(data)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+
+        let actionCreateGroupCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alertController.addAction(actionCreateGroup)
+        alertController.addAction(actionCreateGroupCancel)
+
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
 extension GroupDetailViewController: UITableViewDelegate {

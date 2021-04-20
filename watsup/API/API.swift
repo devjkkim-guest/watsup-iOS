@@ -165,6 +165,12 @@ class API {
         }
     }
     
+    func postGroupInvite(_ groupUuid: String, _ request: PostGroupInviteRequest, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
+        API.shared.request(.postGroupInvite(groupUuid, request)) { (result: Result<CommonResponse, APIError>) in
+            completion(result)
+        }
+    }
+    
     func getUserGroup(completion: @escaping (Result<GetUserGroupResponse, APIError>) -> Void) {
         API.shared.request(.getUserGroup) { (result: Result<GetUserGroupResponse, APIError>) in
             switch result {

@@ -9,7 +9,7 @@ import Foundation
 
 struct PostEmotionRequest: Codable {
     let message: String
-    let emotion_type: Int
+    let emotionType: Int
     let score: Int
     let createdAt: Double
 }
