@@ -72,15 +72,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="그룹상세" id="KkN-jN-u8A">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="hwY-s0-Dj5">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="uig-hF-5Ee">
-                                <rect key="frame" x="302" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Invite"/>
-                                <connections>
-                                    <action selector="onClickInvite:" destination="u4h-6J-ctQ" eventType="touchUpInside" id="jwC-Tl-AfN"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Invite" id="hwY-s0-Dj5">
+                            <connections>
+                                <action selector="onClickInvite:" destination="u4h-6J-ctQ" id="Tij-zm-6dm"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

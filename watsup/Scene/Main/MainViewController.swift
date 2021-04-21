@@ -104,17 +104,6 @@ class MainViewController: BaseViewController {
         return layout
     }
     
-    private func getCurrentWeeks(in scrollView: UIScrollView) -> Int? {
-        let indexPaths = self.collectionView.indexPathsForVisibleItems
-            .sorted { $0.section < $1.section }
-        if let month = months[indexPaths[indexPaths.count/2].section],
-           let weeks = Calendar.current.range(of: .weekOfMonth, in: .month, for: month) {
-            return weeks.count
-        }else{
-            return nil
-        }
-    }
-    
     private func reloadSelectedEmotions(selectedDate: Date) {
         if let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate) {
             let startTime = selectedDate.timeIntervalSince1970
@@ -130,6 +119,23 @@ class MainViewController: BaseViewController {
         let date = months[section] ?? Date()
         let components = Calendar.current.dateComponents([.year, .month], from: date)
         return Calendar.current.date(from: components)
+    }
+    
+    func didEndCollectionViewScrolling(to indexPath: IndexPath) {
+        collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        
+        if let date = months[indexPath.section] {
+            self.title = date.monthSymoble
+        }
+        
+        if let month = months[indexPath.section],
+           let weeks = Calendar.current.range(of: .weekOfMonth, in: .month, for: month)?.count {
+            let height = CGFloat(50*weeks)
+            self.collectionViewHeight.constant = height
+            UIView.animate(withDuration: 0.4) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     // MARK: - API
@@ -250,6 +256,21 @@ extension MainViewController: UICollectionViewDataSource {
             viewModel.selectedDate.onNext(date)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        var firstIndexPath = indexPath
+        firstIndexPath.item = 0
+        collectionView.scrollToItem(at: firstIndexPath, at: .top, animated: true)
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CalendarCollectionViewCell {
+            if cell.dayLabel.text == nil {
+                return false
+            } else {
+                return true
+            }
+        }else{
+            return false
+        }
+    }
 }
 
 // MARK: - UITableDataSource
@@ -298,52 +319,69 @@ extension MainViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let maxOffset = scrollView.contentSize.height-scrollView.frame.height
         if scrollView == collectionView {
-            if scrollView.contentOffset.y < 200 {
-                if let firstDate = months.first,
-                   let date = firstDate {
-                    print("previous data added")
-                    months.insert(Date.getNewMonth(offset: -1, from: date), at: 0)
-                    months.insert(Date.getNewMonth(offset: -2, from: date), at: 0)
-                    let oldContentSize = collectionView.contentSize
-                    collectionView.reloadData()
-                    collectionView.layoutIfNeeded()
-                    let newContentSize = collectionView.contentSize
-                    let contentOffsetY = collectionView.contentOffset.y + newContentSize.height - oldContentSize.height
-                    let newOffset = CGPoint(x: collectionView.contentOffset.x, y: contentOffsetY)
-                    collectionView.setContentOffset(newOffset, animated: false)
-                }
+            if scrollView.contentOffset.y < 200,
+               let firstDate = months.first,
+               let date = firstDate {
+                print("previous data added")
+                months.insert(Date.getNewMonth(offset: -1, from: date), at: 0)
+                months.insert(Date.getNewMonth(offset: -2, from: date), at: 0)
+                let oldContentSize = collectionView.contentSize
+                collectionView.reloadData()
+                collectionView.layoutSubviews()
+                let newContentSize = collectionView.contentSize
+                let contentOffsetY = collectionView.contentOffset.y + newContentSize.height - oldContentSize.height
+                let newOffset = CGPoint(x: collectionView.contentOffset.x, y: contentOffsetY)
+                collectionView.setContentOffset(newOffset, animated: false)
             }
-            if scrollView.contentOffset.y > maxOffset-200 {
-                if let lastDate = months.last,
-                   let date = lastDate {
-                    print("next months added")
-                    months.append(Date.getNewMonth(offset: 1, from: date))
-                    months.append(Date.getNewMonth(offset: 2, from: date))
-                    collectionView.reloadData()
-                }
+            if scrollView.contentOffset.y > maxOffset-200,
+               let lastDate = months.last,
+               let date = lastDate {
+                print("next months added")
+                months.append(Date.getNewMonth(offset: 1, from: date))
+                months.append(Date.getNewMonth(offset: 2, from: date))
+                let total = months.count
+                collectionView.insertSections(IndexSet((total-2)..<total))
             }
         }
     }
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if let collectionView = scrollView as? UICollectionView {
-            // 중앙 지점의 섹션으로 이동
-            let indexPaths = self.collectionView.indexPathsForVisibleItems
-                .sorted { $0.section < $1.section }
-            let center = indexPaths[indexPaths.count/2]
-            targetContentOffset.pointee.y = scrollView.contentOffset.y
-            collectionView.scrollToItem(at: IndexPath(item: 0, section: center.section), at: .top, animated: true)
-            
-            if let date = months[center.section] {
-                self.title = date.monthSymoble
-            }
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if scrollView == collectionView {
+            collectionView.isUserInteractionEnabled = false
         }
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        if scrollView == collectionView {
+            collectionView.isUserInteractionEnabled = true
+        }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        targetContentOffset.pointee.y = scrollView.contentOffset.y
         
-        if let weeks = getCurrentWeeks(in: scrollView) {
-            let height = CGFloat(50*weeks)
-            self.collectionViewHeight.constant = height
-            UIView.animate(withDuration: 0.4) {
-                self.view.layoutIfNeeded()
+        if scrollView == collectionView {
+            let indexPaths = collectionView.indexPathsForVisibleItems.sorted()
+            
+            if velocity.y > 0.3 {
+                // forward
+                if var indexPath = indexPaths.last {
+                    indexPath.item = 0
+                    didEndCollectionViewScrolling(to: indexPath)
+                }
+            } else if velocity.y < -0.3 {
+                // backward
+                if var indexPath = indexPaths.first {
+                    indexPath.item = 0
+                    didEndCollectionViewScrolling(to: indexPath)
+                }
+            } else {
+                // stay
+                if indexPaths.count > indexPaths.count/2 {
+                    var indexPath = indexPaths[indexPaths.count/2]
+                    indexPath.item = 0
+                    didEndCollectionViewScrolling(to: indexPath)
+                }
             }
         }
     }

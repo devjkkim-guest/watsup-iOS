@@ -20,7 +20,7 @@ class GroupDetailViewController: UIViewController {
         membersTableView.register(UINib(nibName: "GroupMemberTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
     
-    @IBAction func onClickInvite(_ sender: UIButton) {
+    @IBAction func onClickInvite(_ sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: "Invite a Friend", message: "enter friend's email", preferredStyle: .alert)
         alertController.addTextField { textField in
             // todo: custom tf
