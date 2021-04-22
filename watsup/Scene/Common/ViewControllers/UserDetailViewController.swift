@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 class UserDetailViewController: UIViewController {
 
@@ -28,6 +29,7 @@ extension UserDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UINib(nibName: "UserDetailTableHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? UserDetailTableHeaderView
         headerView?.nameLabel.text = user?.profile?.nickname
+        headerView?.delegate = self
         return headerView
     }
     
@@ -49,5 +51,32 @@ extension UserDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+extension UserDetailViewController: UserDetailTableHeaderViewDelegate {
+    func didClickEditProfile() {
+        requestPhotoAccess(delegate: self)
+    }
+}
+
+extension UserDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print(info)
+        picker.dismiss(animated: true) {
+            let mediaType = info[.mediaType] as! CFString
+            switch mediaType {
+            case kUTTypeImage:
+                print("image")
+            case kUTTypeMovie:
+                print("video")
+            default:
+                break
+            }
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }

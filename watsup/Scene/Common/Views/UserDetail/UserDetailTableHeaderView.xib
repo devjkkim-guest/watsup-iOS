@@ -14,40 +14,65 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Oyk-rq-1K8">
-                    <rect key="frame" x="12" y="12.5" width="60" height="59"/>
-                    <color key="tintColor" systemColor="systemGray5Color"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="cbD-BA-kjQ"/>
-                        <constraint firstAttribute="height" constant="60" id="dSz-Ws-4kr"/>
-                    </constraints>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XN9-yd-Eej">
-                    <rect key="frame" x="86" y="33.5" width="35.5" height="17"/>
+                    <rect key="frame" x="88" y="33.5" width="35.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOD-L8-zTA">
+                    <rect key="frame" x="20" y="18" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="O1j-Xe-EEz"/>
+                        <constraint firstAttribute="height" constant="48" id="woN-Mn-CEe"/>
+                    </constraints>
+                    <color key="tintColor" systemColor="systemGray2Color"/>
+                    <state key="normal" image="person.circle" catalog="system">
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="48"/>
+                    </state>
+                    <connections>
+                        <action selector="onClickEditProfile:" destination="iN0-l3-epB" eventType="touchUpInside" id="oe0-hl-fR8"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oDB-aR-x8Z">
+                    <rect key="frame" x="48" y="46" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="HF9-Jj-IT6"/>
+                        <constraint firstAttribute="width" constant="20" id="l24-X0-hnJ"/>
+                    </constraints>
+                    <color key="tintColor" systemColor="labelColor"/>
+                    <state key="normal" image="plus.circle.fill" catalog="system"/>
+                    <connections>
+                        <action selector="onClickEditProfile:" destination="iN0-l3-epB" eventType="touchUpInside" id="njo-cp-seA"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
-                <constraint firstItem="XN9-yd-Eej" firstAttribute="leading" secondItem="Oyk-rq-1K8" secondAttribute="trailing" constant="14" id="10B-wp-FO6"/>
-                <constraint firstItem="Oyk-rq-1K8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="Taz-Yl-fHe"/>
-                <constraint firstAttribute="bottom" secondItem="Oyk-rq-1K8" secondAttribute="bottom" constant="12" id="UBi-sl-QYh"/>
-                <constraint firstItem="Oyk-rq-1K8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="Vpx-V8-FhB"/>
+                <constraint firstItem="oDB-aR-x8Z" firstAttribute="trailing" secondItem="mOD-L8-zTA" secondAttribute="trailing" id="2YZ-sW-Yry"/>
+                <constraint firstItem="mOD-L8-zTA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2b7-2i-eZt"/>
+                <constraint firstItem="mOD-L8-zTA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="cRc-tb-DEw"/>
+                <constraint firstItem="oDB-aR-x8Z" firstAttribute="bottom" secondItem="mOD-L8-zTA" secondAttribute="bottom" id="hBv-Dh-odC"/>
+                <constraint firstItem="XN9-yd-Eej" firstAttribute="leading" secondItem="mOD-L8-zTA" secondAttribute="trailing" constant="20" id="mNa-AU-fiP"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XN9-yd-Eej" secondAttribute="trailing" constant="20" id="pQA-Zv-C02"/>
                 <constraint firstItem="XN9-yd-Eej" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="xnp-gO-0yR"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="nameLabel" destination="XN9-yd-Eej" id="qsm-5H-NRU"/>
-                <outlet property="profileImageView" destination="Oyk-rq-1K8" id="oWp-9W-lYr"/>
+                <outlet property="editProfileButton" destination="mOD-L8-zTA" id="URt-za-7ee"/>
+                <outlet property="editProfileIconButton" destination="oDB-aR-x8Z" id="mx7-si-6Pb"/>
+                <outlet property="nameLabel" destination="XN9-yd-Eej" id="YLL-eJ-6EL"/>
             </connections>
             <point key="canvasLocation" x="186.23188405797103" y="-203.23660714285714"/>
         </view>
     </objects>
     <resources>
         <image name="person.circle" catalog="system" width="128" height="121"/>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

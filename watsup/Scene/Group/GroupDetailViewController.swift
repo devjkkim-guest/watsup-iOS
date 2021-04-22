@@ -58,7 +58,7 @@ extension GroupDetailViewController: UITableViewDelegate {
                     if let logs = response.logs {
                         let vc = UserDetailViewController(nibName: "UserDetailViewController", bundle: nil)
                         vc.user = selectedUser
-                        vc.emotions = logs
+                        vc.emotions = logs.sorted(by: { $0.createdAt < $1.createdAt })
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 case .failure(let error):
@@ -74,7 +74,7 @@ extension GroupDetailViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GroupMemberTableViewCell
         cell.delegate = self
         let user = group?.joinedUsers?[indexPath.row]
-        let emotion = DatabaseWorker.shared.getEmotionList()
+        let emotion = DatabaseWorker.shared.getEmotionList().sorted(byKeyPath: "createdAt")
         cell.configure(user: user, emotion: emotion.last)
         cell.selectionStyle = .none
         return cell

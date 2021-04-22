@@ -30,7 +30,7 @@
                             <constraint firstItem="uWy-Qr-Wat" firstAttribute="top" secondItem="aUz-Wy-jtl" secondAttribute="top" id="lMb-br-zah"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="그룹" image="doc.plaintext.fill" catalog="system" badgeValue="726" id="VWG-oh-Iyf"/>
+                    <tabBarItem key="tabBarItem" title="그룹" image="doc.plaintext.fill" catalog="system" badgeValue="new" id="VWG-oh-Iyf"/>
                     <navigationItem key="navigationItem" title="그룹" id="su3-x2-7qp">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus.circle" catalog="system" id="2VJ-hN-LTp">
                             <connections>
