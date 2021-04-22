@@ -8,5 +8,5 @@
 import Foundation
 
 struct PostGroupInviteRequest: Codable {
-    let userUuid: String
+    let userEmail: String
 }
