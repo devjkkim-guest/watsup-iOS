@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--test-->
+        <!--GroupListViewController-->
         <scene sceneID="ebZ-yh-wAf">
             <objects>
-                <viewController title="test" id="Vah-Tw-TXU" customClass="GroupListViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="test" id="Vah-Tw-TXU" userLabel="GroupListViewController" customClass="GroupListViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Act-ob-tnB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,7 +30,7 @@
                             <constraint firstItem="uWy-Qr-Wat" firstAttribute="top" secondItem="aUz-Wy-jtl" secondAttribute="top" id="lMb-br-zah"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="그룹" image="doc.plaintext.fill" catalog="system" badgeValue="726" id="VWG-oh-Iyf"/>
+                    <tabBarItem key="tabBarItem" title="그룹" image="doc.plaintext.fill" catalog="system" badgeValue="new" id="VWG-oh-Iyf"/>
                     <navigationItem key="navigationItem" title="그룹" id="su3-x2-7qp">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus.circle" catalog="system" id="2VJ-hN-LTp">
                             <connections>
@@ -49,10 +49,10 @@
             </objects>
             <point key="canvasLocation" x="2065.217391304348" y="-113.16964285714285"/>
         </scene>
-        <!--woeijfowef-->
+        <!--GroupDetailViewController-->
         <scene sceneID="i5s-Kw-vNg">
             <objects>
-                <viewController storyboardIdentifier="GroupDetailVC" title="woeijfowef" id="u4h-6J-ctQ" customClass="GroupDetailViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GroupDetailVC" title="woeijfowef" id="u4h-6J-ctQ" userLabel="GroupDetailViewController" customClass="GroupDetailViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="emI-jZ-0IK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -71,7 +71,13 @@
                             <constraint firstItem="c62-u2-WlO" firstAttribute="top" secondItem="tPK-MS-flg" secondAttribute="top" id="uwM-3F-bnN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Abcd" id="KkN-jN-u8A"/>
+                    <navigationItem key="navigationItem" title="그룹상세" id="KkN-jN-u8A">
+                        <barButtonItem key="rightBarButtonItem" title="Invite" id="hwY-s0-Dj5">
+                            <connections>
+                                <action selector="onClickInvite:" destination="u4h-6J-ctQ" id="Tij-zm-6dm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="membersTableView" destination="c62-u2-WlO" id="V2z-uk-fjf"/>
                     </connections>

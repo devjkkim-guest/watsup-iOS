@@ -34,8 +34,15 @@ class AuthLoginViewController: UIViewController {
         API.shared.postAuth(request) { result in
             switch result {
             case .success(let data):
-                if self.viewModel.addUser(data: data) {
-                    self.goMain()
+                if let uuid = data.identity?.uuid {
+                    self.viewModel.getUser(uuid: uuid) { user in
+                        do {
+                            try DatabaseWorker.shared.setUser(user)
+                            if self.viewModel.addUser(data: data) { self.goMain() }
+                        }catch{
+                            print(error.localizedDescription)
+                        }
+                    }
                 }
             case .failure(let error):
                 self.showAlert(apiError: error)

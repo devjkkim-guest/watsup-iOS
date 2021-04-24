@@ -17,10 +17,11 @@ enum APIModel: URLRequestConvertible {
     case putAuth
     
     /** User */
-    case getUser(_ request: GetUserRequest)
+    case getUser(_ uuid: String)
     case postUser(_ request: PostUserRequest)
-    case getUserProfile(_ request: GetUserProfileRequest)
-    case getUserEmotions
+    case getUserProfile(_ uuid: String)
+    case putUserProfile(_ uuid: String, request: PutUserProfileRequest)
+    case getUserEmotions(_ uuid: String? = nil)
     case postEmotion(_ request: PostEmotionRequest)
     
     /** Customer Service */
@@ -28,10 +29,12 @@ enum APIModel: URLRequestConvertible {
     case putCSForgotPassword(_ request: PutCSForgotPasswordRequest)
     
     /** Group */
-    case getGroup(_ request: GetGroupRequest)
+    case getGroup(_ groupUUID: String)
     case postGroups(_ request: PostGroupsRequest)
+    case postGroupInvite(_ groupUUID: String, _ request: PostGroupInviteRequest)
     case getUserGroup
     case getUserInbox
+    case deleteGroups(_ groupUUID: String)
     
     static let baseUrl = "http://dev.team726.com:8000"
     
@@ -45,19 +48,23 @@ enum APIModel: URLRequestConvertible {
              .getUserGroup,
              .getUserInbox:
             return .get
-        case .putAuth,
+        case .putUserProfile,
+             .putAuth,
              .putCSForgotPassword:
             return .put
         case .postEmotion,
              .postAuth,
              .postUser,
              .postGroups,
+             .postGroupInvite,
              .postCSForgotPassword:
             return .post
+        case .deleteGroups:
+            return .delete
         }
     }
     
-    var userUuid: String? {
+    var userUUID: String? {
         return UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
     }
     
@@ -66,29 +73,36 @@ enum APIModel: URLRequestConvertible {
         switch self {
         /** User */
         case .getUser(let uuid):
-            return "/users/\(uuid.uuid)"
+            return "/users/\(uuid)"
         case .getUserProfile(let uuid):
             return "/users/\(uuid)/profile"
-        case .postUser(_):
+        case .postUser:
             return "/users"
-        case .getUserEmotions:
-            if let userUuid = userUuid {
-                return "/users/\(userUuid)/emotions"
+        case .putUserProfile(let uuid, _):
+            return "/users/\(uuid)/profile"
+        case .getUserEmotions(let uuid):
+            if let uuid = uuid {
+                return "/users/\(uuid)/emotions"
             }else{
-                return nil
+                if let userUUID = userUUID {
+                    return "/users/\(userUUID)/emotions"
+                }else{
+                    return nil
+                }
             }
         case .postEmotion:
-            if let userUuid = userUuid {
-                return "/users/\(userUuid)/emotions"
+            if let userUUID = userUUID {
+                return "/users/\(userUUID)/emotions"
             }else{
                 return nil
             }
             
         /** Auth */
-        case .postAuth(_):
+        case .postAuth:
             return "/auth"
         case .putAuth:
             return "/auth"
+            
         /** Customer Service */
         case .postCSForgotPassword,
              .putCSForgotPassword:
@@ -98,19 +112,23 @@ enum APIModel: URLRequestConvertible {
         case .postGroups:
             return "/groups"
         case .getUserGroup:
-            if let userUuid = userUuid {
-                return "/users/\(userUuid)/groups"
+            if let userUUID = userUUID {
+                return "/users/\(userUUID)/groups"
             }else{
                 return nil
             }
-        case .getGroup(let group):
-            return "/groups/\(group.uuid)"
+        case .deleteGroups(let uuid):
+            return "/groups/\(uuid)"
+        case .getGroup(let uuid):
+            return "/groups/\(uuid)"
         case .getUserInbox:
-            if let userUuid = userUuid {
-                return "/users/\(userUuid)/inbox"
+            if let userUUID = userUUID {
+                return "/users/\(userUUID)/inbox"
             }else{
                 return nil
             }
+        case .postGroupInvite(let groupUuid, _):
+            return "/groups/\(groupUuid)/invite"
         }
     }
     
@@ -124,6 +142,8 @@ enum APIModel: URLRequestConvertible {
             return encode(parameter: param)
         case .putAuth:
             return nil
+        case .putUserProfile(_, let param):
+            return encode(parameter: param)
         case .putCSForgotPassword(let param):
             return encode(parameter: param)
         case .postCSForgotPassword(let param):
@@ -136,11 +156,14 @@ enum APIModel: URLRequestConvertible {
         /** Groups */
         case .postGroups(let param):
             return encode(parameter: param)
+        case .postGroupInvite(_, let param):
+            return encode(parameter: param)
         case .getUserGroup,
              .getGroup,
              .getUser,
              .getUserProfile,
-             .getUserInbox:
+             .getUserInbox,
+             .deleteGroups:
             return nil
         }
     }
@@ -164,21 +187,26 @@ enum APIModel: URLRequestConvertible {
             return commonHeaders
         case .getUser,
              .getUserProfile,
+             .putUserProfile,
              .getUserGroup,
              .postGroups,
+             .postGroupInvite,
              .getGroup,
              .getUserEmotions,
              .postEmotion,
-             .getUserInbox:
+             .getUserInbox,
+             .deleteGroups:
             if let accessToken = UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue) {
                 let value = "Bearer \(accessToken)"
                 commonHeaders.add(name: HTTPHeaderField.authentication.rawValue, value: value)
             }
+            // JWT included
             return commonHeaders
-        case .postAuth(_),
-             .postUser(_),
-             .postCSForgotPassword(_),
-             .putCSForgotPassword(_):
+        case .postAuth,
+             .postUser,
+             .postCSForgotPassword,
+             .putCSForgotPassword:
+            // JWT not included
             return commonHeaders
         }
     }

@@ -7,15 +7,27 @@
 
 import UIKit
 
+protocol GroupMemberTableViewCellDelegate: class {
+    func didClickExpel(_ sender: UIButton)
+}
+
 class GroupMemberTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var emotionLabel: UILabel!
-    @IBOutlet weak var expelButton: UIButton!
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    let dateFormatter = DateFormatter()
+    weak var delegate: GroupMemberTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        emotionLabel.addExternalBorder(borderWidth: 2, borderColor: .white, radius: emotionLabel.frame.size.width/2)
+        emotionLabel.clipsToBounds = true
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width/2
+        profileImageView.clipsToBounds = true
+        dateFormatter.dateFormat = "HH:mm"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -24,4 +36,16 @@ class GroupMemberTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configure(user: User?, emotion: Emotion?) {
+        nameLabel.text = user?.profile?.nickname
+        if let emotion = emotion {
+            timeLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: emotion.createdAt))
+                emotionLabel.text = EmotionType.getEmotion(rawValue: emotion.emotionType).rawValue
+            messageLabel.text = emotion.message
+        }
+    }
+    
+    @IBAction func onClickExpel(_ sender: UIButton) {
+        delegate?.didClickExpel(sender)
+    }
 }

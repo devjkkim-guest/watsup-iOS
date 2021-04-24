@@ -52,7 +52,7 @@ class API {
     }
     
     // MARK: - Auth
-    
+    /// Login
     func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<PostAuthResponse, APIError>) -> Void) {
         API.shared.request(.postAuth(request)) { result in
             completion(result)
@@ -79,8 +79,8 @@ class API {
     
     // MARK: - User
     
-    func getUser(_ request: GetUserRequest, completion: @escaping (Result<GetUsersResponse, APIError>) -> Void) {
-        API.shared.request(.getUser(request)) { result in
+    func getUser(_ uuid: String, completion: @escaping (Result<User, APIError>) -> Void) {
+        API.shared.request(.getUser(uuid)) { result in
             completion(result)
         }
     }
@@ -91,14 +91,30 @@ class API {
         }
     }
     
-    func getUserProfile(_ request: GetUserProfileRequest, completion: @escaping (Result<GetUserProfileResponse, APIError>) -> Void) {
-        API.shared.request(.getUserProfile(request)) { result in
+    func getUserProfile(_ uuid: String, completion: @escaping (Result<GetUserProfileResponse, APIError>) -> Void) {
+        API.shared.request(.getUserProfile(uuid)) { result in
             completion(result)
         }
     }
     
-    func getUserEmotions(completion: @escaping (Result<GetUserEmotionsResponse, APIError>) -> Void) {
-        API.shared.request(.getUserEmotions) { (result: Result<GetUserEmotionsResponse, APIError>) in
+    func putUserProfile(_ uuid: String, request: PutUserProfileRequest, completion: @escaping (Result<Profile, APIError>) -> Void) {
+        API.shared.request(.putUserProfile(uuid, request: request)) { (result: Result<Profile, APIError>) in
+            switch result {
+            case .success(let response):
+                DatabaseWorker.shared.putUserProfile(uuid, profile: response)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            completion(result)
+        }
+    }
+    
+    /**
+     - Parameters:
+        - uuid: 사용자 UUID (nil일 경우 내 UUID)
+     */
+    func getUserEmotions(uuid: String? = nil, completion: @escaping (Result<GetUserEmotionsResponse, APIError>) -> Void) {
+        API.shared.request(.getUserEmotions(uuid)) { (result: Result<GetUserEmotionsResponse, APIError>) in
             switch result {
             case .success(let response):
                 if let logs = response.logs {
@@ -111,19 +127,11 @@ class API {
         }
     }
     
-    func postEmotion(_ request: PostEmotionRequest, completion: @escaping (Result<PostEmotionResponse, APIError>) -> Void) {
-        API.shared.request(.postEmotion(request)) { (result: Result<PostEmotionResponse, APIError>) in
+    func postEmotion(_ request: PostEmotionRequest, completion: @escaping (Result<Emotion, APIError>) -> Void) {
+        API.shared.request(.postEmotion(request)) { (result: Result<Emotion, APIError>) in
             switch result {
-            case .success:
-//                if response.result {
-//                    let emotion = Emotion()
-////                    emotion.id = re
-//                    emotion.message = request.message
-//                    emotion.emotionType = request.emotion_type
-//                    emotion.score = request.score
-//                    DatabaseWorker.shared.setEmotionLogs([emotion])
-//                }
-            break
+            case .success(let response):
+                DatabaseWorker.shared.setEmotionLogs([response])
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -132,9 +140,9 @@ class API {
     }
     
     // MARK: - Group
-
-    func getGroup(_ request: GetGroupRequest, completion: @escaping (Result<GetGroupsResponse, APIError>) -> Void) {
-        API.shared.request(.getGroup(request)) { result in
+    
+    func getGroup(_ groupUUID: String, completion: @escaping (Result<Group, APIError>) -> Void) {
+        API.shared.request(.getGroup(groupUUID)) { result in
             completion(result)
         }
     }
@@ -153,6 +161,12 @@ class API {
                 print(error.localizedDescription)
                 break
             }
+            completion(result)
+        }
+    }
+    
+    func postGroupInvite(_ groupUuid: String, _ request: PostGroupInviteRequest, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
+        API.shared.request(.postGroupInvite(groupUuid, request)) { (result: Result<CommonResponse, APIError>) in
             completion(result)
         }
     }
@@ -176,12 +190,26 @@ class API {
         }
     }
     
+    func deleteGroups(_ groupUUID: String, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
+        API.shared.request(.deleteGroups(groupUUID)) { (result: Result<CommonResponse, APIError>) in
+            switch result {
+            case .success(let response):
+                if response.result == true {
+                    DatabaseWorker.shared.deleteGroups(groupUUID)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            completion(result)
+        }
+    }
+    
     // MARK: - Error
     func getError(_ data: Data?) -> APIError {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         if let data = data,
-           let json = try? decoder.decode(ErrorResponse.self, from: data) {
+           let json = try? decoder.decode(CommonResponse.self, from: data) {
             let apiError = APIError(errorCode: json.code)
             return apiError
         }else{

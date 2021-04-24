@@ -9,13 +9,17 @@ import Foundation
 
 struct PostUserRequest: Codable {
     let email: String
-    let gmt_tz_offset: Int
+    let gmtTzOffset: Int
     let password: String
-    let device_uuid: String
-    var device_token: String
-    let os_type: String
-    let app_version: String
-    let language_code: String
+    let deviceUuid: String
+    var deviceToken: String
+    let osType: String
+    let appVersion: String
+    let languageCode: String
+}
+
+struct PutUserProfileRequest: Codable {
+    let nickname: String
 }
 
 struct PostAuthRequest: Codable {

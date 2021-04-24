@@ -100,16 +100,26 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wzg-Jc-qnb">
                                 <rect key="frame" x="0.0" y="400" width="414" height="413"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q8b-2P-22R">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q8b-2P-22R">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="413"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8x3-jl-iCb">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="Xc3-MP-38o"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="q8b-2P-22R" firstAttribute="top" secondItem="Wzg-Jc-qnb" secondAttribute="top" id="1hO-US-HyO"/>
                                     <constraint firstItem="q8b-2P-22R" firstAttribute="leading" secondItem="Wzg-Jc-qnb" secondAttribute="leading" id="BiV-UQ-9HI"/>
                                     <constraint firstAttribute="bottom" secondItem="q8b-2P-22R" secondAttribute="bottom" id="TwU-X8-AGm"/>
+                                    <constraint firstAttribute="trailing" secondItem="8x3-jl-iCb" secondAttribute="trailing" id="b8R-Ws-Pys"/>
+                                    <constraint firstItem="8x3-jl-iCb" firstAttribute="leading" secondItem="Wzg-Jc-qnb" secondAttribute="leading" id="fhf-ff-APf"/>
+                                    <constraint firstItem="8x3-jl-iCb" firstAttribute="top" secondItem="Wzg-Jc-qnb" secondAttribute="top" id="gAd-dj-0Ng"/>
                                     <constraint firstAttribute="trailing" secondItem="q8b-2P-22R" secondAttribute="trailing" id="uS0-FE-Jaw"/>
                                 </constraints>
                             </view>
@@ -267,6 +277,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

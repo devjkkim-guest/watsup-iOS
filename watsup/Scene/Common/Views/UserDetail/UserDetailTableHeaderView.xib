@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UserDetailTableHeaderView" customModule="watsup" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XN9-yd-Eej">
+                    <rect key="frame" x="88" y="33.5" width="35.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOD-L8-zTA">
+                    <rect key="frame" x="20" y="18" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="O1j-Xe-EEz"/>
+                        <constraint firstAttribute="height" constant="48" id="woN-Mn-CEe"/>
+                    </constraints>
+                    <color key="tintColor" systemColor="systemGray2Color"/>
+                    <state key="normal" image="person.circle" catalog="system">
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="48"/>
+                    </state>
+                    <connections>
+                        <action selector="onClickEditProfile:" destination="iN0-l3-epB" eventType="touchUpInside" id="oe0-hl-fR8"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oDB-aR-x8Z">
+                    <rect key="frame" x="48" y="46" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="HF9-Jj-IT6"/>
+                        <constraint firstAttribute="width" constant="20" id="l24-X0-hnJ"/>
+                    </constraints>
+                    <color key="tintColor" systemColor="labelColor"/>
+                    <state key="normal" image="plus.circle.fill" catalog="system"/>
+                    <connections>
+                        <action selector="onClickEditProfile:" destination="iN0-l3-epB" eventType="touchUpInside" id="njo-cp-seA"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="oDB-aR-x8Z" firstAttribute="trailing" secondItem="mOD-L8-zTA" secondAttribute="trailing" id="2YZ-sW-Yry"/>
+                <constraint firstItem="mOD-L8-zTA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2b7-2i-eZt"/>
+                <constraint firstItem="mOD-L8-zTA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="cRc-tb-DEw"/>
+                <constraint firstItem="oDB-aR-x8Z" firstAttribute="bottom" secondItem="mOD-L8-zTA" secondAttribute="bottom" id="hBv-Dh-odC"/>
+                <constraint firstItem="XN9-yd-Eej" firstAttribute="leading" secondItem="mOD-L8-zTA" secondAttribute="trailing" constant="20" id="mNa-AU-fiP"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XN9-yd-Eej" secondAttribute="trailing" constant="20" id="pQA-Zv-C02"/>
+                <constraint firstItem="XN9-yd-Eej" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="xnp-gO-0yR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="editProfileButton" destination="mOD-L8-zTA" id="URt-za-7ee"/>
+                <outlet property="editProfileIconButton" destination="oDB-aR-x8Z" id="mx7-si-6Pb"/>
+                <outlet property="nameLabel" destination="XN9-yd-Eej" id="YLL-eJ-6EL"/>
+            </connections>
+            <point key="canvasLocation" x="186.23188405797103" y="-203.23660714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

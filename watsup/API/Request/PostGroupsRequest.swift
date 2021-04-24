@@ -8,5 +8,5 @@
 import Foundation
 
 struct PostGroupsRequest: Codable {
-    let group_name: String
+    let groupName: String
 }

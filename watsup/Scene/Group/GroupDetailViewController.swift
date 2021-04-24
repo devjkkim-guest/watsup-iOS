@@ -7,9 +7,10 @@
 
 import UIKit
 
-class GroupDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class GroupDetailViewController: UIViewController {
     
     @IBOutlet weak var membersTableView: UITableView!
+    var group: Group?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,27 +20,74 @@ class GroupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         membersTableView.register(UINib(nibName: "GroupMemberTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
     
-    /*
-    // MARK: - Navigation
+    @IBAction func onClickInvite(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Invite a Friend", message: "enter friend's email", preferredStyle: .alert)
+        alertController.addTextField { textField in
+            // todo: custom tf
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let actionCreateGroup = UIAlertAction(title: "Invite", style: .default) { action in
+            guard let groupUuid = self.group?.uuid else { return }
+            guard let userEmail = alertController.textFields?.first?.text else { return }
+            let request = PostGroupInviteRequest(userEmail: userEmail)
+            API.shared.postGroupInvite(groupUuid, request) { result in
+                switch result {
+                case .success(let data):
+                    print(data)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+
+        let actionCreateGroupCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alertController.addAction(actionCreateGroup)
+        alertController.addAction(actionCreateGroupCancel)
+
+        present(alertController, animated: true, completion: nil)
     }
-    */
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+}
+
+extension GroupDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedUser = group?.joinedUsers?[indexPath.row]
+        if let uuid = selectedUser?.uuid {
+            API.shared.getUserEmotions(uuid: uuid) { result in
+                switch result {
+                case .success(let response):
+                    if let logs = response.logs {
+                        let vc = UserDetailViewController(nibName: "UserDetailViewController", bundle: nil)
+                        vc.user = selectedUser
+                        vc.emotions = logs.sorted(by: { $0.createdAt < $1.createdAt })
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
-    
+}
+
+extension GroupDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GroupMemberTableViewCell
-
-        cell.nameLabel.text = "txt"
-        cell.emotionLabel.text = "💩"
-
+        cell.delegate = self
+        let user = group?.joinedUsers?[indexPath.row]
+        let emotion = DatabaseWorker.shared.getEmotionList().sorted(byKeyPath: "createdAt")
+        cell.configure(user: user, emotion: emotion.last)
+        cell.selectionStyle = .none
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return group?.joinedUsers?.count ?? 0
+    }
+}
 
+extension GroupDetailViewController: GroupMemberTableViewCellDelegate {
+    func didClickExpel(_ sender: UIButton) {
+        
+    }
 }

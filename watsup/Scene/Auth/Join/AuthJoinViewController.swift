@@ -19,32 +19,15 @@ class AuthJoinViewController: UIViewController {
     }
     
     @IBAction func onClickJoin(_ sender: UIButton) {
-        guard let email = tfEmail.text else {
-            return
-        }
-        guard let password = tfPassword.text else {
-            return
-        }
+        guard let email = tfEmail.text else { return }
+        guard let password = tfPassword.text else { return }
         
-        let deviceToken = UserDefaults.standard.string(forKey: UserDefaultsKey.deviceToken.rawValue)
-        let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-        let languageCode = Locale.preferredLanguages.first ?? "en_US"
-        let userData = PostUserRequest(email: email,
-                                        gmt_tz_offset: 0, password: password,
-                                        device_uuid: UUID().uuidString,
-                                        device_token: deviceToken ?? "abc",
-                                        os_type: OSType.iOS.rawValue,
-                                        app_version: appVersion ?? "0",
-                                        language_code: languageCode)
-        API.shared.postUser(userData) { result in
-            switch result {
-            case .success(let data):
-                print(data)
+        let viewModel = AuthJoinViewModel()
+        viewModel.postUser(email: email, password: password) { result in
+            if result {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
             }
         }
     }
