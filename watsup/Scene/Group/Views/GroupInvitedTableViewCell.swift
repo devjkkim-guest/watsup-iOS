@@ -10,6 +10,7 @@ import UIKit
 class GroupInvitedTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    var invitedGroups: [InboxGroupResponse]?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,7 +41,9 @@ class GroupInvitedTableViewCell: UITableViewCell {
 extension GroupInvitedTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? GroupInvitedCollectionViewCell {
+            let group = invitedGroups?[indexPath.row]
             cell.roundedView(radius: 8)
+            cell.groupName.text = group?.name
             return cell
         }else{
             return collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
@@ -50,6 +53,6 @@ extension GroupInvitedTableViewCell: UICollectionViewDelegate {
 
 extension GroupInvitedTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return invitedGroups?.count ?? 0
     }
 }

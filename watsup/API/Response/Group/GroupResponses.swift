@@ -13,6 +13,6 @@ struct GetUserInboxResponse: Codable {
 
 struct InboxGroupResponse: Codable {
     var groupUuid: String?
-    var fromUser: [Identity]
+    var fromUser: User?
     var name: String?
 }
