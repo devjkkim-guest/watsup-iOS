@@ -54,9 +54,21 @@ class DatabaseWorker {
         return realm.objects(Emotion.self)
     }
     
-    func setEmotionLogs(_ logs: [Emotion]) {
+    func setEmotionLogs(_ logs: [Emotion], of userUuid: String) {
         try? realm.write {
-            realm.add(logs, update: .modified)
+            if let user = realm.objects(User.self).filter("uuid = '\(userUuid)'").first {
+                logs.forEach { emotion in
+                    if let existing = user.emotions.first(where: { $0.id == emotion.id }) {
+                        existing.createdAt = emotion.createdAt
+                        existing.message = emotion.message
+                        existing.emotionType = emotion.emotionType
+                        existing.score = emotion.score
+                    } else {
+                        user.emotions.append(emotion)
+                    }
+                }
+                realm.add(user, update: .modified)
+            }
         }
     }
     

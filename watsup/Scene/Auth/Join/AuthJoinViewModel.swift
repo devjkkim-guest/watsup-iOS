@@ -33,26 +33,10 @@ class AuthJoinViewModel {
         }
     }
     
-    private func postAuth(_ req: PostAuthRequest, completion: @escaping (Bool) -> Void) {
-        API.shared.postAuth(req) { result in
-            switch result {
-            case .success(let response):
-                let viewModel = AuthLoginViewModel()
-                if let uuid = response.identity?.uuid, viewModel.addUser(data: response) {
-                    viewModel.getUser(uuid: uuid) { user in
-                        do {
-                            try DatabaseWorker.shared.setUser(user)
-                            completion(true)
-                        }catch{
-                            print(error.localizedDescription)
-                        }
-                    }
-                }
-                completion(false)
-            case .failure(let error):
-                print(error.localizedDescription)
-                completion(false)
-            }
+    private func postAuth(_ request: PostAuthRequest, completion: @escaping (Bool) -> Void) {
+        let viewModel = AuthLoginViewModel()
+        viewModel.postAuth(request) { result in
+            completion(result)
         }
     }
 }

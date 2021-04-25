@@ -140,7 +140,8 @@ class MainViewController: BaseViewController {
     
     // MARK: - API
     func loadData() {
-        API.shared.getUserEmotions { result in
+        guard let userUUID = API.shared.userUUID else { return }
+        API.shared.getUserEmotions(uuid: userUUID) { result in
             switch result {
             case .success(_):
                 return

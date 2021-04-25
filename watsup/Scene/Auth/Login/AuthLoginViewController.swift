@@ -29,30 +29,19 @@ class AuthLoginViewController: UIViewController {
         guard let password = tfPassword.text else {
             return
         }
-        
         let request = PostAuthRequest(email: email, password: password)
-        API.shared.postAuth(request) { result in
-            switch result {
-            case .success(let data):
-                if let uuid = data.identity?.uuid {
-                    self.viewModel.getUser(uuid: uuid) { user in
-                        do {
-                            try DatabaseWorker.shared.setUser(user)
-                            if self.viewModel.addUser(data: data) { self.goMain() }
-                        }catch{
-                            print(error.localizedDescription)
-                        }
-                    }
-                }
-            case .failure(let error):
-                self.showAlert(apiError: error)
+        viewModel.postAuth(request) { result in
+            if result {
+                self.goMain()
+            } else {
+                self.showAlert(message: "failed \(#function) \(#line)")
             }
         }
     }
     
     func goMain() {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()   
+            appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
         }
     }
 }

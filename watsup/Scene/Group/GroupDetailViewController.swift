@@ -66,6 +66,8 @@ extension GroupDetailViewController: UITableViewDelegate {
                     print(error.localizedDescription)
                 }
             }
+        } else {
+            showAlert(message: "No User UUID.")
         }
     }
 }
