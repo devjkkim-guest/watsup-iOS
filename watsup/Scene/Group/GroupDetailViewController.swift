@@ -51,14 +51,14 @@ class GroupDetailViewController: UIViewController {
 
 extension GroupDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedUser = group?.joinedUsers?[indexPath.row]
-        if let uuid = selectedUser?.uuid {
+        let selectedUser = group?.joinedUsers[indexPath.row]
+        if let uuid = selectedUser?.user?.uuid {
             API.shared.getUserEmotions(uuid: uuid) { result in
                 switch result {
                 case .success(let response):
                     if let logs = response.logs {
                         let vc = UserDetailViewController(nibName: "UserDetailViewController", bundle: nil)
-                        vc.user = selectedUser
+                        vc.user = selectedUser?.user
                         vc.emotions = logs.sorted(by: { $0.createdAt < $1.createdAt })
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
@@ -76,15 +76,15 @@ extension GroupDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GroupMemberTableViewCell
         cell.delegate = self
-        let user = group?.joinedUsers?[indexPath.row]
+        let user = group?.joinedUsers[indexPath.row]
         let emotion = DatabaseWorker.shared.getEmotionList().sorted(byKeyPath: "createdAt")
-        cell.configure(user: user, emotion: emotion.last)
+        cell.configure(user: user?.user, emotion: emotion.last)
         cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return group?.joinedUsers?.count ?? 0
+        return group?.joinedUsers.count ?? 0
     }
 }
 

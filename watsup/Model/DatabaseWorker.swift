@@ -58,12 +58,7 @@ class DatabaseWorker {
         try? realm.write {
             if let user = realm.objects(User.self).filter("uuid = '\(userUuid)'").first {
                 logs.forEach { emotion in
-                    if let existing = user.emotions.first(where: { $0.id == emotion.id }) {
-                        existing.createdAt = emotion.createdAt
-                        existing.message = emotion.message
-                        existing.emotionType = emotion.emotionType
-                        existing.score = emotion.score
-                    } else {
+                    if user.emotions.first(where: { $0.id == emotion.id }) == nil {
                         user.emotions.append(emotion)
                     }
                 }
@@ -83,6 +78,14 @@ class DatabaseWorker {
     
     func setGroups(_ groups: [Group]) {
         try? realm.write {
+            groups.forEach { group in
+                group.joinedUsers.forEach { user in
+                    if let uuid = user.user?.uuid,
+                       let existingUser = realm.objects(User.self).filter("uuid = '\(uuid)'").first {
+                        user.user = existingUser
+                    }
+                }
+            }
             realm.add(groups, update: .modified)
         }
     }

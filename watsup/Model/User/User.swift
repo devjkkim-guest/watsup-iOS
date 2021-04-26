@@ -32,6 +32,12 @@ class User: Object, Codable {
     }
 }
 
+class JoinedUsers: Object, Codable {
+    @objc dynamic var createdAt: Double = 0
+    @objc dynamic var status: Int = 0
+    @objc dynamic var user: User?
+}
+
 class Profile: Object, Codable {
     @objc dynamic var nickname: String?
     @objc dynamic var image: String?
