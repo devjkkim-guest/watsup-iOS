@@ -34,7 +34,6 @@ class GroupListViewController: UIViewController {
     var invitedGroups: [InboxGroupResponse]?
     var joinedGroups: Results<Group>?
     var groupNotificationToken: NotificationToken?
-    let refresh = UIRefreshControl()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -53,6 +52,7 @@ class GroupListViewController: UIViewController {
         tableView.register(UINib(nibName: "GroupJoinedTableViewCell", bundle: nil), forCellReuseIdentifier: Section.joinedGroup.rawValue)
         tableView.register(UINib(nibName: "CreateGroupTableViewCell", bundle: nil), forCellReuseIdentifier: createGroupCellId)
         
+        let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(requestAPI), for: .valueChanged)
         tableView.refreshControl = refresh
     }
@@ -112,14 +112,13 @@ class GroupListViewController: UIViewController {
     
     // MARK: - API
     @objc func requestAPI() {
-        CATransaction.begin()
         let dispatchGroup = DispatchGroup()
         getInvitedGroups(dispatchGroup)
         getUserGroups(dispatchGroup)
         
         dispatchGroup.notify(queue: .main) {
             self.tableView.reloadData()
-            self.refresh.endRefreshing()
+            self.tableView.refreshControl?.endRefreshing()
         }
     }
     
