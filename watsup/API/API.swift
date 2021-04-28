@@ -11,7 +11,7 @@ import Alamofire
 class API {
     static var shared: API = {
         let configuration = URLSessionConfiguration.af.default
-        configuration.timeoutIntervalForRequest = 1
+        configuration.timeoutIntervalForRequest = 3
         configuration.waitsForConnectivity = true
         let logger = APIEventMonitor()
         let interceptor = APIInterceptor(storage: APITokenStorage())
@@ -19,6 +19,9 @@ class API {
         return API(session: session)
     }()
     private let session: Session
+    lazy var userUUID: String? = {
+        return UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
+    }()
     
     private init(session: Session) {
         self.session = session
@@ -37,8 +40,7 @@ class API {
                             let json = try decoder.decode(T.self, from: jsonData)
                             completion(.success(json))
                         } catch {
-                            print(error.localizedDescription)
-                            print(jsonData)
+                            print(error.localizedDescription, #function, #line)
                             completion(.failure(APIError()))
                         }
                     }else{
@@ -78,7 +80,6 @@ class API {
     }
     
     // MARK: - User
-    
     func getUser(_ uuid: String, completion: @escaping (Result<User, APIError>) -> Void) {
         API.shared.request(.getUser(uuid)) { result in
             completion(result)
@@ -113,12 +114,12 @@ class API {
      - Parameters:
         - uuid: 사용자 UUID (nil일 경우 내 UUID)
      */
-    func getUserEmotions(uuid: String? = nil, completion: @escaping (Result<GetUserEmotionsResponse, APIError>) -> Void) {
+    func getUserEmotions(uuid: String, completion: @escaping (Result<GetUserEmotionsResponse, APIError>) -> Void) {
         API.shared.request(.getUserEmotions(uuid)) { (result: Result<GetUserEmotionsResponse, APIError>) in
             switch result {
             case .success(let response):
                 if let logs = response.logs {
-                    DatabaseWorker.shared.setEmotionLogs(logs)
+                    DatabaseWorker.shared.setEmotionLogs(logs, of: uuid)
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -131,7 +132,8 @@ class API {
         API.shared.request(.postEmotion(request)) { (result: Result<Emotion, APIError>) in
             switch result {
             case .success(let response):
-                DatabaseWorker.shared.setEmotionLogs([response])
+                guard let userUUID = self.userUUID else { return }
+                DatabaseWorker.shared.setEmotionLogs([response], of: userUUID)
             case .failure(let error):
                 print(error.localizedDescription)
             }

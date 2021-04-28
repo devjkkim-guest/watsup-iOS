@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="uWy-Qr-Wat">
-                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aUz-Wy-jtl"/>
@@ -27,7 +27,7 @@
                             <constraint firstItem="aUz-Wy-jtl" firstAttribute="bottom" secondItem="uWy-Qr-Wat" secondAttribute="bottom" id="IQi-5R-DEV"/>
                             <constraint firstItem="uWy-Qr-Wat" firstAttribute="leading" secondItem="aUz-Wy-jtl" secondAttribute="leading" id="YCn-Sk-UwY"/>
                             <constraint firstItem="aUz-Wy-jtl" firstAttribute="trailing" secondItem="uWy-Qr-Wat" secondAttribute="trailing" id="jTH-C0-drt"/>
-                            <constraint firstItem="uWy-Qr-Wat" firstAttribute="top" secondItem="aUz-Wy-jtl" secondAttribute="top" id="lMb-br-zah"/>
+                            <constraint firstItem="uWy-Qr-Wat" firstAttribute="top" secondItem="Act-ob-tnB" secondAttribute="top" id="lMb-br-zah"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="그룹" image="doc.plaintext.fill" catalog="system" badgeValue="new" id="VWG-oh-Iyf"/>

@@ -9,8 +9,9 @@ import Foundation
 import RealmSwift
 
 class Group: Object, Codable {
+    @objc dynamic var createdAt: Double = 0
     @objc dynamic var uuid: String?
-    var joinedUsers: [User]?
+    var joinedUsers = List<JoinedUsers>()
     @objc dynamic var name: String?
     
     override class func primaryKey() -> String? {

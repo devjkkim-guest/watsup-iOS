@@ -32,14 +32,13 @@ class GroupListViewController: UIViewController {
     @IBOutlet weak var btnAdd: UIBarButtonItem!
     let createGroupCellId = "CreateGroupCell"
     var invitedGroups: [InboxGroupResponse]?
-    var joinedGroups: [Group]?
+    var joinedGroups: Results<Group>?
     var groupNotificationToken: NotificationToken?
-    let refresh = UIRefreshControl()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        joinedGroups = Array(DatabaseWorker.shared.getGroups())
+        joinedGroups = DatabaseWorker.shared.getGroups()
         requestAPI()
         setTableView()
         bindModel()
@@ -53,6 +52,7 @@ class GroupListViewController: UIViewController {
         tableView.register(UINib(nibName: "GroupJoinedTableViewCell", bundle: nil), forCellReuseIdentifier: Section.joinedGroup.rawValue)
         tableView.register(UINib(nibName: "CreateGroupTableViewCell", bundle: nil), forCellReuseIdentifier: createGroupCellId)
         
+        let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(requestAPI), for: .valueChanged)
         tableView.refreshControl = refresh
     }
@@ -61,8 +61,7 @@ class GroupListViewController: UIViewController {
         let groups = DatabaseWorker.shared.getGroups()
         groupNotificationToken = groups.observe { change in
             switch change {
-            case .update(let results, deletions: _, insertions: _, modifications: _):
-                self.joinedGroups = Array(results)
+            case .update:
                 self.tableView.reloadSections([Section.joinedGroup.getIntValue()], with: .automatic)
             case .initial, .error:
                 break
@@ -113,14 +112,13 @@ class GroupListViewController: UIViewController {
     
     // MARK: - API
     @objc func requestAPI() {
-        CATransaction.begin()
         let dispatchGroup = DispatchGroup()
         getInvitedGroups(dispatchGroup)
         getUserGroups(dispatchGroup)
         
         dispatchGroup.notify(queue: .main) {
             self.tableView.reloadData()
-            self.refresh.endRefreshing()
+            self.tableView.refreshControl?.endRefreshing()
         }
     }
     
@@ -143,8 +141,8 @@ class GroupListViewController: UIViewController {
         dispatchGroup?.enter()
         API.shared.getUserGroup { result in
             switch result {
-            case .success(let data):
-                self.joinedGroups = data.groups
+            case .success:
+                break
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -223,8 +221,12 @@ extension GroupListViewController: UITableViewDelegate {
                 let alertController = UIAlertController(title: nil, message: "Are you sure to Leave?", preferredStyle: .alert)
                 let actionOK = UIAlertAction(title: "Leave", style: .destructive) { _ in
                     API.shared.deleteGroups(uuid) { result in
-                        self.joinedGroups = Array(DatabaseWorker.shared.getGroups())
-                        self.tableView.reloadData()
+                        switch result {
+                        case .success:
+                            break
+                        case .failure(let error):
+                            self.showAlert(message: error.errorMsg)
+                        }
                     }
                 }
                 let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)

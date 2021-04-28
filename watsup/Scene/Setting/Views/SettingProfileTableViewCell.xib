@@ -39,7 +39,13 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bku-5P-wUL">
-                        <rect key="frame" x="84" y="33.5" width="42" height="21"/>
+                        <rect key="frame" x="84" y="21.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLM-ls-mZS" userLabel="Email Label">
+                        <rect key="frame" x="84" y="45.5" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -47,11 +53,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="bUk-cN-1IT" secondAttribute="trailing" constant="20" id="Cja-zg-ONe"/>
+                    <constraint firstItem="hLM-ls-mZS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="12" id="RLG-pl-NeK"/>
                     <constraint firstItem="JDy-eP-buf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="XQe-p9-Fo7"/>
                     <constraint firstItem="JDy-eP-buf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" priority="999" constant="10" id="YIC-61-4RF"/>
                     <constraint firstItem="bku-5P-wUL" firstAttribute="leading" secondItem="JDy-eP-buf" secondAttribute="trailing" constant="20" id="Z8m-K9-8N9"/>
+                    <constraint firstItem="hLM-ls-mZS" firstAttribute="leading" secondItem="bku-5P-wUL" secondAttribute="leading" id="ate-lY-8wo"/>
                     <constraint firstItem="JDy-eP-buf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="h4l-01-CT2"/>
-                    <constraint firstItem="bku-5P-wUL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="iUp-80-kCN"/>
+                    <constraint firstItem="bku-5P-wUL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-12" id="iUp-80-kCN"/>
                     <constraint firstItem="bUk-cN-1IT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="j3y-YF-TU6"/>
                     <constraint firstAttribute="bottom" secondItem="JDy-eP-buf" secondAttribute="bottom" priority="999" constant="10" id="kBW-Be-kwC"/>
                 </constraints>
@@ -60,6 +68,7 @@
             <connections>
                 <outlet property="btnEditProfile" destination="bUk-cN-1IT" id="XSc-wl-3B6"/>
                 <outlet property="btnProfile" destination="JDy-eP-buf" id="q5N-de-TtA"/>
+                <outlet property="emailLabel" destination="hLM-ls-mZS" id="71u-TM-YBU"/>
                 <outlet property="nameLabel" destination="bku-5P-wUL" id="DHk-f2-qK0"/>
             </connections>
             <point key="canvasLocation" x="258.69565217391306" y="85.044642857142847"/>

@@ -22,14 +22,41 @@ class AuthLoginViewModel {
         }
     }
     
-    func getUser(uuid: String, completion: @escaping ((User) -> Void)) {
-        API.shared.getUser(uuid) { result in
+    func postAuth(_ request: PostAuthRequest, completion: @escaping (Bool) -> Void) {
+        API.shared.postAuth(request) { result in
             switch result {
-            case .success(let response):
-                completion(response)
+            case .success(let data):
+                guard self.addUser(data: data) else {
+                    completion(false)
+                    return
+                }
+                if let uuid = data.identity?.uuid {
+                    self.getUser(uuid: uuid) { result in
+                        switch result {
+                        case .success(let user):
+                            do {
+                                try DatabaseWorker.shared.setUser(user)
+                                completion(true)
+                            }catch{
+                                print(error.localizedDescription)
+                                completion(false)
+                            }
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                            completion(false)
+                        }
+                    }
+                }
             case .failure(let error):
                 print(error.localizedDescription)
+                completion(false)
             }
+        }
+    }
+    
+    func getUser(uuid: String, completion: @escaping ((Result<User, APIError>) -> Void)) {
+        API.shared.getUser(uuid) { result in
+            completion(result)
         }
     }
 }

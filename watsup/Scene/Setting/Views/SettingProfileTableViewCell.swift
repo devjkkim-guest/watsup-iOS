@@ -11,6 +11,7 @@ class SettingProfileTableViewCell: UITableViewCell {
 
     @IBOutlet weak var btnProfile: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var btnEditProfile: UIButton!
     
     override func awakeFromNib() {
@@ -26,6 +27,7 @@ class SettingProfileTableViewCell: UITableViewCell {
     func configure() {
         if let user = DatabaseWorker.shared.getMyProfile()?.first {
             nameLabel.text = user.profile?.nickname
+            emailLabel.text = user.email
         }
     }
 }

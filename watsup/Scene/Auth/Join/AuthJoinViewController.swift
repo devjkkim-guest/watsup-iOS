@@ -27,7 +27,11 @@ class AuthJoinViewController: UIViewController {
             if result {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
+                } else {
+                    self.showAlert(message: "failed \(#function) \(#line)")
                 }
+            } else {
+                self.showAlert(message: "failed \(#function) \(#line)")
             }
         }
     }
