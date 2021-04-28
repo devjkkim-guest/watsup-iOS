@@ -39,9 +39,15 @@ class GroupMemberTableViewCell: UITableViewCell {
     func configure(user: User?, emotion: Emotion?) {
         nameLabel.text = user?.profile?.nickname
         if let emotion = emotion {
+            timeLabel.isHidden = false
             timeLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: emotion.createdAt))
-                emotionLabel.text = EmotionType.getEmotion(rawValue: emotion.emotionType).rawValue
+            emotionLabel.isHidden = false
+            emotionLabel.text = EmotionType.getEmotion(rawValue: emotion.emotionType).rawValue
             messageLabel.text = emotion.message
+        } else {
+            timeLabel.isHidden = true
+            emotionLabel.isHidden = true
+            messageLabel.text = "Emotion.NoEmotion".localized
         }
     }
     

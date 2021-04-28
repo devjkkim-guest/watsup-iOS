@@ -14,3 +14,6 @@
 /// Auth Error
 "API.Auth.Error.400" = "로그인 실패.";
 "API.Auth.Error.422" = "유효한 이메일 주소가 아닙니다.";
+
+/// Emotion Text
+"Emotion.NoEmotion" = "아직 등록된 감정이 없어요.";
