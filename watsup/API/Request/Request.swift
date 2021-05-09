@@ -22,6 +22,10 @@ struct PutUserProfileRequest: Codable {
     let nickname: String
 }
 
+struct PutUserProfileImageRequest: Codable {
+    let image: Data
+}
+
 struct PostAuthRequest: Codable {
     let email: String
     let password: String

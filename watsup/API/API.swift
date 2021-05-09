@@ -53,6 +53,36 @@ class API {
             }
     }
     
+    private func upload<T>(_ model: APIModel, completion: @escaping (Result<T, APIError>) -> Void) where T:Codable {
+        session.upload(multipartFormData: { multipart in
+            if let image = model.image {
+                multipart.append(image, withName: "image", fileName: "image", mimeType: MimeType.Image.jpeg.rawValue)
+            }
+        }, with: model)
+        .validate()
+        .responseJSON { response in
+            switch response.result {
+            case .success(let data):
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                if let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .fragmentsAllowed) {
+                    do {
+                        let json = try decoder.decode(T.self, from: jsonData)
+                        completion(.success(json))
+                    } catch {
+                        print(error.localizedDescription, #function, #line)
+                        completion(.failure(APIError()))
+                    }
+                }else{
+                    completion(.failure(APIError()))
+                }
+            case .failure:
+                let apiError = self.getError(response.data)
+                completion(.failure(apiError))
+            }
+        }
+    }
+    
     // MARK: - Auth
     /// Login
     func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<PostAuthResponse, APIError>) -> Void) {
@@ -103,6 +133,18 @@ class API {
             switch result {
             case .success(let response):
                 DatabaseWorker.shared.putUserProfile(uuid, profile: response)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            completion(result)
+        }
+    }
+    
+    func putUserProfileImage(_ uuid: String, request: PutUserProfileImageRequest, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
+        API.shared.upload(.putUserProfileImage(uuid, request: request)) { (result: Result<CommonResponse, APIError>) in
+            switch result {
+            case .success:
+                break
             case .failure(let error):
                 print(error.localizedDescription)
             }

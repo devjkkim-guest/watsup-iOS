@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import MobileCoreServices
+import Alamofire
 
 class SettingViewController: UIViewController {
-    
     enum Section: String, CaseIterable {
         case myInfo
         case setting
@@ -26,6 +27,7 @@ class SettingViewController: UIViewController {
     }
 
     @IBOutlet weak var tableView: UITableView!
+    let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
     
     // MARK: - Life Cycle
     
@@ -75,7 +77,7 @@ extension SettingViewController: UITableViewDelegate {
             switch MyInfoSection.allCases[indexPath.row] {
             case .profile:
                 if let cell = cell as? SettingProfileTableViewCell {
-                    cell.configure()
+                    cell.configure(profileImage: nil)
                 }
             }
             return cell
@@ -111,6 +113,7 @@ extension SettingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Section.allCases[indexPath.section] {
         case .myInfo:
+            requestPhotoAccess(delegate: self)
             break
         default:
             break
@@ -130,5 +133,36 @@ extension SettingViewController: UITableViewDataSource {
         case .setting:
             return SettingSection.allCases.count
         }
+    }
+}
+
+extension SettingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true) {
+            let mediaType = info[.mediaType] as! CFString
+            switch mediaType {
+            case kUTTypeImage:
+                if let image = info[.originalImage] as? UIImage, let data = image.jpegData(compressionQuality: 1.0),
+                   let uuid = self.uuid {
+                    let request = PutUserProfileImageRequest(image: data)
+                    API.shared.putUserProfileImage(uuid, request: request) { result in
+                        switch result {
+                        case .success(let response):
+                            print(response.result ?? false)
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            case kUTTypeMovie:
+                print("video")
+            default:
+                break
+            }
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }
