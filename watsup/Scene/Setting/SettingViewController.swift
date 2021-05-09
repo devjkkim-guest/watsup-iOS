@@ -40,15 +40,6 @@ class SettingViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue) {
-            API.shared.getUser(uuid) { result in
-                switch result {
-                case .success(let data):
-                    print(data)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-            
             API.shared.getUserProfile(uuid) { result in
                 switch result {
                 case .success(let data):
@@ -77,7 +68,7 @@ extension SettingViewController: UITableViewDelegate {
             switch MyInfoSection.allCases[indexPath.row] {
             case .profile:
                 if let cell = cell as? SettingProfileTableViewCell {
-                    cell.configure(profileImage: nil)
+                    cell.configure()
                 }
             }
             return cell

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SettingProfileTableViewCell: UITableViewCell {
 
@@ -24,16 +25,26 @@ class SettingProfileTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(profileImage: UIImage?) {
+    func configure() {
         if let user = DatabaseWorker.shared.getMyProfile()?.first {
             nameLabel.text = user.profile?.nickname
             emailLabel.text = user.email
-        }
-        
-        if let profileImage = profileImage {
-            btnProfile.setImage(profileImage, for: .normal)
-        } else {
-            btnProfile.setImage(UIImage(systemName: "person"), for: .normal)
+            
+            if let uuid = user.uuid {
+                let model = APIModel.getUserProfileImage(uuid)
+                let modifier = AnyModifier { request in
+                    var r = request
+                    if let accessToken = UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue) {
+                        let value = "Bearer \(accessToken)"
+                        r.setValue(value, forHTTPHeaderField: HTTPHeaderField.authentication.rawValue)
+                    }
+
+                    return r
+                }
+                btnProfile.kf.setImage(with: model.urlRequest?.url, for: .normal, options: [.requestModifier(modifier)])
+            } else {
+                btnProfile.setImage(UIImage(systemName: "person"), for: .normal)
+            }
         }
     }
 }
