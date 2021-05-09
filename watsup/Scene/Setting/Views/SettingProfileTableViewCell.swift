@@ -24,10 +24,16 @@ class SettingProfileTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure() {
+    func configure(profileImage: UIImage?) {
         if let user = DatabaseWorker.shared.getMyProfile()?.first {
             nameLabel.text = user.profile?.nickname
             emailLabel.text = user.email
+        }
+        
+        if let profileImage = profileImage {
+            btnProfile.setImage(profileImage, for: .normal)
+        } else {
+            btnProfile.setImage(UIImage(systemName: "person"), for: .normal)
         }
     }
 }

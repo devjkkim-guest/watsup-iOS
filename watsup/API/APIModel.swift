@@ -21,6 +21,7 @@ enum APIModel: URLRequestConvertible {
     case postUser(_ request: PostUserRequest)
     case getUserProfile(_ uuid: String)
     case putUserProfile(_ uuid: String, request: PutUserProfileRequest)
+    case putUserProfileImage(_ uuid: String, request: PutUserProfileImageRequest)
     case getUserEmotions(_ uuid: String)
     case postEmotion(_ request: PostEmotionRequest)
     
@@ -50,7 +51,8 @@ enum APIModel: URLRequestConvertible {
             return .get
         case .putUserProfile,
              .putAuth,
-             .putCSForgotPassword:
+             .putCSForgotPassword,
+             .putUserProfileImage:
             return .put
         case .postEmotion,
              .postAuth,
@@ -68,6 +70,15 @@ enum APIModel: URLRequestConvertible {
         return UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
     }
     
+    var image: Data? {
+        switch self {
+        case .putUserProfileImage(_, let req):
+            return req.image
+        default:
+            return nil
+        }
+    }
+    
     // MARK: - Path
     private var path: String? {
         switch self {
@@ -80,6 +91,8 @@ enum APIModel: URLRequestConvertible {
             return "/users"
         case .putUserProfile(let uuid, _):
             return "/users/\(uuid)/profile"
+        case .putUserProfileImage(let uuid, _):
+            return "/users/\(uuid)/profile/image"
         case .getUserEmotions(let uuid):
             return "/users/\(uuid)/emotions"
         case .postEmotion:
@@ -136,6 +149,8 @@ enum APIModel: URLRequestConvertible {
             return nil
         case .putUserProfile(_, let param):
             return encode(parameter: param)
+        case .putUserProfileImage:
+            return nil
         case .putCSForgotPassword(let param):
             return encode(parameter: param)
         case .postCSForgotPassword(let param):
@@ -200,6 +215,14 @@ enum APIModel: URLRequestConvertible {
              .putCSForgotPassword:
             // JWT not included
             return commonHeaders
+        case .putUserProfileImage:
+            var multipartHeader: HTTPHeaders = [HTTPHeaderField.contentType.rawValue: ContentType.multipartFormData.rawValue,
+                                              HTTPHeaderField.acceptType.rawValue: ContentType.json.rawValue]
+            if let accessToken = UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue) {
+                let value = "Bearer \(accessToken)"
+                multipartHeader.add(name: HTTPHeaderField.authentication.rawValue, value: value)
+            }
+            return multipartHeader
         }
     }
     
