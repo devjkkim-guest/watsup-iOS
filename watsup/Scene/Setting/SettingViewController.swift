@@ -142,7 +142,7 @@ extension SettingViewController: UIImagePickerControllerDelegate, UINavigationCo
             let mediaType = info[.mediaType] as! CFString
             switch mediaType {
             case kUTTypeImage:
-                if let image = info[.originalImage] as? UIImage, let data = image.jpegData(compressionQuality: 1.0),
+                if let image = info[.originalImage] as? UIImage, let data = image.jpegData(compressionQuality: 0.8),
                    let uuid = self.uuid {
                     let request = PutUserProfileImageRequest(image: data)
                     API.shared.putUserProfileImage(uuid, request: request) { result in

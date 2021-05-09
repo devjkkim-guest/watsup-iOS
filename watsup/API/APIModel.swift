@@ -20,6 +20,7 @@ enum APIModel: URLRequestConvertible {
     case getUser(_ uuid: String)
     case postUser(_ request: PostUserRequest)
     case getUserProfile(_ uuid: String)
+    case getUserProfileImage(_ uuid: String)
     case putUserProfile(_ uuid: String, request: PutUserProfileRequest)
     case putUserProfileImage(_ uuid: String, request: PutUserProfileImageRequest)
     case getUserEmotions(_ uuid: String)
@@ -44,6 +45,7 @@ enum APIModel: URLRequestConvertible {
         switch self {
         case .getUser,
              .getUserProfile,
+             .getUserProfileImage,
              .getUserEmotions,
              .getGroup,
              .getUserGroup,
@@ -66,8 +68,8 @@ enum APIModel: URLRequestConvertible {
         }
     }
     
-    var userUUID: String? {
-        return UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
+    var myUUID: String {
+        return UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue) ?? ""
     }
     
     var image: Data? {
@@ -87,6 +89,8 @@ enum APIModel: URLRequestConvertible {
             return "/users/\(uuid)"
         case .getUserProfile(let uuid):
             return "/users/\(uuid)/profile"
+        case .getUserProfileImage(let uuid):
+            return "/users/\(uuid)/profile/image"
         case .postUser:
             return "/users"
         case .putUserProfile(let uuid, _):
@@ -96,11 +100,7 @@ enum APIModel: URLRequestConvertible {
         case .getUserEmotions(let uuid):
             return "/users/\(uuid)/emotions"
         case .postEmotion:
-            if let userUUID = userUUID {
-                return "/users/\(userUUID)/emotions"
-            }else{
-                return nil
-            }
+            return "/users/\(myUUID)/emotions"
             
         /** Auth */
         case .postAuth:
@@ -117,21 +117,13 @@ enum APIModel: URLRequestConvertible {
         case .postGroups:
             return "/groups"
         case .getUserGroup:
-            if let userUUID = userUUID {
-                return "/users/\(userUUID)/groups"
-            }else{
-                return nil
-            }
+            return "/users/\(myUUID)/groups"
         case .deleteGroups(let uuid):
             return "/groups/\(uuid)"
         case .getGroup(let uuid):
             return "/groups/\(uuid)"
         case .getUserInbox:
-            if let userUUID = userUUID {
-                return "/users/\(userUUID)/inbox"
-            }else{
-                return nil
-            }
+            return "/users/\(myUUID)/inbox"
         case .postGroupInvite(let groupUuid, _):
             return "/groups/\(groupUuid)/invite"
         }
@@ -145,20 +137,22 @@ enum APIModel: URLRequestConvertible {
             return encode(parameter: param)
         case .postAuth(let param):
             return encode(parameter: param)
-        case .putAuth:
-            return nil
         case .putUserProfile(_, let param):
             return encode(parameter: param)
-        case .putUserProfileImage:
-            return nil
         case .putCSForgotPassword(let param):
             return encode(parameter: param)
         case .postCSForgotPassword(let param):
             return encode(parameter: param)
-        case .getUserEmotions:
-            return nil
         case .postEmotion(let param):
             return encode(parameter: param)
+        case .putAuth,
+             .putUserProfileImage,
+             .getUser,
+             .getUserEmotions,
+             .getUserProfile,
+             .getUserProfileImage,
+             .getUserInbox:
+            return nil
             
         /** Groups */
         case .postGroups(let param):
@@ -167,9 +161,6 @@ enum APIModel: URLRequestConvertible {
             return encode(parameter: param)
         case .getUserGroup,
              .getGroup,
-             .getUser,
-             .getUserProfile,
-             .getUserInbox,
              .deleteGroups:
             return nil
         }
@@ -183,15 +174,9 @@ enum APIModel: URLRequestConvertible {
     }
     
     var headers: HTTPHeaders {
-        var commonHeaders: HTTPHeaders = [HTTPHeaderField.contentType.rawValue: ContentType.json.rawValue,
+        var customHeaders: HTTPHeaders = [HTTPHeaderField.contentType.rawValue: ContentType.json.rawValue,
                                           HTTPHeaderField.acceptType.rawValue: ContentType.json.rawValue]
         switch self {
-        case .putAuth:
-            if let refreshToken = UserDefaults.standard.string(forKey: KeychainKey.refreshToken.rawValue) {
-                let value = "Bearer \(refreshToken)"
-                commonHeaders.add(name: HTTPHeaderField.authentication.rawValue, value: value)
-            }
-            return commonHeaders
         case .getUser,
              .getUserProfile,
              .putUserProfile,
@@ -205,17 +190,26 @@ enum APIModel: URLRequestConvertible {
              .deleteGroups:
             if let accessToken = UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue) {
                 let value = "Bearer \(accessToken)"
-                commonHeaders.add(name: HTTPHeaderField.authentication.rawValue, value: value)
+                customHeaders.add(name: HTTPHeaderField.authentication.rawValue, value: value)
             }
             // JWT included
-            return commonHeaders
+            return customHeaders
         case .postAuth,
              .postUser,
              .postCSForgotPassword,
-             .putCSForgotPassword:
-            // JWT not included
-            return commonHeaders
+             .putCSForgotPassword,
+             .getUserProfileImage:
+            // default (JWT not included)
+            return customHeaders
+        case .putAuth:
+            // refreshToken
+            if let refreshToken = UserDefaults.standard.string(forKey: KeychainKey.refreshToken.rawValue) {
+                let value = "Bearer \(refreshToken)"
+                customHeaders.add(name: HTTPHeaderField.authentication.rawValue, value: value)
+            }
+            return customHeaders
         case .putUserProfileImage:
+            // multipart formData
             var multipartHeader: HTTPHeaders = [HTTPHeaderField.contentType.rawValue: ContentType.multipartFormData.rawValue,
                                               HTTPHeaderField.acceptType.rawValue: ContentType.json.rawValue]
             if let accessToken = UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue) {
