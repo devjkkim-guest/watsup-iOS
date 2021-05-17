@@ -166,6 +166,7 @@ extension GroupListViewController: UITableViewDelegate {
         case .invitedGroup:
             let cell = tableView.dequeueReusableCell(withIdentifier: Section.invitedGroup.rawValue, for: indexPath) as! GroupInvitedTableViewCell
             cell.invitedGroups = invitedGroups
+            cell.delegate = self
             cell.selectionStyle = .none
             cell.backgroundColor = .clear
             return cell
@@ -283,5 +284,13 @@ extension GroupListViewController: UITableViewDataSource {
 extension GroupListViewController: CreateGroupTableViewCellDelegate {
     func didClickCreateGroup() {
         showCreateNewGroupAlert()
+    }
+}
+
+extension GroupListViewController: GroupInvitedCollectionViewCellDelegate {
+    func onClickJoin(groupUUID: String) {
+        API.shared.getGroupJoin(groupUUID) { result in
+            print(result)
+        }
     }
 }

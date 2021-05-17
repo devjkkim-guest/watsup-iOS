@@ -35,6 +35,7 @@ enum APIModel: URLRequestConvertible {
     case postGroups(_ request: PostGroupsRequest)
     case postGroupInvite(_ groupUUID: String, _ request: PostGroupInviteRequest)
     case getUserGroup
+    case getGroupJoin(_ groupUUID: String)
     case getUserInbox
     case deleteGroups(_ groupUUID: String)
     
@@ -48,6 +49,7 @@ enum APIModel: URLRequestConvertible {
              .getUserProfileImage,
              .getUserEmotions,
              .getGroup,
+             .getGroupJoin,
              .getUserGroup,
              .getUserInbox:
             return .get
@@ -122,10 +124,12 @@ enum APIModel: URLRequestConvertible {
             return "/groups/\(uuid)"
         case .getGroup(let uuid):
             return "/groups/\(uuid)"
+        case .getGroupJoin(let groupUUID):
+            return "/groups/\(groupUUID)/join"
         case .getUserInbox:
             return "/users/\(myUUID)/inbox"
-        case .postGroupInvite(let groupUuid, _):
-            return "/groups/\(groupUuid)/invite"
+        case .postGroupInvite(let groupUUID, _):
+            return "/groups/\(groupUUID)/invite"
         }
     }
     
@@ -161,6 +165,7 @@ enum APIModel: URLRequestConvertible {
             return encode(parameter: param)
         case .getUserGroup,
              .getGroup,
+             .getGroupJoin,
              .deleteGroups:
             return nil
         }
@@ -183,6 +188,7 @@ enum APIModel: URLRequestConvertible {
              .getUserGroup,
              .postGroups,
              .postGroupInvite,
+             .getGroupJoin,
              .getGroup,
              .getUserEmotions,
              .postEmotion,

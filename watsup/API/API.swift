@@ -191,6 +191,13 @@ class API {
         }
     }
     
+    func getGroupJoin(_ groupUUID: String, completion: @escaping (Result<Group, APIError>) -> Void) {
+        API.shared.request(.getGroupJoin(groupUUID)) { (result: Result<Group, APIError>) in
+            print(result)
+            completion(result)
+        }
+    }
+    
     func postGroups(_ request: PostGroupsRequest, completion: @escaping (Result<PostGroupsResponse, APIError>) -> Void) {
         API.shared.request(.postGroups(request)) { (result: Result<PostGroupsResponse, APIError>) in
             switch result {
@@ -209,8 +216,8 @@ class API {
         }
     }
     
-    func postGroupInvite(_ groupUuid: String, _ request: PostGroupInviteRequest, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
-        API.shared.request(.postGroupInvite(groupUuid, request)) { (result: Result<CommonResponse, APIError>) in
+    func postGroupInvite(_ groupUUID: String, _ request: PostGroupInviteRequest, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
+        API.shared.request(.postGroupInvite(groupUUID, request)) { (result: Result<CommonResponse, APIError>) in
             completion(result)
         }
     }

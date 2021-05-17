@@ -27,10 +27,10 @@ class GroupDetailViewController: UIViewController {
         }
 
         let actionCreateGroup = UIAlertAction(title: "Invite", style: .default) { action in
-            guard let groupUuid = self.group?.uuid else { return }
+            guard let groupUUID = self.group?.uuid else { return }
             guard let userEmail = alertController.textFields?.first?.text else { return }
             let request = PostGroupInviteRequest(userEmail: userEmail)
-            API.shared.postGroupInvite(groupUuid, request) { result in
+            API.shared.postGroupInvite(groupUUID, request) { result in
                 switch result {
                 case .success(let data):
                     print(data)
