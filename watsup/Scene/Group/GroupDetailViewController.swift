@@ -18,6 +18,24 @@ class GroupDetailViewController: UIViewController {
         membersTableView.delegate = self
         membersTableView.dataSource = self
         membersTableView.register(UINib(nibName: "GroupMemberTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        
+        group?.joinedUsers.forEach({ joinedUser in
+            guard let uuid = joinedUser.user?.uuid else { return }
+            API.shared.getUserEmotions(uuid: uuid) { result in
+                switch result {
+                case .success(let data):
+                    for cell in self.membersTableView.visibleCells {
+                        if let cell = cell as? GroupMemberTableViewCell,
+                           cell.uuid == uuid {
+                            cell.configure(user: joinedUser.user, emotion: data.logs?.last)
+                            break
+                        }
+                    }
+                case .failure(let error):
+                    self.showAlert(message: error.localizedDescription)
+                }
+            }
+        })
     }
     
     @IBAction func onClickInvite(_ sender: UIBarButtonItem) {
@@ -76,10 +94,12 @@ extension GroupDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GroupMemberTableViewCell
         cell.delegate = self
-        let user = group?.joinedUsers[indexPath.row]
-        let emotion = DatabaseWorker.shared.getEmotionList().sorted(byKeyPath: "createdAt")
-        cell.configure(user: user?.user, emotion: emotion.last)
         cell.selectionStyle = .none
+        
+        let user = group?.joinedUsers[indexPath.row]
+        let emotion = user?.user?.emotions.last
+        cell.configure(user: user?.user, emotion: emotion)
+        
         return cell
     }
     
