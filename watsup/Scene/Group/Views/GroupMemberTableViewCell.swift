@@ -18,6 +18,7 @@ class GroupMemberTableViewCell: UITableViewCell {
     @IBOutlet weak var emotionLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
+    var uuid: String?
     let dateFormatter = DateFormatter()
     weak var delegate: GroupMemberTableViewCellDelegate?
     
@@ -37,6 +38,7 @@ class GroupMemberTableViewCell: UITableViewCell {
     }
     
     func configure(user: User?, emotion: Emotion?) {
+        uuid = user?.uuid
         nameLabel.text = user?.profile?.nickname
         if let emotion = emotion {
             timeLabel.isHidden = false
