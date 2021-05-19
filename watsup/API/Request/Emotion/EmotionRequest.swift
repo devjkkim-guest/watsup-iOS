@@ -12,4 +12,5 @@ struct PostEmotionRequest: Codable {
     let emotionType: Int
     let score: Int
     let createdAt: Double
+    let timeRecognizable: Double
 }
