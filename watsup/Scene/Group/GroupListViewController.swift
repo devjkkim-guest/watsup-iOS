@@ -221,7 +221,7 @@ extension GroupListViewController: UITableViewDelegate {
             let action = UIContextualAction(style: .destructive, title: "Leave") { (action, view, handler) in
                 let alertController = UIAlertController(title: nil, message: "Are you sure to Leave?", preferredStyle: .alert)
                 let actionOK = UIAlertAction(title: "Leave", style: .destructive) { _ in
-                    API.shared.deleteGroups(uuid) { result in
+                    API.shared.getGroupLeave(uuid) { result in
                         switch result {
                         case .success:
                             break
@@ -295,7 +295,7 @@ extension GroupListViewController: GroupInvitedCollectionViewCellDelegate {
                 self.invitedGroups?.removeAll(where: { invitedGroup in
                     return invitedGroup.groupUuid == group.uuid
                 })
-                self.tableView.reloadSections([Section.invitedGroup.getIntValue()], with: .automatic)
+                self.tableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }

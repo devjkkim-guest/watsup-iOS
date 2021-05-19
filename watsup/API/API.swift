@@ -260,6 +260,20 @@ class API {
         }
     }
     
+    func getGroupLeave(_ groupUUID: String, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
+        API.shared.request(.getGroupLeave(groupUUID)) { (result: Result<CommonResponse, APIError>) in
+            switch result {
+            case .success(let response):
+                if response.result == true {
+                    DatabaseWorker.shared.deleteGroups(groupUUID)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            completion(result)
+        }
+    }
+    
     // MARK: - Error
     func getError(_ data: Data?) -> APIError {
         let decoder = JSONDecoder()
