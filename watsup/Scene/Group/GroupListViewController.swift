@@ -290,7 +290,15 @@ extension GroupListViewController: CreateGroupTableViewCellDelegate {
 extension GroupListViewController: GroupInvitedCollectionViewCellDelegate {
     func onClickJoin(groupUUID: String) {
         API.shared.getGroupJoin(groupUUID) { result in
-            print(result)
+            switch result {
+            case .success(let group):
+                self.invitedGroups?.removeAll(where: { invitedGroup in
+                    return invitedGroup.groupUuid == group.uuid
+                })
+                self.tableView.reloadSections([Section.invitedGroup.getIntValue()], with: .automatic)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
 }

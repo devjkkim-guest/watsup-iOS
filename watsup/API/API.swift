@@ -193,7 +193,12 @@ class API {
     
     func getGroupJoin(_ groupUUID: String, completion: @escaping (Result<Group, APIError>) -> Void) {
         API.shared.request(.getGroupJoin(groupUUID)) { (result: Result<Group, APIError>) in
-            print(result)
+            switch result {
+            case .success(let group):
+                DatabaseWorker.shared.setGroups([group])
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
             completion(result)
         }
     }

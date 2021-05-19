@@ -11,7 +11,11 @@ class GroupInvitedTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
     weak var delegate: GroupInvitedCollectionViewCellDelegate?
-    var invitedGroups: [InboxGroupResponse]?
+    var invitedGroups: [InboxGroupResponse]? {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
