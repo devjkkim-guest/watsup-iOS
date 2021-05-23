@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lDJ-9q-HMX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lDJ-9q-HMX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -208,7 +208,6 @@
                                 <connections>
                                     <action selector="onClickLogin:" destination="r1V-jC-xpE" eventType="touchUpInside" id="7c2-4c-mt7"/>
                                     <action selector="onClickSendCode:" destination="igu-8M-EtX" eventType="touchUpInside" id="vkh-AH-q5J"/>
-                                    <segue destination="iwt-5q-cqA" kind="show" id="qKS-ev-noa"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -228,6 +227,7 @@
                     <navigationItem key="navigationItem" title="인증코드 발송" id="AND-zy-Hq6"/>
                     <connections>
                         <outlet property="tfEmail" destination="7Ja-qX-d0J" id="Ghc-uB-Wbc"/>
+                        <segue destination="iwt-5q-cqA" kind="show" identifier="showAuthVerifyCode" id="L7E-XJ-Cft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWM-hn-boN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

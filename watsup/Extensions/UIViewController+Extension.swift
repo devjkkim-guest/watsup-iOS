@@ -86,4 +86,10 @@ extension UIViewController {
 
         present(alertController, animated: true, completion: nil)
     }
+    
+    func goMain() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
+        }
+    }
 }

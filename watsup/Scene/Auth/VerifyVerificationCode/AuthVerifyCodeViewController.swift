@@ -10,7 +10,6 @@ import UIKit
 class AuthVerifyCodeViewController: UIViewController {
 
     @IBOutlet weak var tfVerifyCode: UITextField!
-    let viewModel = AuthVerifyCodeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +22,16 @@ class AuthVerifyCodeViewController: UIViewController {
             API.shared.putCSForgotPassword(request) { result in
                 switch result {
                 case .success(let data):
-                    self.viewModel.addUser(data)
+                    let viewModel = AuthLoginViewModel()
+                    let data = PostAuthResponse(accessToken: data.accessToken, identity: data.identity, refreshToken: data.refreshToken)
+                    viewModel.getUser(data: data) { result in
+                        switch result {
+                        case .success:
+                            self.goMain()
+                        case .failure(let error):
+                            self.showAlert(message: error.errorMsg)
+                        }
+                    }
                 case .failure(let error):
                     print(error.localizedDescription)
                 }

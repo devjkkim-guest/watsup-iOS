@@ -9,24 +9,30 @@ import Foundation
 import Alamofire
 
 struct APIError: Error {
-    let errorMsg: String
-    let errorCode: Int
+    enum APIErrorCode: Int {
+        case loginFailed = 400
+        case notValidEmailAddr = 422
+        case defaultError
+    }
     
-    init(errorCode: Int? = nil) {
+    let errorMsg: String
+    let errorCode: APIErrorCode
+    
+    init(errorCode: APIErrorCode? = nil) {
         if let errorCode = errorCode {
             self.errorCode = errorCode
             self.errorMsg = APIError.getErrorMessage(for: errorCode)
         }else{
-            self.errorCode = 0
-            self.errorMsg = APIError.getErrorMessage()
+            self.errorCode = .defaultError
+            self.errorMsg = APIError.getErrorMessage(for: .defaultError)
         }
     }
     
-    static func getErrorMessage(for errorCode: Int? = nil) -> String {
+    static func getErrorMessage(for errorCode: APIErrorCode) -> String {
         switch errorCode {
-        case 400:
+        case .loginFailed:
             return "API.Auth.Error.400".localized
-        case 422:
+        case .notValidEmailAddr:
             return "API.Auth.Error.422".localized
         default:
             return "API.Common.Error.DefaultMessage".localized

@@ -31,17 +31,12 @@ class AuthLoginViewController: UIViewController {
         }
         let request = PostAuthRequest(email: email, password: password)
         viewModel.postAuth(request) { result in
-            if result {
+            switch result {
+            case .success:
                 self.goMain()
-            } else {
-                self.showAlert(message: "failed \(#function) \(#line)")
+            case .failure(let error):
+                self.showAlert(message: error.errorMsg)
             }
-        }
-    }
-    
-    func goMain() {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
         }
     }
 }
