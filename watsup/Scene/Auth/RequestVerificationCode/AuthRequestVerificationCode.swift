@@ -32,7 +32,12 @@ class AuthRequestCodeViewController: UIViewController {
         if let email = tfEmail.text {
             let request = PostCSForgotPasswordRequest(email: email)
             API.shared.postCSForgotPassword(request) { result in
-                print(result)
+                switch result {
+                case .success:
+                    self.performSegue(withIdentifier: "showAuthVerifyCode", sender: nil)
+                case .failure(let error):
+                    self.showAlert(message: error.errorMsg)
+                }
             }
         }
     }

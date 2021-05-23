@@ -8,7 +8,7 @@
 import UIKit
 
 class AuthJoinViewModel {
-    func postUser(email: String, password: String, completion: @escaping (Bool) -> Void) {
+    func postUser(email: String, password: String, completion: @escaping (Result<User, APIError>) -> Void) {
         let deviceToken = UserDefaults.standard.string(forKey: UserDefaultsKey.deviceToken.rawValue)
         let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
         let languageCode = Locale.preferredLanguages.first ?? "en_US"
@@ -28,12 +28,12 @@ class AuthJoinViewModel {
                 }
             case .failure(let error):
                 print(error.localizedDescription)
-                completion(false)
+                completion(.failure(error))
             }
         }
     }
     
-    private func postAuth(_ request: PostAuthRequest, completion: @escaping (Bool) -> Void) {
+    private func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<User, APIError>) -> Void) {
         let viewModel = AuthLoginViewModel()
         viewModel.postAuth(request) { result in
             completion(result)

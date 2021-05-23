@@ -24,14 +24,15 @@ class AuthJoinViewController: UIViewController {
         
         let viewModel = AuthJoinViewModel()
         viewModel.postUser(email: email, password: password) { result in
-            if result {
+            switch result {
+            case .success:
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
                 } else {
                     self.showAlert(message: "failed \(#function) \(#line)")
                 }
-            } else {
-                self.showAlert(message: "failed \(#function) \(#line)")
+            case .failure(let error):
+                self.showAlert(message: error.errorMsg)
             }
         }
     }

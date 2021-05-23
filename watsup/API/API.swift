@@ -279,8 +279,9 @@ class API {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         if let data = data,
-           let json = try? decoder.decode(CommonResponse.self, from: data) {
-            let apiError = APIError(errorCode: json.code)
+           let json = try? decoder.decode(CommonResponse.self, from: data),
+           let errorCode = json.code {
+            let apiError = APIError(errorCode: APIError.APIErrorCode(rawValue: errorCode))
             return apiError
         }else{
             // return default error.
