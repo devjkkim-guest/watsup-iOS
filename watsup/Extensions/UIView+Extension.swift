@@ -12,15 +12,4 @@ extension UIView {
         self.layer.cornerRadius = radius ?? 12
         self.clipsToBounds = true
     }
-    
-    func addExternalBorder(borderWidth: CGFloat = 2, borderColor: UIColor = .white, radius: CGFloat) {
-        if let superview = superview {
-            let borderView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: frame.size.width+borderWidth, height: frame.size.height+borderWidth)))
-            borderView.center = center
-            borderView.clipsToBounds = clipsToBounds
-            borderView.layer.cornerRadius = radius
-            borderView.backgroundColor = borderColor 
-            superview.insertSubview(borderView, belowSubview: self)
-        }
-    }
 }

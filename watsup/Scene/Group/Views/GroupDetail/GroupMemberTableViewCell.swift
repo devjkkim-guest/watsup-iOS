@@ -24,7 +24,6 @@ class GroupMemberTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        emotionLabel.addExternalBorder(borderWidth: 2, borderColor: .white, radius: emotionLabel.frame.size.width/2)
         emotionLabel.clipsToBounds = true
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width/2
         profileImageView.clipsToBounds = true
@@ -37,10 +36,22 @@ class GroupMemberTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(user: User?, emotion: Emotion?) {
-        uuid = user?.uuid
-        nameLabel.text = user?.profile?.nickname
-        if let emotion = emotion {
+    func configure(joinedUser: JoinedUser?) {
+        guard let joinedUser = joinedUser, let user = joinedUser.user else {
+            timeLabel.isHidden = true
+            emotionLabel.isHidden = true
+            messageLabel.isHidden = true
+            return
+        }
+        
+        uuid = user.uuid
+        nameLabel.text = user.profile?.nickname
+        
+        if joinedUser.userStatus == .invited {
+            timeLabel.isHidden = true
+            emotionLabel.isHidden = true
+            messageLabel.text = "Waiting for join..."
+        } else if (joinedUser.userStatus == .member || joinedUser.userStatus == .master), let emotion = user.emotions.last {
             timeLabel.isHidden = false
             timeLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: emotion.createdAt))
             emotionLabel.isHidden = false

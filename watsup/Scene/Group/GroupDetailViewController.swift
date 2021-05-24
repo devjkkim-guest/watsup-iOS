@@ -23,16 +23,16 @@ class GroupDetailViewController: UIViewController {
             guard let uuid = joinedUser.user?.uuid else { return }
             API.shared.getUserEmotions(uuid: uuid) { result in
                 switch result {
-                case .success(let data):
+                case .success:
                     for cell in self.membersTableView.visibleCells {
                         if let cell = cell as? GroupMemberTableViewCell,
                            cell.uuid == uuid {
-                            cell.configure(user: joinedUser.user, emotion: data.logs?.last)
+                            cell.configure(joinedUser: joinedUser)
                             break
                         }
                     }
                 case .failure(let error):
-                    self.showAlert(message: error.localizedDescription)
+                    print(error.localizedDescription)
                 }
             }
         })
@@ -95,11 +95,7 @@ extension GroupDetailViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GroupMemberTableViewCell
         cell.delegate = self
         cell.selectionStyle = .none
-        
-        let user = group?.joinedUsers[indexPath.row]
-        let emotion = user?.user?.emotions.last
-        cell.configure(user: user?.user, emotion: emotion)
-        
+        cell.configure(joinedUser: group?.joinedUsers[indexPath.row])
         return cell
     }
     
