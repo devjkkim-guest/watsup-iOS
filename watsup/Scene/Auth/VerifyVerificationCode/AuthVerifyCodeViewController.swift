@@ -18,12 +18,11 @@ class AuthVerifyCodeViewController: UIViewController {
     
     @IBAction func onClickLogin(_ sender: UIButton) {
         if let code = tfVerifyCode.text, let intCode = Int(code) {
+            let viewModel = AuthContainer.shared.authViewModel
             let request = PutCSForgotPasswordRequest(verificationCode: intCode)
-            API.shared.putCSForgotPassword(request) { result in
+            viewModel.putCSForgotPassword(request) { result in
                 switch result {
                 case .success(let data):
-                    let viewModel = AuthLoginViewModel()
-                    let data = PostAuthResponse(accessToken: data.accessToken, identity: data.identity, refreshToken: data.refreshToken)
                     viewModel.getUser(data: data) { result in
                         switch result {
                         case .success:

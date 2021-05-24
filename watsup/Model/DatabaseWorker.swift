@@ -13,7 +13,11 @@ enum DatabaseError: Error {
     case insufficientDataError
 }
 
-class DatabaseWorker {
+protocol WatsupRepository {
+    func setUser(_ user: User) throws
+}
+
+class DatabaseWorker: WatsupRepository {
     static let shared = DatabaseWorker()
     let realm: Realm
     

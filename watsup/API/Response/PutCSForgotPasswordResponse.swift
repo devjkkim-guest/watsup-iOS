@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PutCSForgotPasswordResponse: Codable {
+struct AuthResponse: Codable {
     var accessToken: String?
     var identity: Identity?
     var refreshToken: String?
