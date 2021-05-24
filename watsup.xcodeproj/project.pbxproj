@@ -91,6 +91,7 @@
 		A485A5F5262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A485A5F3262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift */; };
 		A485A5F6262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A485A5F4262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib */; };
 		A4981B7A265BD05900C295A5 /* AuthContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4981B79265BD05900C295A5 /* AuthContainer.swift */; };
+		A4981B82265BFE4300C295A5 /* GroupDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4981B81265BFE4300C295A5 /* GroupDetailViewModel.swift */; };
 		A4BE39A226128C800051B213 /* RegisterEmotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */; };
 		A4BE39A326128C800051B213 /* RegisterEmotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */; };
 		A4BE39A826128ED50051B213 /* RegisterEmotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE39A726128ED50051B213 /* RegisterEmotionViewController.swift */; };
@@ -231,6 +232,7 @@
 		A485A5F3262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailEmotionTableViewCell.swift; sourceTree = "<group>"; };
 		A485A5F4262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailEmotionTableViewCell.xib; sourceTree = "<group>"; };
 		A4981B79265BD05900C295A5 /* AuthContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainer.swift; sourceTree = "<group>"; };
+		A4981B81265BFE4300C295A5 /* GroupDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewModel.swift; sourceTree = "<group>"; };
 		A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmotionTableViewCell.swift; sourceTree = "<group>"; };
 		A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterEmotionTableViewCell.xib; sourceTree = "<group>"; };
 		A4BE39A726128ED50051B213 /* RegisterEmotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmotionViewController.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 		8F0E41CB25B85ECB008AA995 /* Group */ = {
 			isa = PBXGroup;
 			children = (
+				A4981B80265BFE1D00C295A5 /* ViewModel */,
 				8F5D596125C5A73F0095C21A /* Views */,
 				8F0E41D125B88724008AA995 /* Group.storyboard */,
 				8F0E41DF25B9C61E008AA995 /* GroupListViewController.swift */,
@@ -647,6 +650,14 @@
 				8988DBB1261DDB2A00830295 /* GroupMemberTableViewCell.xib */,
 			);
 			path = GroupDetail;
+			sourceTree = "<group>";
+		};
+		A4981B80265BFE1D00C295A5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A4981B81265BFE4300C295A5 /* GroupDetailViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A4BE3A2C26188F780051B213 /* Model */ = {
@@ -1010,6 +1021,7 @@
 				8F8E3E7225DD6AFF00EBB8A8 /* UIViewController+Extension.swift in Sources */,
 				A4775C5C260B7B5000A007EF /* Request.swift in Sources */,
 				8F5D595525C496EC0095C21A /* APITokenStorage.swift in Sources */,
+				A4981B82265BFE4300C295A5 /* GroupDetailViewModel.swift in Sources */,
 				8F5D592225C474D20095C21A /* UIView+Extension.swift in Sources */,
 				8F5AD3F725C1CDB200DBF158 /* APIEventMonitor.swift in Sources */,
 				A4BE39A226128C800051B213 /* RegisterEmotionTableViewCell.swift in Sources */,

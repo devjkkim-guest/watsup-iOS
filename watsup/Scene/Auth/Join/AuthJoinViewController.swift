@@ -22,7 +22,7 @@ class AuthJoinViewController: UIViewController {
         guard let email = tfEmail.text else { return }
         guard let password = tfPassword.text else { return }
         
-        let viewModel = AuthContainer.shared.authViewModel
+        let viewModel: AuthViewModel = Container.shared.resolve(id: authViewModelId)
         viewModel.postUser(email: email, password: password) { result in
             switch result {
             case .success:

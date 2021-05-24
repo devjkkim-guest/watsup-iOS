@@ -7,12 +7,16 @@
 
 import Foundation
 
-class AuthViewModel {
-    private let api: WatsupAPI
-    private let repository: WatsupRepository
+public let authViewModelId = "authViewModelId"
+
+class AuthViewModel: BaseViewModel {
+    var id: String = authViewModelId
+    var api: WatsupAPI
+    var repository: WatsupRepository
+    
     public var uuid: String? = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
     
-    init(api: WatsupAPI, repository: WatsupRepository) {
+    required init(api: WatsupAPI, repository: WatsupRepository) {
         self.api = api
         self.repository = repository
     }

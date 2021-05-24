@@ -31,6 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let folderPath = try! Realm().configuration.fileURL!.deletingLastPathComponent().path
         print(folderPath)
         
+        Container.shared.register(AuthViewModel.self)
+        Container.shared.register(GroupDetailViewModel.self)
+        
         return true
     }
     

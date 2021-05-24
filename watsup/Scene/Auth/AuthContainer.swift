@@ -7,8 +7,24 @@
 
 import Foundation
 
-class AuthContainer {
-    static let shared = AuthContainer()
+protocol BaseViewModel {
+    var id: String { get }
+    var api: WatsupAPI { get }
+    var repository: WatsupRepository { get }
+    init(api: WatsupAPI, repository: WatsupRepository)
+}
+
+class Container {
+    static let shared = Container()
     private init() { }
-    let authViewModel = AuthViewModel(api: API.shared, repository: DatabaseWorker.shared)
+    var viewModels = [String: BaseViewModel]()
+    
+    func register<T: BaseViewModel>(_ viewModel: T.Type) {
+        let viewModel = viewModel.init(api: API.shared, repository: DatabaseWorker.shared)
+        viewModels[viewModel.id] = viewModel
+    }
+    
+    func resolve<T: BaseViewModel>(id: String) -> T {
+        return viewModels[id] as! T
+    }
 }

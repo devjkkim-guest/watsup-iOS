@@ -21,7 +21,8 @@ class MainViewController: BaseViewController {
     var currentMonth = Calendar.current.component(.month, from: Date())
     var months = [Date?]()
     lazy var emotions: List<Emotion>? = {
-        if let uuid = AuthContainer.shared.authViewModel.uuid {
+        let viewModel: AuthViewModel = Container.shared.resolve(id: authViewModelId)
+        if let uuid = viewModel.uuid {
             return DatabaseWorker.shared.getEmotionList(uuid: uuid)
         } else {
             return nil
