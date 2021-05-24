@@ -7,12 +7,6 @@
 
 import Foundation
 
-class AuthContainer {
-    static let shared = AuthContainer()
-    private init() { }
-    let authViewModel = AuthViewModel(api: API.shared, repository: DatabaseWorker.shared)
-}
-
 class AuthViewModel {
     let api: WatsupAPI
     let repository: WatsupRepository
