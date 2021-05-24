@@ -8,7 +8,35 @@
 import Foundation
 import Alamofire
 
-class API {
+protocol WatsupAPI {
+    func postUser(_ request: PostUserRequest, completion: @escaping (Result<PostUsersResponse, APIError>) -> Void)
+    func getUser(data: AuthResponse, completion: @escaping ((Result<User, APIError>) -> Void))
+    func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<AuthResponse, APIError>) -> Void)
+    func putCSForgotPassword(_ request: PutCSForgotPasswordRequest, complection: @escaping (Result<AuthResponse, APIError>) -> Void)
+}
+
+class API: WatsupAPI {
+    func getUser(data: AuthResponse, completion: @escaping ((Result<User, APIError>) -> Void)) {
+        if let uuid = data.identity?.uuid,
+           let accessToken = data.accessToken,
+           let refreshToken = data.refreshToken {
+            UserDefaults.standard.setValue(uuid, forKey: UserDefaultsKey.uuid.rawValue)
+            UserDefaults.standard.setValue(accessToken, forKey: KeychainKey.accessToken.rawValue)
+            UserDefaults.standard.setValue(refreshToken, forKey: KeychainKey.refreshToken.rawValue)
+            
+            getUser(uuid) { result in
+                switch result {
+                case .success(let user):
+                    completion(.success(user))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        }else{
+            completion(.failure(APIError()))
+        }
+    }
+    
     static var shared: API = {
         let configuration = URLSessionConfiguration.af.default
         configuration.timeoutIntervalForRequest = 3
@@ -85,7 +113,7 @@ class API {
     
     // MARK: - Auth
     /// Login
-    func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<PostAuthResponse, APIError>) -> Void) {
+    func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<AuthResponse, APIError>) -> Void) {
         API.shared.request(.postAuth(request)) { result in
             completion(result)
         }
@@ -103,7 +131,7 @@ class API {
         }
     }
     
-    func putCSForgotPassword(_ request: PutCSForgotPasswordRequest, complection: @escaping (Result<PutCSForgotPasswordResponse, APIError>) -> Void) {
+    func putCSForgotPassword(_ request: PutCSForgotPasswordRequest, complection: @escaping (Result<AuthResponse, APIError>) -> Void) {
         API.shared.request(.putCSForgotPassword(request)) { result in
             complection(result)
         }

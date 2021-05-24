@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol UserDetailTableHeaderViewDelegate: class {
+protocol UserDetailTableHeaderViewDelegate: AnyObject {
     func didClickEditProfile()
 }
 

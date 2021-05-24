@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol GroupMemberTableViewCellDelegate: class {
+protocol GroupMemberTableViewCellDelegate: AnyObject {
     func didClickExpel(_ sender: UIButton)
 }
 

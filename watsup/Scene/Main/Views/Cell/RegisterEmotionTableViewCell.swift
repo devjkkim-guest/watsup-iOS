@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol RegisterEmotionTableViewCellDelegate: class {
+protocol RegisterEmotionTableViewCellDelegate: AnyObject {
     func didClickRegister(_ date: Date)
 }
 
