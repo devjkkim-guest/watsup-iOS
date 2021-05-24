@@ -90,7 +90,7 @@
 		A485A5E8262AD50E007072D0 /* UserDetailTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A485A5E7262AD50E007072D0 /* UserDetailTableHeaderView.xib */; };
 		A485A5F5262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A485A5F3262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift */; };
 		A485A5F6262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A485A5F4262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib */; };
-		A4981B7A265BD05900C295A5 /* AuthContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4981B79265BD05900C295A5 /* AuthContainer.swift */; };
+		A4981B7A265BD05900C295A5 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4981B79265BD05900C295A5 /* Container.swift */; };
 		A4981B82265BFE4300C295A5 /* GroupDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4981B81265BFE4300C295A5 /* GroupDetailViewModel.swift */; };
 		A4BE39A226128C800051B213 /* RegisterEmotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */; };
 		A4BE39A326128C800051B213 /* RegisterEmotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */; };
@@ -231,7 +231,7 @@
 		A485A5E7262AD50E007072D0 /* UserDetailTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailTableHeaderView.xib; sourceTree = "<group>"; };
 		A485A5F3262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailEmotionTableViewCell.swift; sourceTree = "<group>"; };
 		A485A5F4262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailEmotionTableViewCell.xib; sourceTree = "<group>"; };
-		A4981B79265BD05900C295A5 /* AuthContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainer.swift; sourceTree = "<group>"; };
+		A4981B79265BD05900C295A5 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		A4981B81265BFE4300C295A5 /* GroupDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewModel.swift; sourceTree = "<group>"; };
 		A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmotionTableViewCell.swift; sourceTree = "<group>"; };
 		A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterEmotionTableViewCell.xib; sourceTree = "<group>"; };
@@ -392,7 +392,6 @@
 				8F2C5ADD25C1BC37004FF9EF /* Auth.storyboard */,
 				8F5AD3D025C1C50100DBF158 /* AuthMainViewController.swift */,
 				8F5AD40C25C4630C00DBF158 /* AuthViewModel.swift */,
-				A4981B79265BD05900C295A5 /* AuthContainer.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -548,6 +547,7 @@
 				8F2C5A9F25C067B2004FF9EF /* API */,
 				8F5D58FB25C4655F0095C21A /* Scene */,
 				8F61769A25B856140059B4B7 /* AppDelegate.swift */,
+				A4981B79265BD05900C295A5 /* Container.swift */,
 				8F6176A325B856150059B4B7 /* Assets.xcassets */,
 				8F6176A525B856150059B4B7 /* LaunchScreen.storyboard */,
 				8F6176A825B856150059B4B7 /* Info.plist */,
@@ -1025,7 +1025,7 @@
 				8F5D592225C474D20095C21A /* UIView+Extension.swift in Sources */,
 				8F5AD3F725C1CDB200DBF158 /* APIEventMonitor.swift in Sources */,
 				A4BE39A226128C800051B213 /* RegisterEmotionTableViewCell.swift in Sources */,
-				A4981B7A265BD05900C295A5 /* AuthContainer.swift in Sources */,
+				A4981B7A265BD05900C295A5 /* Container.swift in Sources */,
 				8F5D594B25C4924C0095C21A /* GetUserProfileResponse.swift in Sources */,
 				8F5D595025C494230095C21A /* APIInterceptor.swift in Sources */,
 				8FD6448E25BAFB010056F74E /* BaseViewController.swift in Sources */,
