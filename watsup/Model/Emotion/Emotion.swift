@@ -14,4 +14,8 @@ class Emotion: Object, Codable {
     @objc dynamic var message: String?
     @objc dynamic var score: Int = 0
     @objc dynamic var createdAt: Double = 0
+    
+    override class func indexedProperties() -> [String] {
+        return ["id"]
+    }
 }

@@ -10,30 +10,20 @@ import Alamofire
 
 protocol WatsupAPI {
     func postUser(_ request: PostUserRequest, completion: @escaping (Result<PostUsersResponse, APIError>) -> Void)
-    func getUser(data: AuthResponse, completion: @escaping ((Result<User, APIError>) -> Void))
+    func getUser(uuid: String, completion: @escaping ((Result<User, APIError>) -> Void))
     func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<AuthResponse, APIError>) -> Void)
     func putCSForgotPassword(_ request: PutCSForgotPasswordRequest, complection: @escaping (Result<AuthResponse, APIError>) -> Void)
 }
 
 class API: WatsupAPI {
-    func getUser(data: AuthResponse, completion: @escaping ((Result<User, APIError>) -> Void)) {
-        if let uuid = data.identity?.uuid,
-           let accessToken = data.accessToken,
-           let refreshToken = data.refreshToken {
-            UserDefaults.standard.setValue(uuid, forKey: UserDefaultsKey.uuid.rawValue)
-            UserDefaults.standard.setValue(accessToken, forKey: KeychainKey.accessToken.rawValue)
-            UserDefaults.standard.setValue(refreshToken, forKey: KeychainKey.refreshToken.rawValue)
-            
-            getUser(uuid) { result in
-                switch result {
-                case .success(let user):
-                    completion(.success(user))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
+    func getUser(uuid: String, completion: @escaping ((Result<User, APIError>) -> Void)) {
+        getUser(uuid) { result in
+            switch result {
+            case .success(let user):
+                completion(.success(user))
+            case .failure(let error):
+                completion(.failure(error))
             }
-        }else{
-            completion(.failure(APIError()))
         }
     }
     

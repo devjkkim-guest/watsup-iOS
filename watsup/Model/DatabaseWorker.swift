@@ -54,8 +54,8 @@ class DatabaseWorker: WatsupRepository {
     }
     
     // MARK: - Emotion
-    func getEmotionList() -> Results<Emotion> {
-        return realm.objects(Emotion.self)
+    func getEmotionList(uuid: String) -> List<Emotion>? {
+        return realm.objects(User.self).filter("uuid = '\(uuid)'").first?.emotions
     }
     
     func setEmotionLogs(_ logs: [Emotion], of userUuid: String) {

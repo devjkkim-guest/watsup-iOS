@@ -20,7 +20,13 @@ class MainViewController: BaseViewController {
     var currentYear = Calendar.current.component(.year, from: Date())
     var currentMonth = Calendar.current.component(.month, from: Date())
     var months = [Date?]()
-    let emotions = DatabaseWorker.shared.getEmotionList()
+    lazy var emotions: List<Emotion>? = {
+        if let uuid = AuthContainer.shared.authViewModel.uuid {
+            return DatabaseWorker.shared.getEmotionList(uuid: uuid)
+        } else {
+            return nil
+        }
+    }()
     var selectedEmotions: Results<Emotion>?
     var emotionToken: NotificationToken?
     
@@ -70,7 +76,7 @@ class MainViewController: BaseViewController {
     }
     
     func bindModel() {
-        emotionToken = emotions.observe { changes in
+        emotionToken = emotions?.observe { changes in
             switch changes {
             case .update:
                 // TO DO: reload tableView only if inserted data belongs to currently selected day.
@@ -108,7 +114,7 @@ class MainViewController: BaseViewController {
         if let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate) {
             let startTime = selectedDate.timeIntervalSince1970
             let endTime = nextDay.timeIntervalSince1970
-            selectedEmotions = emotions.filter("createdAt >= \(startTime) AND createdAt < \(endTime)")
+            selectedEmotions = emotions?.filter("createdAt >= \(startTime) AND createdAt < \(endTime)")
             tableView.reloadData()
         }
     }

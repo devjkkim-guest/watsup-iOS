@@ -8,8 +8,9 @@
 import Foundation
 
 class AuthViewModel {
-    let api: WatsupAPI
-    let repository: WatsupRepository
+    private let api: WatsupAPI
+    private let repository: WatsupRepository
+    public var uuid: String? = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
     
     init(api: WatsupAPI, repository: WatsupRepository) {
         self.api = api
@@ -43,18 +44,28 @@ class AuthViewModel {
     
     /// write user data on db
     func getUser(data: AuthResponse, completion: @escaping ((Result<User, APIError>) -> Void)) {
-        api.getUser(data: data) { result in
-            switch result {
-            case .success(let user):
-                do {
-                    try self.repository.setUser(user)
-                    completion(.success(user))
-                } catch {
-                    completion(.failure(APIError()))
+        if let uuid = data.identity?.uuid,
+           let accessToken = data.accessToken,
+           let refreshToken = data.refreshToken {
+            self.uuid = uuid
+            UserDefaults.standard.setValue(uuid, forKey: UserDefaultsKey.uuid.rawValue)
+            UserDefaults.standard.setValue(accessToken, forKey: KeychainKey.accessToken.rawValue)
+            UserDefaults.standard.setValue(refreshToken, forKey: KeychainKey.refreshToken.rawValue)
+            api.getUser(uuid: uuid) { result in
+                switch result {
+                case .success(let user):
+                    do {
+                        try self.repository.setUser(user)
+                        completion(.success(user))
+                    } catch {
+                        completion(.failure(APIError()))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-            case .failure(let error):
-                completion(.failure(error))
             }
+        } else {
+            completion(.failure(APIError()))
         }
     }
     

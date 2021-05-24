@@ -9,8 +9,14 @@ import Foundation
 import RealmSwift
 
 class User: Object, Codable {
+    enum Status: Int {
+        case invited = 0
+        case member
+        case master
+    }
+    
     @objc dynamic var email: String?
-    @objc dynamic var status: String?
+    @objc dynamic var status = 0
     @objc dynamic var uuid: String?
     @objc dynamic var profile: Profile?
     var emotions = List<Emotion>()
@@ -23,7 +29,7 @@ class User: Object, Codable {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.email = try container.decodeIfPresent(String.self, forKey: .email)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.status = try container.decodeIfPresent(Int.self, forKey: .status) ?? 0
         self.uuid = try container.decodeIfPresent(String.self, forKey: .uuid)
         self.profile = try container.decodeIfPresent(Profile.self, forKey: .profile)
         if let emotions = try container.decodeIfPresent(List<Emotion>.self, forKey: .emotions) {
