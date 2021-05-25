@@ -19,6 +19,7 @@ enum APIModel: URLRequestConvertible {
     /** User */
     case getUser(_ uuid: String)
     case postUser(_ request: PostUserRequest)
+    case deleteUser
     case getUserProfile(_ uuid: String)
     case getUserProfileImage(_ uuid: String)
     case putUserProfile(_ uuid: String, request: PutUserProfileRequest)
@@ -69,7 +70,8 @@ enum APIModel: URLRequestConvertible {
              .postGroupInvite,
              .postCSForgotPassword:
             return .post
-        case .deleteGroups:
+        case .deleteUser,
+             .deleteGroups:
             return .delete
         }
     }
@@ -93,12 +95,14 @@ enum APIModel: URLRequestConvertible {
         /** User */
         case .getUser(let uuid):
             return "/users/\(uuid)"
+        case .postUser:
+            return "/users"
+        case .deleteUser:
+            return "/users/\(myUUID)"
         case .getUserProfile(let uuid):
             return "/users/\(uuid)/profile"
         case .getUserProfileImage(let uuid):
             return "/users/\(uuid)/profile/image"
-        case .postUser:
-            return "/users"
         case .putUserProfile(let uuid, _):
             return "/users/\(uuid)/profile"
         case .putUserProfileImage(let uuid, _):
@@ -163,7 +167,8 @@ enum APIModel: URLRequestConvertible {
              .getUserEmotions,
              .getUserProfile,
              .getUserProfileImage,
-             .getUserInbox:
+             .getUserInbox,
+             .deleteUser:
             return nil
             
         /** Groups */
@@ -194,6 +199,7 @@ enum APIModel: URLRequestConvertible {
                                           HTTPHeaderField.acceptType.rawValue: ContentType.json.rawValue]
         switch self {
         case .getUser,
+             .deleteUser,
              .getUserProfile,
              .putUserProfile,
              .getUserGroup,

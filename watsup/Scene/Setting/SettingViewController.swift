@@ -15,19 +15,21 @@ class SettingViewController: UIViewController {
         case setting
     }
     
-    enum MyInfoSection: String, CaseIterable {
+    enum MyInfoRow: String, CaseIterable {
         case profile
     }
     
-    enum SettingSection: CaseIterable {
+    enum SettingRow: CaseIterable {
         case emotion
         case notification
         case license
         case version
+        case leave
     }
 
     @IBOutlet weak var tableView: UITableView!
     let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
+    let viewModel: SettingViewModel = Container.shared.resolve(id: settingViewModelId)
     
     // MARK: - Life Cycle
     
@@ -65,7 +67,7 @@ extension SettingViewController: UITableViewDelegate {
         switch Section.allCases[indexPath.section] {
         case .myInfo:
             let cell = tableView.dequeueReusableCell(withIdentifier: Section.myInfo.rawValue, for: indexPath)
-            switch MyInfoSection.allCases[indexPath.row] {
+            switch MyInfoRow.allCases[indexPath.row] {
             case .profile:
                 if let cell = cell as? SettingProfileTableViewCell {
                     cell.configure()
@@ -74,7 +76,7 @@ extension SettingViewController: UITableViewDelegate {
             return cell
         case .setting:
             let cell = tableView.dequeueReusableCell(withIdentifier: Section.setting.rawValue, for: indexPath)
-            switch SettingSection.allCases[indexPath.row] {
+            switch SettingRow.allCases[indexPath.row] {
             case .notification:
                 cell.textLabel?.text = "알림 설정"
             case .emotion:
@@ -83,6 +85,9 @@ extension SettingViewController: UITableViewDelegate {
                 cell.textLabel?.text = "오픈소스 라이선스"
             case .version:
                 cell.textLabel?.text = "최신버전"
+            case .leave:
+                cell.textLabel?.text = "탈퇴하기"
+                cell.textLabel?.textColor = .red
             }
             return cell
         }
@@ -106,8 +111,22 @@ extension SettingViewController: UITableViewDelegate {
         case .myInfo:
             requestPhotoAccess(delegate: self)
             break
-        default:
-            break
+        case .setting:
+            switch SettingRow.allCases[indexPath.row] {
+            case .leave:
+                viewModel.deleteUser { result in
+                    switch result {
+                    case .success:
+                        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                            appDelegate.window?.rootViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateInitialViewController()
+                        }
+                    case .failure(let error):
+                        self.showAlert(message: error.errorMsg)
+                    }
+                }
+            default:
+                break
+            }
         }
     }
 }
@@ -120,9 +139,9 @@ extension SettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Section.allCases[section] {
         case .myInfo:
-            return MyInfoSection.allCases.count
+            return MyInfoRow.allCases.count
         case .setting:
-            return SettingSection.allCases.count
+            return SettingRow.allCases.count
         }
     }
 }

@@ -112,6 +112,7 @@ class MainViewController: BaseViewController {
     }
     
     private func reloadSelectedEmotions(selectedDate: Date) {
+        guard emotions?.isInvalidated == false else { return }
         if let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate) {
             let startTime = selectedDate.timeIntervalSince1970
             let endTime = nextDay.timeIntervalSince1970

@@ -24,15 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        Container.shared.register(AuthViewModel.self)
+        Container.shared.register(GroupViewModel.self)
+        Container.shared.register(SettingViewModel.self)
+        
         if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue), !uuid.isEmpty {
             window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
         }
         
         let folderPath = try! Realm().configuration.fileURL!.deletingLastPathComponent().path
         print(folderPath)
-        
-        Container.shared.register(AuthViewModel.self)
-        Container.shared.register(GroupViewModel.self)
         
         return true
     }

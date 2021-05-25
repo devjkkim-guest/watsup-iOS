@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 protocol WatsupAPI {
+    func deleteUser(completion: @escaping (Result<CommonResponse, APIError>) -> Void)
     func postUser(_ request: PostUserRequest, completion: @escaping (Result<PostUsersResponse, APIError>) -> Void)
     func getUser(uuid: String, completion: @escaping ((Result<User, APIError>) -> Void))
     func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<AuthResponse, APIError>) -> Void)
@@ -139,6 +140,10 @@ class API: WatsupAPI {
         API.shared.request(.postUser(request)) { result in
             completion(result)
         }
+    }
+    
+    func deleteUser(completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
+        API.shared.request(.deleteUser, completion: completion)
     }
     
     func getUserProfile(_ uuid: String, completion: @escaping (Result<GetUserProfileResponse, APIError>) -> Void) {

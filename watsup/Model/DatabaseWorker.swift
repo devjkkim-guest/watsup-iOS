@@ -14,6 +14,7 @@ enum DatabaseError: Error {
 }
 
 protocol WatsupRepository {
+    func removeAll()
     func setUser(_ user: User) throws
     func putGroup(_ groupUUID: String, groupName: String)
 }
@@ -24,6 +25,12 @@ class DatabaseWorker: WatsupRepository {
     
     private init() {
         self.realm = try! Realm()
+    }
+    
+    func removeAll() {
+        try? realm.write {
+            realm.deleteAll()
+        }
     }
     
     // MARK: - User

@@ -76,6 +76,7 @@
 		8F8E3E7225DD6AFF00EBB8A8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8E3E7125DD6AFF00EBB8A8 /* UIViewController+Extension.swift */; };
 		8FD6448E25BAFB010056F74E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6448D25BAFB010056F74E /* BaseViewController.swift */; };
 		A40182A6265D45D50026B049 /* GroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40182A5265D45D50026B049 /* GroupViewModel.swift */; };
+		A40182A8265D525F0026B049 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40182A7265D525F0026B049 /* SettingViewModel.swift */; };
 		A410A8CF2647D7FE00E8D308 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A410A8CE2647D7FE00E8D308 /* Kingfisher */; };
 		A426C03B2652A51800AE2A4F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A426C03A2652A51800AE2A4F /* Realm */; };
 		A426C03D2652A51800AE2A4F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A426C03C2652A51800AE2A4F /* RealmSwift */; };
@@ -220,6 +221,7 @@
 		8F8E3E7125DD6AFF00EBB8A8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		8FD6448D25BAFB010056F74E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A40182A5265D45D50026B049 /* GroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewModel.swift; sourceTree = "<group>"; };
+		A40182A7265D525F0026B049 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		A429318725EA7562005F5DD0 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		A429318825EA7562005F5DD0 /* CalendarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCollectionViewCell.xib; sourceTree = "<group>"; };
 		A4350745262F25920057B0F8 /* GroupRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRequests.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				8F5D595925C564340095C21A /* Views */,
 				8F5D590125C466270095C21A /* Setting.storyboard */,
 				8F5D594225C489D10095C21A /* SettingViewController.swift */,
+				A40182A7265D525F0026B049 /* SettingViewModel.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1029,6 +1032,7 @@
 				8F5D5A4525D1741F0095C21A /* PostCSForgotPasswordResponse.swift in Sources */,
 				8F61769F25B856140059B4B7 /* TabBarController.swift in Sources */,
 				A4BE3A95261DD27A0051B213 /* MainViewModel.swift in Sources */,
+				A40182A8265D525F0026B049 /* SettingViewModel.swift in Sources */,
 				8F0E421E25B9D0A3008AA995 /* XibView.swift in Sources */,
 				8F5AD3E625C1CA1B00DBF158 /* PostUsersResponse.swift in Sources */,
 				A4775C41260A3ED500A007EF /* EmotionListTableViewCell.swift in Sources */,
