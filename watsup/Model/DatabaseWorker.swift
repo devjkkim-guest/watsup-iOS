@@ -15,6 +15,7 @@ enum DatabaseError: Error {
 
 protocol WatsupRepository {
     func setUser(_ user: User) throws
+    func putGroup(_ groupUUID: String, groupName: String)
 }
 
 class DatabaseWorker: WatsupRepository {
@@ -91,6 +92,15 @@ class DatabaseWorker: WatsupRepository {
                 }
             }
             realm.add(groups, update: .modified)
+        }
+    }
+    
+    func putGroup(_ groupUUID: String, groupName: String) {
+        if let group = realm.objects(Group.self).filter("uuid = '\(groupUUID)'").first {
+            try? realm.write {
+                group.name = groupName
+                realm.add(group, update: .modified)
+            }
         }
     }
     

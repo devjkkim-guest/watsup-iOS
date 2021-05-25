@@ -10,11 +10,18 @@ import UIKit
 class GroupDetailViewController: UIViewController {
     
     @IBOutlet weak var membersTableView: UITableView!
+    @IBOutlet weak var btnConfigure: UIBarButtonItem!
+    @IBOutlet weak var btnInvite: UIBarButtonItem!
+    let viewModel: GroupViewModel = Container.shared.resolve(id: groupViewModelId)
     var group: Group?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        if viewModel.checkIfIAmMaster(in: group) {
+            navigationItem.rightBarButtonItems = [btnInvite, btnConfigure]
+        } else {
+            navigationItem.rightBarButtonItems = [btnInvite]
+        }
         membersTableView.delegate = self
         membersTableView.dataSource = self
         membersTableView.register(UINib(nibName: "GroupMemberTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
@@ -52,6 +59,34 @@ class GroupDetailViewController: UIViewController {
                 switch result {
                 case .success(let data):
                     print(data)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+
+        let actionCreateGroupCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alertController.addAction(actionCreateGroup)
+        alertController.addAction(actionCreateGroupCancel)
+
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func onClickConfigure(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Edit Group Name", message: "enter group's new name", preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.text = self.title
+        }
+
+        let actionCreateGroup = UIAlertAction(title: "Confirm", style: .default) { action in
+            guard let groupUUID = self.group?.uuid else { return }
+            guard let groupName = alertController.textFields?.first?.text else { return }
+            let request = PutGroupRequest(groupName: groupName)
+            self.viewModel.api.putGroup(groupUUID, request: request) { result in
+                switch result {
+                case .success:
+                    self.title = groupName
                 case .failure(let error):
                     print(error.localizedDescription)
                 }

@@ -32,6 +32,7 @@ enum APIModel: URLRequestConvertible {
     
     /** Group */
     case getGroup(_ groupUUID: String)
+    case putGroups(_ groupUUID: String, _ request: PutGroupRequest)
     case getGroupLeave(_ groupUUID: String)
     case postGroups(_ request: PostGroupsRequest)
     case postGroupInvite(_ groupUUID: String, _ request: PostGroupInviteRequest)
@@ -58,6 +59,7 @@ enum APIModel: URLRequestConvertible {
         case .putUserProfile,
              .putAuth,
              .putCSForgotPassword,
+             .putGroups,
              .putUserProfileImage:
             return .put
         case .postEmotion,
@@ -118,6 +120,8 @@ enum APIModel: URLRequestConvertible {
             return "/cs/forgot-password"
             
         /** Group */
+        case .putGroups(let groupUUID, _):
+            return "/groups/\(groupUUID)"
         case .postGroups:
             return "/groups"
         case .getUserGroup:
@@ -163,6 +167,8 @@ enum APIModel: URLRequestConvertible {
             return nil
             
         /** Groups */
+        case .putGroups(_, let param):
+            return encode(parameter: param)
         case .postGroups(let param):
             return encode(parameter: param)
         case .postGroupInvite(_, let param):
@@ -195,6 +201,7 @@ enum APIModel: URLRequestConvertible {
              .postGroupInvite,
              .getGroupJoin,
              .getGroup,
+             .putGroups,
              .getGroupLeave,
              .getUserEmotions,
              .postEmotion,
@@ -206,6 +213,7 @@ enum APIModel: URLRequestConvertible {
             }
             // JWT included
             return customHeaders
+            
         case .postAuth,
              .postUser,
              .postCSForgotPassword,
@@ -213,6 +221,7 @@ enum APIModel: URLRequestConvertible {
              .getUserProfileImage:
             // default (JWT not included)
             return customHeaders
+            
         case .putAuth:
             // refreshToken
             if let refreshToken = UserDefaults.standard.string(forKey: KeychainKey.refreshToken.rawValue) {
@@ -220,6 +229,7 @@ enum APIModel: URLRequestConvertible {
                 customHeaders.add(name: HTTPHeaderField.authentication.rawValue, value: value)
             }
             return customHeaders
+            
         case .putUserProfileImage:
             // multipart formData
             var multipartHeader: HTTPHeaders = [HTTPHeaderField.contentType.rawValue: ContentType.multipartFormData.rawValue,

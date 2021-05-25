@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nB0-0K-dpu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nB0-0K-dpu">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -72,13 +72,22 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="그룹상세" id="KkN-jN-u8A">
-                        <barButtonItem key="rightBarButtonItem" title="Invite" id="hwY-s0-Dj5">
-                            <connections>
-                                <action selector="onClickInvite:" destination="u4h-6J-ctQ" id="Tij-zm-6dm"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Invite" id="hwY-s0-Dj5">
+                                <connections>
+                                    <action selector="onClickInvite:" destination="u4h-6J-ctQ" id="Tij-zm-6dm"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Configure" id="gyd-yY-kBx">
+                                <connections>
+                                    <action selector="onClickConfigure:" destination="u4h-6J-ctQ" id="fcv-mv-9gl"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnConfigure" destination="gyd-yY-kBx" id="UKc-O8-yj6"/>
+                        <outlet property="btnInvite" destination="hwY-s0-Dj5" id="p2U-uV-ulp"/>
                         <outlet property="membersTableView" destination="c62-u2-WlO" id="V2z-uk-fjf"/>
                     </connections>
                 </viewController>

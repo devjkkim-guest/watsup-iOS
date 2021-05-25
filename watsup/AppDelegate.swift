@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(folderPath)
         
         Container.shared.register(AuthViewModel.self)
-        Container.shared.register(GroupDetailViewModel.self)
+        Container.shared.register(GroupViewModel.self)
         
         return true
     }

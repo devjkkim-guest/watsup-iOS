@@ -13,6 +13,7 @@ protocol WatsupAPI {
     func getUser(uuid: String, completion: @escaping ((Result<User, APIError>) -> Void))
     func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<AuthResponse, APIError>) -> Void)
     func putCSForgotPassword(_ request: PutCSForgotPasswordRequest, complection: @escaping (Result<AuthResponse, APIError>) -> Void)
+    func putGroup(_ groupUUID: String, request: PutGroupRequest, completion: @escaping (Result<CommonResponse, APIError>) -> Void)
 }
 
 class API: WatsupAPI {
@@ -37,7 +38,7 @@ class API: WatsupAPI {
         return API(session: session)
     }()
     private let session: Session
-    lazy var userUUID: String? = {
+    lazy public var userUUID: String? = {
         return UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
     }()
     
@@ -205,6 +206,12 @@ class API: WatsupAPI {
     
     func getGroup(_ groupUUID: String, completion: @escaping (Result<Group, APIError>) -> Void) {
         API.shared.request(.getGroup(groupUUID)) { result in
+            completion(result)
+        }
+    }
+    
+    func putGroup(_ groupUUID: String, request: PutGroupRequest, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
+        API.shared.request(.putGroups(groupUUID, request)) { result in
             completion(result)
         }
     }

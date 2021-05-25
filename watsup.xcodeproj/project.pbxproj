@@ -75,12 +75,13 @@
 		8F8E3E6D25DD69E400EBB8A8 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8E3E6C25DD69E400EBB8A8 /* String+Extension.swift */; };
 		8F8E3E7225DD6AFF00EBB8A8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8E3E7125DD6AFF00EBB8A8 /* UIViewController+Extension.swift */; };
 		8FD6448E25BAFB010056F74E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6448D25BAFB010056F74E /* BaseViewController.swift */; };
+		A40182A6265D45D50026B049 /* GroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40182A5265D45D50026B049 /* GroupViewModel.swift */; };
 		A410A8CF2647D7FE00E8D308 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A410A8CE2647D7FE00E8D308 /* Kingfisher */; };
 		A426C03B2652A51800AE2A4F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A426C03A2652A51800AE2A4F /* Realm */; };
 		A426C03D2652A51800AE2A4F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A426C03C2652A51800AE2A4F /* RealmSwift */; };
 		A429318925EA7562005F5DD0 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A429318725EA7562005F5DD0 /* CalendarCollectionViewCell.swift */; };
 		A429318A25EA7562005F5DD0 /* CalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A429318825EA7562005F5DD0 /* CalendarCollectionViewCell.xib */; };
-		A4350746262F25920057B0F8 /* PostGroupInviteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4350745262F25920057B0F8 /* PostGroupInviteRequest.swift */; };
+		A4350746262F25920057B0F8 /* GroupRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4350745262F25920057B0F8 /* GroupRequests.swift */; };
 		A4775C41260A3ED500A007EF /* EmotionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4775C3F260A3ED500A007EF /* EmotionListTableViewCell.swift */; };
 		A4775C42260A3ED500A007EF /* EmotionListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4775C40260A3ED500A007EF /* EmotionListTableViewCell.xib */; };
 		A4775C4F260B777300A007EF /* GetUserEmotionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4775C4E260B777300A007EF /* GetUserEmotionsResponse.swift */; };
@@ -91,7 +92,6 @@
 		A485A5F5262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A485A5F3262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift */; };
 		A485A5F6262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A485A5F4262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib */; };
 		A4981B7A265BD05900C295A5 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4981B79265BD05900C295A5 /* Container.swift */; };
-		A4981B82265BFE4300C295A5 /* GroupDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4981B81265BFE4300C295A5 /* GroupDetailViewModel.swift */; };
 		A4BE39A226128C800051B213 /* RegisterEmotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */; };
 		A4BE39A326128C800051B213 /* RegisterEmotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */; };
 		A4BE39A826128ED50051B213 /* RegisterEmotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE39A726128ED50051B213 /* RegisterEmotionViewController.swift */; };
@@ -219,9 +219,10 @@
 		8F8E3E6C25DD69E400EBB8A8 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		8F8E3E7125DD6AFF00EBB8A8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		8FD6448D25BAFB010056F74E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		A40182A5265D45D50026B049 /* GroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewModel.swift; sourceTree = "<group>"; };
 		A429318725EA7562005F5DD0 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		A429318825EA7562005F5DD0 /* CalendarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCollectionViewCell.xib; sourceTree = "<group>"; };
-		A4350745262F25920057B0F8 /* PostGroupInviteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGroupInviteRequest.swift; sourceTree = "<group>"; };
+		A4350745262F25920057B0F8 /* GroupRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRequests.swift; sourceTree = "<group>"; };
 		A4775C3F260A3ED500A007EF /* EmotionListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionListTableViewCell.swift; sourceTree = "<group>"; };
 		A4775C40260A3ED500A007EF /* EmotionListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmotionListTableViewCell.xib; sourceTree = "<group>"; };
 		A4775C4E260B777300A007EF /* GetUserEmotionsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserEmotionsResponse.swift; sourceTree = "<group>"; };
@@ -232,7 +233,6 @@
 		A485A5F3262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailEmotionTableViewCell.swift; sourceTree = "<group>"; };
 		A485A5F4262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailEmotionTableViewCell.xib; sourceTree = "<group>"; };
 		A4981B79265BD05900C295A5 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
-		A4981B81265BFE4300C295A5 /* GroupDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewModel.swift; sourceTree = "<group>"; };
 		A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmotionTableViewCell.swift; sourceTree = "<group>"; };
 		A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterEmotionTableViewCell.xib; sourceTree = "<group>"; };
 		A4BE39A726128ED50051B213 /* RegisterEmotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmotionViewController.swift; sourceTree = "<group>"; };
@@ -312,11 +312,11 @@
 		8F0E41CB25B85ECB008AA995 /* Group */ = {
 			isa = PBXGroup;
 			children = (
-				A4981B80265BFE1D00C295A5 /* ViewModel */,
 				8F5D596125C5A73F0095C21A /* Views */,
 				8F0E41D125B88724008AA995 /* Group.storyboard */,
 				8F0E41DF25B9C61E008AA995 /* GroupListViewController.swift */,
 				8F0E41E425B9C62D008AA995 /* GroupDetailViewController.swift */,
+				A40182A5265D45D50026B049 /* GroupViewModel.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -608,7 +608,7 @@
 		A4350744262F25880057B0F8 /* Group */ = {
 			isa = PBXGroup;
 			children = (
-				A4350745262F25920057B0F8 /* PostGroupInviteRequest.swift */,
+				A4350745262F25920057B0F8 /* GroupRequests.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -650,14 +650,6 @@
 				8988DBB1261DDB2A00830295 /* GroupMemberTableViewCell.xib */,
 			);
 			path = GroupDetail;
-			sourceTree = "<group>";
-		};
-		A4981B80265BFE1D00C295A5 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				A4981B81265BFE4300C295A5 /* GroupDetailViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A4BE3A2C26188F780051B213 /* Model */ = {
@@ -987,6 +979,7 @@
 				8940DEDD2613544700B7D1E4 /* PutAuthResponse.swift in Sources */,
 				8F5D594325C489D10095C21A /* SettingViewController.swift in Sources */,
 				A4775C4F260B777300A007EF /* GetUserEmotionsResponse.swift in Sources */,
+				A40182A6265D45D50026B049 /* GroupViewModel.swift in Sources */,
 				8F5D596425C5A75F0095C21A /* GroupInvitedCollectionViewCell.swift in Sources */,
 				8F2C5AAB25C06C0E004FF9EF /* APIConstants.swift in Sources */,
 				8F5D593125C4871E0095C21A /* PostGroupsResponse.swift in Sources */,
@@ -1012,7 +1005,7 @@
 				A4BE3AC12625DF720051B213 /* Group.swift in Sources */,
 				A4BE39A826128ED50051B213 /* RegisterEmotionViewController.swift in Sources */,
 				A485A5F5262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift in Sources */,
-				A4350746262F25920057B0F8 /* PostGroupInviteRequest.swift in Sources */,
+				A4350746262F25920057B0F8 /* GroupRequests.swift in Sources */,
 				8F0E420A25B9CA03008AA995 /* MainViewController.swift in Sources */,
 				8F5AD3D125C1C50100DBF158 /* AuthMainViewController.swift in Sources */,
 				8940DED72613445700B7D1E4 /* GroupJoinedTableViewCell.swift in Sources */,
@@ -1021,7 +1014,6 @@
 				8F8E3E7225DD6AFF00EBB8A8 /* UIViewController+Extension.swift in Sources */,
 				A4775C5C260B7B5000A007EF /* Request.swift in Sources */,
 				8F5D595525C496EC0095C21A /* APITokenStorage.swift in Sources */,
-				A4981B82265BFE4300C295A5 /* GroupDetailViewModel.swift in Sources */,
 				8F5D592225C474D20095C21A /* UIView+Extension.swift in Sources */,
 				8F5AD3F725C1CDB200DBF158 /* APIEventMonitor.swift in Sources */,
 				A4BE39A226128C800051B213 /* RegisterEmotionTableViewCell.swift in Sources */,

@@ -41,6 +41,7 @@ class JoinedUser: Object, Codable {
     @objc dynamic var status: Int = 0
     @objc dynamic var user: User?
     
+    // rawValue: status를 Status Enum으로 변환
     lazy var userStatus: Status? = {
         return Status(rawValue: status)
     }()
