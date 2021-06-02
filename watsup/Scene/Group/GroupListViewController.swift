@@ -206,8 +206,8 @@ extension GroupListViewController: UITableViewDelegate {
                 switch result {
                 case .success(let group):
                     let vc = UIStoryboard(name: "Group", bundle: nil).instantiateViewController(withIdentifier: "GroupDetailVC") as! GroupDetailViewController
-                    vc.title = self.joinedGroups?[indexPath.row].name
-                    vc.group = group
+                    vc.title = joinedGroups[indexPath.row].name
+                    vc.viewModel.setGroup(group)
                     self.navigationController?.pushViewController(vc, animated: true)
                 case .failure(let error):
                     print(error.localizedDescription)

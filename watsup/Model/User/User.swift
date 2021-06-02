@@ -12,7 +12,6 @@ class User: Object, Codable {
     @objc dynamic var email: String?
     @objc dynamic var uuid: String?
     @objc dynamic var profile: Profile?
-    var emotions = List<Emotion>()
     
     override class func primaryKey() -> String? {
         return "uuid"
@@ -24,9 +23,6 @@ class User: Object, Codable {
         self.email = try container.decodeIfPresent(String.self, forKey: .email)
         self.uuid = try container.decodeIfPresent(String.self, forKey: .uuid)
         self.profile = try container.decodeIfPresent(Profile.self, forKey: .profile)
-        if let emotions = try container.decodeIfPresent(List<Emotion>.self, forKey: .emotions) {
-            self.emotions = emotions
-        }
     }
 }
 

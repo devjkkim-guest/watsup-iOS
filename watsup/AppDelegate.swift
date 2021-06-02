@@ -24,9 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        Container.shared.register(MainViewModel.self)
         Container.shared.register(AuthViewModel.self)
         Container.shared.register(GroupViewModel.self)
         Container.shared.register(SettingViewModel.self)
+        Container.shared.uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
         
         if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue), !uuid.isEmpty {
             window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()

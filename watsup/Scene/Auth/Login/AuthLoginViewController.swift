@@ -32,7 +32,8 @@ class AuthLoginViewController: UIViewController {
         let request = PostAuthRequest(email: email, password: password)
         viewModel.postAuth(request) { result in
             switch result {
-            case .success:
+            case .success(let data):
+                Container.shared.uuid = data.uuid
                 self.goMain()
             case .failure(let error):
                 self.showAlert(message: error.errorMsg)

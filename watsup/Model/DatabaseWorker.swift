@@ -15,7 +15,14 @@ enum DatabaseError: Error {
 
 protocol WatsupRepository {
     func removeAll()
+    // MARK: - User
     func setUser(_ user: User) throws
+    
+    // MARK: - Emotion
+    func getEmotions(uuid: String) -> Results<Emotion>
+    func getUsers(in group: Group) -> Results<User>
+    
+    // MARK: - Group
     func putGroup(_ groupUUID: String, groupName: String)
 }
 
@@ -61,21 +68,22 @@ class DatabaseWorker: WatsupRepository {
         }
     }
     
-    // MARK: - Emotion
-    func getEmotionList(uuid: String) -> List<Emotion>? {
-        return realm.objects(User.self).filter("uuid = '\(uuid)'").first?.emotions
+    func getUsers(in group: Group) -> Results<User> {
+        let keys = Array(group.joinedUsers.compactMap({ $0.user?.uuid }))
+        let result = realm.objects(User.self).filter("uuid in %@", keys)
+        print(result)
+        return result
     }
     
-    func setEmotionLogs(_ logs: [Emotion], of userUuid: String) {
+    // MARK: - Emotion
+    func getEmotions(uuid: String) -> Results<Emotion> {
+        return realm.objects(Emotion.self).filter("userUUID = '\(uuid)'").sorted(byKeyPath: "id", ascending: true)
+    }
+    
+    func setEmotionLogs(_ logs: [Emotion], of userUUID: String) {
         try? realm.write {
-            if let user = realm.objects(User.self).filter("uuid = '\(userUuid)'").first {
-                logs.forEach { emotion in
-                    if user.emotions.first(where: { $0.id == emotion.id }) == nil {
-                        user.emotions.append(emotion)
-                    }
-                }
-                realm.add(user, update: .modified)
-            }
+            let emotions = Emotion.setCompoundKey(logs: logs, userUUID: userUUID)
+            realm.add(emotions, update: .modified)
         }
     }
     

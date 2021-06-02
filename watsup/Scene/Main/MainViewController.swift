@@ -20,10 +20,9 @@ class MainViewController: BaseViewController {
     var currentYear = Calendar.current.component(.year, from: Date())
     var currentMonth = Calendar.current.component(.month, from: Date())
     var months = [Date?]()
-    lazy var emotions: List<Emotion>? = {
-        let viewModel: AuthViewModel = Container.shared.resolve(id: authViewModelId)
-        if let uuid = viewModel.uuid {
-            return DatabaseWorker.shared.getEmotionList(uuid: uuid)
+    lazy var emotions: Results<Emotion>? = {
+        if let uuid = Container.shared.uuid {
+            return viewModel.getEmotions(userUUID: uuid)
         } else {
             return nil
         }
@@ -33,7 +32,7 @@ class MainViewController: BaseViewController {
     
     // Model
     let disposeBag = DisposeBag()
-    let viewModel = MainViewModel(selectedDate: Date().startOfDay)
+    let viewModel: MainViewModel = Container.shared.resolve(id: mainViewModelId)
     
     override func viewDidLoad() {
         super.viewDidLoad()
