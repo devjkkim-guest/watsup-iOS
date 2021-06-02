@@ -36,7 +36,7 @@ class GroupMemberTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(joinedUser: JoinedUser?) {
+    func configure(joinedUser: JoinedUser?, emotion: Emotion?) {
         guard let joinedUser = joinedUser, let user = joinedUser.user else {
             timeLabel.isHidden = true
             emotionLabel.isHidden = true
@@ -51,7 +51,7 @@ class GroupMemberTableViewCell: UITableViewCell {
             timeLabel.isHidden = true
             emotionLabel.isHidden = true
             messageLabel.text = "Waiting for join..."
-        } else if (joinedUser.userStatus == .member || joinedUser.userStatus == .master), let emotion = user.emotions.last {
+        } else if let emotion = emotion {
             timeLabel.isHidden = false
             timeLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: emotion.createdAt))
             emotionLabel.isHidden = false
