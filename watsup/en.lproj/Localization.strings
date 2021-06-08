@@ -17,3 +17,8 @@
 
 /// Emotion Text
 "Emotion.NoEmotion" = "No Emotions yet.";
+
+// MARK: - Auth
+// Join
+"Join.Guide.Email" = "Enter a valid email.";
+"Join.Guide.Password" = "Enter password at least 8 characters including uppercase and lowercase letters and special characters.";

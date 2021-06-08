@@ -11,10 +11,13 @@ class AuthJoinViewController: UIViewController {
 
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
+    @IBOutlet weak var tfConfirmPassword: UITextField!
+    @IBOutlet weak var guideLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         endEditingWhenTapBackground()
+        guideLabel.text = "Join.Guide.Email".localized
         // Do any additional setup after loading the view.
     }
     
