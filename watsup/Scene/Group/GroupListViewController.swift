@@ -130,7 +130,7 @@ class GroupListViewController: UIViewController {
             case .success(let response):
                 self.invitedGroups = response.inbox
             case .failure(let error):
-                print(error.errorMsg, error.localizedDescription)
+                self.showAlert(apiError: error)
             }
             dispatchGroup?.leave()
         }
@@ -226,7 +226,7 @@ extension GroupListViewController: UITableViewDelegate {
                         case .success:
                             break
                         case .failure(let error):
-                            self.showAlert(message: error.errorMsg)
+                            self.showAlert(message: error.localizedErrorMessage)
                         }
                     }
                 }

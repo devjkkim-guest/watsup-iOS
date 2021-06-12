@@ -9,11 +9,17 @@
 "Button.OK" = "OK";
 
 /// Common Error
-"API.Common.Error.DefaultMessage" = "Default Message.";
+"API.Error.NotDefined" = "Not defined error occurred.";
 
 /// Auth Error
-"API.Auth.Error.400" = "Login Failed.";
-"API.Auth.Error.422" = "Not a valid email address.";
+"API.Error.400" = "Login Failed.";
+"API.Error.409" = "User already exists.";
+"API.Error.422" = "Not a valid email address.";
 
 /// Emotion Text
 "Emotion.NoEmotion" = "No Emotions yet.";
+
+// MARK: - Auth
+// Join
+"Join.Guide.Email" = "Enter a valid email.";
+"Join.Guide.Password" = "Enter password at least 8 characters including uppercase and lowercase letters and special characters.";

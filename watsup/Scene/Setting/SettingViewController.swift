@@ -121,7 +121,7 @@ extension SettingViewController: UITableViewDelegate {
                             appDelegate.window?.rootViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateInitialViewController()
                         }
                     case .failure(let error):
-                        self.showAlert(message: error.errorMsg)
+                        self.showAlert(apiError: error)
                     }
                 }
             default:

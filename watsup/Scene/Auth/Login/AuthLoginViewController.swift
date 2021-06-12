@@ -36,7 +36,7 @@ class AuthLoginViewController: UIViewController {
                 Container.shared.uuid = data.uuid
                 self.goMain()
             case .failure(let error):
-                self.showAlert(message: error.errorMsg)
+                self.showAlert(message: error.localizedErrorMessage)
             }
         }
     }

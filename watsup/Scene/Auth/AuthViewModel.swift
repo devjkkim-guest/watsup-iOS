@@ -62,14 +62,14 @@ class AuthViewModel: BaseViewModel {
                         try self.repository.setUser(user)
                         completion(.success(user))
                     } catch {
-                        completion(.failure(APIError()))
+                        completion(.failure(APIError(errorType: .others(type: .notDefined), errorCode: -1)))
                     }
                 case .failure(let error):
                     completion(.failure(error))
                 }
             }
         } else {
-            completion(.failure(APIError()))
+            completion(.failure(APIError(errorType: .others(type: .notDefined), errorCode: -1)))
         }
     }
     

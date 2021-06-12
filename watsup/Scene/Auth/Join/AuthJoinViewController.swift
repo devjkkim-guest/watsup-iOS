@@ -11,10 +11,13 @@ class AuthJoinViewController: UIViewController {
 
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
+    @IBOutlet weak var tfConfirmPassword: UITextField!
+    @IBOutlet weak var guideLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         endEditingWhenTapBackground()
+        guideLabel.text = "Join.Guide.Email".localized
         // Do any additional setup after loading the view.
     }
     
@@ -32,7 +35,7 @@ class AuthJoinViewController: UIViewController {
                     self.showAlert(message: "failed \(#function) \(#line)")
                 }
             case .failure(let error):
-                self.showAlert(message: error.errorMsg)
+                self.showAlert(message: error.localizedErrorMessage)
             }
         }
     }
