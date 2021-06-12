@@ -35,7 +35,7 @@ class AuthJoinViewController: UIViewController {
                     self.showAlert(message: "failed \(#function) \(#line)")
                 }
             case .failure(let error):
-                self.showAlert(message: error.errorMsg)
+                self.showAlert(message: error.localizedErrorMessage)
             }
         }
     }

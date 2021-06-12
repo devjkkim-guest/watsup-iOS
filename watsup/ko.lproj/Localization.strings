@@ -9,11 +9,12 @@
 "Button.OK" = "확인";
 
 /// Common Error
-"API.Common.Error.DefaultMessage" = "문제가 발생했습니다.";
+"API.Error.NotDefined" = "정의되지 않은 에러가 발생했어요ㅜ";
 
 /// Auth Error
-"API.Auth.Error.400" = "로그인 실패.";
-"API.Auth.Error.422" = "유효한 이메일 주소가 아닙니다.";
+"API.Error.400" = "로그인 실패.";
+"API.Error.409" = "이미 가입된 이메일입니다.";
+"API.Error.422" = "유효한 이메일 주소가 아닙니다.";
 
 /// Emotion Text
 "Emotion.NoEmotion" = "아직 등록된 감정이 없어요.";

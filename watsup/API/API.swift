@@ -61,10 +61,10 @@ class API: WatsupAPI {
                             completion(.success(json))
                         } catch {
                             print(error.localizedDescription, #function, #line)
-                            completion(.failure(APIError()))
+                            completion(.failure(APIError(jsonError: .decodingError)))
                         }
                     }else{
-                        completion(.failure(APIError()))
+                        completion(.failure(APIError(jsonError: .serializeError)))
                     }
                 case .failure:
                     let apiError = self.getError(response.data)
@@ -91,10 +91,10 @@ class API: WatsupAPI {
                         completion(.success(json))
                     } catch {
                         print(error.localizedDescription, #function, #line)
-                        completion(.failure(APIError()))
+                        completion(.failure(APIError(jsonError: .decodingError)))
                     }
                 }else{
-                    completion(.failure(APIError()))
+                    completion(.failure(APIError(jsonError: .serializeError)))
                 }
             case .failure:
                 let apiError = self.getError(response.data)
@@ -137,7 +137,7 @@ class API: WatsupAPI {
     }
     
     func postUser(_ request: PostUserRequest, completion: @escaping (Result<PostUsersResponse, APIError>) -> Void) {
-        API.shared.request(.postUser(request)) { result in
+        self.request(.postUser(request)) { result in
             completion(result)
         }
     }
@@ -311,11 +311,11 @@ class API: WatsupAPI {
         if let data = data,
            let json = try? decoder.decode(CommonResponse.self, from: data),
            let errorCode = json.code {
-            let apiError = APIError(errorCode: APIError.APIErrorCode(rawValue: errorCode))
+            let apiError = APIError(errorType: .httpError, errorCode: errorCode)
             return apiError
         }else{
             // return default error.
-            return APIError()
+            return APIError(errorType: .others(type: .noErrorCode), errorCode: -1)
         }
     }
 }

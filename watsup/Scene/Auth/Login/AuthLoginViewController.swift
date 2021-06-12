@@ -35,7 +35,7 @@ class AuthLoginViewController: UIViewController {
             case .success:
                 self.goMain()
             case .failure(let error):
-                self.showAlert(message: error.errorMsg)
+                self.showAlert(message: error.localizedErrorMessage)
             }
         }
     }

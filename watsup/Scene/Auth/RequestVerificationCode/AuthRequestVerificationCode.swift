@@ -36,7 +36,7 @@ class AuthRequestCodeViewController: UIViewController {
                 case .success:
                     self.performSegue(withIdentifier: "showAuthVerifyCode", sender: nil)
                 case .failure(let error):
-                    self.showAlert(message: error.errorMsg)
+                    self.showAlert(message: error.localizedErrorMessage)
                 }
             }
         }
