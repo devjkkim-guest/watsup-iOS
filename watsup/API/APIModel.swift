@@ -42,7 +42,7 @@ enum APIModel: URLRequestConvertible {
     case getUserInbox
     case deleteGroups(_ groupUUID: String)
     
-    static let baseUrl = "http://localhost:8000"
+    static let baseUrl = "https://dev.team726.com"
     
     // MARK: - HTTPMethod
     private var method: HTTPMethod {

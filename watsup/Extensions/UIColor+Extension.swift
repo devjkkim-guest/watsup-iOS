@@ -12,6 +12,8 @@ enum AssetsColor: String {
 }
 
 extension UIColor {
+    static let themeColor = UIColor.wuColor(name: .ThemeColor)
+    
     static func wuColor(name: AssetsColor) -> UIColor {
         return UIColor(named: name.rawValue) ?? .black
     }

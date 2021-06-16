@@ -7,26 +7,30 @@
 
 import UIKit
 
-class AuthJoinViewController: UIViewController {
+class AuthJoinViewController: BaseAuthViewController {
 
-    @IBOutlet weak var tfEmail: UITextField!
-    @IBOutlet weak var tfPassword: UITextField!
-    @IBOutlet weak var tfConfirmPassword: UITextField!
+    @IBOutlet weak var tfEmail: WUTextField!
+    @IBOutlet weak var tfPassword: WUTextField!
+    @IBOutlet weak var tfConfirmPassword: WUTextField!
     @IBOutlet weak var guideLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         endEditingWhenTapBackground()
         guideLabel.text = "Join.Guide.Email".localized
-        // Do any additional setup after loading the view.
+        
+        bottomButton.button.setTitle("Button.Join".localized, for: .normal)
+        bottomButton.button.addTarget(self, action: #selector(onClickJoin(_:)), for: .touchUpInside)
     }
     
-    @IBAction func onClickJoin(_ sender: UIButton) {
+    @objc func onClickJoin(_ sender: UIButton) {
         guard let email = tfEmail.text else { return }
         guard let password = tfPassword.text else { return }
         
+        WUProgress.show()
         let viewModel: AuthViewModel = Container.shared.resolve(id: authViewModelId)
         viewModel.postUser(email: email, password: password) { result in
+            WUProgress.dismiss()
             switch result {
             case .success:
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {

@@ -98,6 +98,7 @@
 		A48622EC2678E38300B25243 /* WUTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48622EB2678E38300B25243 /* WUTextField.swift */; };
 		A48622EE2678E48300B25243 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48622ED2678E48300B25243 /* UIColor+Extension.swift */; };
 		A48622F02678EC1A00B25243 /* WUProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48622EF2678EC1A00B25243 /* WUProgress.swift */; };
+		A48622F32678F70000B25243 /* BaseAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48622F12678F70000B25243 /* BaseAuthViewController.swift */; };
 		A4981B7A265BD05900C295A5 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4981B79265BD05900C295A5 /* Container.swift */; };
 		A4BE39A226128C800051B213 /* RegisterEmotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */; };
 		A4BE39A326128C800051B213 /* RegisterEmotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */; };
@@ -246,6 +247,7 @@
 		A48622EB2678E38300B25243 /* WUTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTextField.swift; sourceTree = "<group>"; };
 		A48622ED2678E48300B25243 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		A48622EF2678EC1A00B25243 /* WUProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUProgress.swift; sourceTree = "<group>"; };
+		A48622F12678F70000B25243 /* BaseAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthViewController.swift; sourceTree = "<group>"; };
 		A4981B79265BD05900C295A5 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmotionTableViewCell.swift; sourceTree = "<group>"; };
 		A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterEmotionTableViewCell.xib; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 				8F2C5ADD25C1BC37004FF9EF /* Auth.storyboard */,
 				8F5AD3D025C1C50100DBF158 /* AuthMainViewController.swift */,
 				8F5AD40C25C4630C00DBF158 /* AuthViewModel.swift */,
+				A48622F12678F70000B25243 /* BaseAuthViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1026,6 +1029,7 @@
 				A485A5E4262AD4D8007072D0 /* UserDetailTableHeaderView.swift in Sources */,
 				8F0E41E525B9C62D008AA995 /* GroupDetailViewController.swift in Sources */,
 				A4BE3A542618A45F0051B213 /* EmotionRequest.swift in Sources */,
+				A48622F32678F70000B25243 /* BaseAuthViewController.swift in Sources */,
 				A485A5D8262AC021007072D0 /* User.swift in Sources */,
 				8F2C5A2125BB3917004FF9EF /* CommonEnums.swift in Sources */,
 				A4BE3AC12625DF720051B213 /* Group.swift in Sources */,

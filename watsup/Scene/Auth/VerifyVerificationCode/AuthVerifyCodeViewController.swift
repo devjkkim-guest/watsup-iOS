@@ -7,16 +7,17 @@
 
 import UIKit
 
-class AuthVerifyCodeViewController: UIViewController {
-
-    @IBOutlet weak var tfVerifyCode: UITextField!
+class AuthVerifyCodeViewController: BaseAuthViewController {
+    @IBOutlet weak var tfVerifyCode: WUTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bottomButton.button.setTitle("Button.Login".localized, for: .normal)
+        bottomButton.button.addTarget(self, action: #selector(onClickLogin(_:)), for: .touchUpInside)
     }
     
-    @IBAction func onClickLogin(_ sender: UIButton) {
+    @objc func onClickLogin(_ sender: UIButton) {
         if let code = tfVerifyCode.text, let intCode = Int(code) {
             let viewModel: AuthViewModel = Container.shared.resolve(id: authViewModelId)
             let request = PutCSForgotPasswordRequest(verificationCode: intCode)

@@ -8,12 +8,11 @@
 import UIKit
 import Alamofire
 
-class AuthLoginViewController: UIViewController {
+class AuthLoginViewController: BaseAuthViewController {
 
     @IBOutlet weak var tfEmail: WUTextField!
     @IBOutlet weak var tfPassword: WUTextField!
     @IBOutlet weak var btnForgotPassword: UIButton!
-    @IBOutlet weak var btnLogin: BottomButton!
     
     let viewModel: AuthViewModel = Container.shared.resolve(id: authViewModelId)
     
@@ -27,9 +26,8 @@ class AuthLoginViewController: UIViewController {
         tfPassword.placeholder = "Password"
         tfPassword.wuDelegate = self
         
-        btnLogin.button.setTitle("Button.Login".localized, for: .normal)
-        btnLogin.button.addTarget(self, action: #selector(onClickLogin(_:)), for: .touchUpInside)
-        // Do any additional setup after loading the view.
+        bottomButton.button.setTitle("Button.Login".localized, for: .normal)
+        bottomButton.button.addTarget(self, action: #selector(onClickLogin(_:)), for: .touchUpInside)
     }
     
     @objc func onClickLogin(_ sender: UIButton) {
@@ -42,7 +40,9 @@ class AuthLoginViewController: UIViewController {
             return
         }
         let request = PostAuthRequest(email: email, password: password)
+        WUProgress.show()
         viewModel.postAuth(request) { result in
+            WUProgress.dismiss()
             switch result {
             case .success:
                 self.goMain()

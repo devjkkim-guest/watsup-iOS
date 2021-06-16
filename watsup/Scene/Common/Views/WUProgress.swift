@@ -9,11 +9,12 @@ import ProgressHUD
 class WUProgress {
     private static let shared = WUProgress()
     private init() {
-        ProgressHUD.colorHUD = .wuColor(name: .ThemeColor)
+        ProgressHUD.animationType = .circleStrokeSpin
+        ProgressHUD.colorAnimation = .wuColor(name: .ThemeColor)
     }
     
     private func show() {
-        ProgressHUD.show("text")
+        ProgressHUD.show()
     }
     
     static func show() {

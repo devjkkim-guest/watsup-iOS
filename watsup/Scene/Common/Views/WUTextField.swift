@@ -14,6 +14,7 @@ protocol WUTextFieldDelegate: AnyObject {
 class WUTextField: UITextField, UITextFieldDelegate {
     weak var wuDelegate: WUTextFieldDelegate?
     let borderWidth: CGFloat = 1
+    let normalColor: CGColor = UIColor.systemGray5.cgColor
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -22,22 +23,23 @@ class WUTextField: UITextField, UITextFieldDelegate {
     }
     
     private func setup() {
-        self.textColor = .wuColor(name: .ThemeColor)
+        self.textColor = .themeColor
         self.font = .systemFont(ofSize: 17)
-        self.layer.borderColor = UIColor.systemGray4.cgColor
+        self.layer.borderColor = normalColor
         self.layer.borderWidth = borderWidth
     }
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        textField.layer.borderColor = UIColor.wuColor(name: .ThemeColor).cgColor
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.themeColor.cgColor
         textField.layer.borderWidth = borderWidth
-        return true
+        textField.textColor = .themeColor
     }
     
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        textField.layer.borderColor = UIColor.systemGray4.cgColor
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderColor = normalColor
         textField.layer.borderWidth = borderWidth
-        return true
+        textField.textColor = .gray
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

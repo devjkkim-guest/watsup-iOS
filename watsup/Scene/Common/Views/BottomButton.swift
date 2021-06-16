@@ -12,10 +12,5 @@ class BottomButton: XibView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        if let view = instanceFrom(object: self) {
-            view.frame = self.bounds
-            self.addSubview(view)
-        }
     }
 }

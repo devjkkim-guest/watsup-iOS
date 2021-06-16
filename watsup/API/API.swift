@@ -31,7 +31,7 @@ class API: WatsupAPI {
     
     static var shared: API = {
         let configuration = URLSessionConfiguration.af.default
-        configuration.timeoutIntervalForRequest = 3
+        configuration.timeoutIntervalForRequest = 2
         configuration.waitsForConnectivity = true
         let logger = APIEventMonitor()
         let interceptor = APIInterceptor(storage: APITokenStorage())

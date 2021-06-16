@@ -140,21 +140,13 @@
                                     <segue destination="igu-8M-EtX" kind="show" id="8PV-jt-ATc"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCF-0F-9N8" customClass="BottomButton" customModule="watsup" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="812" width="414" height="84"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MYg-62-NQN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" name="ThemeColor"/>
                         <constraints>
-                            <constraint firstItem="sCF-0F-9N8" firstAttribute="top" secondItem="MYg-62-NQN" secondAttribute="bottom" constant="-50" id="Ghd-zy-ii8"/>
                             <constraint firstItem="JKR-qd-8qh" firstAttribute="top" secondItem="MYg-62-NQN" secondAttribute="top" constant="22" id="Lxb-2g-7xd"/>
                             <constraint firstItem="JKR-qd-8qh" firstAttribute="leading" secondItem="MYg-62-NQN" secondAttribute="leading" constant="20" id="NIZ-1a-pGK"/>
-                            <constraint firstItem="MYg-62-NQN" firstAttribute="trailing" secondItem="sCF-0F-9N8" secondAttribute="trailing" id="Qwe-4o-4qr"/>
-                            <constraint firstAttribute="bottom" secondItem="sCF-0F-9N8" secondAttribute="bottom" id="iqx-Ft-tKf"/>
-                            <constraint firstItem="sCF-0F-9N8" firstAttribute="leading" secondItem="MYg-62-NQN" secondAttribute="leading" id="nyY-ng-XuX"/>
                             <constraint firstItem="MYg-62-NQN" firstAttribute="trailing" secondItem="JKR-qd-8qh" secondAttribute="trailing" constant="20" id="s1k-CI-9Wy"/>
                             <constraint firstItem="Da4-PP-BeI" firstAttribute="centerX" secondItem="MYg-62-NQN" secondAttribute="centerX" id="sXn-qF-dVq"/>
                             <constraint firstItem="Da4-PP-BeI" firstAttribute="top" secondItem="JKR-qd-8qh" secondAttribute="bottom" constant="12" id="wor-aa-jTY"/>
@@ -163,7 +155,6 @@
                     <navigationItem key="navigationItem" title="로그인" id="gBN-si-avD"/>
                     <connections>
                         <outlet property="btnForgotPassword" destination="Da4-PP-BeI" id="7dU-tO-Zni"/>
-                        <outlet property="btnLogin" destination="sCF-0F-9N8" id="fwr-gZ-STp"/>
                         <outlet property="tfEmail" destination="MqS-bu-sGs" id="wGL-TP-Era"/>
                         <outlet property="tfPassword" destination="E4o-Pu-BV4" id="nuj-6F-Ev0"/>
                     </connections>
@@ -180,7 +171,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="이메일 주소를 입력하세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ja-qX-d0J">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="이메일 주소를 입력하세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ja-qX-d0J" customClass="WUTextField" customModule="watsup" customModuleProvider="target">
                                 <rect key="frame" x="22" y="160" width="370" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="SbA-TZ-wvO"/>
@@ -188,30 +179,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eay-iz-sZV">
-                                <rect key="frame" x="22" y="800" width="370" height="50"/>
-                                <color key="backgroundColor" name="ThemeColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="jHd-Zu-aAT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <state key="normal" title="인증코드 발송">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="onClickSendCode:" destination="igu-8M-EtX" eventType="touchUpInside" id="vkh-AH-q5J"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="why-x3-Crk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="eay-iz-sZV" firstAttribute="centerX" secondItem="why-x3-Crk" secondAttribute="centerX" id="8Ar-K8-QwD"/>
-                            <constraint firstItem="eay-iz-sZV" firstAttribute="leading" secondItem="why-x3-Crk" secondAttribute="leading" constant="22" id="E6B-UK-6l6"/>
                             <constraint firstItem="why-x3-Crk" firstAttribute="trailing" secondItem="7Ja-qX-d0J" secondAttribute="trailing" constant="22" id="IIt-nF-bD7"/>
-                            <constraint firstItem="why-x3-Crk" firstAttribute="bottom" secondItem="eay-iz-sZV" secondAttribute="bottom" constant="12" id="INf-1m-jXs"/>
                             <constraint firstItem="7Ja-qX-d0J" firstAttribute="top" secondItem="why-x3-Crk" secondAttribute="top" constant="20" id="OV7-Uy-GkK"/>
-                            <constraint firstItem="why-x3-Crk" firstAttribute="trailing" secondItem="eay-iz-sZV" secondAttribute="trailing" constant="22" id="bic-99-WUt"/>
                             <constraint firstItem="7Ja-qX-d0J" firstAttribute="leading" secondItem="why-x3-Crk" secondAttribute="leading" constant="22" id="diH-Uu-o4O"/>
                             <constraint firstItem="7Ja-qX-d0J" firstAttribute="centerX" secondItem="why-x3-Crk" secondAttribute="centerX" id="eSG-2A-9UN"/>
                         </constraints>
@@ -234,7 +207,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zb5-gp-Wbm">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zb5-gp-Wbm" customClass="WUTextField" customModule="watsup" customModuleProvider="target">
                                 <rect key="frame" x="22" y="152" width="370" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Rqc-y7-P5C"/>
@@ -242,30 +215,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAn-JU-hKn">
-                                <rect key="frame" x="22" y="800" width="370" height="50"/>
-                                <color key="backgroundColor" name="ThemeColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="wLE-nL-s6e"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <state key="normal" title="인증코드로 로그인">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="onClickLogin:" destination="iwt-5q-cqA" eventType="touchUpInside" id="1Re-pP-DSc"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="n0m-tE-VR8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="OAn-JU-hKn" firstAttribute="leading" secondItem="n0m-tE-VR8" secondAttribute="leading" constant="22" id="5SZ-Fx-50c"/>
-                            <constraint firstItem="n0m-tE-VR8" firstAttribute="bottom" secondItem="OAn-JU-hKn" secondAttribute="bottom" constant="12" id="ABp-JX-2d3"/>
                             <constraint firstItem="Zb5-gp-Wbm" firstAttribute="leading" secondItem="n0m-tE-VR8" secondAttribute="leading" constant="22" id="MPP-ps-2Tj"/>
                             <constraint firstItem="Zb5-gp-Wbm" firstAttribute="top" secondItem="n0m-tE-VR8" secondAttribute="top" constant="12" id="VuG-rf-MZE"/>
-                            <constraint firstItem="OAn-JU-hKn" firstAttribute="centerX" secondItem="n0m-tE-VR8" secondAttribute="centerX" id="YFS-j6-WeY"/>
-                            <constraint firstItem="n0m-tE-VR8" firstAttribute="trailing" secondItem="OAn-JU-hKn" secondAttribute="trailing" constant="22" id="cyg-rC-Tj9"/>
                             <constraint firstItem="n0m-tE-VR8" firstAttribute="trailing" secondItem="Zb5-gp-Wbm" secondAttribute="trailing" constant="22" id="sS8-wV-uOE"/>
                         </constraints>
                     </view>
@@ -289,7 +244,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zn8-iF-z5B">
                                 <rect key="frame" x="22" y="162" width="370" height="148"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BTl-QI-Hpz">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BTl-QI-Hpz" customClass="WUTextField" customModule="watsup" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="108" width="370" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="oEa-sy-EiF"/>
@@ -297,7 +252,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UkN-kZ-eqe">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UkN-kZ-eqe" customClass="WUTextField" customModule="watsup" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="54" width="370" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Wpr-Yj-dTF"/>
@@ -305,7 +260,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ee7-Pf-5ov">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ee7-Pf-5ov" customClass="WUTextField" customModule="watsup" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="YyL-L2-4ca"/>
@@ -328,20 +283,6 @@
                                     <constraint firstItem="ee7-Pf-5ov" firstAttribute="leading" secondItem="zn8-iF-z5B" secondAttribute="leading" id="tok-gv-maH"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-Wh-xMo">
-                                <rect key="frame" x="22" y="358.5" width="370" height="50"/>
-                                <color key="backgroundColor" name="ThemeColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="s1E-UO-aqn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <state key="normal" title="시작하기">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="onClickJoin:" destination="gwb-Tx-A98" eventType="touchUpInside" id="8BD-kr-hmk"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raq-By-VXc">
                                 <rect key="frame" x="22" y="324" width="370" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -353,14 +294,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="zn8-iF-z5B" firstAttribute="centerX" secondItem="Fuw-b2-UgI" secondAttribute="centerX" id="2qD-Xa-LaU"/>
-                            <constraint firstItem="uvz-Wh-xMo" firstAttribute="leading" secondItem="Fuw-b2-UgI" secondAttribute="leading" constant="22" id="8FD-st-PUg"/>
                             <constraint firstItem="raq-By-VXc" firstAttribute="leading" secondItem="zn8-iF-z5B" secondAttribute="leading" id="ClK-Kt-uea"/>
-                            <constraint firstItem="uvz-Wh-xMo" firstAttribute="top" secondItem="raq-By-VXc" secondAttribute="bottom" constant="20" id="Sto-Tb-M5z"/>
                             <constraint firstItem="zn8-iF-z5B" firstAttribute="leading" secondItem="Fuw-b2-UgI" secondAttribute="leading" constant="22" id="WAw-P2-SrT"/>
                             <constraint firstItem="zn8-iF-z5B" firstAttribute="top" secondItem="Fuw-b2-UgI" secondAttribute="top" constant="22" id="Zd9-84-SD9"/>
                             <constraint firstItem="raq-By-VXc" firstAttribute="top" secondItem="zn8-iF-z5B" secondAttribute="bottom" constant="14" id="aMT-OR-Dsx"/>
                             <constraint firstItem="Fuw-b2-UgI" firstAttribute="trailing" secondItem="zn8-iF-z5B" secondAttribute="trailing" constant="22" id="eWp-9k-85R"/>
-                            <constraint firstAttribute="trailing" secondItem="uvz-Wh-xMo" secondAttribute="trailing" constant="22" id="tYa-32-7aa"/>
                             <constraint firstItem="raq-By-VXc" firstAttribute="trailing" secondItem="zn8-iF-z5B" secondAttribute="trailing" id="wWX-sC-sAm"/>
                         </constraints>
                     </view>
