@@ -16,7 +16,7 @@ protocol TokenStorage {
 class APIInterceptor: RequestInterceptor {
     public let storage: TokenStorage
     /// limit max retry
-    private let maxRetry = 2
+    private let maxRetry = 1
     
     init(storage: TokenStorage) {
         self.storage = storage

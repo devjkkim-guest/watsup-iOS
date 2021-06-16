@@ -10,9 +10,9 @@ import Foundation
 public let authViewModelId = "authViewModelId"
 
 class AuthViewModel: BaseViewModel {
-    var id: String = authViewModelId
-    var api: WatsupAPI
-    var repository: WatsupRepository
+    let id: String = authViewModelId
+    let api: WatsupAPI
+    let repository: WatsupRepository
     
     public var uuid: String? = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
     

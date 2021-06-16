@@ -8,13 +8,14 @@
 import UIKit
 import Alamofire
 
-class AuthRequestCodeViewController: UIViewController {
-
-    @IBOutlet weak var tfEmail: UITextField!
+class AuthRequestCodeViewController: BaseAuthViewController {
+    @IBOutlet weak var tfEmail: WUTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        bottomButton.button.setTitle("Button.Send".localized, for: .normal)
+        bottomButton.button.addTarget(self, action: #selector(onClickSendCode(_:)), for: .touchUpInside)
     }
     
 
@@ -28,7 +29,7 @@ class AuthRequestCodeViewController: UIViewController {
     }
     */
 
-    @IBAction func onClickSendCode(_ sender: UIButton) {
+    @objc func onClickSendCode(_ sender: UIButton) {
         if let email = tfEmail.text {
             let request = PostCSForgotPasswordRequest(email: email)
             API.shared.postCSForgotPassword(request) { result in

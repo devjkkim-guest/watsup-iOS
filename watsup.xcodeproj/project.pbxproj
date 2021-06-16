@@ -92,6 +92,13 @@
 		A485A5E8262AD50E007072D0 /* UserDetailTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A485A5E7262AD50E007072D0 /* UserDetailTableHeaderView.xib */; };
 		A485A5F5262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A485A5F3262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift */; };
 		A485A5F6262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A485A5F4262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib */; };
+		A48622E62678C6E000B25243 /* BottomButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48622E52678C6E000B25243 /* BottomButton.xib */; };
+		A48622E82678C75F00B25243 /* BottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48622E72678C75F00B25243 /* BottomButton.swift */; };
+		A48622EA2678E27700B25243 /* WUTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48622E92678E27700B25243 /* WUTextField.xib */; };
+		A48622EC2678E38300B25243 /* WUTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48622EB2678E38300B25243 /* WUTextField.swift */; };
+		A48622EE2678E48300B25243 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48622ED2678E48300B25243 /* UIColor+Extension.swift */; };
+		A48622F02678EC1A00B25243 /* WUProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48622EF2678EC1A00B25243 /* WUProgress.swift */; };
+		A48622F32678F70000B25243 /* BaseAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48622F12678F70000B25243 /* BaseAuthViewController.swift */; };
 		A4981B7A265BD05900C295A5 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4981B79265BD05900C295A5 /* Container.swift */; };
 		A4BE39A226128C800051B213 /* RegisterEmotionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */; };
 		A4BE39A326128C800051B213 /* RegisterEmotionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */; };
@@ -234,6 +241,13 @@
 		A485A5E7262AD50E007072D0 /* UserDetailTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailTableHeaderView.xib; sourceTree = "<group>"; };
 		A485A5F3262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailEmotionTableViewCell.swift; sourceTree = "<group>"; };
 		A485A5F4262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailEmotionTableViewCell.xib; sourceTree = "<group>"; };
+		A48622E52678C6E000B25243 /* BottomButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomButton.xib; sourceTree = "<group>"; };
+		A48622E72678C75F00B25243 /* BottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButton.swift; sourceTree = "<group>"; };
+		A48622E92678E27700B25243 /* WUTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WUTextField.xib; sourceTree = "<group>"; };
+		A48622EB2678E38300B25243 /* WUTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUTextField.swift; sourceTree = "<group>"; };
+		A48622ED2678E48300B25243 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		A48622EF2678EC1A00B25243 /* WUProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUProgress.swift; sourceTree = "<group>"; };
+		A48622F12678F70000B25243 /* BaseAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthViewController.swift; sourceTree = "<group>"; };
 		A4981B79265BD05900C295A5 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		A4BE39A026128C800051B213 /* RegisterEmotionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmotionTableViewCell.swift; sourceTree = "<group>"; };
 		A4BE39A126128C800051B213 /* RegisterEmotionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterEmotionTableViewCell.xib; sourceTree = "<group>"; };
@@ -340,7 +354,12 @@
 				A485A5F9262D58BE007072D0 /* UserDetail */,
 				8F0E421325B9CD64008AA995 /* SelectEmotionView.xib */,
 				8F0E421825B9CD75008AA995 /* SelectEmotionView.swift */,
+				A48622E52678C6E000B25243 /* BottomButton.xib */,
+				A48622E72678C75F00B25243 /* BottomButton.swift */,
 				8F0E421D25B9D0A3008AA995 /* XibView.swift */,
+				A48622E92678E27700B25243 /* WUTextField.xib */,
+				A48622EB2678E38300B25243 /* WUTextField.swift */,
+				A48622EF2678EC1A00B25243 /* WUProgress.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -394,6 +413,7 @@
 				8F2C5ADD25C1BC37004FF9EF /* Auth.storyboard */,
 				8F5AD3D025C1C50100DBF158 /* AuthMainViewController.swift */,
 				8F5AD40C25C4630C00DBF158 /* AuthViewModel.swift */,
+				A48622F12678F70000B25243 /* BaseAuthViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -424,6 +444,7 @@
 				8F8E3E6C25DD69E400EBB8A8 /* String+Extension.swift */,
 				8F8E3E7125DD6AFF00EBB8A8 /* UIViewController+Extension.swift */,
 				8F4086C325E94D0900E7F61B /* Date+Extension.swift */,
+				A48622ED2678E48300B25243 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -833,11 +854,13 @@
 				A4BE39A326128C800051B213 /* RegisterEmotionTableViewCell.xib in Resources */,
 				8988DBB3261DDB2A00830295 /* GroupMemberTableViewCell.xib in Resources */,
 				8F8E3E6225DD697E00EBB8A8 /* Localization.strings in Resources */,
+				A48622E62678C6E000B25243 /* BottomButton.xib in Resources */,
 				A485A5F6262D58B7007072D0 /* UserDetailEmotionTableViewCell.xib in Resources */,
 				8F5D596525C5A75F0095C21A /* GroupInvitedCollectionViewCell.xib in Resources */,
 				A4775C42260A3ED500A007EF /* EmotionListTableViewCell.xib in Resources */,
 				8F0E41D225B88724008AA995 /* Group.storyboard in Resources */,
 				8F6176A425B856150059B4B7 /* Assets.xcassets in Resources */,
+				A48622EA2678E27700B25243 /* WUTextField.xib in Resources */,
 				8F6176A225B856140059B4B7 /* TabBar.storyboard in Resources */,
 				8F5D595D25C5648C0095C21A /* SettingProfileTableViewCell.xib in Resources */,
 				8F2C5ADE25C1BC37004FF9EF /* Auth.storyboard in Resources */,
@@ -985,6 +1008,7 @@
 				A40182A6265D45D50026B049 /* GroupViewModel.swift in Sources */,
 				8F5D596425C5A75F0095C21A /* GroupInvitedCollectionViewCell.swift in Sources */,
 				8F2C5AAB25C06C0E004FF9EF /* APIConstants.swift in Sources */,
+				A48622F02678EC1A00B25243 /* WUProgress.swift in Sources */,
 				8F5D593125C4871E0095C21A /* PostGroupsResponse.swift in Sources */,
 				8F0E421925B9CD75008AA995 /* SelectEmotionView.swift in Sources */,
 				8F5D597C25C84CC00095C21A /* AuthRequestVerificationCode.swift in Sources */,
@@ -993,21 +1017,25 @@
 				A4BE3AC72625E8740051B213 /* GroupResponses.swift in Sources */,
 				8F5AD3DB25C1C52600DBF158 /* AuthLoginViewController.swift in Sources */,
 				8F4086C425E94D0900E7F61B /* Date+Extension.swift in Sources */,
+				A48622EC2678E38300B25243 /* WUTextField.swift in Sources */,
 				8F2C5AA625C069D0004FF9EF /* APIModel.swift in Sources */,
 				8F5D595C25C5648C0095C21A /* SettingProfileTableViewCell.swift in Sources */,
 				8F5D591D25C473860095C21A /* UIButton+Extension.swift in Sources */,
 				8F2C5AA125C067D3004FF9EF /* API.swift in Sources */,
+				A48622E82678C75F00B25243 /* BottomButton.swift in Sources */,
 				8F8E3E6D25DD69E400EBB8A8 /* String+Extension.swift in Sources */,
 				8F5D596E25C5A8C80095C21A /* GroupInvitedTableViewCell.swift in Sources */,
 				A4BE3AAC2625D5970051B213 /* CreateGroupTableViewCell.swift in Sources */,
 				A485A5E4262AD4D8007072D0 /* UserDetailTableHeaderView.swift in Sources */,
 				8F0E41E525B9C62D008AA995 /* GroupDetailViewController.swift in Sources */,
 				A4BE3A542618A45F0051B213 /* EmotionRequest.swift in Sources */,
+				A48622F32678F70000B25243 /* BaseAuthViewController.swift in Sources */,
 				A485A5D8262AC021007072D0 /* User.swift in Sources */,
 				8F2C5A2125BB3917004FF9EF /* CommonEnums.swift in Sources */,
 				A4BE3AC12625DF720051B213 /* Group.swift in Sources */,
 				A4BE39A826128ED50051B213 /* RegisterEmotionViewController.swift in Sources */,
 				A485A5F5262D58B7007072D0 /* UserDetailEmotionTableViewCell.swift in Sources */,
+				A48622EE2678E48300B25243 /* UIColor+Extension.swift in Sources */,
 				A4350746262F25920057B0F8 /* GroupRequests.swift in Sources */,
 				8F0E420A25B9CA03008AA995 /* MainViewController.swift in Sources */,
 				8F5AD3D125C1C50100DBF158 /* AuthMainViewController.swift in Sources */,

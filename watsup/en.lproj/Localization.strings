@@ -7,6 +7,9 @@
 */
 /// Button
 "Button.OK" = "OK";
+"Button.Login" = "Login";
+"Button.Join" = "Join";
+"Button.Send" = "Send";
 
 /// Common Error
 "API.Error.NotDefined" = "Not defined error occurred.";

@@ -7,6 +7,9 @@
 */
 /// Button
 "Button.OK" = "확인";
+"Button.Login" = "로그인";
+"Button.Join" = "회원가입";
+"Button.Send" = "발송";
 
 /// Common Error
 "API.Error.NotDefined" = "정의되지 않은 에러가 발생했어요ㅜ";
