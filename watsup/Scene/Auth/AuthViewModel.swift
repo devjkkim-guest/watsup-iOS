@@ -6,13 +6,26 @@
 //
 
 import Foundation
+import RxSwift
 
 public let authViewModelId = "authViewModelId"
 
 class AuthViewModel: BaseViewModel {
+    enum EmailStatus {
+        case empty
+        case valid
+        case notValid
+    }
+    enum PasswordStatus {
+        case empty
+        case match
+        case notMatch
+    }
     let id: String = authViewModelId
     let api: WatsupAPI
     let repository: WatsupRepository
+    let isValidEmail = BehaviorSubject<EmailStatus>(value: .empty)
+    let isEqualPassword = BehaviorSubject<PasswordStatus>(value: .empty)
     
     public var uuid: String? = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
     
