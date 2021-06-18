@@ -184,8 +184,11 @@ extension MainViewController: UICollectionViewDelegate {
                     }else{
                         if let selectedDate = try? viewModel.selectedDate.value() {
                             if selectedDate == currentDate {
-                                // 오늘 선택시 무조건 흰색
-                                cell.dayLabel.textColor = .wuWhite
+                                if selectedDate == Date().startOfDay {
+                                    cell.dayLabel.textColor = .white
+                                } else {
+                                    cell.dayLabel.textColor = .wuWhite
+                                }
                                 cell.dayLabel.font = .boldSystemFont(ofSize: 17)
                             }else if currentDate == Date().startOfDay {
                                 // 오늘인데 선택되지 않은 경우 빨간색
@@ -193,7 +196,7 @@ extension MainViewController: UICollectionViewDelegate {
                                 cell.dayLabel.font = .boldSystemFont(ofSize: 17)
                             }else{
                                 // 그 외 검정색
-                                cell.dayLabel.textColor = .wuWhite
+                                cell.dayLabel.textColor = .wuBlack
                                 cell.dayLabel.font = .systemFont(ofSize: 17)
                             }
                         }else{
@@ -212,7 +215,7 @@ extension MainViewController: UICollectionViewDelegate {
                             && selectedDate == Date().startOfDay {
                             cell.dayMark.backgroundColor = .red
                         }else if selectedDate == currentDate {
-                            cell.dayMark.backgroundColor = .black
+                            cell.dayMark.backgroundColor = .wuBlack
                         }else{
                             cell.dayMark.backgroundColor = nil
                         }
