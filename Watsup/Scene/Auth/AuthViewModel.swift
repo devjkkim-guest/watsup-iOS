@@ -27,8 +27,6 @@ class AuthViewModel: BaseViewModel {
     let isValidEmail = BehaviorSubject<EmailStatus>(value: .empty)
     let isEqualPassword = BehaviorSubject<PasswordStatus>(value: .empty)
     
-    public var uuid: String? = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
-    
     required init(api: WatsupAPI, repository: WatsupRepository) {
         self.api = api
         self.repository = repository
@@ -64,7 +62,7 @@ class AuthViewModel: BaseViewModel {
         if let uuid = data.identity?.uuid,
            let accessToken = data.accessToken,
            let refreshToken = data.refreshToken {
-            self.uuid = uuid
+            Container.shared.uuid = uuid
             UserDefaults.standard.setValue(uuid, forKey: UserDefaultsKey.uuid.rawValue)
             UserDefaults.standard.setValue(accessToken, forKey: KeychainKey.accessToken.rawValue)
             UserDefaults.standard.setValue(refreshToken, forKey: KeychainKey.refreshToken.rawValue)

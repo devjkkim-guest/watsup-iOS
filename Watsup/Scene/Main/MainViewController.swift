@@ -292,7 +292,11 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (selectedEmotions?.count ?? 0)+1
+        if let emotions = selectedEmotions {
+            return emotions.count + 1
+        } else {
+            return 0
+        }
     }
 }
 
