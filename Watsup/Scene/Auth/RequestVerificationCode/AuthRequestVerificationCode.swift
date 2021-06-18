@@ -17,6 +17,8 @@ class AuthRequestCodeViewController: BaseAuthViewController {
         super.viewDidLoad()
 
         tfEmail.wuDelegate = self
+        tfEmail.becomeFirstResponder()
+        
         bottomButton.button.isEnabled = false
         bottomButton.button.setTitle("Button.Send".localized, for: .normal)
         bottomButton.button.addTarget(self, action: #selector(onClickSendCode(_:)), for: .touchUpInside)

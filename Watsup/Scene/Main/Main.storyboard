@@ -12,7 +12,7 @@
         <!--Month-->
         <scene sceneID="iw0-Nx-vL0">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dy9-1z-fI6" customClass="MainViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dy9-1z-fI6" customClass="MainViewController" customModule="Watsup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I0m-KP-6NT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,9 +22,10 @@
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="sgl-Cd-r4b">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="sgl-Cd-r4b" secondAttribute="trailing" id="JCP-3i-ZxR"/>
                                     <constraint firstAttribute="bottom" secondItem="sgl-Cd-r4b" secondAttribute="bottom" id="hK7-8x-Vwe"/>
@@ -125,7 +126,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8HR-ef-hYo"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Pyh-1c-BrG" firstAttribute="bottom" secondItem="Qn0-tX-HNY" secondAttribute="top" id="3WL-p2-9Ux"/>
                             <constraint firstItem="8HR-ef-hYo" firstAttribute="trailing" secondItem="SfQ-Yf-htZ" secondAttribute="trailing" id="DQk-Tk-PV2"/>
@@ -177,12 +178,12 @@
         <!--Register Emotion View Controller-->
         <scene sceneID="bFR-eO-Zhu">
             <objects>
-                <viewController id="NIK-qo-32V" customClass="RegisterEmotionViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NIK-qo-32V" customClass="RegisterEmotionViewController" customModule="Watsup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CnH-O1-7f3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVM-e6-SDc" customClass="SelectEmotionView" customModule="watsup" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVM-e6-SDc" customClass="SelectEmotionView" customModule="Watsup" customModuleProvider="target">
                                 <rect key="frame" x="82" y="150" width="250" height="150"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -219,7 +220,7 @@
         <!--Graph-->
         <scene sceneID="Fxo-Yw-2nL">
             <objects>
-                <viewController id="Dwo-Y4-bgL" customClass="EmotionGraphViewController" customModule="watsup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Dwo-Y4-bgL" customClass="EmotionGraphViewController" customModule="Watsup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z4f-3t-S6s">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

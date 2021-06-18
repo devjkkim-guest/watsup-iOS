@@ -8,13 +8,17 @@
 import UIKit
 
 enum AssetsColor: String {
-    case ThemeColor
+    case themeColor
+    case wuBlack
+    case wuWhite
 }
 
 extension UIColor {
-    static let themeColor = UIColor.wuColor(name: .ThemeColor)
+    static let themeColor = UIColor.wuColor(name: .themeColor)
+    static let wuBlack = UIColor.wuColor(name: .wuBlack)
+    static let wuWhite = UIColor.wuColor(name: .wuWhite)
     
-    static func wuColor(name: AssetsColor) -> UIColor {
+    static private func wuColor(name: AssetsColor) -> UIColor {
         return UIColor(named: name.rawValue) ?? .black
     }
 }

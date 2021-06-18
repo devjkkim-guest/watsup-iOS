@@ -49,6 +49,7 @@ class MainViewController: BaseViewController {
             let label = UILabel()
             label.text = str
             label.textAlignment = .center
+            label.textColor = .wuBlack
             self.dayStackView.addArrangedSubview(label)
         }
         
@@ -179,12 +180,12 @@ extension MainViewController: UICollectionViewDelegate {
                     // set label textColor & font-weight
                     if Date() < currentDate {
                         // 오늘 이후의 날짜는 gray
-                        cell.dayLabel.textColor = .systemGray3
+                        cell.dayLabel.textColor = .systemGray2
                     }else{
                         if let selectedDate = try? viewModel.selectedDate.value() {
                             if selectedDate == currentDate {
-                                // 선택된 경우 항상 흰색
-                                cell.dayLabel.textColor = .white
+                                // 오늘 선택시 무조건 흰색
+                                cell.dayLabel.textColor = .wuWhite
                                 cell.dayLabel.font = .boldSystemFont(ofSize: 17)
                             }else if currentDate == Date().startOfDay {
                                 // 오늘인데 선택되지 않은 경우 빨간색
@@ -192,7 +193,7 @@ extension MainViewController: UICollectionViewDelegate {
                                 cell.dayLabel.font = .boldSystemFont(ofSize: 17)
                             }else{
                                 // 그 외 검정색
-                                cell.dayLabel.textColor = .black
+                                cell.dayLabel.textColor = .wuWhite
                                 cell.dayLabel.font = .systemFont(ofSize: 17)
                             }
                         }else{
@@ -205,7 +206,7 @@ extension MainViewController: UICollectionViewDelegate {
                             }
                         }
                     }
-                    // set dayMark
+                    // set dayMark circle
                     if let selectedDate = try? viewModel.selectedDate.value() {
                         if selectedDate == currentDate
                             && selectedDate == Date().startOfDay {

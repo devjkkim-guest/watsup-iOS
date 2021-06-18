@@ -10,7 +10,7 @@ class WUProgress {
     private static let shared = WUProgress()
     private init() {
         ProgressHUD.animationType = .circleStrokeSpin
-        ProgressHUD.colorAnimation = .wuColor(name: .ThemeColor)
+        ProgressHUD.colorAnimation = .themeColor
     }
     
     private func show() {

@@ -19,6 +19,7 @@ class AuthLoginViewController: BaseAuthViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tfEmail.becomeFirstResponder()
         tfEmail.placeholder = "Email"
         tfEmail.wuDelegate = self
         

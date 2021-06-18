@@ -21,6 +21,7 @@ class AuthJoinViewController: BaseAuthViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tfEmail.becomeFirstResponder()
         tfEmail.wuDelegate = self
         tfPassword.wuDelegate = self
         tfConfirmPassword.wuDelegate = self

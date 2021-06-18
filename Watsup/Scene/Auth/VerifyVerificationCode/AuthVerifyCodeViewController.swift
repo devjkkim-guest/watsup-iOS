@@ -14,6 +14,9 @@ class AuthVerifyCodeViewController: BaseAuthViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tfVerifyCode.becomeFirstResponder()
+        
         bottomButton.button.isEnabled = false
         bottomButton.button.setTitle("Button.Login".localized, for: .normal)
         bottomButton.button.addTarget(self, action: #selector(onClickLogin(_:)), for: .touchUpInside)
