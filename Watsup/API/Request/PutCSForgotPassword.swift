@@ -8,5 +8,5 @@
 import Foundation
 
 struct PutCSForgotPasswordRequest: Codable {
-    let verificationCode: Int
+    let verificationCode: String
 }

@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:watsup.xcodeproj">
+      location = "group:/Users/jkkim/Documents/watsup/watsup-iOS/Wastup.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:CommonLibrary">

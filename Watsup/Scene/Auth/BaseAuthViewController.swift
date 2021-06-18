@@ -13,6 +13,8 @@ class BaseAuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        endEditingWhenTapBackground()
+        
         view.addSubview(bottomButton)
         bottomButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview()

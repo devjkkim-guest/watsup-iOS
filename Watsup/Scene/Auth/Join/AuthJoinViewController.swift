@@ -20,7 +20,10 @@ class AuthJoinViewController: BaseAuthViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        endEditingWhenTapBackground()
+        
+        tfEmail.wuDelegate = self
+        tfPassword.wuDelegate = self
+        tfConfirmPassword.wuDelegate = self
         
         bottomButton.button.isEnabled = false
         bottomButton.button.setTitle("Button.Join".localized, for: .normal)
@@ -32,7 +35,7 @@ class AuthJoinViewController: BaseAuthViewController {
                     self.viewModel.isValidEmail.onNext(.empty)
                     return
                 }
-                if email.checkIfValidEmail() == true {
+                if email.isValidEmail() == true {
                     self.viewModel.isValidEmail.onNext(.valid)
                 } else {
                     self.viewModel.isValidEmail.onNext(.notValid)
@@ -94,5 +97,18 @@ class AuthJoinViewController: BaseAuthViewController {
                 self.showAlert(message: error.localizedErrorMessage)
             }
         }
+    }
+}
+
+extension AuthJoinViewController: WUTextFieldDelegate {
+    func wuTextFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == tfEmail {
+            tfPassword.becomeFirstResponder()
+        } else if textField == tfPassword {
+            tfConfirmPassword.becomeFirstResponder()
+        } else if textField == tfConfirmPassword {
+            textField.endEditing(true)
+        }
+        return true
     }
 }

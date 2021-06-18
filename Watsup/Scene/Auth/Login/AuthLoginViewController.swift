@@ -18,7 +18,6 @@ class AuthLoginViewController: BaseAuthViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        endEditingWhenTapBackground()
         
         tfEmail.placeholder = "Email"
         tfEmail.wuDelegate = self
