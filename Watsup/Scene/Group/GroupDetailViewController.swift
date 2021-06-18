@@ -13,11 +13,10 @@ class GroupDetailViewController: UIViewController {
     @IBOutlet weak var btnConfigure: UIBarButtonItem!
     @IBOutlet weak var btnInvite: UIBarButtonItem!
     let viewModel: GroupViewModel = Container.shared.resolve(id: groupViewModelId)
-    var group: Group?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if viewModel.checkIfIAmMaster(in: group) {
+        if viewModel.checkIfIAmMaster() {
             navigationItem.rightBarButtonItems = [btnInvite, btnConfigure]
         } else {
             navigationItem.rightBarButtonItems = [btnInvite]
@@ -25,22 +24,22 @@ class GroupDetailViewController: UIViewController {
         membersTableView.delegate = self
         membersTableView.dataSource = self
         membersTableView.register(UINib(nibName: "GroupMemberTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        
-        group?.joinedUsers.forEach({ joinedUser in
-            guard let uuid = joinedUser.user?.uuid else { return }
-            API.shared.getUserEmotions(uuid: uuid) { result in
-                switch result {
-                case .success:
-                    for cell in self.membersTableView.visibleCells {
-                        if let cell = cell as? GroupMemberTableViewCell,
-                           cell.uuid == uuid {
-                            cell.configure(joinedUser: joinedUser)
-                            break
-                        }
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        bindModel()
+    }
+    
+    private func bindModel() {
+        _ = viewModel.getJoinedUsers()?.observe({ changes in
+            switch changes {
+            case .initial:
+                self.membersTableView.reloadData()
+            case .update(_, deletions: let deletions, insertions: let insertions, modifications: let modifications):
+                self.membersTableView.beginUpdates()
+                self.membersTableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0)}, with: .automatic)
+                self.membersTableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0)}, with: .automatic)
+                self.membersTableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0)}, with: .automatic)
+                self.membersTableView.endUpdates()
+            case .error(let error):
+                print(error.localizedDescription)
             }
         })
     }
@@ -51,25 +50,14 @@ class GroupDetailViewController: UIViewController {
             // todo: custom tf
         }
 
-        let actionCreateGroup = UIAlertAction(title: "Invite", style: .default) { action in
-            guard let groupUUID = self.group?.uuid else { return }
-            guard let userEmail = alertController.textFields?.first?.text else { return }
-            let request = PostGroupInviteRequest(userEmail: userEmail)
-            API.shared.postGroupInvite(groupUUID, request) { result in
-                switch result {
-                case .success(let data):
-                    print(data)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
+        let actionInvite = UIAlertAction(title: "Invite", style: .default) { action in
+            guard let email = alertController.textFields?.first?.text else { return }
+            self.viewModel.inviteUser(email: email)
         }
-
         let actionCreateGroupCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
-        alertController.addAction(actionCreateGroup)
+        alertController.addAction(actionInvite)
         alertController.addAction(actionCreateGroupCancel)
-
         present(alertController, animated: true, completion: nil)
     }
     
@@ -80,13 +68,13 @@ class GroupDetailViewController: UIViewController {
         }
 
         let actionCreateGroup = UIAlertAction(title: "Confirm", style: .default) { action in
-            guard let groupUUID = self.group?.uuid else { return }
             guard let groupName = alertController.textFields?.first?.text else { return }
-            let request = PutGroupRequest(groupName: groupName)
-            self.viewModel.api.putGroup(groupUUID, request: request) { result in
+            self.viewModel.configureGroup(name: groupName) { result in
                 switch result {
-                case .success:
-                    self.title = groupName
+                case .success(let data):
+                    if data.result == true {
+                        self.title = groupName
+                    }
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -104,7 +92,7 @@ class GroupDetailViewController: UIViewController {
 
 extension GroupDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedUser = group?.joinedUsers[indexPath.row]
+        let selectedUser = viewModel.group?.joinedUsers[indexPath.row]
         if let uuid = selectedUser?.user?.uuid {
             API.shared.getUserEmotions(uuid: uuid) { result in
                 switch result {
@@ -128,14 +116,20 @@ extension GroupDetailViewController: UITableViewDelegate {
 extension GroupDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GroupMemberTableViewCell
+        let joinedUser = viewModel.group?.joinedUsers[indexPath.row]
+        if let userUUID = joinedUser?.user?.uuid {
+            let lastEmotion = viewModel.getEmotions(userUUID: userUUID).last
+            cell.configure(joinedUser: joinedUser, emotion: lastEmotion)
+        } else {
+            cell.configure(joinedUser: joinedUser, emotion: nil)
+        }
         cell.delegate = self
         cell.selectionStyle = .none
-        cell.configure(joinedUser: group?.joinedUsers[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return group?.joinedUsers.count ?? 0
+        return viewModel.group?.joinedUsers.count ?? 0
     }
 }
 

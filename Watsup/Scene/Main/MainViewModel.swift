@@ -7,11 +7,25 @@
 
 import Foundation
 import RxSwift
+import RealmSwift
 
-class MainViewModel {
-    let selectedDate: BehaviorSubject<Date>
+let mainViewModelId = "mainViewModelId"
+class MainViewModel: BaseViewModel {
+    var id: String = mainViewModelId
+    var api: WatsupAPI
+    var repository: WatsupRepository
+    var selectedDate: BehaviorSubject<Date> = BehaviorSubject(value: Date().startOfDay)
     
-    init(selectedDate: Date) {
-        self.selectedDate = BehaviorSubject(value: selectedDate)
+    required init(api: WatsupAPI, repository: WatsupRepository) {
+        self.api = api
+        self.repository = repository
+    }
+    
+    func setDate(selectedDate: Date) {
+        self.selectedDate = BehaviorSubject(value: selectedDate.startOfDay)
+    }
+    
+    func getEmotions(userUUID: String) -> Results<Emotion> {
+        return repository.getEmotions(uuid: userUUID)
     }
 }
