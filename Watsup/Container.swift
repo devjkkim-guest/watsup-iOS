@@ -16,6 +16,7 @@ protocol BaseViewModel {
 
 class Container {
     static let shared = Container()
+    /// user uuid
     var uuid: String?
     private init() { }
     var viewModels = [String: BaseViewModel]()
