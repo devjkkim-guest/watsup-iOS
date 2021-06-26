@@ -22,6 +22,10 @@ class GroupViewModel: BaseViewModel {
         self.repository = repository
     }
     
+    deinit {
+        print("group viewmodel deinit")
+    }
+    
     func setGroup(_ group: Group) {
         self.group = group
     }

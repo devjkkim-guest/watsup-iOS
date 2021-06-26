@@ -44,8 +44,7 @@ class AuthLoginViewController: BaseAuthViewController {
         viewModel.postAuth(request) { result in
             WUProgress.dismiss()
             switch result {
-            case .success(let data):
-                Container.shared.uuid = data.uuid
+            case .success:
                 self.goMain()
             case .failure(let error):
                 self.showAlert(message: error.localizedErrorMessage)

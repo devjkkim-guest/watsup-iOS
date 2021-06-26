@@ -44,6 +44,10 @@ class GroupListViewController: UIViewController {
         bindModel()
     }
     
+    deinit {
+        print("deinit")
+    }
+    
     // MARK: - Initial Set
     func setTableView() {
         tableView.delegate = self
@@ -59,10 +63,10 @@ class GroupListViewController: UIViewController {
     
     func bindModel() {
         let groups = DatabaseWorker.shared.getGroups()
-        groupNotificationToken = groups.observe { change in
+        groupNotificationToken = groups.observe { [weak self] change in
             switch change {
             case .update:
-                self.tableView.reloadSections([Section.joinedGroup.getIntValue()], with: .automatic)
+                self?.tableView.reloadSections([Section.joinedGroup.getIntValue()], with: .automatic)
             case .initial, .error:
                 break
             }
@@ -116,21 +120,21 @@ class GroupListViewController: UIViewController {
         getInvitedGroups(dispatchGroup)
         getUserGroups(dispatchGroup)
         
-        dispatchGroup.notify(queue: .main) {
-            self.tableView.reloadData()
-            self.tableView.refreshControl?.endRefreshing()
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.tableView.reloadData()
+            self?.tableView.refreshControl?.endRefreshing()
         }
     }
     
     // 사용자가 초대받은 그룹들 조회
     func getInvitedGroups(_ dispatchGroup: DispatchGroup? = nil) {
         dispatchGroup?.enter()
-        API.shared.getUserInbox { result in
+        API.shared.getUserInbox { [weak self] result in
             switch result {
             case .success(let response):
-                self.invitedGroups = response.inbox
+                self?.invitedGroups = response.inbox
             case .failure(let error):
-                self.showAlert(apiError: error)
+                self?.showAlert(apiError: error)
             }
             dispatchGroup?.leave()
         }
@@ -202,13 +206,13 @@ extension GroupListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let joinedGroups = joinedGroups, joinedGroups.count != 0 else { return }
         if let uuid = joinedGroups[indexPath.row].uuid {
-            API.shared.getGroup(uuid) { result in
+            API.shared.getGroup(uuid) { [weak self] result in
                 switch result {
                 case .success(let group):
                     let vc = UIStoryboard(name: "Group", bundle: nil).instantiateViewController(withIdentifier: "GroupDetailVC") as! GroupDetailViewController
                     vc.title = joinedGroups[indexPath.row].name
                     vc.viewModel.setGroup(group)
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    self?.navigationController?.pushViewController(vc, animated: true)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -218,15 +222,15 @@ extension GroupListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if let group = joinedGroups?[indexPath.row], let uuid = group.uuid {
-            let action = UIContextualAction(style: .destructive, title: "Leave") { (action, view, handler) in
+            let action = UIContextualAction(style: .destructive, title: "Leave") { [weak self] (action, view, handler) in
                 let alertController = UIAlertController(title: nil, message: "Are you sure to Leave?", preferredStyle: .alert)
                 let actionOK = UIAlertAction(title: "Leave", style: .destructive) { _ in
-                    API.shared.getGroupLeave(uuid) { result in
+                    API.shared.getGroupLeave(uuid) { [weak self] result in
                         switch result {
                         case .success:
                             break
                         case .failure(let error):
-                            self.showAlert(message: error.localizedErrorMessage)
+                            self?.showAlert(message: error.localizedErrorMessage)
                         }
                     }
                 }
@@ -234,7 +238,7 @@ extension GroupListViewController: UITableViewDelegate {
                 
                 alertController.addAction(actionOK)
                 alertController.addAction(actionCancel)
-                self.present(alertController, animated: true, completion: nil)
+                self?.present(alertController, animated: true, completion: nil)
             }
             
             return UISwipeActionsConfiguration(actions: [action])
@@ -289,13 +293,13 @@ extension GroupListViewController: CreateGroupTableViewCellDelegate {
 
 extension GroupListViewController: GroupInvitedCollectionViewCellDelegate {
     func onClickJoin(groupUUID: String) {
-        API.shared.getGroupJoin(groupUUID) { result in
+        API.shared.getGroupJoin(groupUUID) { [weak self] result in
             switch result {
             case .success(let group):
-                self.invitedGroups?.removeAll(where: { invitedGroup in
+                self?.invitedGroups?.removeAll(where: { invitedGroup in
                     return invitedGroup.groupUuid == group.uuid
                 })
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }

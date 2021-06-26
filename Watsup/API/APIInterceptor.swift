@@ -11,10 +11,11 @@ import Alamofire
 protocol TokenStorage {
     var accessToken: String? { get set }
     var refreshToken: String? { get set }
+    func removeAllTokens()
 }
 
 class APIInterceptor: RequestInterceptor {
-    public let storage: TokenStorage
+    private let storage: TokenStorage
     /// limit max retry
     private let maxRetry = 1
     
@@ -50,6 +51,10 @@ class APIInterceptor: RequestInterceptor {
         }else{
             completion(.doNotRetry)
         }
+    }
+    
+    func removeAllTokens() {
+        storage.removeAllTokens()
     }
 }
 

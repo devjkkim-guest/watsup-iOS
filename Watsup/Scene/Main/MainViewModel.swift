@@ -21,6 +21,10 @@ class MainViewModel: BaseViewModel {
         self.repository = repository
     }
     
+    deinit {
+        print(#function)
+    }
+    
     func setDate(selectedDate: Date) {
         self.selectedDate = BehaviorSubject(value: selectedDate.startOfDay)
     }

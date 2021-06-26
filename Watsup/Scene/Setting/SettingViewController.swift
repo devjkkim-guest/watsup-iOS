@@ -118,7 +118,7 @@ extension SettingViewController: UITableViewDelegate {
                     switch result {
                     case .success:
                         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                            appDelegate.window?.rootViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateInitialViewController()
+                            appDelegate.logout()
                         }
                     case .failure(let error):
                         self.showAlert(apiError: error)

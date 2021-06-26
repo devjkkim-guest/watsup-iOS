@@ -24,7 +24,7 @@ enum APIModel: URLRequestConvertible {
     case getUserProfileImage(_ uuid: String)
     case putUserProfile(_ uuid: String, request: PutUserProfileRequest)
     case putUserProfileImage(_ uuid: String, request: PutUserProfileImageRequest)
-    case getUserEmotions(_ uuid: String)
+    case getUserEmotions(_ uuid: String?)
     case postEmotion(_ request: PostEmotionRequest)
     
     /** Customer Service */
@@ -108,7 +108,11 @@ enum APIModel: URLRequestConvertible {
         case .putUserProfileImage(let uuid, _):
             return "/users/\(uuid)/profile/image"
         case .getUserEmotions(let uuid):
-            return "/users/\(uuid)/emotions"
+            if let uuid = uuid {
+                return "/users/\(uuid)/emotions"
+            } else {
+                return "/users/\(myUUID)/emotions"
+            }
         case .postEmotion:
             return "/users/\(myUUID)/emotions"
             

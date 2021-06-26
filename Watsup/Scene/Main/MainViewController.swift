@@ -21,11 +21,8 @@ class MainViewController: BaseViewController {
     var currentMonth = Calendar.current.component(.month, from: Date())
     var months = [Date?]()
     lazy var emotions: Results<Emotion>? = {
-        if let uuid = Container.shared.uuid {
-            return viewModel.getEmotions(userUUID: uuid)
-        } else {
-            return nil
-        }
+        guard let uuid = Container.shared.myUUID else { return nil }
+        return viewModel.getEmotions(userUUID: uuid)
     }()
     var selectedEmotions: Results<Emotion>?
     var emotionToken: NotificationToken?
@@ -39,6 +36,10 @@ class MainViewController: BaseViewController {
         setUI()
         loadData()
         bindModel()
+    }
+    
+    deinit {
+        print("mainVC deinit")
     }
     
     private func setUI() {
@@ -77,15 +78,15 @@ class MainViewController: BaseViewController {
     }
     
     func bindModel() {
-        emotionToken = emotions?.observe { changes in
+        emotionToken = emotions?.observe { [weak self] changes in
             switch changes {
             case .update:
                 // TO DO: reload tableView only if inserted data belongs to currently selected day.
-                if let selectedDate = try? self.viewModel.selectedDate.value() {
-                    self.reloadSelectedEmotions(selectedDate: selectedDate)
+                if let selectedDate = try? self?.viewModel.selectedDate.value() {
+                    self?.reloadSelectedEmotions(selectedDate: selectedDate)
                 }
             case .initial:
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             default:
                 break
             }
@@ -148,8 +149,7 @@ class MainViewController: BaseViewController {
     
     // MARK: - API
     func loadData() {
-        guard let userUUID = API.shared.userUUID else { return }
-        API.shared.getUserEmotions(uuid: userUUID) { result in
+        API.shared.getUserEmotions(uuid: nil) { result in
             switch result {
             case .success(_):
                 return

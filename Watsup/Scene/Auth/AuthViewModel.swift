@@ -62,7 +62,7 @@ class AuthViewModel: BaseViewModel {
         if let uuid = data.identity?.uuid,
            let accessToken = data.accessToken,
            let refreshToken = data.refreshToken {
-            Container.shared.uuid = uuid
+            Container.shared.myUUID = uuid
             UserDefaults.standard.setValue(uuid, forKey: UserDefaultsKey.uuid.rawValue)
             UserDefaults.standard.setValue(accessToken, forKey: KeychainKey.accessToken.rawValue)
             UserDefaults.standard.setValue(refreshToken, forKey: KeychainKey.refreshToken.rawValue)
@@ -89,6 +89,12 @@ class AuthViewModel: BaseViewModel {
             switch result {
             case .success(let data):
                 self.getUser(data: data) { result in
+                    switch result {
+                    case .success(let user):
+                        Container.shared.myUUID = user.uuid
+                    case .failure:
+                        break
+                    }
                     completion(result)
                 }
             case .failure(let error):

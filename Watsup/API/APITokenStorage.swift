@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct APITokenStorage: TokenStorage {
+class APITokenStorage: TokenStorage {
     var accessToken: String? = {
         return UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue)
     }()
@@ -15,4 +15,9 @@ struct APITokenStorage: TokenStorage {
     var refreshToken: String? = {
         return UserDefaults.standard.string(forKey: KeychainKey.refreshToken.rawValue)
     }()
+    
+    func removeAllTokens() {
+        accessToken = nil
+        refreshToken = nil
+    }
 }

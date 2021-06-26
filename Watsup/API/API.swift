@@ -15,6 +15,7 @@ protocol WatsupAPI {
     func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<AuthResponse, APIError>) -> Void)
     func putCSForgotPassword(_ request: PutCSForgotPasswordRequest, complection: @escaping (Result<AuthResponse, APIError>) -> Void)
     func putGroup(_ groupUUID: String, request: PutGroupRequest, completion: @escaping (Result<CommonResponse, APIError>) -> Void)
+    func removeAllTokens()
 }
 
 class API: WatsupAPI {
@@ -39,9 +40,6 @@ class API: WatsupAPI {
         return API(session: session)
     }()
     private let session: Session
-    lazy public var userUUID: String? = {
-        return UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
-    }()
     
     private init(session: Session) {
         self.session = session
@@ -180,12 +178,16 @@ class API: WatsupAPI {
      - Parameters:
         - uuid: 사용자 UUID (nil일 경우 내 UUID)
      */
-    func getUserEmotions(uuid: String, completion: @escaping (Result<GetUserEmotionsResponse, APIError>) -> Void) {
+    func getUserEmotions(uuid: String?, completion: @escaping (Result<GetUserEmotionsResponse, APIError>) -> Void) {
         API.shared.request(.getUserEmotions(uuid)) { (result: Result<GetUserEmotionsResponse, APIError>) in
             switch result {
             case .success(let response):
                 if let logs = response.logs {
-                    DatabaseWorker.shared.setEmotionLogs(logs, of: uuid)
+                    if let uuid = uuid {
+                        DatabaseWorker.shared.setEmotionLogs(logs, of: uuid)
+                    } else if let myUUID = Container.shared.myUUID {
+                        DatabaseWorker.shared.setEmotionLogs(logs, of: myUUID)
+                    }
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -198,8 +200,8 @@ class API: WatsupAPI {
         API.shared.request(.postEmotion(request)) { (result: Result<Emotion, APIError>) in
             switch result {
             case .success(let response):
-                guard let userUUID = self.userUUID else { return }
-                DatabaseWorker.shared.setEmotionLogs([response], of: userUUID)
+                guard let myUUID = Container.shared.myUUID else { return }
+                DatabaseWorker.shared.setEmotionLogs([response], of: myUUID)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -316,6 +318,13 @@ class API: WatsupAPI {
         }else{
             // return default error.
             return APIError(errorType: .others(type: .noErrorCode), errorCode: -1)
+        }
+    }
+    
+    // MARK: - Helper
+    func removeAllTokens() {
+        if let interceptor = session.interceptor as? APIInterceptor {
+            interceptor.removeAllTokens()
         }
     }
 }

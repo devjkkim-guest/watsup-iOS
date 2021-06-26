@@ -18,6 +18,7 @@ class AuthJoinViewController: BaseAuthViewController {
     let viewModel: AuthViewModel = Container.shared.resolve(id: authViewModelId)
     let disposeBag = DisposeBag()
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +32,8 @@ class AuthJoinViewController: BaseAuthViewController {
         bottomButton.button.addTarget(self, action: #selector(onClickJoin(_:)), for: .touchUpInside)
         
         tfEmail.rx.text
-            .subscribe(onNext: { text in
+            .subscribe(onNext: { [weak self] text in
+                guard let self = self else { return }
                 guard let email = text, !email.isEmpty else {
                     self.viewModel.isValidEmail.onNext(.empty)
                     return
@@ -44,7 +46,8 @@ class AuthJoinViewController: BaseAuthViewController {
             }).disposed(by: disposeBag)
 
         Observable.combineLatest(tfPassword.rx.text, tfConfirmPassword.rx.text)
-            .subscribe(onNext: { text1, text2 in
+            .subscribe(onNext: { [weak self] text1, text2 in
+                guard let self = self else { return }
                 guard let password1 = text1, !password1.isEmpty else { self.viewModel.isEqualPassword.onNext(.empty)
                     return
                 }
@@ -60,7 +63,8 @@ class AuthJoinViewController: BaseAuthViewController {
             }).disposed(by: disposeBag)
         
         Observable.combineLatest(viewModel.isValidEmail, viewModel.isEqualPassword)
-            .subscribe(onNext: { isValidEmail, isEqualPassword in
+            .subscribe(onNext: { [weak self] isValidEmail, isEqualPassword in
+                guard let self = self else { return }
                 if isValidEmail == .empty {
                     self.bottomButton.button.isEnabled = false
                     self.guideLabel.text = "Fill Email."
@@ -80,22 +84,28 @@ class AuthJoinViewController: BaseAuthViewController {
             }).disposed(by: disposeBag)
     }
     
+    deinit {
+        print("deinit AuthJoin")
+    }
+    
+    // MARK: - Function
+    
     @objc func onClickJoin(_ sender: UIButton) {
         guard let email = tfEmail.text else { return }
         guard let password = tfPassword.text else { return }
         
         WUProgress.show()
-        viewModel.postUser(email: email, password: password) { result in
+        viewModel.postUser(email: email, password: password) { [weak self] result in
             WUProgress.dismiss()
             switch result {
             case .success:
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
                 } else {
-                    self.showAlert(message: "failed \(#function) \(#line)")
+                    self?.showAlert(message: "failed \(#function) \(#line)")
                 }
             case .failure(let error):
-                self.showAlert(message: error.localizedErrorMessage)
+                self?.showAlert(message: error.localizedErrorMessage)
             }
         }
     }

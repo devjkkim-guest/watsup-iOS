@@ -23,10 +23,6 @@ class SettingViewModel: BaseViewModel {
         api.deleteUser { result in
             switch result {
             case .success(let data):
-                self.repository.removeAll()
-                if let domain = Bundle.main.bundleIdentifier {
-                    UserDefaults.standard.removePersistentDomain(forName: domain)
-                }
                 completion(.success(data))
             case .failure(let error):
                 completion(.failure(error))

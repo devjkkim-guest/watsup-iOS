@@ -24,12 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        Container.shared.register(MainViewModel.self)
-        Container.shared.register(AuthViewModel.self)
-        Container.shared.register(GroupViewModel.self)
-        Container.shared.register(SettingViewModel.self)
-        Container.shared.uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
-        
+        Container.shared.initialize()
         if let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue), !uuid.isEmpty {
             window?.rootViewController = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController()
         }
@@ -43,6 +38,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceToken = deviceToken.map { String(format: "%02x", $0) }.joined()
         print("deviceToken: \(deviceToken)")
+    }
+    
+    func logout() {
+        if let domain = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: domain)
+        }
+        API.shared.removeAllTokens()
+        DatabaseWorker.shared.removeAll()
+        Container.shared.removeAll()
+        window?.rootViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateInitialViewController()
+        Container.shared.initialize()
     }
 }
 

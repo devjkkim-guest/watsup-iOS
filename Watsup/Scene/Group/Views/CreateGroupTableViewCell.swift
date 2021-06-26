@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol CreateGroupTableViewCellDelegate {
+protocol CreateGroupTableViewCellDelegate: AnyObject {
     func didClickCreateGroup()
 }
 
 class CreateGroupTableViewCell: UITableViewCell {
-    var delegate: CreateGroupTableViewCellDelegate?
+    weak var delegate: CreateGroupTableViewCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
