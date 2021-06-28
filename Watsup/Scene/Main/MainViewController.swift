@@ -26,6 +26,8 @@ class MainViewController: BaseViewController {
     }()
     var selectedEmotions: Results<Emotion>?
     var emotionToken: NotificationToken?
+    /// [TimeIntervalSince1970 : hasEmotion]
+    var hasEmotionAtDate = [Int:Bool]()
     
     // Model
     let disposeBag = DisposeBag()
@@ -183,7 +185,13 @@ extension MainViewController: UICollectionViewDelegate {
                         // 오늘 이후의 날짜는 gray
                         cell.dayLabel.textColor = .systemGray2
                     }else{
-                        cell.emotionMark.isHidden = !currentDate.hasEmotion()
+                        if let hasEmotion = hasEmotionAtDate[currentDate.timeIntervalSince1970Int] {
+                            cell.emotionMark.isHidden = !hasEmotion
+                        } else {
+                            let hasEmotion = currentDate.hasEmotion()
+                            hasEmotionAtDate[currentDate.timeIntervalSince1970Int] = hasEmotion
+                            cell.emotionMark.isHidden = !hasEmotion
+                        }
                         if let selectedDate = try? viewModel.selectedDate.value() {
                             if selectedDate == currentDate {
                                 if selectedDate == Date().startOfDay {
