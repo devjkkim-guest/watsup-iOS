@@ -80,6 +80,13 @@ class DatabaseWorker: WatsupRepository {
         return realm.objects(Emotion.self).filter("userUUID = '\(uuid)'").sorted(byKeyPath: "id", ascending: true)
     }
     
+    func getEmotions(from: Date, to: Date) -> Results<Emotion> {
+        let timeIntervalFrom = from.timeIntervalSince1970
+        let timeIntervalTo = to.timeIntervalSince1970
+        
+        return realm.objects(Emotion.self).filter("createdAt >= \(timeIntervalFrom) AND createdAt <= \(timeIntervalTo)")
+    }
+    
     func setEmotionLogs(_ logs: [Emotion], of userUUID: String) {
         try? realm.write {
             let emotions = Emotion.setCompoundKey(logs: logs, userUUID: userUUID)

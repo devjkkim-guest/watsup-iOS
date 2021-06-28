@@ -72,4 +72,8 @@ extension Date {
         let dayOffset = day-(weekDay-1)
         return Calendar.current.date(byAdding: .day, value: dayOffset, to: self, wrappingComponents: false)
     }
+    
+    func hasEmotion() -> Bool {
+        return !DatabaseWorker.shared.getEmotions(from: self.startOfDay, to: self.endOfDay).isEmpty
+    }
 }

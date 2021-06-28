@@ -22,7 +22,7 @@ class Emotion: Object, Codable {
     }
     
     override class func indexedProperties() -> [String] {
-        return ["userUUID"]
+        return ["userUUID", "createdAt"]
     }
     
     func setCompoundKey(id: Int, userUUID: String) {
