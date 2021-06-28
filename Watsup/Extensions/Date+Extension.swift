@@ -8,6 +8,10 @@
 import Foundation
 
 extension Date {
+    var timeIntervalSince1970Int: Int {
+        return Int(timeIntervalSince1970)
+    }
+    
     var startOfDay: Date {
         return Calendar.current.startOfDay(for: self)
     }

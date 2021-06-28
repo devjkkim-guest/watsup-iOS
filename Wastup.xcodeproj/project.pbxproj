@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45547508ED9007211D11C19F /* Pods_watsupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55274C625C0B5E15B2008A9 /* Pods_watsupTests.framework */; };
-		5A0E5C4FF17B7C0C0D50808F /* Pods_watsup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE4F664F618D362578A81C1 /* Pods_watsup.framework */; };
+		47334B130516B6471AB0798F /* Pods_Watsup_WatsupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25E9158FBC1E19E12307A7D /* Pods_Watsup_WatsupUITests.framework */; };
+		84471AAACA820603C645BFCA /* Pods_Watsup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9DF817AA0151F51E0ABF39 /* Pods_Watsup.framework */; };
 		8940DED72613445700B7D1E4 /* GroupJoinedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8940DED52613445700B7D1E4 /* GroupJoinedTableViewCell.swift */; };
 		8940DED82613445700B7D1E4 /* GroupJoinedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8940DED62613445700B7D1E4 /* GroupJoinedTableViewCell.xib */; };
 		8940DEDD2613544700B7D1E4 /* PutAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8940DEDC2613544700B7D1E4 /* PutAuthResponse.swift */; };
@@ -25,7 +25,6 @@
 		8F0E421925B9CD75008AA995 /* SelectEmotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E421825B9CD75008AA995 /* SelectEmotionView.swift */; };
 		8F0E421E25B9D0A3008AA995 /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E421D25B9D0A3008AA995 /* XibView.swift */; };
 		8F2C5A2125BB3917004FF9EF /* CommonEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5A2025BB3917004FF9EF /* CommonEnums.swift */; };
-		8F2C5A9425C064B4004FF9EF /* CommonLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 8F2C5A9325C064B4004FF9EF /* CommonLibrary */; };
 		8F2C5AA125C067D3004FF9EF /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5AA025C067D3004FF9EF /* API.swift */; };
 		8F2C5AA625C069D0004FF9EF /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5AA525C069D0004FF9EF /* APIModel.swift */; };
 		8F2C5AAB25C06C0E004FF9EF /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2C5AAA25C06C0E004FF9EF /* APIConstants.swift */; };
@@ -83,6 +82,7 @@
 		A429318925EA7562005F5DD0 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A429318725EA7562005F5DD0 /* CalendarCollectionViewCell.swift */; };
 		A429318A25EA7562005F5DD0 /* CalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A429318825EA7562005F5DD0 /* CalendarCollectionViewCell.xib */; };
 		A4350746262F25920057B0F8 /* GroupRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4350745262F25920057B0F8 /* GroupRequests.swift */; };
+		A471A40E268A064E0083DC8E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A471A40D268A064E0083DC8E /* Alamofire */; };
 		A4775C41260A3ED500A007EF /* EmotionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4775C3F260A3ED500A007EF /* EmotionListTableViewCell.swift */; };
 		A4775C42260A3ED500A007EF /* EmotionListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4775C40260A3ED500A007EF /* EmotionListTableViewCell.xib */; };
 		A4775C4F260B777300A007EF /* GetUserEmotionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4775C4E260B777300A007EF /* GetUserEmotionsResponse.swift */; };
@@ -115,7 +115,7 @@
 		A4BE3AC72625E8740051B213 /* GroupResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3AC62625E8730051B213 /* GroupResponses.swift */; };
 		A4BE3AD22625F4D30051B213 /* EmotionGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3AD12625F4D20051B213 /* EmotionGraphViewController.swift */; };
 		A4BE3AD82625F8DA0051B213 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = A4BE3AD72625F8DA0051B213 /* Charts */; };
-		F2945437CC694AE7593EEE3C /* Pods_watsup_watsupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D00D3B659A21D03D72F26B /* Pods_watsup_watsupUITests.framework */; };
+		D38D74FE6BDC4AF0822F33EA /* Pods_WatsupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C16B8CFF71D698F6E5052E35 /* Pods_WatsupTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,10 +150,12 @@
 
 /* Begin PBXFileReference section */
 		011C5311030AF4467DC63AF6 /* Pods-watsupTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsupTests.release.xcconfig"; path = "Target Support Files/Pods-watsupTests/Pods-watsupTests.release.xcconfig"; sourceTree = "<group>"; };
+		0E69111166E7C248ECE27395 /* Pods-Watsup-WatsupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watsup-WatsupUITests.release.xcconfig"; path = "Target Support Files/Pods-Watsup-WatsupUITests/Pods-Watsup-WatsupUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1DBE657E9F6835EB43FF5A1D /* Pods-watsup-watsupUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup-watsupUITests.debug.xcconfig"; path = "Target Support Files/Pods-watsup-watsupUITests/Pods-watsup-watsupUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		3BE4F664F618D362578A81C1 /* Pods_watsup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		245C63F849D89AAF4328B1E7 /* Pods-WatsupTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatsupTests.debug.xcconfig"; path = "Target Support Files/Pods-WatsupTests/Pods-WatsupTests.debug.xcconfig"; sourceTree = "<group>"; };
+		32AA440B3535549E623E0B23 /* Pods-Watsup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watsup.release.xcconfig"; path = "Target Support Files/Pods-Watsup/Pods-Watsup.release.xcconfig"; sourceTree = "<group>"; };
+		396D9DA712B17175D0817A20 /* Pods-Watsup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watsup.debug.xcconfig"; path = "Target Support Files/Pods-Watsup/Pods-Watsup.debug.xcconfig"; sourceTree = "<group>"; };
 		4FC462EAB5F2AA314ECC1401 /* Pods-watsup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup.release.xcconfig"; path = "Target Support Files/Pods-watsup/Pods-watsup.release.xcconfig"; sourceTree = "<group>"; };
-		54D00D3B659A21D03D72F26B /* Pods_watsup_watsupUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsup_watsupUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8940DED52613445700B7D1E4 /* GroupJoinedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupJoinedTableViewCell.swift; sourceTree = "<group>"; };
 		8940DED62613445700B7D1E4 /* GroupJoinedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupJoinedTableViewCell.xib; sourceTree = "<group>"; };
 		8940DEDC2613544700B7D1E4 /* PutAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutAuthResponse.swift; sourceTree = "<group>"; };
@@ -261,8 +263,12 @@
 		A4BE3AC02625DF720051B213 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		A4BE3AC62625E8730051B213 /* GroupResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupResponses.swift; sourceTree = "<group>"; };
 		A4BE3AD12625F4D20051B213 /* EmotionGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionGraphViewController.swift; sourceTree = "<group>"; };
-		B55274C625C0B5E15B2008A9 /* Pods_watsupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watsupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B25E9158FBC1E19E12307A7D /* Pods_Watsup_WatsupUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watsup_WatsupUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3E42CF30CC62E938744F53E /* Pods-WatsupTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatsupTests.release.xcconfig"; path = "Target Support Files/Pods-WatsupTests/Pods-WatsupTests.release.xcconfig"; sourceTree = "<group>"; };
+		BB9DF817AA0151F51E0ABF39 /* Pods_Watsup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watsup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C16B8CFF71D698F6E5052E35 /* Pods_WatsupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatsupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CB51354ACB513130627B1E /* Pods-watsup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup.debug.xcconfig"; path = "Target Support Files/Pods-watsup/Pods-watsup.debug.xcconfig"; sourceTree = "<group>"; };
+		D9AFFA80FD06B06D9BE6DCBF /* Pods-Watsup-WatsupUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watsup-WatsupUITests.debug.xcconfig"; path = "Target Support Files/Pods-Watsup-WatsupUITests/Pods-Watsup-WatsupUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EC52E897B17F5438C4265895 /* Pods-watsup-watsupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsup-watsupUITests.release.xcconfig"; path = "Target Support Files/Pods-watsup-watsupUITests/Pods-watsup-watsupUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FE26638783DFC7123EB90D99 /* Pods-watsupTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watsupTests.debug.xcconfig"; path = "Target Support Files/Pods-watsupTests/Pods-watsupTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -273,13 +279,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A426C03D2652A51800AE2A4F /* RealmSwift in Frameworks */,
+				A471A40E268A064E0083DC8E /* Alamofire in Frameworks */,
 				A426C03B2652A51800AE2A4F /* Realm in Frameworks */,
 				A4BE3AA0261DD2AD0051B213 /* RxSwift in Frameworks */,
 				A4BE3AD82625F8DA0051B213 /* Charts in Frameworks */,
 				A410A8CF2647D7FE00E8D308 /* Kingfisher in Frameworks */,
 				A4BE3A9E261DD2AD0051B213 /* RxCocoa in Frameworks */,
-				5A0E5C4FF17B7C0C0D50808F /* Pods_watsup.framework in Frameworks */,
-				8F2C5A9425C064B4004FF9EF /* CommonLibrary in Frameworks */,
+				84471AAACA820603C645BFCA /* Pods_Watsup.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +293,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45547508ED9007211D11C19F /* Pods_watsupTests.framework in Frameworks */,
+				D38D74FE6BDC4AF0822F33EA /* Pods_WatsupTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +301,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2945437CC694AE7593EEE3C /* Pods_watsup_watsupUITests.framework in Frameworks */,
+				47334B130516B6471AB0798F /* Pods_Watsup_WatsupUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,9 +311,9 @@
 		64CA84EB21390E25562CD1C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3BE4F664F618D362578A81C1 /* Pods_watsup.framework */,
-				54D00D3B659A21D03D72F26B /* Pods_watsup_watsupUITests.framework */,
-				B55274C625C0B5E15B2008A9 /* Pods_watsupTests.framework */,
+				BB9DF817AA0151F51E0ABF39 /* Pods_Watsup.framework */,
+				B25E9158FBC1E19E12307A7D /* Pods_Watsup_WatsupUITests.framework */,
+				C16B8CFF71D698F6E5052E35 /* Pods_WatsupTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -616,6 +622,12 @@
 				EC52E897B17F5438C4265895 /* Pods-watsup-watsupUITests.release.xcconfig */,
 				FE26638783DFC7123EB90D99 /* Pods-watsupTests.debug.xcconfig */,
 				011C5311030AF4467DC63AF6 /* Pods-watsupTests.release.xcconfig */,
+				396D9DA712B17175D0817A20 /* Pods-Watsup.debug.xcconfig */,
+				32AA440B3535549E623E0B23 /* Pods-Watsup.release.xcconfig */,
+				D9AFFA80FD06B06D9BE6DCBF /* Pods-Watsup-WatsupUITests.debug.xcconfig */,
+				0E69111166E7C248ECE27395 /* Pods-Watsup-WatsupUITests.release.xcconfig */,
+				245C63F849D89AAF4328B1E7 /* Pods-WatsupTests.debug.xcconfig */,
+				B3E42CF30CC62E938744F53E /* Pods-WatsupTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -739,13 +751,13 @@
 			);
 			name = Watsup;
 			packageProductDependencies = (
-				8F2C5A9325C064B4004FF9EF /* CommonLibrary */,
 				A4BE3A9D261DD2AD0051B213 /* RxCocoa */,
 				A4BE3A9F261DD2AD0051B213 /* RxSwift */,
 				A4BE3AD72625F8DA0051B213 /* Charts */,
 				A410A8CE2647D7FE00E8D308 /* Kingfisher */,
 				A426C03A2652A51800AE2A4F /* Realm */,
 				A426C03C2652A51800AE2A4F /* RealmSwift */,
+				A471A40D268A064E0083DC8E /* Alamofire */,
 			);
 			productName = watsup;
 			productReference = 8F61769725B856140059B4B7 /* Watsup.app */;
@@ -827,6 +839,7 @@
 				A4BE3AD62625F8DA0051B213 /* XCRemoteSwiftPackageReference "Charts" */,
 				A410A8CD2647D7FE00E8D308 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				A426C0392652A51800AE2A4F /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				A471A40C268A064E0083DC8E /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 8F61769825B856140059B4B7 /* Products */;
 			projectDirPath = "";
@@ -902,7 +915,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-watsup-watsupUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Watsup-WatsupUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -924,7 +937,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-watsupTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-WatsupTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -937,15 +950,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-watsup/Pods-watsup-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Watsup/Pods-Watsup-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-watsup/Pods-watsup-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Watsup/Pods-Watsup-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-watsup/Pods-watsup-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Watsup/Pods-Watsup-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		95CF6AC8E6B938453326F821 /* [CP] Check Pods Manifest.lock */ = {
@@ -963,7 +976,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-watsup-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Watsup-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -976,15 +989,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-watsup-watsupUITests/Pods-watsup-watsupUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Watsup-WatsupUITests/Pods-Watsup-WatsupUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-watsup-watsupUITests/Pods-watsup-watsupUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Watsup-WatsupUITests/Pods-Watsup-WatsupUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-watsup-watsupUITests/Pods-watsup-watsupUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Watsup-WatsupUITests/Pods-Watsup-WatsupUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1251,7 +1264,7 @@
 		};
 		8F6176C225B856160059B4B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C9CB51354ACB513130627B1E /* Pods-watsup.debug.xcconfig */;
+			baseConfigurationReference = 396D9DA712B17175D0817A20 /* Pods-Watsup.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1275,7 +1288,7 @@
 		};
 		8F6176C325B856160059B4B7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4FC462EAB5F2AA314ECC1401 /* Pods-watsup.release.xcconfig */;
+			baseConfigurationReference = 32AA440B3535549E623E0B23 /* Pods-Watsup.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1299,7 +1312,7 @@
 		};
 		8F6176C525B856160059B4B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE26638783DFC7123EB90D99 /* Pods-watsupTests.debug.xcconfig */;
+			baseConfigurationReference = 245C63F849D89AAF4328B1E7 /* Pods-WatsupTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1322,7 +1335,7 @@
 		};
 		8F6176C625B856160059B4B7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 011C5311030AF4467DC63AF6 /* Pods-watsupTests.release.xcconfig */;
+			baseConfigurationReference = B3E42CF30CC62E938744F53E /* Pods-WatsupTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1345,7 +1358,7 @@
 		};
 		8F6176C825B856160059B4B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1DBE657E9F6835EB43FF5A1D /* Pods-watsup-watsupUITests.debug.xcconfig */;
+			baseConfigurationReference = D9AFFA80FD06B06D9BE6DCBF /* Pods-Watsup-WatsupUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1366,7 +1379,7 @@
 		};
 		8F6176C925B856160059B4B7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC52E897B17F5438C4265895 /* Pods-watsup-watsupUITests.release.xcconfig */;
+			baseConfigurationReference = 0E69111166E7C248ECE27395 /* Pods-Watsup-WatsupUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1443,6 +1456,14 @@
 				minimumVersion = 10.7.6;
 			};
 		};
+		A471A40C268A064E0083DC8E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.0;
+			};
+		};
 		A4BE3A9C261DD2AD0051B213 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -1462,10 +1483,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8F2C5A9325C064B4004FF9EF /* CommonLibrary */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CommonLibrary;
-		};
 		A410A8CE2647D7FE00E8D308 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A410A8CD2647D7FE00E8D308 /* XCRemoteSwiftPackageReference "Kingfisher" */;
@@ -1480,6 +1497,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A426C0392652A51800AE2A4F /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		A471A40D268A064E0083DC8E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A471A40C268A064E0083DC8E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		A4BE3A9D261DD2AD0051B213 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;

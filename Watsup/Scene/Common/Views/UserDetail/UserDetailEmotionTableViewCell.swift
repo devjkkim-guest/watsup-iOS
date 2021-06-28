@@ -30,8 +30,8 @@ class UserDetailEmotionTableViewCell: UITableViewCell {
     
     func configure(emotion: Emotion?) {
         if let emotion = emotion {
-            dateLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: emotion.createdAt))
-            timeLabel.text = timeFormatter.string(from: Date(timeIntervalSince1970: emotion.createdAt))
+            dateLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: Double(emotion.createdAt)))
+            timeLabel.text = timeFormatter.string(from: Date(timeIntervalSince1970: Double(emotion.createdAt)))
             emotionLabel.text = EmotionType.getEmotion(rawValue: emotion.emotionType).rawValue
             messageLabel.text = emotion.message
         }

@@ -81,8 +81,8 @@ class DatabaseWorker: WatsupRepository {
     }
     
     func getEmotions(from: Date, to: Date) -> Results<Emotion> {
-        let timeIntervalFrom = from.timeIntervalSince1970
-        let timeIntervalTo = to.timeIntervalSince1970
+        let timeIntervalFrom = from.timeIntervalSince1970Int
+        let timeIntervalTo = to.timeIntervalSince1970Int
         
         return realm.objects(Emotion.self).filter("createdAt >= \(timeIntervalFrom) AND createdAt <= \(timeIntervalTo)")
     }

@@ -28,7 +28,7 @@ class EmotionListTableViewCell: UITableViewCell {
     func configure(emotion: Emotion) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        let time = dateFormatter.string(from: Date(timeIntervalSince1970: emotion.createdAt))
+        let time = dateFormatter.string(from: Date(timeIntervalSince1970: Double(emotion.createdAt)))
         timeLabel.text = time
         emotionLabel.text = EmotionType.getEmotion(rawValue: emotion.emotionType).rawValue
         commentLabel.text = emotion.message

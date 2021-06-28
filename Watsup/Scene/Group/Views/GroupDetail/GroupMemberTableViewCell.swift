@@ -53,7 +53,7 @@ class GroupMemberTableViewCell: UITableViewCell {
             messageLabel.text = "Waiting for join..."
         } else if let emotion = emotion {
             timeLabel.isHidden = false
-            timeLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: emotion.createdAt))
+            timeLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: Double(emotion.createdAt)))
             emotionLabel.isHidden = false
             emotionLabel.text = EmotionType.getEmotion(rawValue: emotion.emotionType).rawValue
             messageLabel.text = emotion.message

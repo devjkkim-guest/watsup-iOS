@@ -115,8 +115,8 @@ class MainViewController: BaseViewController {
     private func reloadSelectedEmotions(selectedDate: Date) {
         guard emotions?.isInvalidated == false else { return }
         if let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate) {
-            let startTime = selectedDate.timeIntervalSince1970
-            let endTime = nextDay.timeIntervalSince1970
+            let startTime = selectedDate.timeIntervalSince1970Int
+            let endTime = nextDay.timeIntervalSince1970Int
             selectedEmotions = emotions?.filter("createdAt >= \(startTime) AND createdAt < \(endTime)")
             tableView.reloadData()
         }
@@ -164,8 +164,10 @@ class MainViewController: BaseViewController {
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CalendarCollectionViewCell {
+            cell.emotionMark.isHidden = true
+            
             if let firstDate = getFirstDate(of: indexPath.section),
-               let currentDate = firstDate.getDate(offset: indexPath.item){
+               let currentDate = firstDate.getDate(offset: indexPath.item) {
                 let day = Calendar.current.component(.day, from: currentDate)
                 
                 let components: Set = [Calendar.Component.year, Calendar.Component.month, Calendar.Component.day]
@@ -181,6 +183,7 @@ extension MainViewController: UICollectionViewDelegate {
                         // 오늘 이후의 날짜는 gray
                         cell.dayLabel.textColor = .systemGray2
                     }else{
+                        cell.emotionMark.isHidden = !currentDate.hasEmotion()
                         if let selectedDate = try? viewModel.selectedDate.value() {
                             if selectedDate == currentDate {
                                 if selectedDate == Date().startOfDay {
