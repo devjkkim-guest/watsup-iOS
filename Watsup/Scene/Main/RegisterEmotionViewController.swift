@@ -26,7 +26,7 @@ class RegisterEmotionViewController: UIViewController {
     
     @IBAction func onClickRegister(_ sender: UIButton) {
         if let message = selectEmotionView.tfMessage.text,
-           let emotionType = selectEmotionView.emotion?.getTypeIntValue(),
+           let emotionType: Int = selectEmotionView.emotion?.getValue(),
            let createdAt = date?.timeIntervalSince1970 {
             // To do: timeRecognizable 적절히 넣기
             let req = PostEmotionRequest(message: message, emotionType: emotionType, score: 0, createdAt: createdAt, timeRecognizable: 1)

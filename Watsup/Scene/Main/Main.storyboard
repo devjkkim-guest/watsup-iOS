@@ -226,25 +226,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="viP-Y8-LtY" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="150" width="374" height="200"/>
+                                <rect key="frame" x="20" y="199" width="374" height="250"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="UKe-CL-aLO"/>
+                                    <constraint firstAttribute="height" constant="250" id="UKe-CL-aLO"/>
                                 </constraints>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ol7-cx-ez0">
+                                <rect key="frame" x="20" y="154" width="374" height="32"/>
+                                <segments>
+                                    <segment title="Week"/>
+                                    <segment title="Month"/>
+                                    <segment title="Year"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DGf-X4-qJa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="viP-Y8-LtY" firstAttribute="top" secondItem="DGf-X4-qJa" secondAttribute="top" constant="10" id="3CX-Ve-C0l"/>
                             <constraint firstItem="DGf-X4-qJa" firstAttribute="trailing" secondItem="viP-Y8-LtY" secondAttribute="trailing" constant="20" id="7Ba-FQ-Eg0"/>
                             <constraint firstItem="viP-Y8-LtY" firstAttribute="leading" secondItem="DGf-X4-qJa" secondAttribute="leading" constant="20" id="BV4-Ga-V9m"/>
+                            <constraint firstItem="viP-Y8-LtY" firstAttribute="top" secondItem="ol7-cx-ez0" secondAttribute="bottom" constant="14" id="R9U-GW-mJO"/>
+                            <constraint firstItem="DGf-X4-qJa" firstAttribute="trailing" secondItem="ol7-cx-ez0" secondAttribute="trailing" constant="20" id="Ta8-tf-44E"/>
+                            <constraint firstItem="ol7-cx-ez0" firstAttribute="top" secondItem="DGf-X4-qJa" secondAttribute="top" constant="14" id="dTV-pn-mNi"/>
+                            <constraint firstItem="ol7-cx-ez0" firstAttribute="leading" secondItem="DGf-X4-qJa" secondAttribute="leading" constant="20" id="gD7-Ib-MNY"/>
                             <constraint firstItem="viP-Y8-LtY" firstAttribute="centerX" secondItem="DGf-X4-qJa" secondAttribute="centerX" id="ivp-CK-tOU"/>
+                            <constraint firstItem="ol7-cx-ez0" firstAttribute="centerX" secondItem="DGf-X4-qJa" secondAttribute="centerX" id="m4n-58-ONe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Graph" id="cZt-Ch-qPf"/>
                     <connections>
                         <outlet property="lineChartView" destination="viP-Y8-LtY" id="dIJ-ED-Phh"/>
+                        <outlet property="segmentedRange" destination="ol7-cx-ez0" id="HRi-ct-ZLF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfv-FH-Fb2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
