@@ -19,17 +19,6 @@ protocol WatsupAPI {
 }
 
 class API: WatsupAPI {
-    func getUser(uuid: String, completion: @escaping ((Result<User, APIError>) -> Void)) {
-        getUser(uuid) { result in
-            switch result {
-            case .success(let user):
-                completion(.success(user))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
     static var shared: API = {
         let configuration = URLSessionConfiguration.af.default
         configuration.timeoutIntervalForRequest = 2
@@ -104,32 +93,32 @@ class API: WatsupAPI {
     // MARK: - Auth
     /// Login
     func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<AuthResponse, APIError>) -> Void) {
-        API.shared.request(.postAuth(request)) { result in
+        self.request(.postAuth(request)) { result in
             completion(result)
         }
     }
     
     func putAuth(completion: @escaping (Result<PutAuthResponse, APIError>) -> Void) {
-        API.shared.request(.putAuth) { result in
+        self.request(.putAuth) { result in
             completion(result)
         }
     }
     
     func postCSForgotPassword(_ request: PostCSForgotPasswordRequest, completion: @escaping (Result<PostCSForgotPasswordResponse, APIError>) -> Void) {
-        API.shared.request(.postCSForgotPassword(request)) { result in
+        self.request(.postCSForgotPassword(request)) { result in
             completion(result)
         }
     }
     
     func putCSForgotPassword(_ request: PutCSForgotPasswordRequest, complection: @escaping (Result<AuthResponse, APIError>) -> Void) {
-        API.shared.request(.putCSForgotPassword(request)) { result in
+        self.request(.putCSForgotPassword(request)) { result in
             complection(result)
         }
     }
     
     // MARK: - User
-    func getUser(_ uuid: String, completion: @escaping (Result<User, APIError>) -> Void) {
-        API.shared.request(.getUser(uuid)) { result in
+    func getUser(uuid: String, completion: @escaping (Result<User, APIError>) -> Void) {
+        self.request(.getUser(uuid)) { result in
             completion(result)
         }
     }
@@ -141,17 +130,17 @@ class API: WatsupAPI {
     }
     
     func deleteUser(completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
-        API.shared.request(.deleteUser, completion: completion)
+        self.request(.deleteUser, completion: completion)
     }
     
     func getUserProfile(_ uuid: String, completion: @escaping (Result<GetUserProfileResponse, APIError>) -> Void) {
-        API.shared.request(.getUserProfile(uuid)) { result in
+        self.request(.getUserProfile(uuid)) { result in
             completion(result)
         }
     }
     
     func putUserProfile(_ uuid: String, request: PutUserProfileRequest, completion: @escaping (Result<Profile, APIError>) -> Void) {
-        API.shared.request(.putUserProfile(uuid, request: request)) { (result: Result<Profile, APIError>) in
+        self.request(.putUserProfile(uuid, request: request)) { (result: Result<Profile, APIError>) in
             switch result {
             case .success(let response):
                 DatabaseWorker.shared.putUserProfile(uuid, profile: response)
@@ -163,7 +152,7 @@ class API: WatsupAPI {
     }
     
     func putUserProfileImage(_ uuid: String, request: PutUserProfileImageRequest, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
-        API.shared.upload(.putUserProfileImage(uuid, request: request)) { (result: Result<CommonResponse, APIError>) in
+        self.upload(.putUserProfileImage(uuid, request: request)) { (result: Result<CommonResponse, APIError>) in
             switch result {
             case .success:
                 break
@@ -179,7 +168,7 @@ class API: WatsupAPI {
         - uuid: 사용자 UUID (nil일 경우 내 UUID)
      */
     func getUserEmotions(uuid: String?, completion: @escaping (Result<GetUserEmotionsResponse, APIError>) -> Void) {
-        API.shared.request(.getUserEmotions(uuid)) { (result: Result<GetUserEmotionsResponse, APIError>) in
+        self.request(.getUserEmotions(uuid)) { (result: Result<GetUserEmotionsResponse, APIError>) in
             switch result {
             case .success(let response):
                 if let logs = response.logs {
@@ -197,7 +186,7 @@ class API: WatsupAPI {
     }
     
     func postEmotion(_ request: PostEmotionRequest, completion: @escaping (Result<Emotion, APIError>) -> Void) {
-        API.shared.request(.postEmotion(request)) { (result: Result<Emotion, APIError>) in
+        self.request(.postEmotion(request)) { (result: Result<Emotion, APIError>) in
             switch result {
             case .success(let response):
                 guard let myUUID = Container.shared.myUUID else { return }
@@ -212,19 +201,19 @@ class API: WatsupAPI {
     // MARK: - Group
     
     func getGroup(_ groupUUID: String, completion: @escaping (Result<Group, APIError>) -> Void) {
-        API.shared.request(.getGroup(groupUUID)) { result in
+        self.request(.getGroup(groupUUID)) { result in
             completion(result)
         }
     }
     
     func putGroup(_ groupUUID: String, request: PutGroupRequest, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
-        API.shared.request(.putGroups(groupUUID, request)) { result in
+        self.request(.putGroups(groupUUID, request)) { result in
             completion(result)
         }
     }
     
     func getGroupJoin(_ groupUUID: String, completion: @escaping (Result<Group, APIError>) -> Void) {
-        API.shared.request(.getGroupJoin(groupUUID)) { (result: Result<Group, APIError>) in
+        self.request(.getGroupJoin(groupUUID)) { (result: Result<Group, APIError>) in
             switch result {
             case .success(let group):
                 DatabaseWorker.shared.setGroups([group])
@@ -236,7 +225,7 @@ class API: WatsupAPI {
     }
     
     func postGroups(_ request: PostGroupsRequest, completion: @escaping (Result<PostGroupsResponse, APIError>) -> Void) {
-        API.shared.request(.postGroups(request)) { (result: Result<PostGroupsResponse, APIError>) in
+        self.request(.postGroups(request)) { (result: Result<PostGroupsResponse, APIError>) in
             switch result {
             case .success(let response):
                 if let name = response.name, let uuid = response.uuid {
@@ -254,13 +243,13 @@ class API: WatsupAPI {
     }
     
     func postGroupInvite(_ groupUUID: String, _ request: PostGroupInviteRequest, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
-        API.shared.request(.postGroupInvite(groupUUID, request)) { (result: Result<CommonResponse, APIError>) in
+        self.request(.postGroupInvite(groupUUID, request)) { (result: Result<CommonResponse, APIError>) in
             completion(result)
         }
     }
     
     func getUserGroup(completion: @escaping (Result<GetUserGroupResponse, APIError>) -> Void) {
-        API.shared.request(.getUserGroup) { (result: Result<GetUserGroupResponse, APIError>) in
+        self.request(.getUserGroup) { (result: Result<GetUserGroupResponse, APIError>) in
             switch result {
             case .success(let response):
                 DatabaseWorker.shared.setGroups(response.groups)
@@ -273,13 +262,13 @@ class API: WatsupAPI {
     }
     
     func getUserInbox(completion: @escaping (Result<GetUserInboxResponse, APIError>) -> Void) {
-        API.shared.request(.getUserInbox) { (result: Result<GetUserInboxResponse, APIError>) in
+        self.request(.getUserInbox) { (result: Result<GetUserInboxResponse, APIError>) in
             completion(result)
         }
     }
     
     func deleteGroups(_ groupUUID: String, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
-        API.shared.request(.deleteGroups(groupUUID)) { (result: Result<CommonResponse, APIError>) in
+        self.request(.deleteGroups(groupUUID)) { (result: Result<CommonResponse, APIError>) in
             switch result {
             case .success(let response):
                 if response.result == true {
@@ -293,7 +282,7 @@ class API: WatsupAPI {
     }
     
     func getGroupLeave(_ groupUUID: String, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
-        API.shared.request(.getGroupLeave(groupUUID)) { (result: Result<CommonResponse, APIError>) in
+        self.request(.getGroupLeave(groupUUID)) { (result: Result<CommonResponse, APIError>) in
             switch result {
             case .success(let response):
                 if response.result == true {
