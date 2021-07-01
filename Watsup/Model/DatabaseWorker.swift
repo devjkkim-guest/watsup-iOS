@@ -5,7 +5,7 @@
 //  Created by Jeongkyun Kim on 2021/04/03.
 //
 
-import Foundation
+import UIKit
 import RealmSwift
 
 enum DatabaseError: Error {
@@ -17,10 +17,13 @@ protocol WatsupRepository {
     func removeAll()
     // MARK: - User
     func setUser(_ user: User) throws
+    func getUsers(in group: Group) -> Results<User>
+    func getUser(_ uuid: String) -> Results<User>
+    func updateUser(user: User, response: UserProfileResponse)
     
     // MARK: - Emotion
     func getEmotions(uuid: String) -> Results<Emotion>
-    func getUsers(in group: Group) -> Results<User>
+    func getMyProfile() -> Results<User>?
     
     // MARK: - Group
     func putGroup(_ groupUUID: String, groupName: String)
@@ -32,6 +35,19 @@ class DatabaseWorker: WatsupRepository {
     
     private init() {
         self.realm = try! Realm()
+    }
+    
+    private func safeWrite(object: Object, _ closure: () -> Void) {
+        if let realm = object.realm {
+            if realm.isInWriteTransaction {
+                closure()
+            } else {
+                do { try realm.write { closure() } }
+                catch { print(error.localizedDescription) }
+            }
+        } else {
+            closure()
+        }
     }
     
     func removeAll() {
@@ -58,6 +74,18 @@ class DatabaseWorker: WatsupRepository {
             print(error.localizedDescription)
             throw DatabaseError.writeError
         }
+    }
+    
+    func updateUser(user: User, response: UserProfileResponse) {
+        safeWrite(object: user) {
+            user.profile?.nickname = response.nickname
+            user.profile?.image = response.image
+            user.profile?.updatedAt = response.updatedAt
+        }
+    }
+    
+    func getUser(_ uuid: String) -> Results<User> {
+        return realm.objects(User.self).filter("uuid = '\(uuid)'")
     }
     
     func putUserProfile(_ uuid: String, profile: Profile) {

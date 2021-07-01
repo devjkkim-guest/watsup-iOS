@@ -6,7 +6,13 @@
 //
 
 import UIKit
-import Kingfisher
+import RxSwift
+import RealmSwift
+
+protocol SettingProfileTableViewCellDelegate: AnyObject {
+    func didClickUpdateProfileImage()
+    func reloadTableData()
+}
 
 class SettingProfileTableViewCell: UITableViewCell {
 
@@ -14,37 +20,49 @@ class SettingProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var btnEditProfile: UIButton!
+    let viewModel: SettingViewModel = Container.shared.resolve(id: settingViewModelId)
+    let disposeBag = DisposeBag()
+    var notificationToken: NotificationToken?
+    weak var delegate: SettingProfileTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        bindViewModel()
         btnProfile.layer.cornerRadius = btnProfile.frame.size.width/2
         btnProfile.clipsToBounds = true
+        viewModel.getMyProfileImage()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure() {
-        if let user = DatabaseWorker.shared.getMyProfile()?.first {
-            nameLabel.text = user.profile?.nickname
-            emailLabel.text = user.email
-            
-            if let uuid = user.uuid {
-                let model = APIModel.getUserProfileImage(uuid)
-                let modifier = AnyModifier { request in
-                    var r = request
-                    if let accessToken = UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue) {
-                        let value = "Bearer \(accessToken)"
-                        r.setValue(value, forHTTPHeaderField: HTTPHeaderField.authentication.rawValue)
-                    }
-
-                    return r
-                }
-                btnProfile.kf.setImage(with: model.urlRequest?.url, for: .normal, options: [.requestModifier(modifier)])
-            } else {
-                btnProfile.setImage(UIImage(systemName: "person"), for: .normal)
+    @IBAction func updateProfileImage(_ sender: UIButton) {
+        delegate?.didClickUpdateProfileImage()
+    }
+    
+    private func bindViewModel() {
+        viewModel.profileImage.subscribe { [weak self] image in
+            if let element = image.element, let image = element {
+                self?.btnProfile.setImage(image, for: .normal)
+                self?.delegate?.reloadTableData()
             }
+        }.disposed(by: disposeBag)
+
+        
+        notificationToken = viewModel.myInfo?.observe { [weak self] change in
+            guard let self = self else { return }
+            switch change {
+            case .initial(let data),
+                 .update(let data, _, _, _):
+                self.nameLabel.text = data.first?.profile?.nickname
+                self.emailLabel.text = data.first?.email
+                self.nameLabel.text = data.first?.profile?.nickname
+                self.emailLabel.text = data.first?.email
+            default:
+                break
+            }
+            
         }
     }
 }

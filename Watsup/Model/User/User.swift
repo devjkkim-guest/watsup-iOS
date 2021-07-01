@@ -50,4 +50,5 @@ class JoinedUser: Object, Codable {
 class Profile: Object, Codable {
     @objc dynamic var nickname: String?
     @objc dynamic var image: String?
+    @objc dynamic var updatedAt: Double
 }

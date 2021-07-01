@@ -14,7 +14,6 @@ class GroupViewModel: BaseViewModel {
     var id: String = groupViewModelId
     var api: WatsupAPI
     var repository: WatsupRepository
-    let uuid = UserDefaults.standard.string(forKey: UserDefaultsKey.uuid.rawValue)
     private(set) var group: Group?
     
     required init(api: WatsupAPI, repository: WatsupRepository) {
@@ -32,8 +31,9 @@ class GroupViewModel: BaseViewModel {
     
     func checkIfIAmMaster() -> Bool {
         guard let group = group else { return false }
+        guard let myUUID = Container.shared.myUUID else { return false }
         return group.joinedUsers.contains { joinedUser in
-            return joinedUser.user?.uuid == uuid && joinedUser.userStatus == .master
+            return joinedUser.user?.uuid == myUUID && joinedUser.userStatus == .master
         }
     }
     
