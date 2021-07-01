@@ -199,9 +199,10 @@ enum APIModel: URLRequestConvertible {
     }
     
     var headers: HTTPHeaders {
-        var customHeaders: HTTPHeaders = [HTTPHeaderField.contentType.rawValue: ContentType.json.rawValue,
-                                          HTTPHeaderField.acceptType.rawValue: ContentType.json.rawValue]
+        var headers: HTTPHeaders = [HTTPHeaderField.contentType.rawValue: ContentType.json.rawValue]
+        
         switch self {
+            // JWT Required
         case .getUser,
              .deleteUser,
              .getUserProfile,
@@ -217,28 +218,28 @@ enum APIModel: URLRequestConvertible {
              .postEmotion,
              .getUserInbox,
              .deleteGroups:
+            headers.add(name: HTTPHeaderField.acceptType.rawValue, value: ContentType.json.rawValue)
             if let accessToken = UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue) {
                 let value = "Bearer \(accessToken)"
-                customHeaders.add(name: HTTPHeaderField.authentication.rawValue, value: value)
+                headers.add(name: HTTPHeaderField.authentication.rawValue, value: value)
             }
-            // JWT included
-            return customHeaders
+            return headers
             
+            // JWT Not Required
         case .postAuth,
              .postUser,
              .postCSForgotPassword,
-             .putCSForgotPassword,
-             .getUserProfileImage:
-            // default (JWT not included)
-            return customHeaders
+             .putCSForgotPassword:
+            headers.add(name: HTTPHeaderField.acceptType.rawValue, value: ContentType.json.rawValue)
+            return headers
             
         case .putAuth:
             // refreshToken
             if let refreshToken = UserDefaults.standard.string(forKey: KeychainKey.refreshToken.rawValue) {
                 let value = "Bearer \(refreshToken)"
-                customHeaders.add(name: HTTPHeaderField.authentication.rawValue, value: value)
+                headers.add(name: HTTPHeaderField.authentication.rawValue, value: value)
             }
-            return customHeaders
+            return headers
             
         case .putUserProfileImage:
             // multipart formData
@@ -249,6 +250,15 @@ enum APIModel: URLRequestConvertible {
                 multipartHeader.add(name: HTTPHeaderField.authentication.rawValue, value: value)
             }
             return multipartHeader
+            
+            // Image + JWT
+        case .getUserProfileImage:
+            headers.add(name:HTTPHeaderField.acceptType.rawValue, value: ContentType.imageJpeg.rawValue)
+            if let accessToken = UserDefaults.standard.string(forKey: KeychainKey.accessToken.rawValue) {
+                let value = "Bearer \(accessToken)"
+                headers.add(name: HTTPHeaderField.authentication.rawValue, value: value)
+            }
+            return headers
         }
     }
     

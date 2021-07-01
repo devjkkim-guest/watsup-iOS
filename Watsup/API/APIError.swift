@@ -7,11 +7,13 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 
 struct APIError: Error {
     enum ErrorType {
         case httpError
         case jsonError(type: JSONError)
+        case insufficientRequest
         case others(type: Others)
     }
     
@@ -69,6 +71,9 @@ struct APIError: Error {
             case .none:
                 return "\("API.Error.NotDefined".localized)\n\(String(describing: errorType)).\(errorCode)"
             }
+            
+        case .insufficientRequest:
+            return "insufficient request data"
             
         case .jsonError(let type):
             switch type {

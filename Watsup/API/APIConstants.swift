@@ -17,6 +17,7 @@ enum HTTPHeaderField: String {
 enum ContentType: String {
     case json = "application/json"
     case multipartFormData = "multipart/form-data"
+    case imageJpeg = "image/jpeg"
 }
 
 struct MimeType {

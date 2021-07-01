@@ -45,7 +45,6 @@
 		8F5D592C25C486AE0095C21A /* PostGroupsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D592B25C486AE0095C21A /* PostGroupsRequest.swift */; };
 		8F5D593125C4871E0095C21A /* PostGroupsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D593025C4871E0095C21A /* PostGroupsResponse.swift */; };
 		8F5D594325C489D10095C21A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D594225C489D10095C21A /* SettingViewController.swift */; };
-		8F5D594B25C4924C0095C21A /* GetUserProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D594A25C4924C0095C21A /* GetUserProfileResponse.swift */; };
 		8F5D595025C494230095C21A /* APIInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D594F25C494230095C21A /* APIInterceptor.swift */; };
 		8F5D595525C496EC0095C21A /* APITokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D595425C496EC0095C21A /* APITokenStorage.swift */; };
 		8F5D595C25C5648C0095C21A /* SettingProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D595A25C5648C0095C21A /* SettingProfileTableViewCell.swift */; };
@@ -76,7 +75,6 @@
 		8FD6448E25BAFB010056F74E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6448D25BAFB010056F74E /* BaseViewController.swift */; };
 		A40182A6265D45D50026B049 /* GroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40182A5265D45D50026B049 /* GroupViewModel.swift */; };
 		A40182A8265D525F0026B049 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40182A7265D525F0026B049 /* SettingViewModel.swift */; };
-		A410A8CF2647D7FE00E8D308 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A410A8CE2647D7FE00E8D308 /* Kingfisher */; };
 		A426C03B2652A51800AE2A4F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A426C03A2652A51800AE2A4F /* Realm */; };
 		A426C03D2652A51800AE2A4F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A426C03C2652A51800AE2A4F /* RealmSwift */; };
 		A429318925EA7562005F5DD0 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A429318725EA7562005F5DD0 /* CalendarCollectionViewCell.swift */; };
@@ -115,6 +113,8 @@
 		A4BE3AC72625E8740051B213 /* GroupResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3AC62625E8730051B213 /* GroupResponses.swift */; };
 		A4BE3AD22625F4D30051B213 /* EmotionGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE3AD12625F4D20051B213 /* EmotionGraphViewController.swift */; };
 		A4BE3AD82625F8DA0051B213 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = A4BE3AD72625F8DA0051B213 /* Charts */; };
+		A4C59F40268E0C0D0084CDFB /* UserResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C59F3F268E0C0D0084CDFB /* UserResponses.swift */; };
+		A4C59F43268E0D940084CDFB /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = A4C59F42268E0D940084CDFB /* AlamofireImage */; };
 		D38D74FE6BDC4AF0822F33EA /* Pods_WatsupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C16B8CFF71D698F6E5052E35 /* Pods_WatsupTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -193,7 +193,6 @@
 		8F5D592B25C486AE0095C21A /* PostGroupsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGroupsRequest.swift; sourceTree = "<group>"; };
 		8F5D593025C4871E0095C21A /* PostGroupsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGroupsResponse.swift; sourceTree = "<group>"; };
 		8F5D594225C489D10095C21A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		8F5D594A25C4924C0095C21A /* GetUserProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileResponse.swift; sourceTree = "<group>"; };
 		8F5D594F25C494230095C21A /* APIInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIInterceptor.swift; sourceTree = "<group>"; };
 		8F5D595425C496EC0095C21A /* APITokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITokenStorage.swift; sourceTree = "<group>"; };
 		8F5D595A25C5648C0095C21A /* SettingProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -263,6 +262,7 @@
 		A4BE3AC02625DF720051B213 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		A4BE3AC62625E8730051B213 /* GroupResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupResponses.swift; sourceTree = "<group>"; };
 		A4BE3AD12625F4D20051B213 /* EmotionGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionGraphViewController.swift; sourceTree = "<group>"; };
+		A4C59F3F268E0C0D0084CDFB /* UserResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponses.swift; sourceTree = "<group>"; };
 		B25E9158FBC1E19E12307A7D /* Pods_Watsup_WatsupUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watsup_WatsupUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E42CF30CC62E938744F53E /* Pods-WatsupTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatsupTests.release.xcconfig"; path = "Target Support Files/Pods-WatsupTests/Pods-WatsupTests.release.xcconfig"; sourceTree = "<group>"; };
 		BB9DF817AA0151F51E0ABF39 /* Pods_Watsup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watsup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,10 +280,10 @@
 			files = (
 				A426C03D2652A51800AE2A4F /* RealmSwift in Frameworks */,
 				A471A40E268A064E0083DC8E /* Alamofire in Frameworks */,
+				A4C59F43268E0D940084CDFB /* AlamofireImage in Frameworks */,
 				A426C03B2652A51800AE2A4F /* Realm in Frameworks */,
 				A4BE3AA0261DD2AD0051B213 /* RxSwift in Frameworks */,
 				A4BE3AD82625F8DA0051B213 /* Charts in Frameworks */,
-				A410A8CF2647D7FE00E8D308 /* Kingfisher in Frameworks */,
 				A4BE3A9E261DD2AD0051B213 /* RxCocoa in Frameworks */,
 				84471AAACA820603C645BFCA /* Pods_Watsup.framework in Frameworks */,
 			);
@@ -427,11 +427,11 @@
 		8F5AD3E425C1CA0B00DBF158 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				A4C59F3E268E0BFD0084CDFB /* User */,
 				A4BE3AC52625E8680051B213 /* Group */,
 				8F5AD40025C45F9100DBF158 /* CommonResponse.swift */,
 				8F5AD3E525C1CA1B00DBF158 /* PostUsersResponse.swift */,
 				8F5D593025C4871E0095C21A /* PostGroupsResponse.swift */,
-				8F5D594A25C4924C0095C21A /* GetUserProfileResponse.swift */,
 				8F5D59AF25C863EE0095C21A /* PutCSForgotPasswordResponse.swift */,
 				8F5D5A4425D1741F0095C21A /* PostCSForgotPasswordResponse.swift */,
 				8F5D5A3B25CECF9C0095C21A /* GetUserGroupResponse.swift */,
@@ -731,6 +731,14 @@
 			path = Group;
 			sourceTree = "<group>";
 		};
+		A4C59F3E268E0BFD0084CDFB /* User */ = {
+			isa = PBXGroup;
+			children = (
+				A4C59F3F268E0C0D0084CDFB /* UserResponses.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -754,10 +762,10 @@
 				A4BE3A9D261DD2AD0051B213 /* RxCocoa */,
 				A4BE3A9F261DD2AD0051B213 /* RxSwift */,
 				A4BE3AD72625F8DA0051B213 /* Charts */,
-				A410A8CE2647D7FE00E8D308 /* Kingfisher */,
 				A426C03A2652A51800AE2A4F /* Realm */,
 				A426C03C2652A51800AE2A4F /* RealmSwift */,
 				A471A40D268A064E0083DC8E /* Alamofire */,
+				A4C59F42268E0D940084CDFB /* AlamofireImage */,
 			);
 			productName = watsup;
 			productReference = 8F61769725B856140059B4B7 /* Watsup.app */;
@@ -837,9 +845,9 @@
 			packageReferences = (
 				A4BE3A9C261DD2AD0051B213 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				A4BE3AD62625F8DA0051B213 /* XCRemoteSwiftPackageReference "Charts" */,
-				A410A8CD2647D7FE00E8D308 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				A426C0392652A51800AE2A4F /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				A471A40C268A064E0083DC8E /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A4C59F41268E0D940084CDFB /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 			);
 			productRefGroup = 8F61769825B856140059B4B7 /* Products */;
 			projectDirPath = "";
@@ -1012,6 +1020,7 @@
 				8F0E41E025B9C61E008AA995 /* GroupListViewController.swift in Sources */,
 				8F5D592C25C486AE0095C21A /* PostGroupsRequest.swift in Sources */,
 				8F0E41EC25B9C6A0008AA995 /* UserDetailViewController.swift in Sources */,
+				A4C59F40268E0C0D0084CDFB /* UserResponses.swift in Sources */,
 				8F5AD40D25C4630C00DBF158 /* AuthViewModel.swift in Sources */,
 				8F5D5A5525D176300095C21A /* APIError.swift in Sources */,
 				8F5AD40125C45F9100DBF158 /* CommonResponse.swift in Sources */,
@@ -1062,7 +1071,6 @@
 				8F5AD3F725C1CDB200DBF158 /* APIEventMonitor.swift in Sources */,
 				A4BE39A226128C800051B213 /* RegisterEmotionTableViewCell.swift in Sources */,
 				A4981B7A265BD05900C295A5 /* Container.swift in Sources */,
-				8F5D594B25C4924C0095C21A /* GetUserProfileResponse.swift in Sources */,
 				8F5D595025C494230095C21A /* APIInterceptor.swift in Sources */,
 				8FD6448E25BAFB010056F74E /* BaseViewController.swift in Sources */,
 				8988DBB2261DDB2A00830295 /* GroupMemberTableViewCell.swift in Sources */,
@@ -1440,14 +1448,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A410A8CD2647D7FE00E8D308 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
 		A426C0392652A51800AE2A4F /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa.git";
@@ -1480,14 +1480,17 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		A4C59F41268E0D940084CDFB /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A410A8CE2647D7FE00E8D308 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A410A8CD2647D7FE00E8D308 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
 		A426C03A2652A51800AE2A4F /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A426C0392652A51800AE2A4F /* XCRemoteSwiftPackageReference "realm-cocoa" */;
@@ -1517,6 +1520,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A4BE3AD62625F8DA0051B213 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
+		};
+		A4C59F42268E0D940084CDFB /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A4C59F41268E0D940084CDFB /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

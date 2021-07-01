@@ -5,16 +5,26 @@
 //  Created by Jeongkyun Kim on 2021/01/27.
 //
 
-import Foundation
+import UIKit
 import Alamofire
+import AlamofireImage
 
 protocol WatsupAPI {
+    // MARK:- User
+    func getUserProfileImage(_ user: User, completion: @escaping (Result<Image, AFIError>) -> Void)
+    func putUserProfileImage(_ uuid: String, request: PutUserProfileImageRequest, completion: @escaping (Result<UserProfileResponse, APIError>) -> Void)
     func deleteUser(completion: @escaping (Result<CommonResponse, APIError>) -> Void)
     func postUser(_ request: PostUserRequest, completion: @escaping (Result<PostUsersResponse, APIError>) -> Void)
     func getUser(uuid: String, completion: @escaping ((Result<User, APIError>) -> Void))
+    
+    // MARK: - Account
     func postAuth(_ request: PostAuthRequest, completion: @escaping (Result<AuthResponse, APIError>) -> Void)
     func putCSForgotPassword(_ request: PutCSForgotPasswordRequest, complection: @escaping (Result<AuthResponse, APIError>) -> Void)
+    
+    // MARK: - Group
     func putGroup(_ groupUUID: String, request: PutGroupRequest, completion: @escaping (Result<CommonResponse, APIError>) -> Void)
+    
+    // MARK: - Auth
     func removeAllTokens()
 }
 
@@ -25,16 +35,29 @@ class API: WatsupAPI {
         configuration.waitsForConnectivity = true
         let logger = APIEventMonitor()
         let interceptor = APIInterceptor(storage: APITokenStorage())
-        let session = Session(configuration: configuration, interceptor: interceptor, eventMonitors: [logger])
-        return API(session: session)
+        let session = Session(configuration: configuration,
+                              startRequestsImmediately: true,
+                              interceptor: interceptor,
+                              eventMonitors: [logger])
+        let downloadSession = Session(configuration: configuration,
+                                      startRequestsImmediately: false,
+                                      interceptor: interceptor,
+                                      eventMonitors: [logger])
+        return API(session: session, downloadSession: downloadSession)
     }()
     private let session: Session
+    private let imageDownloader: ImageDownloader
+    private let cacheManager = AutoPurgingImageCache()
     
-    private init(session: Session) {
+    private init(session: Session, downloadSession: Session) {
         self.session = session
+        self.imageDownloader = ImageDownloader(session: downloadSession,
+                                               downloadPrioritization: .fifo,
+                                               maximumActiveDownloads: 5,
+                                               imageCache: cacheManager)
     }
     
-    private func request<T>(_ model: APIModel, completion: @escaping (Result<T, APIError>) -> Void) where T:Codable {
+    private func request<T>(_ model: APIModel, completion: @escaping (Result<T, APIError>) -> Void) where T: Codable {
         session.request(model)
             .validate()
             .responseJSON { response in
@@ -60,7 +83,7 @@ class API: WatsupAPI {
             }
     }
     
-    private func upload<T>(_ model: APIModel, completion: @escaping (Result<T, APIError>) -> Void) where T:Codable {
+    private func upload<T>(_ model: APIModel, completion: @escaping (Result<T, APIError>) -> Void) where T: Codable {
         session.upload(multipartFormData: { multipart in
             if let image = model.image {
                 multipart.append(image, withName: "image", fileName: "image", mimeType: MimeType.Image.jpeg.rawValue)
@@ -133,10 +156,22 @@ class API: WatsupAPI {
         self.request(.deleteUser, completion: completion)
     }
     
-    func getUserProfile(_ uuid: String, completion: @escaping (Result<GetUserProfileResponse, APIError>) -> Void) {
+    func getUserProfile(_ uuid: String, completion: @escaping (Result<UserProfileResponse, APIError>) -> Void) {
         self.request(.getUserProfile(uuid)) { result in
             completion(result)
         }
+    }
+    
+    func getUserProfileImage(_ user: User, completion: @escaping (Result<Image, AFIError>) -> Void) {
+        guard let userUUID = user.uuid else {
+            completion(.failure(.requestCancelled))
+            return
+        }
+        let cacheKey = "\(userUUID)-profileImage"
+        self.cacheManager.removeImage(withIdentifier: cacheKey)
+        self.imageDownloader.download(APIModel.getUserProfileImage(userUUID), cacheKey: cacheKey, completion:  { response in
+            completion(response.result)
+        })
     }
     
     func putUserProfile(_ uuid: String, request: PutUserProfileRequest, completion: @escaping (Result<Profile, APIError>) -> Void) {
@@ -151,14 +186,8 @@ class API: WatsupAPI {
         }
     }
     
-    func putUserProfileImage(_ uuid: String, request: PutUserProfileImageRequest, completion: @escaping (Result<CommonResponse, APIError>) -> Void) {
-        self.upload(.putUserProfileImage(uuid, request: request)) { (result: Result<CommonResponse, APIError>) in
-            switch result {
-            case .success:
-                break
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+    func putUserProfileImage(_ uuid: String, request: PutUserProfileImageRequest, completion: @escaping (Result<UserProfileResponse, APIError>) -> Void) {
+        self.upload(.putUserProfileImage(uuid, request: request)) { (result: Result<UserProfileResponse, APIError>) in
             completion(result)
         }
     }
